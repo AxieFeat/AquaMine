@@ -1,9 +1,11 @@
 plugins {
-    kotlin("jvm") version "2.1.20"
+    kotlin("jvm") version "2.0.21"
+    `java-library`
 }
 
-subprojects {
+allprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "org.gradle.java-library")
 
     group = "net.aquamine"
     version = "1.0"
