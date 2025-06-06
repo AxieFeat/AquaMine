@@ -10,10 +10,6 @@ allprojects {
     group = "net.aquamine"
     version = "1.0"
 
-    repositories {
-        mavenCentral()
-    }
-
     kotlin {
         jvmToolchain(21)
     }

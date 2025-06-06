@@ -2,4 +2,16 @@ metadata.format.version = "1.1"
 
 [versions]
 
+annotations = "26.0.2"
+brigadier = "1.0.18"
+adventure = "4.21.0"
+guice = "7.0.0"
+kotlinpoet = "2.2.0"
+
 [libraries]
+
+annotations = { group = "org.jetbrains", name = "annotations", version.ref = "annotations" }
+adventure-api = { group = "net.kyori", name = "adventure-api", version.ref = "adventure" }
+brigadier = { group = "com.mojang", name = "brigadier", version.ref = "brigadier" }
+guice = { group = "com.google.inject", name = "guice", version.ref = "guice" }
+kotlinpoet = { group = "com.squareup", name = "kotlinpoet", version.ref = "kotlinpoet" }
