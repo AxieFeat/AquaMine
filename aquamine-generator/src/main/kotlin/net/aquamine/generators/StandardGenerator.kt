@@ -8,6 +8,7 @@ import java.nio.file.Path
 import kotlin.io.path.exists
 import kotlin.io.path.writeText
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 open class StandardGenerator(private val output: Path) {
 
     protected open fun <S, T> collectFields(catalogueType: Class<S>, type: Class<T>): Sequence<CollectedField<T>> =

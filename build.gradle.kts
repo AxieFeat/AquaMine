@@ -1,16 +1,12 @@
 plugins {
-    kotlin("jvm") version "2.0.21"
-    `java-library`
+    id("aquamine.common")
 }
 
 allprojects {
-    apply(plugin = "org.jetbrains.kotlin.jvm")
-    apply(plugin = "org.gradle.java-library")
+    apply(plugin = "aquamine.common")
 
     group = "net.aquamine"
     version = "1.0"
+    description = "Minecraft server implementation based on KryptonMC"
 
-    kotlin {
-        jvmToolchain(21)
-    }
 }
