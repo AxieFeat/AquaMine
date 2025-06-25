@@ -31,9 +31,9 @@ plugins {
 
 project("api")
 project("server")
-project("protocol")
 project("annotations")
 project("annotation-processor")
+project("plugin-annotation-processor")
 project("generator")
 project("demo")
 

@@ -20,16 +20,6 @@ kotlin {
     }
 }
 
-tasks {
-    compileJava {
-        options.encoding = "UTF-8"
-        options.release.set(21)
-    }
-    withType<KotlinCompile> {
-        compilerOptions.jvmTarget.set(JvmTarget.JVM_21)
-    }
-}
-
 publishing {
     publications {
         // TODO
