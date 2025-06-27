@@ -7,9 +7,9 @@ import org.apache.logging.log4j.LogManager
 import net.aquamine.api.plugin.PluginContainer
 import net.aquamine.api.plugin.PluginDependency
 import net.aquamine.api.plugin.PluginDescription
-import net.aquamine.server.plugin.KryptonPluginContainer
-import net.aquamine.server.plugin.KryptonPluginDependency
-import net.aquamine.server.plugin.KryptonPluginDescription
+import net.aquamine.server.plugin.AquaPluginContainer
+import net.aquamine.server.plugin.AquaPluginDependency
+import net.aquamine.server.plugin.AquaPluginDescription
 import net.aquamine.server.plugin.loader.PluginSource
 import net.aquamine.server.plugin.module.PluginModule
 import net.aquamine.server.util.NoSpread
@@ -58,7 +58,7 @@ class ServerPluginSource(
         return candidate.toFull(mainClass)
     }
 
-    override fun createPluginContainer(description: PluginDescription): PluginContainer = KryptonPluginContainer(description, true)
+    override fun createPluginContainer(description: PluginDescription): PluginContainer = AquaPluginContainer(description, true)
 
     override fun createModule(container: PluginContainer): Module {
         val description = container.description
@@ -67,7 +67,7 @@ class ServerPluginSource(
     }
 
     override fun createPlugin(container: PluginContainer, vararg modules: Module) {
-        require(container is KryptonPluginContainer) { "Container provided isn't compatible with this loader!" }
+        require(container is AquaPluginContainer) { "Container provided isn't compatible with this loader!" }
         val description = container.description
         require(description is LoadedDescription) { "Description provided isn't compatible with this loader!" }
 
@@ -101,7 +101,7 @@ class ServerPluginSource(
     private class LoadedCandidateDescription(
         from: SerializedPluginDescription,
         val mainClass: String
-    ) : KryptonPluginDescription(from.id, from.name, from.version, from.description, convertAuthors(from), convertDependencies(from), null) {
+    ) : AquaPluginDescription(from.id, from.name, from.version, from.description, convertAuthors(from), convertDependencies(from), null) {
 
         fun toFull(mainClass: Class<*>): LoadedDescription = LoadedDescription(this, mainClass)
 
@@ -113,7 +113,7 @@ class ServerPluginSource(
             @JvmStatic
             fun convertDependencies(from: SerializedPluginDescription): Collection<PluginDependency> {
                 val result = ImmutableList.builder<PluginDependency>()
-                from.dependencies.forEach { result.add(KryptonPluginDependency(it.id, it.optional)) }
+                from.dependencies.forEach { result.add(AquaPluginDependency(it.id, it.optional)) }
                 return result.build()
             }
         }
@@ -122,7 +122,7 @@ class ServerPluginSource(
     private class LoadedDescription(
         from: LoadedCandidateDescription,
         val mainClass: Class<*>
-    ) : KryptonPluginDescription(from.id, from.name, from.version, from.description, from.authors, from.dependencies, null)
+    ) : AquaPluginDescription(from.id, from.name, from.version, from.description, from.authors, from.dependencies, null)
 
     companion object {
 

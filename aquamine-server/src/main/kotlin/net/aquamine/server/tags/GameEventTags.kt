@@ -2,7 +2,7 @@ package net.aquamine.server.tags
 
 import net.kyori.adventure.key.Key
 import net.aquamine.api.tags.TagKey
-import net.aquamine.server.resource.KryptonResourceKeys
+import net.aquamine.server.resource.AquaResourceKeys
 import net.aquamine.server.world.gameevent.GameEvent
 
 object GameEventTags {
@@ -13,5 +13,5 @@ object GameEventTags {
     val IGNORE_VIBRATIONS_SNEAKING: TagKey<GameEvent> = create("ignore_vibrations_sneaking")
 
     @JvmStatic
-    private fun create(name: String): TagKey<GameEvent> = KryptonTagKey.of(KryptonResourceKeys.GAME_EVENT, Key.key(name))
+    private fun create(name: String): TagKey<GameEvent> = AquaTagKey.of(AquaResourceKeys.GAME_EVENT, Key.key(name))
 }

@@ -11,20 +11,20 @@ import net.aquamine.api.resource.ResourcePack
 import net.aquamine.api.util.Position
 import net.aquamine.api.util.Vec3d
 import net.aquamine.api.world.GameMode
-import net.aquamine.server.KryptonServer
+import net.aquamine.server.AquaServer
 import net.aquamine.server.command.CommandSigningContext
-import net.aquamine.server.commands.KryptonPermission
-import net.aquamine.server.entity.player.KryptonPlayer
-import net.aquamine.server.entity.player.KryptonPlayerSettings
-import net.aquamine.server.entity.player.KryptonSkinParts
+import net.aquamine.server.commands.AquaPermission
+import net.aquamine.server.entity.player.AquaPlayer
+import net.aquamine.server.entity.player.AquaPlayerSettings
+import net.aquamine.server.entity.player.AquaSkinParts
 import net.aquamine.server.entity.player.PlayerPublicKey
-import net.aquamine.server.event.command.KryptonCommandExecuteEvent
-import net.aquamine.server.event.player.KryptonPlayerChatEvent
-import net.aquamine.server.event.player.KryptonPlayerMoveEvent
-import net.aquamine.server.event.player.interact.KryptonPlayerPlaceBlockEvent
-import net.aquamine.server.event.player.KryptonPluginMessageReceivedEvent
-import net.aquamine.server.event.player.KryptonPlayerResourcePackStatusEvent
-import net.aquamine.server.inventory.KryptonPlayerInventory
+import net.aquamine.server.event.command.AquaCommandExecuteEvent
+import net.aquamine.server.event.player.AquaPlayerChatEvent
+import net.aquamine.server.event.player.AquaPlayerMoveEvent
+import net.aquamine.server.event.player.interact.AquaPlayerPlaceBlockEvent
+import net.aquamine.server.event.player.AquaPluginMessageReceivedEvent
+import net.aquamine.server.event.player.AquaPlayerResourcePackStatusEvent
+import net.aquamine.server.inventory.AquaPlayerInventory
 import net.aquamine.server.item.handler
 import net.aquamine.server.item.handler.ItemTimedHandler
 import net.aquamine.server.network.chat.ChatUtil
@@ -63,18 +63,18 @@ import net.aquamine.server.packet.out.play.PacketOutDisconnect
 import net.aquamine.server.packet.out.play.PacketOutKeepAlive
 import net.aquamine.server.packet.out.play.PacketOutPlayerInfoUpdate
 import net.aquamine.server.packet.out.play.PacketOutTagQueryResponse
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.util.crypto.SignatureValidator
-import net.aquamine.server.world.block.KryptonBlocks
+import net.aquamine.server.world.block.AquaBlocks
 import net.aquamine.server.coordinate.ChunkPos
-import net.aquamine.server.entity.KryptonEntity
-import net.aquamine.server.event.player.action.KryptonPlayerStartSneakingEvent
-import net.aquamine.server.event.player.action.KryptonPlayerStartSprintingEvent
-import net.aquamine.server.event.player.action.KryptonPlayerStopSneakingEvent
-import net.aquamine.server.event.player.action.KryptonPlayerStopSprintingEvent
-import net.aquamine.server.event.player.interact.KryptonPlayerAttackEntityEvent
-import net.aquamine.server.event.player.interact.KryptonPlayerInteractAtEntityEvent
-import net.aquamine.server.event.player.interact.KryptonPlayerInteractWithEntityEvent
+import net.aquamine.server.entity.AquaEntity
+import net.aquamine.server.event.player.action.AquaPlayerStartSneakingEvent
+import net.aquamine.server.event.player.action.AquaPlayerStartSprintingEvent
+import net.aquamine.server.event.player.action.AquaPlayerStopSneakingEvent
+import net.aquamine.server.event.player.action.AquaPlayerStopSprintingEvent
+import net.aquamine.server.event.player.interact.AquaPlayerAttackEntityEvent
+import net.aquamine.server.event.player.interact.AquaPlayerInteractAtEntityEvent
+import net.aquamine.server.event.player.interact.AquaPlayerInteractWithEntityEvent
 import net.aquamine.server.locale.DisconnectMessages
 import net.aquamine.server.locale.MinecraftTranslationManager
 import net.aquamine.server.network.NioConnection
@@ -91,9 +91,9 @@ import java.time.Duration
  * This handles all supported inbound packets in the play state.
  */
 class PlayPacketHandler(
-    private val server: KryptonServer,
+    private val server: AquaServer,
     private val connection: NioConnection,
-    private val player: KryptonPlayer
+    private val player: AquaPlayer
 ) : TickablePacketHandler {
 
     private val chatTracker = player.chatTracker
@@ -141,7 +141,7 @@ class PlayPacketHandler(
     fun handleChatCommand(packet: PacketInChatCommand) {
         if (!ChatUtil.isValidMessage(packet.command)) disconnect(DisconnectMessages.ILLEGAL_CHARACTERS)
 
-        val event = server.eventNode.fire(KryptonCommandExecuteEvent(player, packet.command))
+        val event = server.eventNode.fire(AquaCommandExecuteEvent(player, packet.command))
         if (!event.isAllowed()) return
 
         val command = event.result?.command ?: packet.command
@@ -164,7 +164,7 @@ class PlayPacketHandler(
         if (!ChatUtil.isValidMessage(packet.message)) disconnect(DisconnectMessages.ILLEGAL_CHARACTERS)
 
         // Fire the chat event
-        val event = server.eventNode.fire(KryptonPlayerChatEvent(player, packet.message))
+        val event = server.eventNode.fire(AquaPlayerChatEvent(player, packet.message))
         if (!event.isAllowed()) return
 
         val lastSeen = chatTracker.handleChat(packet.message, packet.timestamp, packet.lastSeenMessages) ?: return
@@ -209,12 +209,12 @@ class PlayPacketHandler(
     }
 
     fun handleClientInformation(packet: PacketInClientInformation) {
-        player.settings = KryptonPlayerSettings(
+        player.settings = AquaPlayerSettings(
             Translator.parseLocale(packet.locale),
             packet.viewDistance.toInt(),
             packet.chatVisibility,
             packet.chatColors,
-            KryptonSkinParts(packet.skinSettings.toInt()),
+            AquaSkinParts(packet.skinSettings.toInt()),
             packet.mainHand,
             packet.filterText,
             packet.allowsListing
@@ -225,7 +225,7 @@ class PlayPacketHandler(
         if (player.gameMode != GameMode.CREATIVE) return
         val item = packet.clickedItem
         val slot = packet.slot.toInt()
-        val inValidRange = slot >= 1 && slot < KryptonPlayerInventory.SIZE
+        val inValidRange = slot >= 1 && slot < AquaPlayerInventory.SIZE
         val isValid = item.isEmpty() || item.meta.damage >= 0 && item.amount <= 64 && !item.isEmpty()
         if (inValidRange && isValid) player.inventory.setItem(slot, packet.clickedItem)
     }
@@ -233,19 +233,19 @@ class PlayPacketHandler(
     fun handlePlayerCommand(packet: PacketInPlayerCommand) {
         when (packet.action) {
             EntityAction.START_SNEAKING -> {
-                if (!server.eventNode.fire(KryptonPlayerStartSneakingEvent(player)).isAllowed()) return
+                if (!server.eventNode.fire(AquaPlayerStartSneakingEvent(player)).isAllowed()) return
                 player.isSneaking = true
             }
             EntityAction.STOP_SNEAKING -> {
-                if (!server.eventNode.fire(KryptonPlayerStopSneakingEvent(player)).isAllowed()) return
+                if (!server.eventNode.fire(AquaPlayerStopSneakingEvent(player)).isAllowed()) return
                 player.isSneaking = false
             }
             EntityAction.START_SPRINTING -> {
-                if (!server.eventNode.fire(KryptonPlayerStartSprintingEvent(player)).isAllowed()) return
+                if (!server.eventNode.fire(AquaPlayerStartSprintingEvent(player)).isAllowed()) return
                 player.isSprinting = true
             }
             EntityAction.STOP_SPRINTING -> {
-                if (!server.eventNode.fire(KryptonPlayerStopSprintingEvent(player)).isAllowed()) return
+                if (!server.eventNode.fire(AquaPlayerStopSprintingEvent(player)).isAllowed()) return
                 player.isSprinting = false
             }
             EntityAction.STOP_SLEEPING -> Unit // TODO: Sleeping
@@ -287,13 +287,13 @@ class PlayPacketHandler(
         val state = world.getBlock(position)
         val face = packet.hitResult.direction
         val isInside = packet.hitResult.isInside
-        val event = server.eventNode.fire(KryptonPlayerPlaceBlockEvent(player, state, packet.hand, position, face, isInside))
+        val event = server.eventNode.fire(AquaPlayerPlaceBlockEvent(player, state, packet.hand, position, face, isInside))
         if (!event.isAllowed()) return
 
         val chunk = world.chunkManager.getChunk(ChunkPos.forEntityPosition(player.position)) ?: return
         val existingBlock = chunk.getBlock(position)
-        if (!existingBlock.eq(KryptonBlocks.AIR)) return
-        chunk.setBlock(position, KryptonRegistries.BLOCK.get(player.inventory.mainHand.type.key()).defaultState, false)
+        if (!existingBlock.eq(AquaBlocks.AIR)) return
+        chunk.setBlock(position, AquaRegistries.BLOCK.get(player.inventory.mainHand.type.key()).defaultState, false)
     }
 
     fun handlePlayerAction(packet: PacketInPlayerAction) {
@@ -327,23 +327,23 @@ class PlayPacketHandler(
         }
     }
 
-    private fun onInteract(target: KryptonEntity, hand: Hand) {
-        val event = server.eventNode.fire(KryptonPlayerInteractWithEntityEvent(player, target, hand))
+    private fun onInteract(target: AquaEntity, hand: Hand) {
+        val event = server.eventNode.fire(AquaPlayerInteractWithEntityEvent(player, target, hand))
         if (!event.isAllowed()) return
 
         // TODO: Re-implement interactions and call a handler here
     }
 
-    private fun onInteractAt(target: KryptonEntity, hand: Hand, x: Float, y: Float, z: Float) {
+    private fun onInteractAt(target: AquaEntity, hand: Hand, x: Float, y: Float, z: Float) {
         val clickedPosition = Vec3d(x.toDouble(), y.toDouble(), z.toDouble())
-        val event = server.eventNode.fire(KryptonPlayerInteractAtEntityEvent(player, target, hand, clickedPosition))
+        val event = server.eventNode.fire(AquaPlayerInteractAtEntityEvent(player, target, hand, clickedPosition))
         if (!event.isAllowed()) return
 
         // TODO: Re-implement interactions and call a handler here
     }
 
-    private fun onAttack(target: KryptonEntity) {
-        val event = server.eventNode.fire(KryptonPlayerAttackEntityEvent(player, target))
+    private fun onAttack(target: AquaEntity) {
+        val event = server.eventNode.fire(AquaPlayerAttackEntityEvent(player, target))
         if (!event.isAllowed()) return
 
         // TODO: Re-implement interactions and call a handler here
@@ -366,7 +366,7 @@ class PlayPacketHandler(
         if (oldPosition == newPosition) return // Position hasn't changed, no need to do anything
 
         // TODO: Figure out if we should make an entity move event and move this there, so the event is called on teleportation too
-        val event = server.eventNode.fire(KryptonPlayerMoveEvent(player, oldPosition, newPosition))
+        val event = server.eventNode.fire(AquaPlayerMoveEvent(player, oldPosition, newPosition))
         if (!event.isAllowed()) return
 
         player.isOnGround = onGround
@@ -374,7 +374,7 @@ class PlayPacketHandler(
     }
 
     fun handlePluginMessage(packet: PacketInPluginMessage) {
-        server.eventNode.fire(KryptonPluginMessageReceivedEvent(player, packet.channel, packet.data))
+        server.eventNode.fire(AquaPluginMessageReceivedEvent(player, packet.channel, packet.data))
     }
 
     fun handleCommandSuggestionsRequest(packet: PacketInCommandSuggestionsRequest) {
@@ -393,7 +393,7 @@ class PlayPacketHandler(
     }
 
     fun handleEntityTagQuery(packet: PacketInQueryEntityTag) {
-        if (!player.hasPermission(KryptonPermission.ENTITY_QUERY.node)) return
+        if (!player.hasPermission(AquaPermission.ENTITY_QUERY.node)) return
         val entity = player.world.entityManager.getById(packet.entityId) ?: return
         connection.send(PacketOutTagQueryResponse(packet.transactionId, entity.saveWithPassengers().build()))
     }
@@ -403,7 +403,7 @@ class PlayPacketHandler(
             disconnect(DisconnectMessages.REQUIRED_TEXTURE_PROMPT)
             return
         }
-        server.eventNode.fire(KryptonPlayerResourcePackStatusEvent(player, packet.status))
+        server.eventNode.fire(AquaPlayerResourcePackStatusEvent(player, packet.status))
     }
 
     companion object {

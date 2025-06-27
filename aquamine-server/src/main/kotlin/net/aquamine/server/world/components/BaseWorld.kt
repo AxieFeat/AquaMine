@@ -7,30 +7,30 @@ import net.aquamine.api.world.GameMode
 import net.aquamine.api.world.World
 import net.aquamine.api.world.chunk.BlockChangeFlags
 import net.aquamine.api.world.rule.GameRule
-import net.aquamine.server.KryptonServer
+import net.aquamine.server.AquaServer
 import net.aquamine.server.adventure.PacketGroupingAudience
 import net.aquamine.server.entity.EntityManager
-import net.aquamine.server.entity.KryptonEntity
-import net.aquamine.server.world.KryptonWorldBorder
-import net.aquamine.server.world.block.entity.KryptonBlockEntity
-import net.aquamine.server.world.block.state.KryptonBlockState
+import net.aquamine.server.entity.AquaEntity
+import net.aquamine.server.world.AquaWorldBorder
+import net.aquamine.server.world.block.entity.AquaBlockEntity
+import net.aquamine.server.world.block.state.AquaBlockState
 import net.aquamine.server.world.block.state.downcast
 import net.aquamine.server.coordinate.ChunkPos
-import net.aquamine.server.world.chunk.KryptonChunk
-import net.aquamine.server.world.dimension.KryptonDimensionType
-import net.aquamine.server.world.fluid.KryptonFluidState
+import net.aquamine.server.world.chunk.AquaChunk
+import net.aquamine.server.world.dimension.AquaDimensionType
+import net.aquamine.server.world.fluid.AquaFluidState
 import net.aquamine.server.world.rule.WorldGameRules
 
 interface BaseWorld : World, WorldAccessor, PacketGroupingAudience {
 
-    override val server: KryptonServer
-    override val dimensionType: KryptonDimensionType
-    override val border: KryptonWorldBorder
+    override val server: AquaServer
+    override val dimensionType: AquaDimensionType
+    override val border: AquaWorldBorder
     val entityManager: EntityManager
 
-    override val chunks: Collection<KryptonChunk>
+    override val chunks: Collection<AquaChunk>
         get() = chunkManager.chunks()
-    override val entities: Collection<KryptonEntity>
+    override val entities: Collection<AquaEntity>
         get() = entityManager.entities()
 
     override val name: String
@@ -58,9 +58,9 @@ interface BaseWorld : World, WorldAccessor, PacketGroupingAudience {
         }
     }
 
-    override fun getBlock(x: Int, y: Int, z: Int): KryptonBlockState
+    override fun getBlock(x: Int, y: Int, z: Int): AquaBlockState
 
-    override fun getBlock(position: Vec3i): KryptonBlockState = getBlock(position.x, position.y, position.z)
+    override fun getBlock(position: Vec3i): AquaBlockState = getBlock(position.x, position.y, position.z)
 
     override fun setBlock(x: Int, y: Int, z: Int, block: BlockState, flags: BlockChangeFlags): Boolean {
         return setBlock(Vec3i(x, y, z), block.downcast(), flags.raw)
@@ -70,15 +70,15 @@ interface BaseWorld : World, WorldAccessor, PacketGroupingAudience {
         return setBlock(position, block.downcast(), flags.raw)
     }
 
-    override fun getFluid(x: Int, y: Int, z: Int): KryptonFluidState
+    override fun getFluid(x: Int, y: Int, z: Int): AquaFluidState
 
-    override fun getFluid(position: Vec3i): KryptonFluidState = getFluid(position.x, position.y, position.z)
+    override fun getFluid(position: Vec3i): AquaFluidState = getFluid(position.x, position.y, position.z)
 
-    override fun getBlockEntity(x: Int, y: Int, z: Int): KryptonBlockEntity? = null
+    override fun getBlockEntity(x: Int, y: Int, z: Int): AquaBlockEntity? = null
 
-    override fun getChunk(x: Int, z: Int): KryptonChunk? = chunkManager.getChunk(x, z)
+    override fun getChunk(x: Int, z: Int): AquaChunk? = chunkManager.getChunk(x, z)
 
-    override fun loadChunk(x: Int, z: Int): KryptonChunk? = chunkManager.loadChunk(ChunkPos(x, z))
+    override fun loadChunk(x: Int, z: Int): AquaChunk? = chunkManager.loadChunk(ChunkPos(x, z))
 
     override fun unloadChunk(x: Int, z: Int) {
         chunkManager.unloadChunk(x, z)

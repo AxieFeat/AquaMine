@@ -6,7 +6,7 @@ import net.kyori.adventure.key.Key
 import net.aquamine.api.registry.Registry
 import net.aquamine.api.world.biome.Biome
 import net.aquamine.server.network.buffer.BinaryWriter
-import net.aquamine.server.registry.KryptonRegistry
+import net.aquamine.server.registry.AquaRegistry
 import net.aquamine.server.util.bits.BitStorage
 import net.aquamine.server.util.ByteBufExtras
 import net.aquamine.server.util.map.IntBiMap
@@ -15,9 +15,9 @@ import net.aquamine.server.util.bits.SimpleBitStorage
 import net.aquamine.server.util.bits.ZeroBitStorage
 import net.aquamine.server.world.biome.BiomeKeys
 import net.aquamine.server.world.block.BlockStateSerialization
-import net.aquamine.server.world.block.KryptonBlock
-import net.aquamine.server.world.block.KryptonBlocks
-import net.aquamine.server.world.block.state.KryptonBlockState
+import net.aquamine.server.world.block.AquaBlock
+import net.aquamine.server.world.block.AquaBlocks
+import net.aquamine.server.world.block.state.AquaBlockState
 import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.StringTag
 import xyz.axie.nbt.Tag
@@ -174,9 +174,9 @@ class PaletteHolder<T> : PaletteResizer<T> {
         companion object {
 
             @JvmField
-            val BLOCKS: Strategy<KryptonBlockState> = object : Strategy<KryptonBlockState>(KryptonBlock.STATES, 4) {
+            val BLOCKS: Strategy<AquaBlockState> = object : Strategy<AquaBlockState>(AquaBlock.STATES, 4) {
 
-                override fun createConfiguration(bits: Int): Configuration<KryptonBlockState> = when (bits) {
+                override fun createConfiguration(bits: Int): Configuration<AquaBlockState> = when (bits) {
                     0 -> Configuration(SingleValuePalette.Factory, bits)
                     in 1..4 -> Configuration(ArrayPalette.Factory, 4)
                     in 5..8 -> Configuration(MapPalette.Factory, bits)
@@ -201,8 +201,8 @@ class PaletteHolder<T> : PaletteResizer<T> {
         private val DUMMY_RESIZER: PaletteResizer<Any?> = PaletteResizer { _, _ -> 0 }
 
         @JvmStatic
-        fun readBlocks(data: CompoundTag): PaletteHolder<KryptonBlockState> {
-            val entries = ArrayList<KryptonBlockState>()
+        fun readBlocks(data: CompoundTag): PaletteHolder<AquaBlockState> {
+            val entries = ArrayList<AquaBlockState>()
             data.getList(PALETTE_TAG, CompoundTag.ID).forEachCompound { entries.add(BlockStateSerialization.decode(it)) }
             return read(Strategy.BLOCKS, entries, data.getLongArray(DATA_TAG))
         }
@@ -214,14 +214,14 @@ class PaletteHolder<T> : PaletteResizer<T> {
                 val biome = registry.get(Key.key(it))
                 entries.add(checkNotNull(biome) { "Invalid palette data! Failed to find biome with key $it!" })
             }
-            return read(Strategy.biomes(registry as KryptonRegistry<Biome>), entries, data.getLongArray(DATA_TAG))
+            return read(Strategy.biomes(registry as AquaRegistry<Biome>), entries, data.getLongArray(DATA_TAG))
         }
 
         @JvmStatic
-        fun blocks(): PaletteHolder<KryptonBlockState> = PaletteHolder(Strategy.BLOCKS, KryptonBlocks.AIR.defaultState)
+        fun blocks(): PaletteHolder<AquaBlockState> = PaletteHolder(Strategy.BLOCKS, AquaBlocks.AIR.defaultState)
 
         @JvmStatic
-        fun biomes(registry: KryptonRegistry<Biome>): PaletteHolder<Biome> {
+        fun biomes(registry: AquaRegistry<Biome>): PaletteHolder<Biome> {
             return PaletteHolder(Strategy.biomes(registry), registry.get(BiomeKeys.PLAINS)!!)
         }
 

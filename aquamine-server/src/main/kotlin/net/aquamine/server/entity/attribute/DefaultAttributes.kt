@@ -1,86 +1,86 @@
 package net.aquamine.server.entity.attribute
 
 import com.google.common.collect.ImmutableMap
-import net.aquamine.server.entity.KryptonEntityType
-import net.aquamine.server.entity.KryptonEntityTypes
-import net.aquamine.server.entity.KryptonLivingEntity
-import net.aquamine.server.entity.ambient.KryptonBat
-import net.aquamine.server.entity.animal.KryptonAxolotl
-import net.aquamine.server.entity.animal.KryptonBee
-import net.aquamine.server.entity.animal.KryptonCat
-import net.aquamine.server.entity.animal.KryptonChicken
-import net.aquamine.server.entity.animal.KryptonCow
-import net.aquamine.server.entity.animal.KryptonFox
-import net.aquamine.server.entity.animal.KryptonGoat
-import net.aquamine.server.entity.animal.KryptonOcelot
-import net.aquamine.server.entity.animal.KryptonPanda
-import net.aquamine.server.entity.animal.KryptonParrot
-import net.aquamine.server.entity.animal.KryptonPig
-import net.aquamine.server.entity.animal.KryptonPolarBear
-import net.aquamine.server.entity.animal.KryptonRabbit
-import net.aquamine.server.entity.animal.KryptonSheep
-import net.aquamine.server.entity.animal.KryptonWolf
-import net.aquamine.server.entity.aquatic.KryptonDolphin
-import net.aquamine.server.entity.aquatic.KryptonFish
-import net.aquamine.server.entity.aquatic.KryptonSquid
-import net.aquamine.server.entity.monster.KryptonBlaze
-import net.aquamine.server.entity.monster.KryptonCaveSpider
-import net.aquamine.server.entity.monster.KryptonCreeper
-import net.aquamine.server.entity.monster.KryptonEndermite
-import net.aquamine.server.entity.monster.KryptonGiant
-import net.aquamine.server.entity.monster.KryptonGuardian
-import net.aquamine.server.entity.monster.KryptonSilverfish
-import net.aquamine.server.entity.monster.KryptonSpider
-import net.aquamine.server.entity.monster.KryptonZombie
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.AquaEntityType
+import net.aquamine.server.entity.AquaEntityTypes
+import net.aquamine.server.entity.AquaLivingEntity
+import net.aquamine.server.entity.ambient.AquaBat
+import net.aquamine.server.entity.animal.AquaAxolotl
+import net.aquamine.server.entity.animal.AquaBee
+import net.aquamine.server.entity.animal.AquaCat
+import net.aquamine.server.entity.animal.AquaChicken
+import net.aquamine.server.entity.animal.AquaCow
+import net.aquamine.server.entity.animal.AquaFox
+import net.aquamine.server.entity.animal.AquaGoat
+import net.aquamine.server.entity.animal.AquaOcelot
+import net.aquamine.server.entity.animal.AquaPanda
+import net.aquamine.server.entity.animal.AquaParrot
+import net.aquamine.server.entity.animal.AquaPig
+import net.aquamine.server.entity.animal.AquaPolarBear
+import net.aquamine.server.entity.animal.AquaRabbit
+import net.aquamine.server.entity.animal.AquaSheep
+import net.aquamine.server.entity.animal.AquaWolf
+import net.aquamine.server.entity.aquatic.AquaDolphin
+import net.aquamine.server.entity.aquatic.AquaFish
+import net.aquamine.server.entity.aquatic.AquaSquid
+import net.aquamine.server.entity.monster.AquaBlaze
+import net.aquamine.server.entity.monster.AquaCaveSpider
+import net.aquamine.server.entity.monster.AquaCreeper
+import net.aquamine.server.entity.monster.AquaEndermite
+import net.aquamine.server.entity.monster.AquaGiant
+import net.aquamine.server.entity.monster.AquaGuardian
+import net.aquamine.server.entity.monster.AquaSilverfish
+import net.aquamine.server.entity.monster.AquaSpider
+import net.aquamine.server.entity.monster.AquaZombie
+import net.aquamine.server.entity.player.AquaPlayer
 
 object DefaultAttributes {
 
     private val SUPPLIERS = Builder()
-        .put(KryptonEntityTypes.ARMOR_STAND, KryptonLivingEntity::attributes)
-        .put(KryptonEntityTypes.AXOLOTL, KryptonAxolotl::attributes)
-        .put(KryptonEntityTypes.BAT, KryptonBat::attributes)
-        .put(KryptonEntityTypes.BEE, KryptonBee::attributes)
-        .put(KryptonEntityTypes.BLAZE, KryptonBlaze::attributes)
-        .put(KryptonEntityTypes.CAT, KryptonCat::attributes)
-        .put(KryptonEntityTypes.CAVE_SPIDER, KryptonCaveSpider::attributes)
-        .put(KryptonEntityTypes.CHICKEN, KryptonChicken::attributes)
-        .put(KryptonEntityTypes.COD, KryptonFish::attributes)
-        .put(KryptonEntityTypes.COW, KryptonCow::attributes)
-        .put(KryptonEntityTypes.CREEPER, KryptonCreeper::attributes)
-        .put(KryptonEntityTypes.DOLPHIN, KryptonDolphin::attributes)
-        .put(KryptonEntityTypes.DROWNED, KryptonZombie::attributes)
-        .put(KryptonEntityTypes.ENDERMITE, KryptonEndermite::attributes)
-        .put(KryptonEntityTypes.FOX, KryptonFox::attributes)
-        .put(KryptonEntityTypes.GIANT, KryptonGiant::attributes)
-        .put(KryptonEntityTypes.GLOW_SQUID, KryptonSquid::attributes)
-        .put(KryptonEntityTypes.GOAT, KryptonGoat::attributes)
-        .put(KryptonEntityTypes.GUARDIAN, KryptonGuardian::attributes)
-        .put(KryptonEntityTypes.HUSK, KryptonZombie::attributes)
-        .put(KryptonEntityTypes.MOOSHROOM, KryptonCow::attributes)
-        .put(KryptonEntityTypes.OCELOT, KryptonOcelot::attributes)
-        .put(KryptonEntityTypes.PANDA, KryptonPanda::attributes)
-        .put(KryptonEntityTypes.PARROT, KryptonParrot::attributes)
-        .put(KryptonEntityTypes.PIG, KryptonPig::attributes)
-        .put(KryptonEntityTypes.PLAYER, KryptonPlayer::attributes)
-        .put(KryptonEntityTypes.POLAR_BEAR, KryptonPolarBear::attributes)
-        .put(KryptonEntityTypes.PUFFERFISH, KryptonFish::attributes)
-        .put(KryptonEntityTypes.RABBIT, KryptonRabbit::attributes)
-        .put(KryptonEntityTypes.SALMON, KryptonFish::attributes)
-        .put(KryptonEntityTypes.SHEEP, KryptonSheep::attributes)
-        .put(KryptonEntityTypes.SILVERFISH, KryptonSilverfish::attributes)
-        .put(KryptonEntityTypes.SPIDER, KryptonSpider::attributes)
-        .put(KryptonEntityTypes.SQUID, KryptonSquid::attributes)
-        .put(KryptonEntityTypes.TROPICAL_FISH, KryptonFish::attributes)
-        .put(KryptonEntityTypes.WOLF, KryptonWolf::attributes)
-        .put(KryptonEntityTypes.ZOMBIE, KryptonZombie::attributes)
+        .put(AquaEntityTypes.ARMOR_STAND, AquaLivingEntity::attributes)
+        .put(AquaEntityTypes.AXOLOTL, AquaAxolotl::attributes)
+        .put(AquaEntityTypes.BAT, AquaBat::attributes)
+        .put(AquaEntityTypes.BEE, AquaBee::attributes)
+        .put(AquaEntityTypes.BLAZE, AquaBlaze::attributes)
+        .put(AquaEntityTypes.CAT, AquaCat::attributes)
+        .put(AquaEntityTypes.CAVE_SPIDER, AquaCaveSpider::attributes)
+        .put(AquaEntityTypes.CHICKEN, AquaChicken::attributes)
+        .put(AquaEntityTypes.COD, AquaFish::attributes)
+        .put(AquaEntityTypes.COW, AquaCow::attributes)
+        .put(AquaEntityTypes.CREEPER, AquaCreeper::attributes)
+        .put(AquaEntityTypes.DOLPHIN, AquaDolphin::attributes)
+        .put(AquaEntityTypes.DROWNED, AquaZombie::attributes)
+        .put(AquaEntityTypes.ENDERMITE, AquaEndermite::attributes)
+        .put(AquaEntityTypes.FOX, AquaFox::attributes)
+        .put(AquaEntityTypes.GIANT, AquaGiant::attributes)
+        .put(AquaEntityTypes.GLOW_SQUID, AquaSquid::attributes)
+        .put(AquaEntityTypes.GOAT, AquaGoat::attributes)
+        .put(AquaEntityTypes.GUARDIAN, AquaGuardian::attributes)
+        .put(AquaEntityTypes.HUSK, AquaZombie::attributes)
+        .put(AquaEntityTypes.MOOSHROOM, AquaCow::attributes)
+        .put(AquaEntityTypes.OCELOT, AquaOcelot::attributes)
+        .put(AquaEntityTypes.PANDA, AquaPanda::attributes)
+        .put(AquaEntityTypes.PARROT, AquaParrot::attributes)
+        .put(AquaEntityTypes.PIG, AquaPig::attributes)
+        .put(AquaEntityTypes.PLAYER, AquaPlayer::attributes)
+        .put(AquaEntityTypes.POLAR_BEAR, AquaPolarBear::attributes)
+        .put(AquaEntityTypes.PUFFERFISH, AquaFish::attributes)
+        .put(AquaEntityTypes.RABBIT, AquaRabbit::attributes)
+        .put(AquaEntityTypes.SALMON, AquaFish::attributes)
+        .put(AquaEntityTypes.SHEEP, AquaSheep::attributes)
+        .put(AquaEntityTypes.SILVERFISH, AquaSilverfish::attributes)
+        .put(AquaEntityTypes.SPIDER, AquaSpider::attributes)
+        .put(AquaEntityTypes.SQUID, AquaSquid::attributes)
+        .put(AquaEntityTypes.TROPICAL_FISH, AquaFish::attributes)
+        .put(AquaEntityTypes.WOLF, AquaWolf::attributes)
+        .put(AquaEntityTypes.ZOMBIE, AquaZombie::attributes)
         .build()
 
     @JvmStatic
     fun get(type: Key): AttributeSupplier = checkNotNull(SUPPLIERS.get(type)) { "Could not find attributes for entity type $type!" }
 }
 
-private typealias Key = KryptonEntityType<KryptonLivingEntity>
+private typealias Key = AquaEntityType<AquaLivingEntity>
 private typealias Builder = ImmutableMap.Builder<Key, AttributeSupplier>
 
 private inline fun Builder.put(type: Key, supplier: () -> AttributeSupplier.Builder): Builder = put(type, supplier().build())

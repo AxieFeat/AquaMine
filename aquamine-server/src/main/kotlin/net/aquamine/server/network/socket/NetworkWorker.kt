@@ -4,7 +4,7 @@ import net.kyori.adventure.text.Component
 import org.apache.logging.log4j.LogManager
 import org.jctools.queues.MessagePassingQueue
 import org.jctools.queues.MpscUnboundedXaddArrayQueue
-import net.aquamine.server.KryptonServer
+import net.aquamine.server.AquaServer
 import net.aquamine.server.network.NioConnection
 import net.aquamine.server.network.buffer.BinaryBuffer
 import net.aquamine.server.ticking.TickSchedulerThread
@@ -18,9 +18,9 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 
 class NetworkWorker(
-    private val server: KryptonServer,
+    private val server: AquaServer,
     private val networkServer: NetworkServer
-) : Thread("Krypton Network Worker ${COUNTER.getAndIncrement()}") {
+) : Thread("AquaMine Network Worker ${COUNTER.getAndIncrement()}") {
 
     val selector: Selector = Selector.open()
     private val connections = ConcurrentHashMap<SocketChannel, NioConnection>()

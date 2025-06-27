@@ -15,7 +15,7 @@ object MinecraftTranslationManager {
     private val UNSUPPORTED_FORMAT_REGEX = "%(\\d+\\\$)?[\\d.]*[df]".toRegex()
 
     @JvmField
-    val REGISTRY: TranslationRegistry = TranslationRegistry.create(Key.key("krypton", "minecraft_translations"))
+    val REGISTRY: TranslationRegistry = TranslationRegistry.create(Key.key("aquamine", "minecraft_translations"))
     private val RENDERER = TranslatableComponentRenderer.usingTranslationSource(REGISTRY)
 
     @JvmStatic

@@ -6,7 +6,7 @@ import net.aquamine.api.effect.particle.data.ParticleData
 import net.aquamine.server.effect.particle.builder.AquaBlockParticleEffectBuilder
 import net.aquamine.server.effect.particle.data.AquaBlockParticleData
 import net.aquamine.server.network.buffer.BinaryReader
-import net.aquamine.server.world.block.KryptonBlock
+import net.aquamine.server.world.block.AquaBlock
 import net.kyori.adventure.key.Key
 
 @JvmRecord
@@ -16,5 +16,5 @@ data class AquaBlockParticleType(private val key: Key) : AquaParticleType, Block
 
     override fun builder(): BlockParticleEffectBuilder = AquaBlockParticleEffectBuilder(this)
 
-    override fun createData(reader: BinaryReader): ParticleData = AquaBlockParticleData(KryptonBlock.stateFromId(reader.readVarInt()))
+    override fun createData(reader: BinaryReader): ParticleData = AquaBlockParticleData(AquaBlock.stateFromId(reader.readVarInt()))
 }

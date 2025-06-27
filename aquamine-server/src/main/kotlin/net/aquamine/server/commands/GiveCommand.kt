@@ -10,7 +10,7 @@ import net.aquamine.server.command.CommandSourceStack
 import net.aquamine.server.command.arguments.entities.EntityArgumentType
 import net.aquamine.server.command.arguments.item.ItemStackArgument
 import net.aquamine.server.command.arguments.item.ItemStackArgumentType
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.packet.out.play.PacketOutSetContainerContent
 
 object GiveCommand {
@@ -26,7 +26,7 @@ object GiveCommand {
     @JvmStatic
     fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
         dispatcher.register(literalCommand("give") {
-            requiresPermission(KryptonPermission.GIVE)
+            requiresPermission(AquaPermission.GIVE)
             argument(TARGETS, EntityArgumentType.players()) {
                 argument(ITEM, ItemStackArgumentType) {
                     runs { give(EntityArgumentType.getPlayers(it, TARGETS), ItemStackArgumentType.get(it, ITEM), 1) }
@@ -41,7 +41,7 @@ object GiveCommand {
     }
 
     @JvmStatic
-    private fun give(targets: List<KryptonPlayer>, item: ItemStackArgument, count: Int) {
+    private fun give(targets: List<AquaPlayer>, item: ItemStackArgument, count: Int) {
         targets.forEach { target ->
             item.createItemStacks(count).forEach(target.inventory::addItem)
             target.playSound(Sound.sound(SoundEvents.ITEM_PICKUP, Sound.Source.PLAYER, PICKUP_VOLUME, PICKUP_PITCH))

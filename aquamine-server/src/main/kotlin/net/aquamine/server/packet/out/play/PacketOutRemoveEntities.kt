@@ -1,6 +1,6 @@
 package net.aquamine.server.packet.out.play
 
-import net.aquamine.server.entity.KryptonEntity
+import net.aquamine.server.entity.AquaEntity
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
@@ -18,6 +18,6 @@ data class PacketOutRemoveEntities(val ids: IntArray) : Packet {
     companion object {
 
         @JvmStatic
-        fun removeSingle(entity: KryptonEntity): PacketOutRemoveEntities = PacketOutRemoveEntities(intArrayOf(entity.id))
+        fun removeSingle(entity: AquaEntity): PacketOutRemoveEntities = PacketOutRemoveEntities(intArrayOf(entity.id))
     }
 }

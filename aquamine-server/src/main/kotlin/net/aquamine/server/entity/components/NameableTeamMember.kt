@@ -4,12 +4,12 @@ import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import net.aquamine.api.entity.Entity
 import net.aquamine.api.scoreboard.Team
-import net.aquamine.server.entity.KryptonEntity
-import net.aquamine.server.entity.KryptonEntityType
+import net.aquamine.server.entity.AquaEntity
+import net.aquamine.server.entity.AquaEntityType
 
 interface NameableTeamMember : Entity {
 
-    override val type: KryptonEntityType<KryptonEntity>
+    override val type: AquaEntityType<AquaEntity>
 
     override val name: String
         get() = PlainTextComponentSerializer.plainText().serialize(nameOrDescription())

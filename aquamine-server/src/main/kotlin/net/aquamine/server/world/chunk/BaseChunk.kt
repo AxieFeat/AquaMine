@@ -7,16 +7,16 @@ import net.aquamine.api.world.biome.Biome
 import net.aquamine.api.world.chunk.Chunk
 import net.aquamine.server.coordinate.ChunkPos
 import net.aquamine.server.entity.tracking.EntityTypeTarget
-import net.aquamine.server.world.KryptonWorld
+import net.aquamine.server.world.AquaWorld
 import net.aquamine.server.world.biome.NoiseBiomeSource
-import net.aquamine.server.world.block.state.KryptonBlockState
+import net.aquamine.server.world.block.state.AquaBlockState
 import net.aquamine.server.world.components.BlockGetter
-import net.aquamine.server.world.fluid.KryptonFluidState
+import net.aquamine.server.world.fluid.AquaFluidState
 import java.util.function.Predicate
 
 interface BaseChunk : Chunk, BlockGetter, NoiseBiomeSource {
 
-    override val world: KryptonWorld
+    override val world: AquaWorld
     val position: ChunkPos
 
     override val x: Int
@@ -29,13 +29,13 @@ interface BaseChunk : Chunk, BlockGetter, NoiseBiomeSource {
     override val players: Collection<Player>
         get() = world.entityTracker.entitiesInChunkOfType(position, EntityTypeTarget.PLAYERS)
 
-    override fun getBlock(x: Int, y: Int, z: Int): KryptonBlockState
+    override fun getBlock(x: Int, y: Int, z: Int): AquaBlockState
 
-    override fun getBlock(position: Vec3i): KryptonBlockState = getBlock(position.x, position.y, position.z)
+    override fun getBlock(position: Vec3i): AquaBlockState = getBlock(position.x, position.y, position.z)
 
-    override fun getFluid(x: Int, y: Int, z: Int): KryptonFluidState
+    override fun getFluid(x: Int, y: Int, z: Int): AquaFluidState
 
-    override fun getFluid(position: Vec3i): KryptonFluidState = getFluid(position.x, position.y, position.z)
+    override fun getFluid(position: Vec3i): AquaFluidState = getFluid(position.x, position.y, position.z)
 
     override fun getBiome(x: Int, y: Int, z: Int): Biome = getNoiseBiome(x, y, z)
 

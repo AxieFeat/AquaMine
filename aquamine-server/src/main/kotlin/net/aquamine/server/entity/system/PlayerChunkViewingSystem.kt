@@ -1,13 +1,13 @@
 package net.aquamine.server.entity.system
 
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.packet.out.play.PacketOutSetCenterChunk
 import net.aquamine.server.packet.out.play.PacketOutUnloadChunk
 import net.aquamine.server.coordinate.ChunkPos
 import net.aquamine.server.util.ChunkUtil
 import java.util.concurrent.CompletableFuture
 
-class PlayerChunkViewingSystem(private val player: KryptonPlayer) {
+class PlayerChunkViewingSystem(private val player: AquaPlayer) {
 
     private var previousCenter = ChunkPos.ZERO
     private val chunkAdder = ChunkUtil.ChunkPosConsumer { x, z ->

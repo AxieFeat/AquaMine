@@ -1,6 +1,6 @@
 package net.aquamine.server.world.components
 
-import net.aquamine.server.world.dimension.KryptonDimensionType
+import net.aquamine.server.world.dimension.AquaDimensionType
 
 interface WorldTimeAccessor : ReadOnlyWorld {
 
@@ -8,7 +8,7 @@ interface WorldTimeAccessor : ReadOnlyWorld {
 
     fun moonPhase(): Int = dimensionType.moonPhase(dayTime)
 
-    fun moonBrightness(): Float = KryptonDimensionType.MOON_BRIGHTNESS_PER_PHASE[moonPhase()]
+    fun moonBrightness(): Float = AquaDimensionType.MOON_BRIGHTNESS_PER_PHASE[moonPhase()]
 
     fun timeOfDay(value: Float): Float = dimensionType.timeOfDay(dayTime)
 }

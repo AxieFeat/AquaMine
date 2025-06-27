@@ -3,8 +3,8 @@ package net.aquamine.server.entity.components
 import net.aquamine.api.entity.ArmorSlot
 import net.aquamine.api.entity.player.Player
 import net.aquamine.api.item.ItemTypes
-import net.aquamine.server.event.player.action.KryptonPlayerStartGlidingEvent
-import net.aquamine.server.event.player.action.KryptonPlayerStopGlidingEvent
+import net.aquamine.server.event.player.action.AquaPlayerStartGlidingEvent
+import net.aquamine.server.event.player.action.AquaPlayerStopGlidingEvent
 
 interface Glider : BaseEntity, Player {
 
@@ -23,7 +23,7 @@ interface Glider : BaseEntity, Player {
     }
 
     override fun startGliding(): Boolean {
-        if (server.eventNode.fire(KryptonPlayerStartGlidingEvent(this)).isAllowed()) {
+        if (server.eventNode.fire(AquaPlayerStartGlidingEvent(this)).isAllowed()) {
             isGliding = true
             return true
         }
@@ -36,7 +36,7 @@ interface Glider : BaseEntity, Player {
     }
 
     override fun stopGliding(): Boolean {
-        if (!server.eventNode.fire(KryptonPlayerStopGlidingEvent(this)).isAllowed()) return false
+        if (!server.eventNode.fire(AquaPlayerStopGlidingEvent(this)).isAllowed()) return false
 
         // This is a vanilla thing
         isGliding = true

@@ -10,7 +10,7 @@ object SeedCommand {
     @JvmStatic
     fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
         dispatcher.register(literalCommand("seed") {
-            requiresPermission(KryptonPermission.SEED)
+            requiresPermission(AquaPermission.SEED)
             runs { CommandMessages.SEED.sendSuccess(it.source, it.source.world.seed.toString(), true) }
         })
     }

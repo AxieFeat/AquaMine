@@ -14,9 +14,9 @@ import net.aquamine.api.service.ServicesManager
 import net.aquamine.api.user.UserManager
 import net.aquamine.api.util.FactoryProvider
 import net.aquamine.api.world.WorldManager
-import net.aquamine.server.KryptonServer
+import net.aquamine.server.AquaServer
 
-class GlobalModule(private val server: KryptonServer, private val pluginContainers: Collection<PluginContainer>) : KotlinModule() {
+class GlobalModule(private val server: AquaServer, private val pluginContainers: Collection<PluginContainer>) : KotlinModule() {
 
     override fun configure() {
         bind<Server>().toInstance(server)

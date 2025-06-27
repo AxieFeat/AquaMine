@@ -2,7 +2,7 @@ package net.aquamine.server.item.handler
 
 import net.aquamine.api.entity.Hand
 import net.aquamine.server.util.InteractionResult
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.item.UseItemResult
 
 object FoodHandler : ItemTimedHandler {
@@ -10,7 +10,7 @@ object FoodHandler : ItemTimedHandler {
     private const val DUMMY_FOOD_LEVEL_INCREASE = 8
     private const val DUMMY_SATURATION_LEVEL_INCREASE = 12.8F
 
-    override fun finishUse(player: KryptonPlayer, hand: Hand): UseItemResult {
+    override fun finishUse(player: AquaPlayer, hand: Hand): UseItemResult {
         // TODO: Remove hardcoded values and add tick system
         player.inventory.setHeldItem(hand, player.inventory.getHeldItem(hand).shrink(1))
         // These are dummy values for testing, until saturation and food level values

@@ -3,42 +3,42 @@ package net.aquamine.server
 import net.aquamine.api.event.GlobalEventNode
 import net.aquamine.api.registry.RegistryHolder
 import net.aquamine.api.util.FactoryProvider
-import net.aquamine.server.command.KryptonCommandManager
+import net.aquamine.server.command.AquaCommandManager
 import net.aquamine.server.console.AquaConsole
-import net.aquamine.server.entity.player.KryptonPlayer
-import net.aquamine.server.plugin.KryptonPluginManager
-import net.aquamine.server.registry.KryptonRegistries
-import net.aquamine.server.scheduling.KryptonScheduler
-import net.aquamine.server.service.KryptonServicesManager
-import net.aquamine.server.user.KryptonUserManager
-import net.aquamine.server.util.KryptonFactoryProvider
-import net.aquamine.server.world.KryptonWorldManager
+import net.aquamine.server.entity.player.AquaPlayer
+import net.aquamine.server.plugin.AquaPluginManager
+import net.aquamine.server.registry.AquaRegistries
+import net.aquamine.server.scheduling.AquaScheduler
+import net.aquamine.server.service.AquaServicesManager
+import net.aquamine.server.user.AquaUserManager
+import net.aquamine.server.util.AquaFactoryProvider
+import net.aquamine.server.world.AquaWorldManager
 import java.util.UUID
 
 interface BaseServer : ServerAudience {
 
     override val console: AquaConsole
 
-    override val worldManager: KryptonWorldManager
-    override val commandManager: KryptonCommandManager
-    override val pluginManager: KryptonPluginManager
+    override val worldManager: AquaWorldManager
+    override val commandManager: AquaCommandManager
+    override val pluginManager: AquaPluginManager
     override val eventNode: GlobalEventNode
-    override val servicesManager: KryptonServicesManager
-    override val scheduler: KryptonScheduler
-    override val userManager: KryptonUserManager
+    override val servicesManager: AquaServicesManager
+    override val scheduler: AquaScheduler
+    override val userManager: AquaUserManager
 
-    override val platform: KryptonPlatform
-        get() = KryptonPlatform
+    override val platform: AquaPlatform
+        get() = AquaPlatform
     override val registryHolder: RegistryHolder
-        get() = KryptonRegistries.StaticHolder
+        get() = AquaRegistries.StaticHolder
     override val factoryProvider: FactoryProvider
-        get() = KryptonFactoryProvider
+        get() = AquaFactoryProvider
 
     fun isRunning(): Boolean
 
     fun stop()
 
-    override fun getPlayer(name: String): KryptonPlayer? = playerManager.getPlayer(name)
+    override fun getPlayer(name: String): AquaPlayer? = playerManager.getPlayer(name)
 
-    override fun getPlayer(uuid: UUID): KryptonPlayer? = playerManager.getPlayer(uuid)
+    override fun getPlayer(uuid: UUID): AquaPlayer? = playerManager.getPlayer(uuid)
 }

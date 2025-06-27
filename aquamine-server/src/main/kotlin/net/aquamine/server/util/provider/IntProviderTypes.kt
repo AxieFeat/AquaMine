@@ -1,7 +1,7 @@
 package net.aquamine.server.util.provider
 
 import net.kyori.adventure.key.Key
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.registry.AquaRegistries
 import org.kryptonmc.serialization.Codec
 import org.kryptonmc.serialization.DataResult
 import org.kryptonmc.util.Either
@@ -21,5 +21,5 @@ object IntProviderTypes {
 
     @JvmStatic
     private fun <P : IntProvider> register(name: String, codec: Codec<P>): IntProviderType<P> =
-        KryptonRegistries.register(KryptonRegistries.INT_PROVIDER_TYPE, Key.key(name), IntProviderType { codec })
+        AquaRegistries.register(AquaRegistries.INT_PROVIDER_TYPE, Key.key(name), IntProviderType { codec })
 }

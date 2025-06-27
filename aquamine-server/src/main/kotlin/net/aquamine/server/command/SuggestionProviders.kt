@@ -7,7 +7,7 @@ import com.mojang.brigadier.suggestion.SuggestionsBuilder
 import net.kyori.adventure.key.Key
 import net.kyori.adventure.text.Component
 import net.aquamine.server.adventure.AquaAdventure
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.util.Keys
 import java.util.concurrent.CompletableFuture
 
@@ -30,7 +30,7 @@ object SuggestionProviders {
      */
     @JvmField
     val SUMMONABLE_ENTITIES: SuggestionProvider<CommandSourceStack> = register(Key.key("summonable_entities")) { _, builder ->
-        val registry = KryptonRegistries.ENTITY_TYPE
+        val registry = AquaRegistries.ENTITY_TYPE
         CommandSuggestionProvider.suggestResource(registry.stream().filter { it.isSummonable }, builder, { registry.getKey(it) }) {
             AquaAdventure.asMessage(Component.translatable(Keys.translation("entity", registry.getKey(it))))
         }

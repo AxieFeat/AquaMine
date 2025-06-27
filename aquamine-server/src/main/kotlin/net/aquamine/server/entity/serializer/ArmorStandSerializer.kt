@@ -1,14 +1,14 @@
 package net.aquamine.server.entity.serializer
 
 import net.aquamine.api.util.Rotation
-import net.aquamine.server.entity.KryptonArmorStand
-import net.aquamine.server.entity.components.KryptonEquipable
+import net.aquamine.server.entity.AquaArmorStand
+import net.aquamine.server.entity.components.AquaEquipable
 import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.FloatTag
 import xyz.axie.nbt.compound
 import xyz.axie.nbt.list
 
-object ArmorStandSerializer : EntitySerializer<KryptonArmorStand> {
+object ArmorStandSerializer : EntitySerializer<AquaArmorStand> {
 
     private const val ARMOR_ITEMS_TAG = "ArmorItems"
     private const val HAND_ITEMS_TAG = "HandItems"
@@ -39,10 +39,10 @@ object ArmorStandSerializer : EntitySerializer<KryptonArmorStand> {
     @JvmField
     val DEFAULT_RIGHT_LEG_ROTATION: Rotation = Rotation(1F, 0F, 1F)
 
-    override fun load(entity: KryptonArmorStand, data: CompoundTag) {
+    override fun load(entity: AquaArmorStand, data: CompoundTag) {
         LivingEntitySerializer.load(entity, data)
-        KryptonEquipable.loadItems(data, ARMOR_ITEMS_TAG, entity.armorItems)
-        KryptonEquipable.loadItems(data, HAND_ITEMS_TAG, entity.handItems)
+        AquaEquipable.loadItems(data, ARMOR_ITEMS_TAG, entity.armorItems)
+        AquaEquipable.loadItems(data, HAND_ITEMS_TAG, entity.handItems)
 
         entity.isInvisible = data.getBoolean(INVISIBLE_TAG)
         entity.isSmall = data.getBoolean(SMALL_TAG)
@@ -68,9 +68,9 @@ object ArmorStandSerializer : EntitySerializer<KryptonArmorStand> {
         return if (tag.isEmpty()) default else Rotation(tag.getFloat(0), tag.getFloat(1), tag.getFloat(2))
     }
 
-    override fun save(entity: KryptonArmorStand): CompoundTag.Builder = LivingEntitySerializer.save(entity).apply {
-        put(ARMOR_ITEMS_TAG, KryptonEquipable.saveItems(entity.armorItems))
-        put(HAND_ITEMS_TAG, KryptonEquipable.saveItems(entity.handItems))
+    override fun save(entity: AquaArmorStand): CompoundTag.Builder = LivingEntitySerializer.save(entity).apply {
+        put(ARMOR_ITEMS_TAG, AquaEquipable.saveItems(entity.armorItems))
+        put(HAND_ITEMS_TAG, AquaEquipable.saveItems(entity.handItems))
 
         putBoolean(INVISIBLE_TAG, entity.isInvisible)
         putBoolean(SMALL_TAG, entity.isSmall)

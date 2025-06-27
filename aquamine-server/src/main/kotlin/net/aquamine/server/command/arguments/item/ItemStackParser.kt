@@ -6,8 +6,8 @@ import net.aquamine.api.item.ItemType
 import net.aquamine.api.item.ItemTypes
 import net.aquamine.server.command.arguments.CommandExceptions
 import net.aquamine.server.command.arguments.StringReading
-import net.aquamine.server.item.KryptonItemType
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.item.AquaItemType
+import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.util.nbt.SNBTParser
 import xyz.axie.nbt.CompoundTag
 
@@ -49,9 +49,9 @@ object ItemStackParser { // TODO: Tags for ItemStackPredicate etc.
     }
 
     @JvmStatic
-    private fun readItem(reader: StringReader): KryptonItemType {
+    private fun readItem(reader: StringReader): AquaItemType {
         val keyString = StringReading.readKeyString(reader)
-        val item = KryptonRegistries.ITEM.get(Key.key(keyString))
+        val item = AquaRegistries.ITEM.get(Key.key(keyString))
         if (item === ItemTypes.AIR) throw ID_INVALID_EXCEPTION.createWithContext(reader, keyString)
         return item
     }

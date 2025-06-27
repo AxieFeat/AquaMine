@@ -6,7 +6,7 @@ import net.aquamine.api.util.Vec3i
 import net.aquamine.annotations.Catalogue
 import net.aquamine.server.effect.particle.ParticleOptions
 import net.aquamine.server.entity.Pose
-import net.aquamine.server.item.KryptonItemStack
+import net.aquamine.server.item.AquaItemStack
 import xyz.axie.nbt.CompoundTag
 import java.util.OptionalInt
 import java.util.UUID
@@ -95,13 +95,13 @@ object MetadataKeys {
     object Fireball {
 
         @JvmField
-        val ITEM: MetadataKey<KryptonItemStack> = MetadataKey(8, MetadataSerializers.ITEM_STACK)
+        val ITEM: MetadataKey<AquaItemStack> = MetadataKey(8, MetadataSerializers.ITEM_STACK)
     }
 
     object FireworkRocket {
 
         @JvmField
-        val ITEM: MetadataKey<KryptonItemStack> = MetadataKey(8, MetadataSerializers.ITEM_STACK)
+        val ITEM: MetadataKey<AquaItemStack> = MetadataKey(8, MetadataSerializers.ITEM_STACK)
         @JvmField
         val ATTACHED: MetadataKey<OptionalInt> = MetadataKey(9, MetadataSerializers.OPTIONAL_UNSIGNED_INT)
         @JvmField
@@ -119,7 +119,7 @@ object MetadataKeys {
     object ThrowableProjectile {
 
         @JvmField
-        val ITEM: MetadataKey<KryptonItemStack> = MetadataKey(8, MetadataSerializers.ITEM_STACK)
+        val ITEM: MetadataKey<AquaItemStack> = MetadataKey(8, MetadataSerializers.ITEM_STACK)
     }
 
     object WitherSkull {

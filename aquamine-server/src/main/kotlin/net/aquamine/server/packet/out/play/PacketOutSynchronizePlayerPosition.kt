@@ -1,6 +1,6 @@
 package net.aquamine.server.packet.out.play
 
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
@@ -71,7 +71,7 @@ data class PacketOutSynchronizePlayerPosition(
         private const val RANDOM_TELEPORT_ID_UPPER_BOUND = 1000 // A number I chose because it seems sensible enough
 
         @JvmStatic
-        fun fromPlayer(player: KryptonPlayer): PacketOutSynchronizePlayerPosition {
+        fun fromPlayer(player: AquaPlayer): PacketOutSynchronizePlayerPosition {
             return PacketOutSynchronizePlayerPosition(player.position.x, player.position.y, player.position.z, player.position.yaw,
                 player.position.pitch)
         }

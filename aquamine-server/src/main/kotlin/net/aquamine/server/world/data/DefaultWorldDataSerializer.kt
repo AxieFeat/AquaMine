@@ -1,7 +1,7 @@
 package net.aquamine.server.world.data
 
 import org.apache.logging.log4j.LogManager
-import net.aquamine.server.KryptonPlatform
+import net.aquamine.server.AquaPlatform
 import xyz.axie.nbt.io.TagCompression
 import xyz.axie.nbt.io.TagIO
 import java.nio.file.Files

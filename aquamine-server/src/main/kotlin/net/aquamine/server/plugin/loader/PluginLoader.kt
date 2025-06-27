@@ -6,8 +6,8 @@ import net.aquamine.api.event.Event
 import net.aquamine.api.event.EventNode
 import net.aquamine.api.plugin.PluginContainer
 import net.aquamine.api.plugin.PluginDescription
-import net.aquamine.server.KryptonServer
-import net.aquamine.server.plugin.KryptonPluginManager
+import net.aquamine.server.AquaServer
+import net.aquamine.server.plugin.AquaPluginManager
 import net.aquamine.server.plugin.PluginDependencies
 import net.aquamine.server.plugin.module.GlobalModule
 import net.aquamine.server.plugin.server.ClasspathModuleDiscoverer
@@ -16,9 +16,9 @@ import net.aquamine.server.plugin.server.ServerPluginSource
 import java.nio.file.Files
 import java.nio.file.Path
 
-class PluginLoader(private val pluginManager: KryptonPluginManager, private val sources: List<PluginSource>) {
+class PluginLoader(private val pluginManager: AquaPluginManager, private val sources: List<PluginSource>) {
 
-    fun loadPlugins(server: KryptonServer) {
+    fun loadPlugins(server: AquaServer) {
         val found = ArrayList<PluginDescription>()
         val sourceByPluginId = HashMap<String, PluginSource>()
 
@@ -82,7 +82,7 @@ class PluginLoader(private val pluginManager: KryptonPluginManager, private val 
         private val LOGGER = LogManager.getLogger()
 
         @JvmStatic
-        fun createDefault(server: KryptonServer): PluginLoader {
+        fun createDefault(server: AquaServer): PluginLoader {
             val sources = ArrayList<PluginSource>()
             createModulesSource(ServerModules.createDefault(server.config.modules.enabled), Path.of("modules"))?.let { sources.add(it) }
             createPluginsSource(Path.of("plugins"))?.let { sources.add(it) }

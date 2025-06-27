@@ -1,7 +1,7 @@
 package net.aquamine.server.world.gameevent
 
 import net.kyori.adventure.key.Key
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.registry.AquaRegistries
 
 object GameEvents {
 
@@ -97,6 +97,6 @@ object GameEvents {
     @JvmStatic
     private fun register(name: String): GameEvent {
         val key = Key.key(name)
-        return KryptonRegistries.register(KryptonRegistries.GAME_EVENT, key, GameEvent(key))
+        return AquaRegistries.register(AquaRegistries.GAME_EVENT, key, GameEvent(key))
     }
 }

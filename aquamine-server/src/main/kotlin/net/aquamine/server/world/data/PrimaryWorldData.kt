@@ -3,7 +3,7 @@ package net.aquamine.server.world.data
 import kotlinx.collections.immutable.persistentSetOf
 import net.aquamine.api.world.Difficulty
 import net.aquamine.api.world.GameMode
-import net.aquamine.server.KryptonPlatform
+import net.aquamine.server.AquaPlatform
 import net.aquamine.server.util.enumhelper.Difficulties
 import net.aquamine.server.util.enumhelper.GameModes
 import net.aquamine.server.util.nbt.getUUID
@@ -54,15 +54,15 @@ class PrimaryWorldData(
 
     override fun save(): CompoundTag = compound {
         compound(DATA_TAG) {
-            compound(KRYPTON_TAG) {
-                putString(VERSION_TAG, KryptonPlatform.version)
+            compound(AQUAMINE_TAG) {
+                putString(VERSION_TAG, AquaPlatform.version)
             }
             putDataVersion()
             putInt(LOWER_VERSION_TAG, ANVIL_VERSION_ID)
             compound(VERSION_TAG) {
-                putInt(ID_TAG, KryptonPlatform.worldVersion)
-                putString(NAME_TAG, KryptonPlatform.minecraftVersion)
-                putBoolean(SNAPSHOT_TAG, !KryptonPlatform.isStableMinecraft)
+                putInt(ID_TAG, AquaPlatform.worldVersion)
+                putString(NAME_TAG, AquaPlatform.minecraftVersion)
+                putBoolean(SNAPSHOT_TAG, !AquaPlatform.isStableMinecraft)
             }
             putString(LEVEL_NAME_TAG, name)
             putInt(GAME_TYPE_TAG, gameMode.ordinal)
@@ -96,7 +96,7 @@ class PrimaryWorldData(
     companion object {
 
         private const val DATA_TAG = "Data"
-        private const val KRYPTON_TAG = "Krypton"
+        private const val AQUAMINE_TAG = "AquaMine"
         private const val VERSION_TAG = "Version"
         private const val LOWER_VERSION_TAG = "version"
         private const val ID_TAG = "Id"
@@ -174,7 +174,7 @@ class PrimaryWorldData(
             }
 
             // Add ourselves
-            if (!result.contains(KryptonPlatform.name)) result.add(KryptonPlatform.name)
+            if (!result.contains(AquaPlatform.name)) result.add(AquaPlatform.name)
             return result.build()
         }
 

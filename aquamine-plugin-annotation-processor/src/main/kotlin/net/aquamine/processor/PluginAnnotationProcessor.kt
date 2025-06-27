@@ -34,7 +34,7 @@ class PluginAnnotationProcessor : AbstractProcessor() {
             val qualifiedName = element.qualifiedName.toString()
             if (pluginClassFound == qualifiedName) {
                 if (!warnedAboutMultiplePlugins) {
-                    processingEnv.messager.warn("Krypton does not currently support multiple plugins. We are using $pluginClassFound for your " +
+                    processingEnv.messager.warn("AquaMine does not currently support multiple plugins. We are using $pluginClassFound for your " +
                             "plugin's main class.")
                     warnedAboutMultiplePlugins = true
                 }
@@ -51,7 +51,7 @@ class PluginAnnotationProcessor : AbstractProcessor() {
             // We're all good to go, let's generate the metadata
             val description = plugin.toDescription(qualifiedName)
             try {
-                val fileObject = processingEnv.filer.createResource(StandardLocation.CLASS_OUTPUT, "", "krypton-plugin-meta.json")
+                val fileObject = processingEnv.filer.createResource(StandardLocation.CLASS_OUTPUT, "", "aquamine-plugin-meta.json")
                 JsonWriter(fileObject.openWriter()).use { SerializedPluginDescription.write(it, description) }
                 pluginClassFound = qualifiedName
             } catch (exception: IOException) {

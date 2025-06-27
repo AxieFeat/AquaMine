@@ -9,7 +9,7 @@ import net.aquamine.api.event.EventNode
 import net.aquamine.api.plugin.PluginContainer
 import net.aquamine.api.plugin.PluginDescription
 import net.aquamine.api.plugin.annotation.DataFolder
-import net.aquamine.server.event.KryptonGlobalEventNode
+import net.aquamine.server.event.AquaGlobalEventNode
 import java.nio.file.Path
 
 class PluginModule(
@@ -40,7 +40,7 @@ class PluginModule(
         @JvmStatic
         private fun createPluginsEventNode(): EventNode<Event> {
             val node = EventNode.all("plugins")
-            KryptonGlobalEventNode.addChild(node)
+            AquaGlobalEventNode.addChild(node)
             return node
         }
     }

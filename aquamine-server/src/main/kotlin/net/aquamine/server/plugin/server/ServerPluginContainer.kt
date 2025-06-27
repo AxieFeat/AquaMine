@@ -2,7 +2,7 @@ package net.aquamine.server.plugin.server
 
 import net.aquamine.api.plugin.PluginContainer
 import net.aquamine.api.plugin.PluginDescription
-import net.aquamine.server.plugin.KryptonPluginDescription
+import net.aquamine.server.plugin.AquaPluginDescription
 
 /**
  * A plugin container representing the current server.
@@ -14,7 +14,7 @@ import net.aquamine.server.plugin.KryptonPluginDescription
 object ServerPluginContainer : PluginContainer {
 
     override val description: PluginDescription
-        get() = KryptonPluginDescription.SERVER
+        get() = AquaPluginDescription.SERVER
     override val instance: Any?
         get() = null
 }

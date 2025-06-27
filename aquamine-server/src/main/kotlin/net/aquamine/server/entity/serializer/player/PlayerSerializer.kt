@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager
 import net.aquamine.api.entity.attribute.AttributeTypes
 import net.aquamine.api.world.GameMode
 import net.aquamine.server.entity.metadata.MetadataKeys
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.entity.player.RespawnData
 import net.aquamine.server.entity.serializer.EntitySerializer
 import net.aquamine.server.entity.serializer.LivingEntitySerializer
@@ -16,7 +16,7 @@ import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.compound
 import java.time.Instant
 
-object PlayerSerializer : EntitySerializer<KryptonPlayer> {
+object PlayerSerializer : EntitySerializer<AquaPlayer> {
 
     private val LOGGER = LogManager.getLogger()
 
@@ -33,12 +33,12 @@ object PlayerSerializer : EntitySerializer<KryptonPlayer> {
     private const val ATTACH_TAG = "Attach"
     private const val ENTITY_TAG = "Entity"
 
-    // Custom krypton-only tags
-    private const val KRYPTON_TAG = "krypton"
+    // Custom aquamine-only tags
+    private const val AQUAMINE_TAG = "aquamine"
     private const val FIRST_JOINED_TAG = "firstJoined"
     private const val LAST_JOINED_TAG = "lastJoined"
 
-    override fun load(entity: KryptonPlayer, data: CompoundTag) {
+    override fun load(entity: AquaPlayer, data: CompoundTag) {
         LivingEntitySerializer.load(entity, data)
         val gameMode = if (data.hasNumber(GAME_TYPE_TAG)) GameModes.fromIdOrDefault(data.getInt(GAME_TYPE_TAG)) else null
         val oldGameMode = if (data.hasNumber(PREVIOUS_GAME_TYPE_TAG)) GameModes.fromId(data.getInt(PREVIOUS_GAME_TYPE_TAG)) else null
@@ -63,21 +63,21 @@ object PlayerSerializer : EntitySerializer<KryptonPlayer> {
         // Respawn data
         entity.respawnData = RespawnData.load(data, LOGGER)
 
-        if (data.contains(KRYPTON_TAG, CompoundTag.ID)) {
+        if (data.contains(AQUAMINE_TAG, CompoundTag.ID)) {
             entity.hasJoinedBefore = true
-            val kryptonData = data.getCompound(KRYPTON_TAG)
-            entity.firstJoined = Instant.ofEpochMilli(kryptonData.getLong(FIRST_JOINED_TAG))
-            entity.lastJoined = Instant.ofEpochMilli(kryptonData.getLong(LAST_JOINED_TAG))
+            val AquaData = data.getCompound(AQUAMINE_TAG)
+            entity.firstJoined = Instant.ofEpochMilli(AquaData.getLong(FIRST_JOINED_TAG))
+            entity.lastJoined = Instant.ofEpochMilli(AquaData.getLong(LAST_JOINED_TAG))
         }
     }
 
-    private fun selectGameMode(player: KryptonPlayer, loadedMode: GameMode?): GameMode {
+    private fun selectGameMode(player: AquaPlayer, loadedMode: GameMode?): GameMode {
         val config = player.server.config.world
         if (config.forceDefaultGameMode || loadedMode == null) return config.defaultGameMode
         return loadedMode
     }
 
-    override fun save(entity: KryptonPlayer): CompoundTag.Builder = LivingEntitySerializer.save(entity).apply {
+    override fun save(entity: AquaPlayer): CompoundTag.Builder = LivingEntitySerializer.save(entity).apply {
         putInt(GAME_TYPE_TAG, entity.gameMode.ordinal)
         entity.gameModeSystem.previousGameMode()?.let { putInt(PREVIOUS_GAME_TYPE_TAG, it.ordinal) }
 
@@ -105,7 +105,7 @@ object PlayerSerializer : EntitySerializer<KryptonPlayer> {
             }
         }
 
-        compound(KRYPTON_TAG) {
+        compound(AQUAMINE_TAG) {
             putLong(FIRST_JOINED_TAG, entity.firstJoined.toEpochMilli())
             putLong(LAST_JOINED_TAG, entity.lastJoined.toEpochMilli())
         }

@@ -9,7 +9,7 @@ import net.kyori.adventure.text.format.TextDecoration
 import net.aquamine.api.command.literalCommand
 import net.aquamine.server.command.CommandSourceStack
 import net.aquamine.server.commands.runs
-import net.aquamine.server.plugin.KryptonPluginContainer
+import net.aquamine.server.plugin.AquaPluginContainer
 import java.util.stream.Stream
 
 object PluginsCommand : AquaSubCommand {
@@ -42,7 +42,7 @@ object PluginsCommand : AquaSubCommand {
 
             val message = foldToMessage(plugins) { pluginIndex, builder, plugin ->
                 // Don't include modules in the plugin list.
-                if (plugin is KryptonPluginContainer && plugin.isModule) return@foldToMessage
+                if (plugin is AquaPluginContainer && plugin.isModule) return@foldToMessage
 
                 val pluginMessage = Component.text()
                     .append(ID)

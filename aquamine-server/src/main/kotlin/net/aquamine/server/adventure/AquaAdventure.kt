@@ -9,14 +9,14 @@ import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer
 import net.aquamine.api.item.ItemTypes
 import net.aquamine.api.item.meta.WrittenBookMeta
-import net.aquamine.server.item.KryptonItemStack
+import net.aquamine.server.item.AquaItemStack
 import net.aquamine.server.item.downcast
-import net.aquamine.server.item.meta.KryptonWrittenBookMeta
+import net.aquamine.server.item.meta.AquaWrittenBookMeta
 import net.aquamine.server.util.gson.GsonHelper
 import net.aquamine.server.util.Reflection
 
 /**
- * Various things used by Krypton for supporting Adventure.
+ * Various things used by AquaMine for supporting Adventure.
  */
 object AquaAdventure {
 
@@ -39,9 +39,9 @@ object AquaAdventure {
     fun getColorFromId(id: Int): NamedTextColor = NAMED_TEXT_COLORS.get(id)
 
     @JvmStatic
-    fun toItemStack(book: Book): KryptonItemStack {
-        if (book is KryptonWrittenBookMeta) return KryptonItemStack(ItemTypes.WRITTEN_BOOK.get().downcast(), 1, book)
-        return KryptonItemStack.Builder()
+    fun toItemStack(book: Book): AquaItemStack {
+        if (book is AquaWrittenBookMeta) return AquaItemStack(ItemTypes.WRITTEN_BOOK.get().downcast(), 1, book)
+        return AquaItemStack.Builder()
             .type(ItemTypes.WRITTEN_BOOK.get())
             .amount(1)
             .meta<_, WrittenBookMeta> {

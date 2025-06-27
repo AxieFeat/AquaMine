@@ -1,7 +1,7 @@
 package net.aquamine.server.network.socket
 
 import org.apache.logging.log4j.LogManager
-import net.aquamine.server.KryptonServer
+import net.aquamine.server.AquaServer
 import net.aquamine.server.util.ImmutableLists
 import java.io.IOException
 import java.net.InetSocketAddress
@@ -13,7 +13,7 @@ import java.nio.channels.Selector
 import java.nio.channels.ServerSocketChannel
 import java.nio.file.Files
 
-class NetworkServer(private val server: KryptonServer) {
+class NetworkServer(private val server: AquaServer) {
 
     @Volatile
     private var stopped = false
@@ -71,7 +71,7 @@ class NetworkServer(private val server: KryptonServer) {
                     LOGGER.error("Error while selecting!", exception)
                 }
             }
-        }, "Krypton Network Boss").start()
+        }, "AquaMine Network Boss").start()
     }
 
     fun isOpen(): Boolean = !stopped
@@ -97,12 +97,12 @@ class NetworkServer(private val server: KryptonServer) {
     companion object {
 
         private val LOGGER = LogManager.getLogger()
-        private val WORKER_COUNT = Integer.getInteger("krypton.network.workers", Runtime.getRuntime().availableProcessors())
+        private val WORKER_COUNT = Integer.getInteger("aquamine.network.workers", Runtime.getRuntime().availableProcessors())
         @JvmField
-        val MAX_PACKET_SIZE: Int = Integer.getInteger("krypton.network.max-packet-size", 2_097_152) // Max that can be written in a 3-byte var int
+        val MAX_PACKET_SIZE: Int = Integer.getInteger("aquamine.network.max-packet-size", 2_097_152) // Max that can be written in a 3-byte var int
         @JvmField
-        val SOCKET_SEND_BUFFER_SIZE: Int = Integer.getInteger("krypton.network.send-buffer-size", 262_143)
+        val SOCKET_SEND_BUFFER_SIZE: Int = Integer.getInteger("aquamine.network.send-buffer-size", 262_143)
         @JvmField
-        val SOCKET_RECEIVE_BUFFER_SIZE: Int = Integer.getInteger("krypton.network.receive-buffer-size", 32_767)
+        val SOCKET_RECEIVE_BUFFER_SIZE: Int = Integer.getInteger("aquamine.network.receive-buffer-size", 32_767)
     }
 }

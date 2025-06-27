@@ -2,11 +2,11 @@ package net.aquamine.server.packet.out.play
 
 import net.kyori.adventure.sound.Sound
 import net.aquamine.api.effect.sound.SoundEvent
-import net.aquamine.server.effect.sound.KryptonSoundEvent
+import net.aquamine.server.effect.sound.AquaSoundEvent
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.registry.holder.Holder
 
 @JvmRecord
@@ -21,11 +21,11 @@ data class PacketOutSoundEffect(
     val seed: Long
 ) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readById(KryptonRegistries.SOUND_EVENT.asHolderIdMap(), KryptonSoundEvent::read),
+    constructor(reader: BinaryReader) : this(reader.readById(AquaRegistries.SOUND_EVENT.asHolderIdMap(), AquaSoundEvent::read),
         reader.readEnum(), reader.readInt(), reader.readInt(), reader.readInt(), reader.readFloat(), reader.readFloat(), reader.readLong())
 
     override fun write(writer: BinaryWriter) {
-        writer.writeId(KryptonRegistries.SOUND_EVENT.asHolderIdMap(), event, KryptonSoundEvent::write)
+        writer.writeId(AquaRegistries.SOUND_EVENT.asHolderIdMap(), event, AquaSoundEvent::write)
         writer.writeEnum(source)
         writer.writeInt(x)
         writer.writeInt(y)

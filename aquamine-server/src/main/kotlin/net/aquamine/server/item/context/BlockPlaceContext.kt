@@ -2,16 +2,16 @@ package net.aquamine.server.item.context
 
 import net.aquamine.api.entity.Hand
 import net.aquamine.api.util.Vec3i
-import net.aquamine.server.entity.player.KryptonPlayer
-import net.aquamine.server.item.KryptonItemStack
+import net.aquamine.server.entity.player.AquaPlayer
+import net.aquamine.server.item.AquaItemStack
 import net.aquamine.server.util.hit.BlockHitResult
-import net.aquamine.server.world.KryptonWorld
+import net.aquamine.server.world.AquaWorld
 
 open class BlockPlaceContext protected constructor(
-    world: KryptonWorld,
-    player: KryptonPlayer?,
+    world: AquaWorld,
+    player: AquaPlayer?,
     hand: Hand,
-    item: KryptonItemStack,
+    item: AquaItemStack,
     hitResult: BlockHitResult
 ) : UseOnContext(world, player, hand, item, hitResult) {
 

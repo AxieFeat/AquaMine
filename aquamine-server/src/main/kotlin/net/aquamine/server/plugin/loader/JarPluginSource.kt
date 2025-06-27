@@ -8,9 +8,9 @@ import net.aquamine.api.plugin.InvalidPluginException
 import net.aquamine.api.plugin.PluginContainer
 import net.aquamine.api.plugin.PluginDependency
 import net.aquamine.api.plugin.PluginDescription
-import net.aquamine.server.plugin.KryptonPluginContainer
-import net.aquamine.server.plugin.KryptonPluginDependency
-import net.aquamine.server.plugin.KryptonPluginDescription
+import net.aquamine.server.plugin.AquaPluginContainer
+import net.aquamine.server.plugin.AquaPluginDependency
+import net.aquamine.server.plugin.AquaPluginDescription
 import net.aquamine.server.plugin.PluginClassLoader
 import net.aquamine.server.plugin.module.PluginModule
 import net.aquamine.server.util.NoSpread
@@ -41,7 +41,7 @@ class JarPluginSource(private val pluginsDirectory: Path) : PluginSource {
     }
 
     private fun loadDescription(source: Path): LoadedCandidateDescription {
-        val serialized = findMetadata(source) ?: throw InvalidPluginException("Could not find a valid krypton-plugin-meta.json file!")
+        val serialized = findMetadata(source) ?: throw InvalidPluginException("Could not find a valid aquamine-plugin-meta.json file!")
         if (!serialized.id.matches(SerializedPluginDescription.ID_REGEX)) throw InvalidPluginException("Plugin ID ${serialized.id} is invalid!")
         return serializedToCandidate(serialized, source)
     }
@@ -49,7 +49,7 @@ class JarPluginSource(private val pluginsDirectory: Path) : PluginSource {
     private fun findMetadata(path: Path): SerializedPluginDescription? = JarInputStream(Files.newInputStream(path)).use { input ->
         var entry = input.nextJarEntry
         while (entry != null) {
-            if (entry.name == "krypton-plugin-meta.json") return JsonReader(InputStreamReader(input)).use(SerializedPluginDescription::read)
+            if (entry.name == "aquamine-plugin-meta.json") return JsonReader(InputStreamReader(input)).use(SerializedPluginDescription::read)
             entry = input.nextJarEntry
         }
         return null
@@ -62,7 +62,7 @@ class JarPluginSource(private val pluginsDirectory: Path) : PluginSource {
         return candidate.toFull(mainClass)
     }
 
-    override fun createPluginContainer(description: PluginDescription): PluginContainer = KryptonPluginContainer(description, false)
+    override fun createPluginContainer(description: PluginDescription): PluginContainer = AquaPluginContainer(description, false)
 
     override fun createModule(container: PluginContainer): Module {
         val description = container.description
@@ -71,7 +71,7 @@ class JarPluginSource(private val pluginsDirectory: Path) : PluginSource {
     }
 
     override fun createPlugin(container: PluginContainer, vararg modules: Module) {
-        require(container is KryptonPluginContainer) { "Container provided isn't compatible with this loader!" }
+        require(container is AquaPluginContainer) { "Container provided isn't compatible with this loader!" }
         val description = container.description
         require(description is LoadedDescription) { "Description provided isn't compatible with this loader!" }
 
@@ -90,7 +90,7 @@ class JarPluginSource(private val pluginsDirectory: Path) : PluginSource {
         from: SerializedPluginDescription,
         source: Path,
         val mainClass: String
-    ) : KryptonPluginDescription(from.id, from.name, from.version, from.description, convertAuthors(from), convertDependencies(from), source) {
+    ) : AquaPluginDescription(from.id, from.name, from.version, from.description, convertAuthors(from), convertDependencies(from), source) {
 
         fun toFull(mainClass: Class<*>): LoadedDescription = LoadedDescription(this, mainClass)
 
@@ -102,7 +102,7 @@ class JarPluginSource(private val pluginsDirectory: Path) : PluginSource {
             @JvmStatic
             private fun convertDependencies(from: SerializedPluginDescription): Collection<PluginDependency> {
                 val result = ImmutableList.builder<PluginDependency>()
-                from.dependencies.forEach { result.add(KryptonPluginDependency(it.id, it.optional)) }
+                from.dependencies.forEach { result.add(AquaPluginDependency(it.id, it.optional)) }
                 return result.build()
             }
         }
@@ -111,7 +111,7 @@ class JarPluginSource(private val pluginsDirectory: Path) : PluginSource {
     private class LoadedDescription(
         from: LoadedCandidateDescription,
         val mainClass: Class<*>
-    ) : KryptonPluginDescription(from.id, from.name, from.version, from.description, from.authors, from.dependencies, from.source)
+    ) : AquaPluginDescription(from.id, from.name, from.version, from.description, from.authors, from.dependencies, from.source)
 
     companion object {
 

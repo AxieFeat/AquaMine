@@ -2,7 +2,7 @@ package net.aquamine.server.entity.ai.memory
 
 import net.kyori.adventure.key.Key
 import net.aquamine.annotations.Catalogue
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.coordinate.GlobalPos
 import net.aquamine.server.util.uuid.UUIDUtil
 import org.kryptonmc.serialization.Codec
@@ -52,5 +52,5 @@ object MemoryKeys {
 
     @JvmStatic
     private fun <T : Any> register(name: String, codec: Codec<T>): MemoryKey<T> =
-        KryptonRegistries.register(KryptonRegistries.MEMORY_KEY, Key.key(name), MemoryKey(codec))
+        AquaRegistries.register(AquaRegistries.MEMORY_KEY, Key.key(name), MemoryKey(codec))
 }

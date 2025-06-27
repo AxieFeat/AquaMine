@@ -7,7 +7,7 @@ import org.jline.utils.AttributedString
 import org.jline.utils.AttributedStringBuilder
 import org.jline.utils.AttributedStyle
 import net.aquamine.server.command.CommandSourceStack
-import net.aquamine.server.command.KryptonCommandManager
+import net.aquamine.server.command.AquaCommandManager
 import java.util.function.Supplier
 import java.util.regex.Pattern
 import java.util.stream.IntStream
@@ -17,7 +17,7 @@ import kotlin.math.min
  * Used for doing console highlighting using Brigadier.
  */
 class BrigadierHighlighter(
-    private val commandManager: KryptonCommandManager,
+    private val commandManager: AquaCommandManager,
     private val commandSourceProvider: Supplier<CommandSourceStack>
 ) : Highlighter {
 

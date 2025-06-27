@@ -1,7 +1,7 @@
 package net.aquamine.server.entity.ai.memory
 
 import net.kyori.adventure.key.Key
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.registry.AquaRegistries
 import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.compound
 import org.kryptonmc.serialization.nbt.NbtOps
@@ -54,7 +54,7 @@ class Brain {
 
     fun load(data: CompoundTag) {
         data.getCompound("Memories").forEachCompound { memoryKey, memoryData ->
-            val key = KryptonRegistries.MEMORY_KEY.get(Key.key(memoryKey)) ?: return@forEachCompound
+            val key = AquaRegistries.MEMORY_KEY.get(Key.key(memoryKey)) ?: return@forEachCompound
             val value = memoryData.get("value") ?: return@forEachCompound
             val decoded = try {
                 key.codec.decode(value, NbtOps.INSTANCE)

@@ -5,7 +5,7 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
 import net.aquamine.server.packet.out.play.data.ChunkPacketData
 import net.aquamine.server.packet.out.play.data.LightPacketData
-import net.aquamine.server.world.chunk.KryptonChunk
+import net.aquamine.server.world.chunk.AquaChunk
 
 @JvmRecord
 data class PacketOutChunkDataAndLight(val x: Int, val z: Int, val chunkData: ChunkPacketData, val lightData: LightPacketData) : Packet {
@@ -22,7 +22,7 @@ data class PacketOutChunkDataAndLight(val x: Int, val z: Int, val chunkData: Chu
     companion object {
 
         @JvmStatic
-        fun fromChunk(chunk: KryptonChunk, trustEdges: Boolean): PacketOutChunkDataAndLight {
+        fun fromChunk(chunk: AquaChunk, trustEdges: Boolean): PacketOutChunkDataAndLight {
             return PacketOutChunkDataAndLight(chunk.position.x, chunk.position.z, ChunkPacketData.fromChunk(chunk),
                 LightPacketData.fromChunk(chunk, trustEdges))
         }

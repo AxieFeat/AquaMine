@@ -1,6 +1,6 @@
 package net.aquamine.server.packet.out.play
 
-import net.aquamine.server.entity.KryptonEntity
+import net.aquamine.server.entity.AquaEntity
 import net.aquamine.server.packet.EntityPacket
 import net.aquamine.server.coordinate.Positioning
 import net.aquamine.server.network.buffer.BinaryReader
@@ -21,7 +21,7 @@ data class PacketOutSetEntityVelocity(override val entityId: Int, val x: Short, 
     companion object {
 
         @JvmStatic
-        fun fromEntity(entity: KryptonEntity): PacketOutSetEntityVelocity {
+        fun fromEntity(entity: AquaEntity): PacketOutSetEntityVelocity {
             return PacketOutSetEntityVelocity(entity.id, encode(entity.velocity.x), encode(entity.velocity.y), encode(entity.velocity.z))
         }
 

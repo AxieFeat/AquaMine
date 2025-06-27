@@ -1,8 +1,8 @@
 package net.aquamine.server.world.data
 
 import org.apache.logging.log4j.LogManager
-import net.aquamine.server.KryptonPlatform
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.AquaPlatform
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.entity.serializer.player.PlayerSerializer
 import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.io.TagCompression
@@ -37,7 +37,7 @@ class DefaultPlayerDataSerializer(val folder: Path) : PlayerDataSerializer {
         }
     }
 
-    override fun load(player: KryptonPlayer): CompoundTag? {
+    override fun load(player: AquaPlayer): CompoundTag? {
         val nbt = loadById(player.uuid) ?: return null
 
         PlayerSerializer.load(player, nbt)
@@ -45,7 +45,7 @@ class DefaultPlayerDataSerializer(val folder: Path) : PlayerDataSerializer {
         return nbt
     }
 
-    override fun save(player: KryptonPlayer): CompoundTag {
+    override fun save(player: AquaPlayer): CompoundTag {
         val data = player.saveWithPassengers().build()
 
         // Create temp file and write data

@@ -1,20 +1,20 @@
 package net.aquamine.server.network.chat
 
 import net.kyori.adventure.text.Component
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.player.AquaPlayer
 
 sealed interface OutgoingChatMessage {
 
     fun content(): Component
 
-    fun sendToPlayer(player: KryptonPlayer, filter: Boolean, type: RichChatType.Bound)
+    fun sendToPlayer(player: AquaPlayer, filter: Boolean, type: RichChatType.Bound)
 
     @JvmRecord
     data class Disguised(private val content: Component) : OutgoingChatMessage {
 
         override fun content(): Component = content
 
-        override fun sendToPlayer(player: KryptonPlayer, filter: Boolean, type: RichChatType.Bound) {
+        override fun sendToPlayer(player: AquaPlayer, filter: Boolean, type: RichChatType.Bound) {
             player.chatTracker.sendDisguisedChatMessage(content, type)
         }
     }
@@ -24,7 +24,7 @@ sealed interface OutgoingChatMessage {
 
         override fun content(): Component = message.decoratedContent()
 
-        override fun sendToPlayer(player: KryptonPlayer, filter: Boolean, type: RichChatType.Bound) {
+        override fun sendToPlayer(player: AquaPlayer, filter: Boolean, type: RichChatType.Bound) {
             val filtered = message.filter(filter)
             if (!filtered.isFullyFiltered()) player.chatTracker.sendPlayerChatMessage(filtered, type)
         }

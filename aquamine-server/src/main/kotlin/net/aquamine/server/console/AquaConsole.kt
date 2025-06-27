@@ -13,15 +13,15 @@ import org.jline.reader.LineReaderBuilder
 import net.aquamine.api.command.ConsoleSender
 import net.aquamine.api.permission.PermissionFunction
 import net.aquamine.api.util.Position
-import net.aquamine.server.KryptonServer
+import net.aquamine.server.AquaServer
 import net.aquamine.server.command.CommandSourceStack
 import net.aquamine.server.command.AquaSender
-import net.aquamine.server.event.command.KryptonCommandExecuteEvent
-import net.aquamine.server.event.server.KryptonSetupPermissionsEvent
+import net.aquamine.server.event.command.AquaCommandExecuteEvent
+import net.aquamine.server.event.server.AquaSetupPermissionsEvent
 import net.aquamine.server.locale.MinecraftTranslationManager
 import net.aquamine.server.network.chat.RichChatType
 
-class AquaConsole(override val server: KryptonServer) : SimpleTerminalConsole(), AquaSender, ConsoleSender {
+class AquaConsole(override val server: AquaServer) : SimpleTerminalConsole(), AquaSender, ConsoleSender {
 
     // The permission function defaults to ALWAYS_TRUE because we are god and have all permissions by default
     private var permissionFunction = DEFAULT_PERMISSION_FUNCTION
@@ -31,7 +31,7 @@ class AquaConsole(override val server: KryptonServer) : SimpleTerminalConsole(),
         get() = NAME
 
     fun setupPermissions() {
-        val event = server.eventNode.fire(KryptonSetupPermissionsEvent(this, DEFAULT_PERMISSION_FUNCTION))
+        val event = server.eventNode.fire(AquaSetupPermissionsEvent(this, DEFAULT_PERMISSION_FUNCTION))
         permissionFunction = event.result?.function ?: event.defaultFunction
     }
 
@@ -59,7 +59,7 @@ class AquaConsole(override val server: KryptonServer) : SimpleTerminalConsole(),
     override fun isRunning(): Boolean = server.isRunning()
 
     override fun runCommand(command: String) {
-        val event = server.eventNode.fire(KryptonCommandExecuteEvent(this, command))
+        val event = server.eventNode.fire(AquaCommandExecuteEvent(this, command))
         if (event.isAllowed()) server.commandManager.dispatch(createCommandSourceStack(), event.result?.command ?: command)
     }
 
@@ -68,7 +68,7 @@ class AquaConsole(override val server: KryptonServer) : SimpleTerminalConsole(),
     }
 
     override fun buildReader(builder: LineReaderBuilder): LineReader = super.buildReader(
-        builder.appName("Krypton")
+        builder.appName("AquaMine")
             .completer(BrigadierCompleter(server.commandManager) { createCommandSourceStack() })
             .highlighter(BrigadierHighlighter(server.commandManager) { createCommandSourceStack() })
             .option(LineReader.Option.COMPLETE_IN_WORD, true)

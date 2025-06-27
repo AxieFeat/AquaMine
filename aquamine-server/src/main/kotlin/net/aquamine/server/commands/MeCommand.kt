@@ -12,7 +12,7 @@ object MeCommand {
     @JvmStatic
     fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
         dispatcher.register(literalCommand("me") {
-            requiresPermission(KryptonPermission.ME)
+            requiresPermission(AquaPermission.ME)
             argument("action", StringArgumentType.string()) {
                 runs {
                     // TODO: Update when new chat changes are implemented

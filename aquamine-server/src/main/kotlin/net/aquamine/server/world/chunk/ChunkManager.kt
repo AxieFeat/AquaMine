@@ -1,26 +1,26 @@
 package net.aquamine.server.world.chunk
 
 import net.aquamine.server.coordinate.ChunkPos
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.coordinate.SectionPos
-import net.aquamine.server.entity.KryptonEntity
+import net.aquamine.server.entity.AquaEntity
 import net.aquamine.server.entity.tracking.EntityTypeTarget
 import net.aquamine.server.util.math.Maths
-import net.aquamine.server.world.KryptonWorld
+import net.aquamine.server.world.AquaWorld
 import space.vectrix.flare.fastutil.Long2ObjectSyncMap
 import java.util.function.Consumer
 
-class ChunkManager(private val world: KryptonWorld, private val chunkLoader: ChunkLoader) : AutoCloseable {
+class ChunkManager(private val world: AquaWorld, private val chunkLoader: ChunkLoader) : AutoCloseable {
 
-    private val chunkMap = Long2ObjectSyncMap.hashmap<KryptonChunk>()
+    private val chunkMap = Long2ObjectSyncMap.hashmap<AquaChunk>()
 
-    fun chunks(): Collection<KryptonChunk> = chunkMap.values
+    fun chunks(): Collection<AquaChunk> = chunkMap.values
 
-    fun getChunk(x: Int, z: Int): KryptonChunk? = chunkMap.get(ChunkPos.pack(x, z))
+    fun getChunk(x: Int, z: Int): AquaChunk? = chunkMap.get(ChunkPos.pack(x, z))
 
-    fun getChunk(position: ChunkPos): KryptonChunk? = chunkMap.get(position.pack())
+    fun getChunk(position: ChunkPos): AquaChunk? = chunkMap.get(position.pack())
 
-    fun loadStartingArea(centerX: Int, centerZ: Int, onLoad: Consumer<KryptonChunk>) {
+    fun loadStartingArea(centerX: Int, centerZ: Int, onLoad: Consumer<AquaChunk>) {
         for (i in 0 until STARTING_AREA_SIZE) {
             val pos = Maths.chunkInSpiral(i, centerX, centerZ)
             val chunk = loadChunk(pos)
@@ -28,7 +28,7 @@ class ChunkManager(private val world: KryptonWorld, private val chunkLoader: Chu
         }
     }
 
-    fun updatePlayerPosition(player: KryptonPlayer, oldPos: ChunkPos, newPos: ChunkPos, viewDistance: Int) {
+    fun updatePlayerPosition(player: AquaPlayer, oldPos: ChunkPos, newPos: ChunkPos, viewDistance: Int) {
         if (oldPos == newPos) return
 
         val chunksInRange = (viewDistance * 2 + 1) * (viewDistance * 2 + 1)
@@ -41,12 +41,12 @@ class ChunkManager(private val world: KryptonWorld, private val chunkLoader: Chu
         updateEntityPosition(player, newPos)
     }
 
-    fun updateEntityPosition(entity: KryptonEntity, newPos: ChunkPos) {
+    fun updateEntityPosition(entity: AquaEntity, newPos: ChunkPos) {
         val newChunk = getChunk(newPos) ?: return
         world.server.tickDispatcher().queueElementUpdate(entity, newChunk)
     }
 
-    fun removePlayer(player: KryptonPlayer) {
+    fun removePlayer(player: AquaPlayer) {
         val viewDistance = world.server.config.world.viewDistance
         val chunkPos = ChunkPos(SectionPos.blockToSection(player.position.x), SectionPos.blockToSection(player.position.z))
 
@@ -62,7 +62,7 @@ class ChunkManager(private val world: KryptonWorld, private val chunkLoader: Chu
         world.server.tickDispatcher().queueElementRemove(player)
     }
 
-    fun loadChunk(pos: ChunkPos): KryptonChunk? {
+    fun loadChunk(pos: ChunkPos): AquaChunk? {
         val packed = pos.pack()
         if (chunkMap.containsKey(packed)) return chunkMap.get(packed)!!
 
@@ -84,7 +84,7 @@ class ChunkManager(private val world: KryptonWorld, private val chunkLoader: Chu
         chunkMap.values.forEach(::saveChunk)
     }
 
-    private fun saveChunk(chunk: KryptonChunk) {
+    private fun saveChunk(chunk: AquaChunk) {
         chunk.lastUpdate = world.time
         chunkLoader.saveChunk(chunk)
         chunkLoader.saveAllEntities(chunk)

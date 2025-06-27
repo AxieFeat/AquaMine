@@ -1,6 +1,6 @@
 package net.aquamine.server.entity.serializer.animal
 
-import net.aquamine.server.entity.animal.KryptonTamable
+import net.aquamine.server.entity.animal.AquaTamable
 import net.aquamine.server.entity.metadata.MetadataKeys
 import net.aquamine.server.entity.serializer.AgeableSerializer
 import net.aquamine.server.entity.serializer.EntitySerializer
@@ -10,12 +10,12 @@ import net.aquamine.server.util.nbt.putNullable
 import net.aquamine.server.util.nbt.putUUID
 import xyz.axie.nbt.CompoundTag
 
-object TamableSerializer : EntitySerializer<KryptonTamable> {
+object TamableSerializer : EntitySerializer<AquaTamable> {
 
     private const val OWNER_TAG = "Owner"
     private const val SITTING_TAG = "Sitting"
 
-    override fun load(entity: KryptonTamable, data: CompoundTag) {
+    override fun load(entity: AquaTamable, data: CompoundTag) {
         AgeableSerializer.load(entity, data)
         // TODO: Fix this. The vanilla implementation is weird, and this doesn't make any sense. It also needs old
         //  user conversion stuff that we don't have yet.
@@ -38,7 +38,7 @@ object TamableSerializer : EntitySerializer<KryptonTamable> {
         entity.isSitting = entity.isOrderedToSit
     }
 
-    override fun save(entity: KryptonTamable): CompoundTag.Builder = AgeableSerializer.save(entity).apply {
+    override fun save(entity: AquaTamable): CompoundTag.Builder = AgeableSerializer.save(entity).apply {
         putNullable(OWNER_TAG, entity.data.get(MetadataKeys.Tamable.OWNER), CompoundTag.Builder::putUUID)
         putBoolean(SITTING_TAG, entity.isOrderedToSit)
     }

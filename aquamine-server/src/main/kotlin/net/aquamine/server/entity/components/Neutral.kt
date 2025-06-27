@@ -1,10 +1,10 @@
 package net.aquamine.server.entity.components
 
 import net.aquamine.api.entity.EntityTypes
-import net.aquamine.server.entity.KryptonEntity
-import net.aquamine.server.entity.KryptonLivingEntity
-import net.aquamine.server.entity.KryptonMob
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.AquaEntity
+import net.aquamine.server.entity.AquaLivingEntity
+import net.aquamine.server.entity.AquaMob
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.util.nbt.getUUID
 import net.aquamine.server.util.nbt.hasUUID
 import net.aquamine.server.util.nbt.putNullable
@@ -16,8 +16,8 @@ interface Neutral {
 
     var remainingAngerTime: Int
     var angerTarget: UUID?
-    var lastHurtByMob: KryptonLivingEntity?
-    var lastHurtByPlayer: KryptonPlayer?
+    var lastHurtByMob: AquaLivingEntity?
+    var lastHurtByPlayer: AquaPlayer?
 
     val isAngry: Boolean
         get() = remainingAngerTime > 0
@@ -31,7 +31,7 @@ interface Neutral {
         remainingAngerTime = 0
     }
 
-    fun setTarget(target: KryptonLivingEntity?)
+    fun setTarget(target: AquaLivingEntity?)
 
     companion object {
 
@@ -39,7 +39,7 @@ interface Neutral {
         private const val ANGRY_AT_TAG = "AngryAt"
 
         @JvmStatic
-        fun <E> loadAngerData(entity: E, data: CompoundTag) where E : KryptonEntity, E : Neutral {
+        fun <E> loadAngerData(entity: E, data: CompoundTag) where E : AquaEntity, E : Neutral {
             entity.remainingAngerTime = data.getInt(ANGER_TIME_TAG)
             if (!data.hasUUID(ANGRY_AT_TAG)) {
                 entity.angerTarget = null
@@ -49,8 +49,8 @@ interface Neutral {
             entity.angerTarget = targetId
             val target = entity.world.entityManager.getByUUID(targetId)
             if (target != null) {
-                if (target is KryptonMob) entity.lastHurtByMob = target
-                if (target.type === EntityTypes.PLAYER) entity.lastHurtByPlayer = target as KryptonPlayer
+                if (target is AquaMob) entity.lastHurtByMob = target
+                if (target.type === EntityTypes.PLAYER) entity.lastHurtByPlayer = target as AquaPlayer
             }
         }
 

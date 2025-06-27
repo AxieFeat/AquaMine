@@ -10,9 +10,9 @@ import net.aquamine.api.block.Block
 import net.aquamine.api.item.ItemAttributeModifier
 import net.aquamine.api.item.data.ItemFlag
 import net.aquamine.api.item.meta.ItemMeta
-import net.aquamine.server.item.data.KryptonItemAttributeModifier
+import net.aquamine.server.item.data.AquaItemAttributeModifier
 import net.aquamine.server.item.mask
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.registry.AquaRegistries
 import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.ListTag
 import xyz.axie.nbt.StringTag
@@ -32,7 +32,7 @@ abstract class AbstractItemMeta<I : ItemMeta>(val data: CompoundTag) : ItemMeta 
     final override val canDestroy: ImmutableSet<Block> = getBlocks(data, CAN_DESTROY_TAG)
     final override val canPlaceOn: ImmutableSet<Block> = getBlocks(data, CAN_PLACE_ON_TAG)
     final override val attributeModifiers: ImmutableList<ItemAttributeModifier> =
-        mapToList(data, MODIFIERS_TAG, CompoundTag.ID) { KryptonItemAttributeModifier.load(it as CompoundTag) }
+        mapToList(data, MODIFIERS_TAG, CompoundTag.ID) { AquaItemAttributeModifier.load(it as CompoundTag) }
 
     abstract fun copy(data: CompoundTag): I
 
@@ -87,15 +87,15 @@ abstract class AbstractItemMeta<I : ItemMeta>(val data: CompoundTag) : ItemMeta 
     final override fun withCanPlaceOn(blocks: Collection<Block>): I = copy(putBlocks(data, CAN_PLACE_ON_TAG, blocks))
 
     final override fun withAttributeModifiers(modifiers: Collection<ItemAttributeModifier>): I =
-        copy(put(data, MODIFIERS_TAG, modifiers, KryptonItemAttributeModifier::save))
+        copy(put(data, MODIFIERS_TAG, modifiers, AquaItemAttributeModifier::save))
 
     final override fun withoutAttributeModifiers(): I = copy(data.remove(MODIFIERS_TAG))
 
     final override fun withAttributeModifier(modifier: ItemAttributeModifier): I =
-        copy(data.update(MODIFIERS_TAG, CompoundTag.ID) { it.add(KryptonItemAttributeModifier.save(modifier)) })
+        copy(data.update(MODIFIERS_TAG, CompoundTag.ID) { it.add(AquaItemAttributeModifier.save(modifier)) })
 
     final override fun withoutAttributeModifier(modifier: ItemAttributeModifier): I =
-        copy(data.update(MODIFIERS_TAG, CompoundTag.ID) { it.remove(KryptonItemAttributeModifier.save(modifier)) })
+        copy(data.update(MODIFIERS_TAG, CompoundTag.ID) { it.remove(AquaItemAttributeModifier.save(modifier)) })
 
     final override fun equals(other: Any?): Boolean = this === other || other is AbstractItemMeta<*> && data == other.data
 
@@ -135,7 +135,7 @@ abstract class AbstractItemMeta<I : ItemMeta>(val data: CompoundTag) : ItemMeta 
 
         @JvmStatic
         private fun getBlocks(data: CompoundTag, key: String): ImmutableSet<Block> =
-            mapToSet(data, key, StringTag.ID) { KryptonRegistries.BLOCK.get(Key.key((it as StringTag).value)) }
+            mapToSet(data, key, StringTag.ID) { AquaRegistries.BLOCK.get(Key.key((it as StringTag).value)) }
 
         @JvmStatic
         private fun putBlocks(data: CompoundTag, key: String, blocks: Collection<Block>): CompoundTag =

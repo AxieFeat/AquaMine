@@ -4,9 +4,9 @@ import net.kyori.adventure.key.Key
 import net.aquamine.api.effect.particle.ParticleType
 import net.aquamine.api.resource.ResourceKey
 import net.aquamine.api.world.World
-import net.aquamine.server.registry.KryptonRegistries
-import net.aquamine.server.resource.KryptonResourceKey
-import net.aquamine.server.resource.KryptonResourceKeys
+import net.aquamine.server.registry.AquaRegistries
+import net.aquamine.server.resource.AquaResourceKey
+import net.aquamine.server.resource.AquaResourceKeys
 import net.aquamine.server.util.Keys
 import net.aquamine.server.util.successOrError
 import org.kryptonmc.serialization.Codec
@@ -41,11 +41,11 @@ object Codecs {
     // TODO: Look at the particle type codec, since it's not that great here
     @JvmField
     val PARTICLE: Codec<ParticleType> = Keys.CODEC.xmap(
-        { KryptonRegistries.PARTICLE_TYPE.get(it)!! },
-        { KryptonRegistries.PARTICLE_TYPE.getKey(it)!! }
+        { AquaRegistries.PARTICLE_TYPE.get(it)!! },
+        { AquaRegistries.PARTICLE_TYPE.getKey(it)!! }
     )
     @JvmField
-    val DIMENSION: Codec<ResourceKey<World>> = KryptonResourceKey.codec(KryptonResourceKeys.WORLD)
+    val DIMENSION: Codec<ResourceKey<World>> = AquaResourceKey.codec(AquaResourceKeys.WORLD)
     @JvmField
     val TAG_OR_ELEMENT_ID: Codec<TagOrElementLocation> = Codec.STRING.comapFlatMap(
         { input ->

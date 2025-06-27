@@ -2,7 +2,7 @@ package net.aquamine.server.packet.out.play
 
 import net.aquamine.api.util.Position
 import net.aquamine.server.coordinate.Positioning
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.EntityPacket
@@ -38,7 +38,7 @@ data class PacketOutSpawnPlayer(
     companion object {
 
         @JvmStatic
-        fun create(player: KryptonPlayer): PacketOutSpawnPlayer = from(player.id, player.uuid, player.position)
+        fun create(player: AquaPlayer): PacketOutSpawnPlayer = from(player.id, player.uuid, player.position)
 
         @JvmStatic
         fun from(entityId: Int, uuid: UUID, pos: Position): PacketOutSpawnPlayer {

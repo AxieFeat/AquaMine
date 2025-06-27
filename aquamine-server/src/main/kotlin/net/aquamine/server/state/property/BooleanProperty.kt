@@ -2,7 +2,7 @@ package net.aquamine.server.state.property
 
 import com.google.common.collect.ImmutableSet
 
-class BooleanProperty(name: String) : KryptonProperty<Boolean>(name, Boolean::class.javaObjectType) {
+class BooleanProperty(name: String) : AquaProperty<Boolean>(name, Boolean::class.javaObjectType) {
 
     override val values: Collection<Boolean>
         get() = VALUES

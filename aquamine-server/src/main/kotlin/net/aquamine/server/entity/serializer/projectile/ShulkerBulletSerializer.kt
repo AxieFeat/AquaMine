@@ -1,7 +1,7 @@
 package net.aquamine.server.entity.serializer.projectile
 
 import net.aquamine.api.util.Vec3d
-import net.aquamine.server.entity.projectile.KryptonShulkerBullet
+import net.aquamine.server.entity.projectile.AquaShulkerBullet
 import net.aquamine.server.entity.serializer.EntitySerializer
 import net.aquamine.server.util.enumhelper.Directions
 import net.aquamine.server.util.nbt.getUUID
@@ -11,7 +11,7 @@ import net.aquamine.server.util.nbt.putNullable
 import net.aquamine.server.util.nbt.putUUID
 import xyz.axie.nbt.CompoundTag
 
-object ShulkerBulletSerializer : EntitySerializer<KryptonShulkerBullet> {
+object ShulkerBulletSerializer : EntitySerializer<AquaShulkerBullet> {
 
     private const val STEPS_TAG = "Steps"
     private const val DELTA_X_TAG = "TXD"
@@ -20,7 +20,7 @@ object ShulkerBulletSerializer : EntitySerializer<KryptonShulkerBullet> {
     private const val DIR_TAG = "Dir"
     private const val TARGET_TAG = "Target"
 
-    override fun load(entity: KryptonShulkerBullet, data: CompoundTag) {
+    override fun load(entity: AquaShulkerBullet, data: CompoundTag) {
         ProjectileSerializer.load(entity, data)
         entity.steps = data.getInt(STEPS_TAG)
         entity.targetDelta = Vec3d(data.getDouble(DELTA_X_TAG), data.getDouble(DELTA_Y_TAG), data.getDouble(DELTA_Z_TAG))
@@ -28,7 +28,7 @@ object ShulkerBulletSerializer : EntitySerializer<KryptonShulkerBullet> {
         if (data.hasUUID(TARGET_TAG)) entity.setTargetId(data.getUUID(TARGET_TAG))
     }
 
-    override fun save(entity: KryptonShulkerBullet): CompoundTag.Builder = ProjectileSerializer.save(entity).apply {
+    override fun save(entity: AquaShulkerBullet): CompoundTag.Builder = ProjectileSerializer.save(entity).apply {
         putInt(STEPS_TAG, entity.steps)
         putDouble(DELTA_X_TAG, entity.targetDelta.x)
         putDouble(DELTA_Y_TAG, entity.targetDelta.y)

@@ -1,19 +1,19 @@
 package net.aquamine.server.world.block
 
 import net.aquamine.api.tags.BlockTags
-import net.aquamine.server.state.property.KryptonProperties
-import net.aquamine.server.world.block.state.KryptonBlockState
+import net.aquamine.server.state.property.AquaProperties
+import net.aquamine.server.world.block.state.AquaBlockState
 
-fun KryptonBlockState.isBurning(): Boolean {
+fun AquaBlockState.isBurning(): Boolean {
     return eq(BlockTags.FIRE) ||
-            eq(KryptonBlocks.LAVA) ||
-            eq(KryptonBlocks.MAGMA_BLOCK) ||
+            eq(AquaBlocks.LAVA) ||
+            eq(AquaBlocks.MAGMA_BLOCK) ||
             isLit() ||
-            eq(KryptonBlocks.LAVA_CAULDRON)
+            eq(AquaBlocks.LAVA_CAULDRON)
 }
 
-private fun KryptonBlockState.isLit(): Boolean {
-    return hasProperty(KryptonProperties.LIT) &&
+private fun AquaBlockState.isLit(): Boolean {
+    return hasProperty(AquaProperties.LIT) &&
             eq(BlockTags.CAMPFIRES) &&
-            requireProperty(KryptonProperties.LIT)
+            requireProperty(AquaProperties.LIT)
 }

@@ -52,7 +52,7 @@ tasks.withType<ShadowJar> {
     archiveFileName.set("aquamine.jar")
 
     manifest {
-        attributes["Main-Class"] = "net.aquamine.server.KryptonKt"
+        attributes["Main-Class"] = "net.aquamine.server.AquaMineKt"
         attributes["Multi-Release"] = true
     }
 }

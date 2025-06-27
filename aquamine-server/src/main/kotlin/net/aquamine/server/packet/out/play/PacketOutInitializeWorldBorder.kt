@@ -3,7 +3,7 @@ package net.aquamine.server.packet.out.play
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
-import net.aquamine.server.world.KryptonWorldBorder
+import net.aquamine.server.world.AquaWorldBorder
 
 @JvmRecord
 data class PacketOutInitializeWorldBorder(
@@ -36,7 +36,7 @@ data class PacketOutInitializeWorldBorder(
         private const val PORTAL_TELEPORT_BOUNDARY = 29999984
 
         @JvmStatic
-        fun create(border: KryptonWorldBorder): PacketOutInitializeWorldBorder {
+        fun create(border: AquaWorldBorder): PacketOutInitializeWorldBorder {
             return PacketOutInitializeWorldBorder(border.centerX, border.centerZ, border.size, border.size, 0, PORTAL_TELEPORT_BOUNDARY,
                 border.warningBlocks, border.warningTime)
         }

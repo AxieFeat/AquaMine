@@ -9,7 +9,7 @@ object AquaCommand {
 
     @JvmStatic
     fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
-        dispatcher.register(literalCommand("krypton") {
+        dispatcher.register(literalCommand("aquamine") {
             registerSubCommand(this, PluginsCommand)
             registerSubCommand(this, InfoCommand)
         })

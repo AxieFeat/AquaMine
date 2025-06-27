@@ -3,7 +3,7 @@ package net.aquamine.server.entity.metadata
 import net.aquamine.annotations.CataloguedBy
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
-import net.aquamine.server.registry.KryptonRegistry
+import net.aquamine.server.registry.AquaRegistry
 
 @CataloguedBy(MetadataSerializers::class)
 interface MetadataSerializer<T> {
@@ -35,7 +35,7 @@ interface MetadataSerializer<T> {
         inline fun <reified E : Enum<E>> simpleEnum(): MetadataSerializer<E> = simple(BinaryReader::readEnum, BinaryWriter::writeEnum)
 
         @JvmStatic
-        fun <T : Any> simpleId(registry: KryptonRegistry<T>): MetadataSerializer<T> {
+        fun <T : Any> simpleId(registry: AquaRegistry<T>): MetadataSerializer<T> {
             return simple({ it.readById(registry)!! }, { buf, value -> buf.writeId(registry, value) })
         }
     }

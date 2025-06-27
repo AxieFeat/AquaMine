@@ -6,7 +6,7 @@ import java.util.Arrays
 import java.util.EnumSet
 import java.util.function.Predicate
 
-open class EnumProperty<E : Enum<E>>(name: String, type: Class<E>, values: Collection<E>) : KryptonProperty<E>(name, type) {
+open class EnumProperty<E : Enum<E>>(name: String, type: Class<E>, values: Collection<E>) : AquaProperty<E>(name, type) {
 
     final override val values: Collection<E> = ImmutableSet.copyOf(values)
     private val names = HashMap<String, E>()

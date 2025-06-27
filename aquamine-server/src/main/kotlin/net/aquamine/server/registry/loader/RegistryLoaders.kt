@@ -64,148 +64,148 @@ import net.aquamine.server.effect.particle.AquaItemParticleType
 import net.aquamine.server.effect.particle.AquaNoteParticleType
 import net.aquamine.server.effect.particle.AquaSimpleParticleType
 import net.aquamine.server.effect.particle.AquaVibrationParticleType
-import net.aquamine.server.entity.KryptonEntityCategory
-import net.aquamine.server.entity.hanging.KryptonPaintingVariant
-import net.aquamine.server.inventory.KryptonInventoryType
-import net.aquamine.server.registry.KryptonRegistries
-import net.aquamine.server.statistic.KryptonStatisticType
-import net.aquamine.server.world.block.KryptonBlocks
-import net.aquamine.server.world.block.entity.KryptonBlockEntityType
-import net.aquamine.server.world.block.entity.banner.KryptonBannerPatternType
-import net.aquamine.server.world.damage.type.KryptonDamageType
-import net.aquamine.server.world.scoreboard.KryptonKeyedCriterion
+import net.aquamine.server.entity.AquaEntityCategory
+import net.aquamine.server.entity.hanging.AquaPaintingVariant
+import net.aquamine.server.inventory.AquaInventoryType
+import net.aquamine.server.registry.AquaRegistries
+import net.aquamine.server.statistic.AquaStatisticType
+import net.aquamine.server.world.block.AquaBlocks
+import net.aquamine.server.world.block.entity.AquaBlockEntityType
+import net.aquamine.server.world.block.entity.banner.AquaBannerPatternType
+import net.aquamine.server.world.damage.type.AquaDamageType
+import net.aquamine.server.world.scoreboard.AquaKeyedCriterion
 import java.util.function.Supplier
 
 /**
- * Contains all the built-in registry loaders for Krypton.
+ * Contains all the built-in registry loaders for AquaMine.
  */
 @Suppress("StringLiteralDuplication")
 object RegistryLoaders {
 
     @JvmStatic
     fun bannerPatternType(): RegistryLoaderProvider<BannerPatternType> = loader {
-        add(Key.key("base")) { KryptonBannerPatternType(it, "b") }
-        add(Key.key("square_bottom_left")) { KryptonBannerPatternType(it, "bl") }
-        add(Key.key("square_bottom_right")) { KryptonBannerPatternType(it, "br") }
-        add(Key.key("square_top_left")) { KryptonBannerPatternType(it, "tl") }
-        add(Key.key("square_top_right")) { KryptonBannerPatternType(it, "tr") }
-        add(Key.key("stripe_bottom")) { KryptonBannerPatternType(it, "bs") }
-        add(Key.key("stripe_top")) { KryptonBannerPatternType(it, "ts") }
-        add(Key.key("stripe_left")) { KryptonBannerPatternType(it, "ls") }
-        add(Key.key("stripe_right")) { KryptonBannerPatternType(it, "rs") }
-        add(Key.key("stripe_center")) { KryptonBannerPatternType(it, "cs") }
-        add(Key.key("stripe_middle")) { KryptonBannerPatternType(it, "ms") }
-        add(Key.key("stripe_downright")) { KryptonBannerPatternType(it, "drs") }
-        add(Key.key("stripe_downleft")) { KryptonBannerPatternType(it, "dls") }
-        add(Key.key("small_stripes")) { KryptonBannerPatternType(it, "ss") }
-        add(Key.key("cross")) { KryptonBannerPatternType(it, "cr") }
-        add(Key.key("straight_cross")) { KryptonBannerPatternType(it, "sc") }
-        add(Key.key("triangle_bottom")) { KryptonBannerPatternType(it, "bt") }
-        add(Key.key("triangle_top")) { KryptonBannerPatternType(it, "tt") }
-        add(Key.key("triangles_bottom")) { KryptonBannerPatternType(it, "bts") }
-        add(Key.key("triangles_top")) { KryptonBannerPatternType(it, "tts") }
-        add(Key.key("diagonal_left")) { KryptonBannerPatternType(it, "ld") }
-        add(Key.key("diagonal_up_right")) { KryptonBannerPatternType(it, "rd") }
-        add(Key.key("diagonal_up_left")) { KryptonBannerPatternType(it, "lud") }
-        add(Key.key("diagonal_right")) { KryptonBannerPatternType(it, "rud") }
-        add(Key.key("circle")) { KryptonBannerPatternType(it, "mc") }
-        add(Key.key("rhombus")) { KryptonBannerPatternType(it, "mr") }
-        add(Key.key("half_vertical")) { KryptonBannerPatternType(it, "vh") }
-        add(Key.key("half_horizontal")) { KryptonBannerPatternType(it, "hh") }
-        add(Key.key("half_vertical_right")) { KryptonBannerPatternType(it, "vhr") }
-        add(Key.key("half_horizontal_bottom")) { KryptonBannerPatternType(it, "hhb") }
-        add(Key.key("border")) { KryptonBannerPatternType(it, "bo") }
-        add(Key.key("curly_border")) { KryptonBannerPatternType(it, "cbo") }
-        add(Key.key("gradient")) { KryptonBannerPatternType(it, "gra") }
-        add(Key.key("gradient_up")) { KryptonBannerPatternType(it, "gru") }
-        add(Key.key("bricks")) { KryptonBannerPatternType(it, "bri") }
-        add(Key.key("globe")) { KryptonBannerPatternType(it, "glb") }
-        add(Key.key("creeper")) { KryptonBannerPatternType(it, "cre") }
-        add(Key.key("skull")) { KryptonBannerPatternType(it, "sku") }
-        add(Key.key("flower")) { KryptonBannerPatternType(it, "flo") }
-        add(Key.key("mojang")) { KryptonBannerPatternType(it, "moj") }
-        add(Key.key("piglin")) { KryptonBannerPatternType(it, "pig") }
+        add(Key.key("base")) { AquaBannerPatternType(it, "b") }
+        add(Key.key("square_bottom_left")) { AquaBannerPatternType(it, "bl") }
+        add(Key.key("square_bottom_right")) { AquaBannerPatternType(it, "br") }
+        add(Key.key("square_top_left")) { AquaBannerPatternType(it, "tl") }
+        add(Key.key("square_top_right")) { AquaBannerPatternType(it, "tr") }
+        add(Key.key("stripe_bottom")) { AquaBannerPatternType(it, "bs") }
+        add(Key.key("stripe_top")) { AquaBannerPatternType(it, "ts") }
+        add(Key.key("stripe_left")) { AquaBannerPatternType(it, "ls") }
+        add(Key.key("stripe_right")) { AquaBannerPatternType(it, "rs") }
+        add(Key.key("stripe_center")) { AquaBannerPatternType(it, "cs") }
+        add(Key.key("stripe_middle")) { AquaBannerPatternType(it, "ms") }
+        add(Key.key("stripe_downright")) { AquaBannerPatternType(it, "drs") }
+        add(Key.key("stripe_downleft")) { AquaBannerPatternType(it, "dls") }
+        add(Key.key("small_stripes")) { AquaBannerPatternType(it, "ss") }
+        add(Key.key("cross")) { AquaBannerPatternType(it, "cr") }
+        add(Key.key("straight_cross")) { AquaBannerPatternType(it, "sc") }
+        add(Key.key("triangle_bottom")) { AquaBannerPatternType(it, "bt") }
+        add(Key.key("triangle_top")) { AquaBannerPatternType(it, "tt") }
+        add(Key.key("triangles_bottom")) { AquaBannerPatternType(it, "bts") }
+        add(Key.key("triangles_top")) { AquaBannerPatternType(it, "tts") }
+        add(Key.key("diagonal_left")) { AquaBannerPatternType(it, "ld") }
+        add(Key.key("diagonal_up_right")) { AquaBannerPatternType(it, "rd") }
+        add(Key.key("diagonal_up_left")) { AquaBannerPatternType(it, "lud") }
+        add(Key.key("diagonal_right")) { AquaBannerPatternType(it, "rud") }
+        add(Key.key("circle")) { AquaBannerPatternType(it, "mc") }
+        add(Key.key("rhombus")) { AquaBannerPatternType(it, "mr") }
+        add(Key.key("half_vertical")) { AquaBannerPatternType(it, "vh") }
+        add(Key.key("half_horizontal")) { AquaBannerPatternType(it, "hh") }
+        add(Key.key("half_vertical_right")) { AquaBannerPatternType(it, "vhr") }
+        add(Key.key("half_horizontal_bottom")) { AquaBannerPatternType(it, "hhb") }
+        add(Key.key("border")) { AquaBannerPatternType(it, "bo") }
+        add(Key.key("curly_border")) { AquaBannerPatternType(it, "cbo") }
+        add(Key.key("gradient")) { AquaBannerPatternType(it, "gra") }
+        add(Key.key("gradient_up")) { AquaBannerPatternType(it, "gru") }
+        add(Key.key("bricks")) { AquaBannerPatternType(it, "bri") }
+        add(Key.key("globe")) { AquaBannerPatternType(it, "glb") }
+        add(Key.key("creeper")) { AquaBannerPatternType(it, "cre") }
+        add(Key.key("skull")) { AquaBannerPatternType(it, "sku") }
+        add(Key.key("flower")) { AquaBannerPatternType(it, "flo") }
+        add(Key.key("mojang")) { AquaBannerPatternType(it, "moj") }
+        add(Key.key("piglin")) { AquaBannerPatternType(it, "pig") }
     }
 
     @JvmStatic
     fun blockEntityType(): RegistryLoaderProvider<BlockEntityType<*>> = loader {
-        add<Furnace>("furnace", KryptonBlocks.FURNACE)
-        add<Chest>("chest", KryptonBlocks.CHEST)
-        add<TrappedChest>("trapped_chest", KryptonBlocks.TRAPPED_CHEST)
-        add<EnderChest>("ender_chest", KryptonBlocks.ENDER_CHEST)
-        add<Jukebox>("jukebox", KryptonBlocks.JUKEBOX)
-        add<Dispenser>("dispenser", KryptonBlocks.DISPENSER)
-        add<Dropper>("dropper", KryptonBlocks.DROPPER)
-        add<Sign>("sign", KryptonBlocks.OAK_SIGN, KryptonBlocks.SPRUCE_SIGN, KryptonBlocks.BIRCH_SIGN, KryptonBlocks.ACACIA_SIGN,
-            KryptonBlocks.JUNGLE_SIGN, KryptonBlocks.DARK_OAK_SIGN, KryptonBlocks.OAK_WALL_SIGN, KryptonBlocks.SPRUCE_WALL_SIGN,
-            KryptonBlocks.BIRCH_WALL_SIGN, KryptonBlocks.ACACIA_WALL_SIGN, KryptonBlocks.JUNGLE_WALL_SIGN, KryptonBlocks.DARK_OAK_WALL_SIGN,
-            KryptonBlocks.CRIMSON_SIGN, KryptonBlocks.CRIMSON_WALL_SIGN, KryptonBlocks.WARPED_SIGN, KryptonBlocks.WARPED_WALL_SIGN,
-            KryptonBlocks.MANGROVE_SIGN, KryptonBlocks.MANGROVE_WALL_SIGN)
-        add<MobSpawner>("mob_spawner", KryptonBlocks.SPAWNER)
-        add<MovingPiston>("piston", KryptonBlocks.MOVING_PISTON)
-        add<BrewingStand>("brewing_stand", KryptonBlocks.BREWING_STAND)
-        add<EnchantmentTable>("enchanting_table", KryptonBlocks.ENCHANTING_TABLE)
-        add<EndPortal>("end_portal", KryptonBlocks.END_PORTAL)
-        add<Beacon>("beacon", KryptonBlocks.BEACON)
-        add<Skull>("skull", KryptonBlocks.SKELETON_SKULL, KryptonBlocks.SKELETON_WALL_SKULL, KryptonBlocks.CREEPER_HEAD,
-            KryptonBlocks.CREEPER_WALL_HEAD, KryptonBlocks.DRAGON_HEAD, KryptonBlocks.DRAGON_WALL_HEAD, KryptonBlocks.ZOMBIE_HEAD,
-            KryptonBlocks.ZOMBIE_WALL_HEAD, KryptonBlocks.WITHER_SKELETON_SKULL, KryptonBlocks.WITHER_SKELETON_WALL_SKULL, KryptonBlocks.PLAYER_HEAD,
-            KryptonBlocks.PLAYER_WALL_HEAD)
-        add<DaylightDetector>("daylight_detector", KryptonBlocks.DAYLIGHT_DETECTOR)
-        add<Hopper>("hopper", KryptonBlocks.HOPPER)
-        add<Comparator>("comparator", KryptonBlocks.COMPARATOR)
-        add<Banner>("banner", KryptonBlocks.WHITE_BANNER, KryptonBlocks.ORANGE_BANNER, KryptonBlocks.MAGENTA_BANNER, KryptonBlocks.LIGHT_BLUE_BANNER,
-            KryptonBlocks.YELLOW_BANNER, KryptonBlocks.LIME_BANNER, KryptonBlocks.PINK_BANNER, KryptonBlocks.GRAY_BANNER,
-            KryptonBlocks.LIGHT_GRAY_BANNER, KryptonBlocks.CYAN_BANNER, KryptonBlocks.PURPLE_BANNER, KryptonBlocks.BLUE_BANNER,
-            KryptonBlocks.BROWN_BANNER, KryptonBlocks.GREEN_BANNER, KryptonBlocks.RED_BANNER, KryptonBlocks.BLACK_BANNER,
-            KryptonBlocks.WHITE_WALL_BANNER, KryptonBlocks.ORANGE_WALL_BANNER, KryptonBlocks.MAGENTA_WALL_BANNER,
-            KryptonBlocks.LIGHT_BLUE_WALL_BANNER, KryptonBlocks.YELLOW_WALL_BANNER, KryptonBlocks.LIME_WALL_BANNER, KryptonBlocks.PINK_WALL_BANNER,
-            KryptonBlocks.GRAY_WALL_BANNER, KryptonBlocks.LIGHT_GRAY_WALL_BANNER, KryptonBlocks.CYAN_WALL_BANNER, KryptonBlocks.PURPLE_WALL_BANNER,
-            KryptonBlocks.BLUE_WALL_BANNER, KryptonBlocks.BROWN_WALL_BANNER, KryptonBlocks.GREEN_WALL_BANNER, KryptonBlocks.RED_WALL_BANNER,
-            KryptonBlocks.BLACK_WALL_BANNER)
-        add<StructureBlock>("structure_block", KryptonBlocks.STRUCTURE_BLOCK)
-        add<EndGateway>("end_gateway", KryptonBlocks.END_GATEWAY)
-        add<CommandBlock>("command_block", KryptonBlocks.COMMAND_BLOCK, KryptonBlocks.CHAIN_COMMAND_BLOCK, KryptonBlocks.REPEATING_COMMAND_BLOCK)
-        add<ShulkerBox>("shulker_box", KryptonBlocks.SHULKER_BOX, KryptonBlocks.BLACK_SHULKER_BOX, KryptonBlocks.BLUE_SHULKER_BOX,
-            KryptonBlocks.BROWN_SHULKER_BOX, KryptonBlocks.CYAN_SHULKER_BOX, KryptonBlocks.GRAY_SHULKER_BOX, KryptonBlocks.GREEN_SHULKER_BOX,
-            KryptonBlocks.LIGHT_BLUE_SHULKER_BOX, KryptonBlocks.LIGHT_GRAY_SHULKER_BOX, KryptonBlocks.LIME_SHULKER_BOX,
-            KryptonBlocks.MAGENTA_SHULKER_BOX, KryptonBlocks.ORANGE_SHULKER_BOX, KryptonBlocks.PINK_SHULKER_BOX, KryptonBlocks.PURPLE_SHULKER_BOX,
-            KryptonBlocks.RED_SHULKER_BOX, KryptonBlocks.WHITE_SHULKER_BOX, KryptonBlocks.YELLOW_SHULKER_BOX)
-        add<Bed>("bed", KryptonBlocks.RED_BED, KryptonBlocks.BLACK_BED, KryptonBlocks.BLUE_BED, KryptonBlocks.BROWN_BED, KryptonBlocks.CYAN_BED,
-            KryptonBlocks.GRAY_BED, KryptonBlocks.GREEN_BED, KryptonBlocks.LIGHT_BLUE_BED, KryptonBlocks.LIGHT_GRAY_BED, KryptonBlocks.LIME_BED,
-            KryptonBlocks.MAGENTA_BED, KryptonBlocks.ORANGE_BED, KryptonBlocks.PINK_BED, KryptonBlocks.PURPLE_BED, KryptonBlocks.WHITE_BED,
-            KryptonBlocks.YELLOW_BED)
-        add<Conduit>("conduit", KryptonBlocks.CONDUIT)
-        add<Barrel>("barrel", KryptonBlocks.BARREL)
-        add<Smoker>("smoker", KryptonBlocks.SMOKER)
-        add<BlastFurnace>("blast_furnace", KryptonBlocks.BLAST_FURNACE)
-        add<Lectern>("lectern", KryptonBlocks.LECTERN)
-        add<Bell>("bell", KryptonBlocks.BELL)
-        add<Jigsaw>("jigsaw", KryptonBlocks.JIGSAW)
-        add<Campfire>("campfire", KryptonBlocks.CAMPFIRE, KryptonBlocks.SOUL_CAMPFIRE)
-        add<Beehive>("beehive", KryptonBlocks.BEE_NEST, KryptonBlocks.BEEHIVE)
-        add<SculkSensor>("sculk_sensor", KryptonBlocks.SCULK_SENSOR)
-        add<SculkCatalyst>("sculk_catalyst", KryptonBlocks.SCULK_CATALYST)
-        add<SculkShrieker>("sculk_shrieker", KryptonBlocks.SCULK_SHRIEKER)
+        add<Furnace>("furnace", AquaBlocks.FURNACE)
+        add<Chest>("chest", AquaBlocks.CHEST)
+        add<TrappedChest>("trapped_chest", AquaBlocks.TRAPPED_CHEST)
+        add<EnderChest>("ender_chest", AquaBlocks.ENDER_CHEST)
+        add<Jukebox>("jukebox", AquaBlocks.JUKEBOX)
+        add<Dispenser>("dispenser", AquaBlocks.DISPENSER)
+        add<Dropper>("dropper", AquaBlocks.DROPPER)
+        add<Sign>("sign", AquaBlocks.OAK_SIGN, AquaBlocks.SPRUCE_SIGN, AquaBlocks.BIRCH_SIGN, AquaBlocks.ACACIA_SIGN,
+            AquaBlocks.JUNGLE_SIGN, AquaBlocks.DARK_OAK_SIGN, AquaBlocks.OAK_WALL_SIGN, AquaBlocks.SPRUCE_WALL_SIGN,
+            AquaBlocks.BIRCH_WALL_SIGN, AquaBlocks.ACACIA_WALL_SIGN, AquaBlocks.JUNGLE_WALL_SIGN, AquaBlocks.DARK_OAK_WALL_SIGN,
+            AquaBlocks.CRIMSON_SIGN, AquaBlocks.CRIMSON_WALL_SIGN, AquaBlocks.WARPED_SIGN, AquaBlocks.WARPED_WALL_SIGN,
+            AquaBlocks.MANGROVE_SIGN, AquaBlocks.MANGROVE_WALL_SIGN)
+        add<MobSpawner>("mob_spawner", AquaBlocks.SPAWNER)
+        add<MovingPiston>("piston", AquaBlocks.MOVING_PISTON)
+        add<BrewingStand>("brewing_stand", AquaBlocks.BREWING_STAND)
+        add<EnchantmentTable>("enchanting_table", AquaBlocks.ENCHANTING_TABLE)
+        add<EndPortal>("end_portal", AquaBlocks.END_PORTAL)
+        add<Beacon>("beacon", AquaBlocks.BEACON)
+        add<Skull>("skull", AquaBlocks.SKELETON_SKULL, AquaBlocks.SKELETON_WALL_SKULL, AquaBlocks.CREEPER_HEAD,
+            AquaBlocks.CREEPER_WALL_HEAD, AquaBlocks.DRAGON_HEAD, AquaBlocks.DRAGON_WALL_HEAD, AquaBlocks.ZOMBIE_HEAD,
+            AquaBlocks.ZOMBIE_WALL_HEAD, AquaBlocks.WITHER_SKELETON_SKULL, AquaBlocks.WITHER_SKELETON_WALL_SKULL, AquaBlocks.PLAYER_HEAD,
+            AquaBlocks.PLAYER_WALL_HEAD)
+        add<DaylightDetector>("daylight_detector", AquaBlocks.DAYLIGHT_DETECTOR)
+        add<Hopper>("hopper", AquaBlocks.HOPPER)
+        add<Comparator>("comparator", AquaBlocks.COMPARATOR)
+        add<Banner>("banner", AquaBlocks.WHITE_BANNER, AquaBlocks.ORANGE_BANNER, AquaBlocks.MAGENTA_BANNER, AquaBlocks.LIGHT_BLUE_BANNER,
+            AquaBlocks.YELLOW_BANNER, AquaBlocks.LIME_BANNER, AquaBlocks.PINK_BANNER, AquaBlocks.GRAY_BANNER,
+            AquaBlocks.LIGHT_GRAY_BANNER, AquaBlocks.CYAN_BANNER, AquaBlocks.PURPLE_BANNER, AquaBlocks.BLUE_BANNER,
+            AquaBlocks.BROWN_BANNER, AquaBlocks.GREEN_BANNER, AquaBlocks.RED_BANNER, AquaBlocks.BLACK_BANNER,
+            AquaBlocks.WHITE_WALL_BANNER, AquaBlocks.ORANGE_WALL_BANNER, AquaBlocks.MAGENTA_WALL_BANNER,
+            AquaBlocks.LIGHT_BLUE_WALL_BANNER, AquaBlocks.YELLOW_WALL_BANNER, AquaBlocks.LIME_WALL_BANNER, AquaBlocks.PINK_WALL_BANNER,
+            AquaBlocks.GRAY_WALL_BANNER, AquaBlocks.LIGHT_GRAY_WALL_BANNER, AquaBlocks.CYAN_WALL_BANNER, AquaBlocks.PURPLE_WALL_BANNER,
+            AquaBlocks.BLUE_WALL_BANNER, AquaBlocks.BROWN_WALL_BANNER, AquaBlocks.GREEN_WALL_BANNER, AquaBlocks.RED_WALL_BANNER,
+            AquaBlocks.BLACK_WALL_BANNER)
+        add<StructureBlock>("structure_block", AquaBlocks.STRUCTURE_BLOCK)
+        add<EndGateway>("end_gateway", AquaBlocks.END_GATEWAY)
+        add<CommandBlock>("command_block", AquaBlocks.COMMAND_BLOCK, AquaBlocks.CHAIN_COMMAND_BLOCK, AquaBlocks.REPEATING_COMMAND_BLOCK)
+        add<ShulkerBox>("shulker_box", AquaBlocks.SHULKER_BOX, AquaBlocks.BLACK_SHULKER_BOX, AquaBlocks.BLUE_SHULKER_BOX,
+            AquaBlocks.BROWN_SHULKER_BOX, AquaBlocks.CYAN_SHULKER_BOX, AquaBlocks.GRAY_SHULKER_BOX, AquaBlocks.GREEN_SHULKER_BOX,
+            AquaBlocks.LIGHT_BLUE_SHULKER_BOX, AquaBlocks.LIGHT_GRAY_SHULKER_BOX, AquaBlocks.LIME_SHULKER_BOX,
+            AquaBlocks.MAGENTA_SHULKER_BOX, AquaBlocks.ORANGE_SHULKER_BOX, AquaBlocks.PINK_SHULKER_BOX, AquaBlocks.PURPLE_SHULKER_BOX,
+            AquaBlocks.RED_SHULKER_BOX, AquaBlocks.WHITE_SHULKER_BOX, AquaBlocks.YELLOW_SHULKER_BOX)
+        add<Bed>("bed", AquaBlocks.RED_BED, AquaBlocks.BLACK_BED, AquaBlocks.BLUE_BED, AquaBlocks.BROWN_BED, AquaBlocks.CYAN_BED,
+            AquaBlocks.GRAY_BED, AquaBlocks.GREEN_BED, AquaBlocks.LIGHT_BLUE_BED, AquaBlocks.LIGHT_GRAY_BED, AquaBlocks.LIME_BED,
+            AquaBlocks.MAGENTA_BED, AquaBlocks.ORANGE_BED, AquaBlocks.PINK_BED, AquaBlocks.PURPLE_BED, AquaBlocks.WHITE_BED,
+            AquaBlocks.YELLOW_BED)
+        add<Conduit>("conduit", AquaBlocks.CONDUIT)
+        add<Barrel>("barrel", AquaBlocks.BARREL)
+        add<Smoker>("smoker", AquaBlocks.SMOKER)
+        add<BlastFurnace>("blast_furnace", AquaBlocks.BLAST_FURNACE)
+        add<Lectern>("lectern", AquaBlocks.LECTERN)
+        add<Bell>("bell", AquaBlocks.BELL)
+        add<Jigsaw>("jigsaw", AquaBlocks.JIGSAW)
+        add<Campfire>("campfire", AquaBlocks.CAMPFIRE, AquaBlocks.SOUL_CAMPFIRE)
+        add<Beehive>("beehive", AquaBlocks.BEE_NEST, AquaBlocks.BEEHIVE)
+        add<SculkSensor>("sculk_sensor", AquaBlocks.SCULK_SENSOR)
+        add<SculkCatalyst>("sculk_catalyst", AquaBlocks.SCULK_CATALYST)
+        add<SculkShrieker>("sculk_shrieker", AquaBlocks.SCULK_SHRIEKER)
     }
 
     @JvmStatic
     fun criterion(): RegistryLoaderProvider<KeyedCriterion> = loader {
-        add(Key.key("krypton", "dummy")) { KryptonKeyedCriterion(it, "dummy", false, ObjectiveRenderType.INTEGER) }
-        add(Key.key("krypton", "trigger")) { KryptonKeyedCriterion(it, "trigger", false, ObjectiveRenderType.INTEGER) }
-        add(Key.key("krypton", "death_count")) { KryptonKeyedCriterion(it, "deathCount", false, ObjectiveRenderType.INTEGER) }
-        add(Key.key("krypton", "player_kill_count")) { KryptonKeyedCriterion(it, "playerKillCount", false, ObjectiveRenderType.INTEGER) }
-        add(Key.key("krypton", "total_kill_count")) { KryptonKeyedCriterion(it, "totalKillCount", false, ObjectiveRenderType.INTEGER) }
-        add(Key.key("krypton", "health")) { KryptonKeyedCriterion(it, "health", true, ObjectiveRenderType.HEARTS) }
-        add(Key.key("krypton", "food")) { KryptonKeyedCriterion(it, "food", true, ObjectiveRenderType.INTEGER) }
-        add(Key.key("krypton", "air")) { KryptonKeyedCriterion(it, "air", true, ObjectiveRenderType.INTEGER) }
-        add(Key.key("krypton", "armor")) { KryptonKeyedCriterion(it, "armor", true, ObjectiveRenderType.INTEGER) }
-        add(Key.key("krypton", "experience")) { KryptonKeyedCriterion(it, "xp", true, ObjectiveRenderType.INTEGER) }
-        add(Key.key("krypton", "level")) { KryptonKeyedCriterion(it, "level", true, ObjectiveRenderType.INTEGER) }
+        add(Key.key("aquamine", "dummy")) { AquaKeyedCriterion(it, "dummy", false, ObjectiveRenderType.INTEGER) }
+        add(Key.key("aquamine", "trigger")) { AquaKeyedCriterion(it, "trigger", false, ObjectiveRenderType.INTEGER) }
+        add(Key.key("aquamine", "death_count")) { AquaKeyedCriterion(it, "deathCount", false, ObjectiveRenderType.INTEGER) }
+        add(Key.key("aquamine", "player_kill_count")) { AquaKeyedCriterion(it, "playerKillCount", false, ObjectiveRenderType.INTEGER) }
+        add(Key.key("aquamine", "total_kill_count")) { AquaKeyedCriterion(it, "totalKillCount", false, ObjectiveRenderType.INTEGER) }
+        add(Key.key("aquamine", "health")) { AquaKeyedCriterion(it, "health", true, ObjectiveRenderType.HEARTS) }
+        add(Key.key("aquamine", "food")) { AquaKeyedCriterion(it, "food", true, ObjectiveRenderType.INTEGER) }
+        add(Key.key("aquamine", "air")) { AquaKeyedCriterion(it, "air", true, ObjectiveRenderType.INTEGER) }
+        add(Key.key("aquamine", "armor")) { AquaKeyedCriterion(it, "armor", true, ObjectiveRenderType.INTEGER) }
+        add(Key.key("aquamine", "experience")) { AquaKeyedCriterion(it, "xp", true, ObjectiveRenderType.INTEGER) }
+        add(Key.key("aquamine", "level")) { AquaKeyedCriterion(it, "level", true, ObjectiveRenderType.INTEGER) }
         AquaAdventure.colors().forEach { color ->
             val name = NamedTextColor.NAMES.key(color)
-            add(Key.key("krypton", "team_kill_$name")) { KryptonKeyedCriterion(it, "teamkill.$name", false, ObjectiveRenderType.INTEGER) }
-            add(Key.key("krypton", "killed_by_team_$name")) { KryptonKeyedCriterion(it, "killedByTeam.$name", false, ObjectiveRenderType.INTEGER) }
+            add(Key.key("aquamine", "team_kill_$name")) { AquaKeyedCriterion(it, "teamkill.$name", false, ObjectiveRenderType.INTEGER) }
+            add(Key.key("aquamine", "killed_by_team_$name")) { AquaKeyedCriterion(it, "killedByTeam.$name", false, ObjectiveRenderType.INTEGER) }
         }
     }
 
@@ -338,77 +338,77 @@ object RegistryLoaders {
     fun entityCategory(): RegistryLoaderProvider<EntityCategory> = loader {
         val noDespawn = 32
         val despawn = 128
-        add(Key.key("monster")) { KryptonEntityCategory(it, 70, false, false, despawn, noDespawn) }
-        add(Key.key("creature")) { KryptonEntityCategory(it, 10, true, true, despawn, noDespawn) }
-        add(Key.key("ambient")) { KryptonEntityCategory(it, 15, true, false, despawn, noDespawn) }
-        add(Key.key("underground_water_creature")) { KryptonEntityCategory(it, 5, true, false, despawn, noDespawn) }
-        add(Key.key("water_creature")) { KryptonEntityCategory(it, 5, true, false, despawn, noDespawn) }
-        add(Key.key("water_ambient")) { KryptonEntityCategory(it, 20, true, false, 64, noDespawn) }
-        add(Key.key("misc")) { KryptonEntityCategory(it, -1, true, true, despawn, noDespawn) }
+        add(Key.key("monster")) { AquaEntityCategory(it, 70, false, false, despawn, noDespawn) }
+        add(Key.key("creature")) { AquaEntityCategory(it, 10, true, true, despawn, noDespawn) }
+        add(Key.key("ambient")) { AquaEntityCategory(it, 15, true, false, despawn, noDespawn) }
+        add(Key.key("underground_water_creature")) { AquaEntityCategory(it, 5, true, false, despawn, noDespawn) }
+        add(Key.key("water_creature")) { AquaEntityCategory(it, 5, true, false, despawn, noDespawn) }
+        add(Key.key("water_ambient")) { AquaEntityCategory(it, 20, true, false, 64, noDespawn) }
+        add(Key.key("misc")) { AquaEntityCategory(it, -1, true, true, despawn, noDespawn) }
     }
 
     @JvmStatic
     fun inventoryType(): RegistryLoaderProvider<InventoryType> = loader {
         val chestTitle = Component.translatable("container.chest")
-        add(Key.key("chest_one_row")) { KryptonInventoryType(it, 9, chestTitle) }
-        add(Key.key("chest_two_rows")) { KryptonInventoryType(it, 9 * 2, chestTitle) }
-        add(Key.key("chest_three_rows")) { KryptonInventoryType(it, 9 * 3, chestTitle) }
+        add(Key.key("chest_one_row")) { AquaInventoryType(it, 9, chestTitle) }
+        add(Key.key("chest_two_rows")) { AquaInventoryType(it, 9 * 2, chestTitle) }
+        add(Key.key("chest_three_rows")) { AquaInventoryType(it, 9 * 3, chestTitle) }
         val doubleChestTitle = Component.translatable("container.chestDouble")
-        add(Key.key("chest_four_rows")) { KryptonInventoryType(it, 9 * 4, doubleChestTitle) }
-        add(Key.key("chest_five_rows")) { KryptonInventoryType(it, 9 * 5, doubleChestTitle) }
-        add(Key.key("chest_six_rows")) { KryptonInventoryType(it, 9 * 6, doubleChestTitle) }
-        add(Key.key("generic_3x3")) { KryptonInventoryType(it, 3 * 3, Component.translatable("container.dispenser")) }
-        add(Key.key("anvil")) { KryptonInventoryType(it, 3, Component.translatable("container.repair")) }
-        add(Key.key("beacon")) { KryptonInventoryType(it, 1, Component.translatable("container.beacon")) }
-        add(Key.key("blast_furnace")) { KryptonInventoryType(it, 3, Component.translatable("container.blast_furnace")) }
-        add(Key.key("brewing_stand")) { KryptonInventoryType(it, 5, Component.translatable("container.brewing")) }
-        add(Key.key("cartography_table")) { KryptonInventoryType(it, 3, Component.translatable("container.cartography_table")) }
-        add(Key.key("crafting")) { KryptonInventoryType(it, 5, Component.translatable("container.crafting")) }
-        add(Key.key("enchantment")) { KryptonInventoryType(it, 2, Component.translatable("container.enchant")) }
-        add(Key.key("furnace")) { KryptonInventoryType(it, 3, Component.translatable("container.furnace")) }
-        add(Key.key("grindstone")) { KryptonInventoryType(it, 3, Component.translatable("container.grindstone_title")) }
-        add(Key.key("hopper")) { KryptonInventoryType(it, 5, Component.translatable("container.hopper")) }
-        add(Key.key("lectern")) { KryptonInventoryType(it, 1, Component.translatable("container.lectern")) }
-        add(Key.key("loom")) { KryptonInventoryType(it, 4, Component.translatable("container.loom")) }
-        add(Key.key("merchant")) { KryptonInventoryType(it, 3, Component.translatable("merchant.trades")) }
-        add(Key.key("shulker_box")) { KryptonInventoryType(it, 9 * 3, Component.translatable("container.shulkerBox")) }
-        add(Key.key("smoker")) { KryptonInventoryType(it, 3, Component.translatable("container.smoker")) }
-        add(Key.key("smithing")) { KryptonInventoryType(it, 3, Component.translatable("container.upgrade")) }
-        add(Key.key("stonecutter")) { KryptonInventoryType(it, 2, Component.translatable("container.stonecutter")) }
+        add(Key.key("chest_four_rows")) { AquaInventoryType(it, 9 * 4, doubleChestTitle) }
+        add(Key.key("chest_five_rows")) { AquaInventoryType(it, 9 * 5, doubleChestTitle) }
+        add(Key.key("chest_six_rows")) { AquaInventoryType(it, 9 * 6, doubleChestTitle) }
+        add(Key.key("generic_3x3")) { AquaInventoryType(it, 3 * 3, Component.translatable("container.dispenser")) }
+        add(Key.key("anvil")) { AquaInventoryType(it, 3, Component.translatable("container.repair")) }
+        add(Key.key("beacon")) { AquaInventoryType(it, 1, Component.translatable("container.beacon")) }
+        add(Key.key("blast_furnace")) { AquaInventoryType(it, 3, Component.translatable("container.blast_furnace")) }
+        add(Key.key("brewing_stand")) { AquaInventoryType(it, 5, Component.translatable("container.brewing")) }
+        add(Key.key("cartography_table")) { AquaInventoryType(it, 3, Component.translatable("container.cartography_table")) }
+        add(Key.key("crafting")) { AquaInventoryType(it, 5, Component.translatable("container.crafting")) }
+        add(Key.key("enchantment")) { AquaInventoryType(it, 2, Component.translatable("container.enchant")) }
+        add(Key.key("furnace")) { AquaInventoryType(it, 3, Component.translatable("container.furnace")) }
+        add(Key.key("grindstone")) { AquaInventoryType(it, 3, Component.translatable("container.grindstone_title")) }
+        add(Key.key("hopper")) { AquaInventoryType(it, 5, Component.translatable("container.hopper")) }
+        add(Key.key("lectern")) { AquaInventoryType(it, 1, Component.translatable("container.lectern")) }
+        add(Key.key("loom")) { AquaInventoryType(it, 4, Component.translatable("container.loom")) }
+        add(Key.key("merchant")) { AquaInventoryType(it, 3, Component.translatable("merchant.trades")) }
+        add(Key.key("shulker_box")) { AquaInventoryType(it, 9 * 3, Component.translatable("container.shulkerBox")) }
+        add(Key.key("smoker")) { AquaInventoryType(it, 3, Component.translatable("container.smoker")) }
+        add(Key.key("smithing")) { AquaInventoryType(it, 3, Component.translatable("container.upgrade")) }
+        add(Key.key("stonecutter")) { AquaInventoryType(it, 2, Component.translatable("container.stonecutter")) }
     }
 
     @JvmStatic
     fun paintingVariant(): RegistryLoaderProvider<PaintingVariant> = loader {
-        add(Key.key("kebab")) { KryptonPaintingVariant(it, 16, 16) }
-        add(Key.key("aztec")) { KryptonPaintingVariant(it, 16, 16) }
-        add(Key.key("alban")) { KryptonPaintingVariant(it, 16, 16) }
-        add(Key.key("aztec2")) { KryptonPaintingVariant(it, 16, 16) }
-        add(Key.key("bomb")) { KryptonPaintingVariant(it, 16, 16) }
-        add(Key.key("plant")) { KryptonPaintingVariant(it, 16, 16) }
-        add(Key.key("wasteland")) { KryptonPaintingVariant(it, 16, 16) }
-        add(Key.key("pool")) { KryptonPaintingVariant(it, 32, 16) }
-        add(Key.key("courbet")) { KryptonPaintingVariant(it, 32, 16) }
-        add(Key.key("sea")) { KryptonPaintingVariant(it, 32, 16) }
-        add(Key.key("sunset")) { KryptonPaintingVariant(it, 32, 16) }
-        add(Key.key("creebet")) { KryptonPaintingVariant(it, 32, 16) }
-        add(Key.key("wanderer")) { KryptonPaintingVariant(it, 16, 32) }
-        add(Key.key("graham")) { KryptonPaintingVariant(it, 16, 32) }
-        add(Key.key("match")) { KryptonPaintingVariant(it, 32, 32) }
-        add(Key.key("bust")) { KryptonPaintingVariant(it, 32, 32) }
-        add(Key.key("stage")) { KryptonPaintingVariant(it, 32, 32) }
-        add(Key.key("void")) { KryptonPaintingVariant(it, 32, 32) }
-        add(Key.key("skull_and_roses")) { KryptonPaintingVariant(it, 32, 32) }
-        add(Key.key("wither")) { KryptonPaintingVariant(it, 32, 32) }
-        add(Key.key("fighters")) { KryptonPaintingVariant(it, 64, 32) }
-        add(Key.key("pointer")) { KryptonPaintingVariant(it, 64, 64) }
-        add(Key.key("pigscene")) { KryptonPaintingVariant(it, 64, 64) }
-        add(Key.key("burning_skull")) { KryptonPaintingVariant(it, 64, 64) }
-        add(Key.key("skeleton")) { KryptonPaintingVariant(it, 64, 48) }
-        add(Key.key("earth")) { KryptonPaintingVariant(it, 32, 32) }
-        add(Key.key("wind")) { KryptonPaintingVariant(it, 32, 32) }
-        add(Key.key("water")) { KryptonPaintingVariant(it, 32, 32) }
-        add(Key.key("fire")) { KryptonPaintingVariant(it, 32, 32) }
-        add(Key.key("donkey_kong")) { KryptonPaintingVariant(it, 64, 48) }
+        add(Key.key("kebab")) { AquaPaintingVariant(it, 16, 16) }
+        add(Key.key("aztec")) { AquaPaintingVariant(it, 16, 16) }
+        add(Key.key("alban")) { AquaPaintingVariant(it, 16, 16) }
+        add(Key.key("aztec2")) { AquaPaintingVariant(it, 16, 16) }
+        add(Key.key("bomb")) { AquaPaintingVariant(it, 16, 16) }
+        add(Key.key("plant")) { AquaPaintingVariant(it, 16, 16) }
+        add(Key.key("wasteland")) { AquaPaintingVariant(it, 16, 16) }
+        add(Key.key("pool")) { AquaPaintingVariant(it, 32, 16) }
+        add(Key.key("courbet")) { AquaPaintingVariant(it, 32, 16) }
+        add(Key.key("sea")) { AquaPaintingVariant(it, 32, 16) }
+        add(Key.key("sunset")) { AquaPaintingVariant(it, 32, 16) }
+        add(Key.key("creebet")) { AquaPaintingVariant(it, 32, 16) }
+        add(Key.key("wanderer")) { AquaPaintingVariant(it, 16, 32) }
+        add(Key.key("graham")) { AquaPaintingVariant(it, 16, 32) }
+        add(Key.key("match")) { AquaPaintingVariant(it, 32, 32) }
+        add(Key.key("bust")) { AquaPaintingVariant(it, 32, 32) }
+        add(Key.key("stage")) { AquaPaintingVariant(it, 32, 32) }
+        add(Key.key("void")) { AquaPaintingVariant(it, 32, 32) }
+        add(Key.key("skull_and_roses")) { AquaPaintingVariant(it, 32, 32) }
+        add(Key.key("wither")) { AquaPaintingVariant(it, 32, 32) }
+        add(Key.key("fighters")) { AquaPaintingVariant(it, 64, 32) }
+        add(Key.key("pointer")) { AquaPaintingVariant(it, 64, 64) }
+        add(Key.key("pigscene")) { AquaPaintingVariant(it, 64, 64) }
+        add(Key.key("burning_skull")) { AquaPaintingVariant(it, 64, 64) }
+        add(Key.key("skeleton")) { AquaPaintingVariant(it, 64, 48) }
+        add(Key.key("earth")) { AquaPaintingVariant(it, 32, 32) }
+        add(Key.key("wind")) { AquaPaintingVariant(it, 32, 32) }
+        add(Key.key("water")) { AquaPaintingVariant(it, 32, 32) }
+        add(Key.key("fire")) { AquaPaintingVariant(it, 32, 32) }
+        add(Key.key("donkey_kong")) { AquaPaintingVariant(it, 64, 48) }
     }
 
     @JvmStatic
@@ -505,15 +505,15 @@ object RegistryLoaders {
 
     @JvmStatic
     fun statisticType(): RegistryLoaderProvider<StatisticType<*>> = loader {
-        add(Key.key("mined")) { KryptonStatisticType(it, KryptonRegistries.BLOCK) }
-        add(Key.key("crafted")) { KryptonStatisticType(it, KryptonRegistries.ITEM) }
-        add(Key.key("used")) { KryptonStatisticType(it, KryptonRegistries.ITEM) }
-        add(Key.key("broken")) { KryptonStatisticType(it, KryptonRegistries.ITEM) }
-        add(Key.key("picked_up")) { KryptonStatisticType(it, KryptonRegistries.ITEM) }
-        add(Key.key("dropped")) { KryptonStatisticType(it, KryptonRegistries.ITEM) }
-        add(Key.key("killed")) { KryptonStatisticType(it, KryptonRegistries.ENTITY_TYPE) }
-        add(Key.key("killed_by")) { KryptonStatisticType(it, KryptonRegistries.ENTITY_TYPE) }
-        add(Key.key("custom")) { KryptonStatisticType(it, KryptonRegistries.CUSTOM_STATISTIC) }
+        add(Key.key("mined")) { AquaStatisticType(it, AquaRegistries.BLOCK) }
+        add(Key.key("crafted")) { AquaStatisticType(it, AquaRegistries.ITEM) }
+        add(Key.key("used")) { AquaStatisticType(it, AquaRegistries.ITEM) }
+        add(Key.key("broken")) { AquaStatisticType(it, AquaRegistries.ITEM) }
+        add(Key.key("picked_up")) { AquaStatisticType(it, AquaRegistries.ITEM) }
+        add(Key.key("dropped")) { AquaStatisticType(it, AquaRegistries.ITEM) }
+        add(Key.key("killed")) { AquaStatisticType(it, AquaRegistries.ENTITY_TYPE) }
+        add(Key.key("killed_by")) { AquaStatisticType(it, AquaRegistries.ENTITY_TYPE) }
+        add(Key.key("custom")) { AquaStatisticType(it, AquaRegistries.CUSTOM_STATISTIC) }
     }
 
     /**
@@ -526,8 +526,8 @@ object RegistryLoaders {
 
 private typealias RegistryLoaderProvider<T> = Supplier<RegistryLoader<T>>
 
-private inline fun RegistryLoader<DamageType>.put(key: String, translationKey: String, builder: KryptonDamageType.Builder.() -> Unit = {}) {
-    add(Key.key(key)) { KryptonDamageType.Builder(it, translationKey).apply(builder).build() }
+private inline fun RegistryLoader<DamageType>.put(key: String, translationKey: String, builder: AquaDamageType.Builder.() -> Unit = {}) {
+    add(Key.key(key)) { AquaDamageType.Builder(it, translationKey).apply(builder).build() }
 }
 
 private fun RegistryLoader<Key>.add(name: String, formatter: StatisticFormatter) {
@@ -538,5 +538,5 @@ private fun RegistryLoader<Key>.add(name: String, formatter: StatisticFormatter)
 }
 
 private fun <T : BlockEntity> RegistryLoader<BlockEntityType<*>>.add(name: String, vararg blocks: Block) {
-    add(Key.key(name)) { KryptonBlockEntityType<T>(it, ImmutableSet.copyOf(blocks)) }
+    add(Key.key(name)) { AquaBlockEntityType<T>(it, ImmutableSet.copyOf(blocks)) }
 }

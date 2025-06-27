@@ -53,7 +53,7 @@ abstract class InvocableCommandRegistrar<C : IC<A>, A>(lock: Lock, private val a
             .requiresWithContext { context, reader -> reader.canRead() || requirement.test(context) }
             .executes(callback)
             .build()
-        val arguments = AquaArgumentBuilder.kryptonArgument<CommandSourceStack, A>("arguments", argumentsType)
+        val arguments = AquaArgumentBuilder.AquaArgument<CommandSourceStack, A>("arguments", argumentsType)
             .requiresWithContext { context, _ -> requirement.test(context) }
             .executes(callback)
             .suggests { context, builder -> createSuggestions(builder, command.suggest(context.source.sender, getArgs(context.arguments))) }

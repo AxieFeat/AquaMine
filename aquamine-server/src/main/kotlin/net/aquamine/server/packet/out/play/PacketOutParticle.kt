@@ -11,7 +11,7 @@ import net.aquamine.server.network.Writable
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.registry.AquaRegistries
 import java.util.concurrent.ThreadLocalRandom
 
 /**
@@ -60,7 +60,7 @@ data class PacketOutParticle(
 
         @JvmStatic
         fun fromEffect(effect: ParticleEffect, location: Vec3d): PacketOutParticle {
-            val typeId = KryptonRegistries.PARTICLE_TYPE.getId(effect.type)
+            val typeId = AquaRegistries.PARTICLE_TYPE.getId(effect.type)
             var x = location.x
             var y = location.y
             var z = location.z
@@ -125,7 +125,7 @@ data class PacketOutParticle(
 
         @JvmStatic
         private fun readData(typeId: Int, reader: BinaryReader): ParticleData? {
-            return KryptonRegistries.PARTICLE_TYPE.get(typeId)!!.downcast().createData(reader)
+            return AquaRegistries.PARTICLE_TYPE.get(typeId)!!.downcast().createData(reader)
         }
     }
 }

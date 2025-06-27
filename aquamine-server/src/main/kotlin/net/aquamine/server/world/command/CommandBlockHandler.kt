@@ -5,10 +5,10 @@ import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import net.kyori.adventure.util.TriState
-import net.aquamine.server.KryptonServer
+import net.aquamine.server.AquaServer
 import net.aquamine.server.command.CommandSourceStack
 import net.aquamine.server.command.AquaSender
-import net.aquamine.server.world.KryptonWorld
+import net.aquamine.server.world.AquaWorld
 import net.aquamine.server.world.rule.GameRuleKeys
 import xyz.axie.nbt.ByteTag
 import xyz.axie.nbt.CompoundTag
@@ -33,10 +33,10 @@ abstract class CommandBlockHandler : AquaSender {
     private var customName: Component = DEFAULT_NAME
     override val name: String
         get() = PlainTextComponentSerializer.plainText().serialize(customName)
-    override val server: KryptonServer
+    override val server: AquaServer
         get() = world().server
 
-    protected abstract fun world(): KryptonWorld
+    protected abstract fun world(): AquaWorld
 
     abstract override fun createCommandSourceStack(): CommandSourceStack
 
@@ -70,7 +70,7 @@ abstract class CommandBlockHandler : AquaSender {
         if (updateLastExecution && lastExecution > 0L) putLong(LAST_EXECUTION_TAG, lastExecution)
     }
 
-    fun runCommand(world: KryptonWorld): Boolean {
+    fun runCommand(world: AquaWorld): Boolean {
         if (world.time == lastExecution) return false
         if (command == "Searge") {
             lastOutput = Component.text("#itzlipofutzli")

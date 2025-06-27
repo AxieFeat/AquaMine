@@ -30,7 +30,7 @@ data class ProxyCategory(
         // Hopefully this will look better when trimIndent is a candidate for constant evaluation in the K2 compiler.
         private const val MODE_COMMENT = """
 The method to use for forwarding a connecting user's information on
-to Krypton from a proxy server. Supported values are:
+to AquaMine from a proxy server. Supported values are:
   - NONE - Disable forwarding support completely
   - LEGACY - Use the BungeeCord/pre-1.13 method
   - MODERN - Use Velocity's modern forwarding protocol

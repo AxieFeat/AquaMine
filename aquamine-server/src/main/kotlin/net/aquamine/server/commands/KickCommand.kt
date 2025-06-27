@@ -17,7 +17,7 @@ object KickCommand {
     @JvmStatic
     fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
         dispatcher.register(literalCommand("kick") {
-            requiresPermission(KryptonPermission.KICK)
+            requiresPermission(AquaPermission.KICK)
             argument(TARGETS, EntityArgumentType.players()) {
                 runs { context -> EntityArgumentType.getPlayers(context, TARGETS).forEach { it.disconnect(DisconnectMessages.KICKED) } }
                 argument(REASON, StringArgumentType.string()) {

@@ -3,8 +3,8 @@ package net.aquamine.server.entity.serializer
 import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer
 import net.aquamine.api.util.Position
 import net.aquamine.api.util.Vec3d
-import net.aquamine.server.entity.KryptonEntity
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.AquaEntity
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.util.nbt.getUUID
 import net.aquamine.server.util.nbt.hasUUID
 import net.aquamine.server.util.nbt.putUUID
@@ -16,7 +16,7 @@ import xyz.axie.nbt.StringTag
 import xyz.axie.nbt.buildCompound
 import kotlin.math.abs
 
-object BaseEntitySerializer : EntitySerializer<KryptonEntity> {
+object BaseEntitySerializer : EntitySerializer<AquaEntity> {
 
     private const val ID_TAG = "id"
     private const val AIR_TAG = "Air"
@@ -37,7 +37,7 @@ object BaseEntitySerializer : EntitySerializer<KryptonEntity> {
 
     private const val MAXIMUM_MOTION_VALUE = 10.0
 
-    override fun load(entity: KryptonEntity, data: CompoundTag) {
+    override fun load(entity: AquaEntity, data: CompoundTag) {
         entity.airSupply = data.getShort(AIR_TAG).toInt()
         if (data.contains(CUSTOM_NAME_TAG, StringTag.ID)) {
             entity.customName = GsonComponentSerializer.gson().deserialize(data.getString(CUSTOM_NAME_TAG))
@@ -63,7 +63,7 @@ object BaseEntitySerializer : EntitySerializer<KryptonEntity> {
         if (data.hasUUID(UUID_TAG)) entity.uuid = data.getUUID(UUID_TAG)
     }
 
-    override fun save(entity: KryptonEntity): CompoundTag.Builder = buildCompound {
+    override fun save(entity: AquaEntity): CompoundTag.Builder = buildCompound {
         // Display name
         if (entity.isCustomNameVisible) putBoolean(CUSTOM_NAME_VISIBLE_TAG, true)
         entity.customName?.let { putString(CUSTOM_NAME_TAG, GsonComponentSerializer.gson().serialize(it)) }
@@ -81,7 +81,7 @@ object BaseEntitySerializer : EntitySerializer<KryptonEntity> {
         putList(ROTATION_TAG, FloatTag.ID, FloatTag.of(entity.position.yaw), FloatTag.of(entity.position.pitch))
 
         // Identification
-        if (entity !is KryptonPlayer) putString(ID_TAG, entity.type.key().asString())
+        if (entity !is AquaPlayer) putString(ID_TAG, entity.type.key().asString())
         putUUID(UUID_TAG, entity.uuid)
 
         // Miscellaneous

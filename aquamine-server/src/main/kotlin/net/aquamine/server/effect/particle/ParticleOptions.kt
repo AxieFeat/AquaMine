@@ -5,12 +5,12 @@ import net.aquamine.api.effect.particle.data.ParticleData
 import net.aquamine.server.network.Writable
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.registry.AquaRegistries
 
 @JvmRecord
 data class ParticleOptions(val type: ParticleType, val data: ParticleData?) : Writable {
 
-    constructor(reader: BinaryReader) : this(reader, reader.readById(KryptonRegistries.PARTICLE_TYPE)!!)
+    constructor(reader: BinaryReader) : this(reader, reader.readById(AquaRegistries.PARTICLE_TYPE)!!)
 
     private constructor(reader: BinaryReader, type: ParticleType) : this(type, type.downcast().createData(reader))
 

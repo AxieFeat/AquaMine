@@ -2,7 +2,7 @@ package net.aquamine.server.state.property
 
 import com.google.common.collect.ImmutableSet
 
-class IntProperty(name: String, private val minimum: Int, private val maximum: Int) : KryptonProperty<Int>(name, Int::class.javaObjectType) {
+class IntProperty(name: String, private val minimum: Int, private val maximum: Int) : AquaProperty<Int>(name, Int::class.javaObjectType) {
 
     override val values: Collection<Int>
 

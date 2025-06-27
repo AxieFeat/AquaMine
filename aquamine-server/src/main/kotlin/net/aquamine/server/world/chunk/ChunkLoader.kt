@@ -1,17 +1,17 @@
 package net.aquamine.server.world.chunk
 
 import net.aquamine.server.coordinate.ChunkPos
-import net.aquamine.server.world.KryptonWorld
+import net.aquamine.server.world.AquaWorld
 
 interface ChunkLoader : AutoCloseable {
 
-    fun loadChunk(world: KryptonWorld, pos: ChunkPos): KryptonChunk?
+    fun loadChunk(world: AquaWorld, pos: ChunkPos): AquaChunk?
 
-    fun loadAllEntities(chunk: KryptonChunk)
+    fun loadAllEntities(chunk: AquaChunk)
 
-    fun saveChunk(chunk: KryptonChunk)
+    fun saveChunk(chunk: AquaChunk)
 
-    fun saveAllEntities(chunk: KryptonChunk)
+    fun saveAllEntities(chunk: AquaChunk)
 
     override fun close() {
         // Do nothing by default - optional, only if required

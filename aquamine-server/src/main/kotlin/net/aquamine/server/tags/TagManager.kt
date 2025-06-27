@@ -7,8 +7,8 @@ import net.aquamine.server.pack.resources.ResourceManager
 import net.aquamine.server.pack.resources.reload.PreparableReloadListener
 import net.aquamine.server.registry.dynamic.RegistryAccess
 import net.aquamine.server.registry.holder.Holder
-import net.aquamine.server.resource.KryptonResourceKey
-import net.aquamine.server.resource.KryptonResourceKeys
+import net.aquamine.server.resource.AquaResourceKey
+import net.aquamine.server.resource.AquaResourceKeys
 import net.aquamine.server.util.ImmutableLists
 import net.aquamine.server.util.ImmutableMaps
 import net.aquamine.server.util.NoSpread
@@ -33,7 +33,7 @@ class TagManager(private val registryAccess: RegistryAccess) : PreparableReloadL
     private fun <T> createLoader(resourceManager: ResourceManager, backgroundExecutor: Executor,
                                  registryEntry: RegistryAccess.RegistryEntry<T>): CompletableFuture<LoadResult<T>> {
         val (key, registry) = registryEntry
-        val loader = TagLoader<Holder<T>>({ registry.getHolder(KryptonResourceKey.of(key, it)) }, getTagDirectory(key))
+        val loader = TagLoader<Holder<T>>({ registry.getHolder(AquaResourceKey.of(key, it)) }, getTagDirectory(key))
         return CompletableFuture.supplyAsync({ LoadResult(key, loader.loadAndBuild(resourceManager)) }, backgroundExecutor)
     }
 
@@ -43,11 +43,11 @@ class TagManager(private val registryAccess: RegistryAccess) : PreparableReloadL
     companion object {
 
         private val CUSTOM_REGISTRY_DIRECTORIES = ImmutableMaps.of(
-            KryptonResourceKeys.BLOCK, "tags/blocks",
-            KryptonResourceKeys.ENTITY_TYPE, "tags/entity_types",
-            KryptonResourceKeys.FLUID, "tags/fluids",
-            KryptonResourceKeys.GAME_EVENT, "tags/game_events",
-            KryptonResourceKeys.ITEM, "tags/items"
+            AquaResourceKeys.BLOCK, "tags/blocks",
+            AquaResourceKeys.ENTITY_TYPE, "tags/entity_types",
+            AquaResourceKeys.FLUID, "tags/fluids",
+            AquaResourceKeys.GAME_EVENT, "tags/game_events",
+            AquaResourceKeys.ITEM, "tags/items"
         )
 
         @JvmStatic

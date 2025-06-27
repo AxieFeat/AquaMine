@@ -28,7 +28,7 @@ object SummonCommand {
     @JvmStatic
     fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
         dispatcher.register(literalCommand("summon") {
-            requiresPermission(KryptonPermission.SUMMON)
+            requiresPermission(AquaPermission.SUMMON)
             argument(ENTITY, SummonEntityArgument) {
                 suggests(SuggestionProviders.SUMMONABLE_ENTITIES)
                 runs { spawnEntity(it.source, SummonEntityArgument.get(it, ENTITY), it.source.position, CompoundTag.EMPTY) }

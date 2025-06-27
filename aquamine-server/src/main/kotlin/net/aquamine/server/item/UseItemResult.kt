@@ -6,4 +6,4 @@ import net.aquamine.server.util.InteractionResult
  * The result of using an item.
  */
 @JvmRecord
-data class UseItemResult(val result: InteractionResult, val item: KryptonItemStack)
+data class UseItemResult(val result: InteractionResult, val item: AquaItemStack)

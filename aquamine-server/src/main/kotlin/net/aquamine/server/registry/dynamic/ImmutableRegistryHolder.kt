@@ -4,10 +4,10 @@ import net.aquamine.api.registry.DefaultedRegistry
 import net.aquamine.api.registry.Registry
 import net.aquamine.api.registry.RegistryHolder
 import net.aquamine.api.resource.ResourceKey
-import net.aquamine.server.registry.KryptonRegistry
+import net.aquamine.server.registry.AquaRegistry
 import java.util.Collections
 
-class ImmutableRegistryHolder(private val entries: Map<out ResourceKey<out Registry<*>>, KryptonRegistry<*>>) : RegistryHolder {
+class ImmutableRegistryHolder(private val entries: Map<out ResourceKey<out Registry<*>>, AquaRegistry<*>>) : RegistryHolder {
 
     override val registries: Collection<Registry<*>>
         get() = Collections.unmodifiableCollection(entries.values)

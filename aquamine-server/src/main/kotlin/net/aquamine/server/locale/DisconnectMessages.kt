@@ -3,7 +3,7 @@ package net.aquamine.server.locale
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.Component.text
 import net.kyori.adventure.text.Component.translatable
-import net.aquamine.server.KryptonPlatform
+import net.aquamine.server.AquaPlatform
 
 object DisconnectMessages {
 
@@ -12,9 +12,9 @@ object DisconnectMessages {
      */
 
     @JvmField
-    val OUTDATED_CLIENT: Component = translatable("multiplayer.disconnect.outdated_client", text(KryptonPlatform.minecraftVersion))
+    val OUTDATED_CLIENT: Component = translatable("multiplayer.disconnect.outdated_client", text(AquaPlatform.minecraftVersion))
     @JvmField
-    val INCOMPATIBLE: Component = translatable("multiplayer.disconnect.incompatible", text(KryptonPlatform.minecraftVersion))
+    val INCOMPATIBLE: Component = translatable("multiplayer.disconnect.incompatible", text(AquaPlatform.minecraftVersion))
 
     /*
      * Proxy handling in handshake.

@@ -14,7 +14,7 @@ data class ServerCategory(
     val onlineMode: Boolean = true,
     @Comment("The threshold at which packets larger will be compressed. Set to -1 to disable.")
     val compressionThreshold: Int = 256,
-    @Comment("If console messages should be sent to admins with the permission krypton.broadcast_admins")
+    @Comment("If console messages should be sent to admins with the permission aquamine.broadcast_admins")
     val broadcastConsoleToAdmins: Boolean = true,
     @Comment("Settings for the server resource pack")
     val resourcePack: ResourcePackCategory = ResourcePackCategory()

@@ -31,7 +31,7 @@ class RegistryLoader<T> {
     /**
      * Performs the action on every value present in the mappings for this loader.
      *
-     * This method is used by the bootstrap loaders created by [KryptonRegistries] in order to register all the
+     * This method is used by the bootstrap loaders created by [net.aquamine.server.registry.AquaRegistries] in order to register all the
      * registry values to the target registry from this loader, and avoids the need to directly access the mappings,
      * which encapsulates the internals of the loader.
      */

@@ -6,7 +6,7 @@ import org.jline.reader.Completer
 import org.jline.reader.LineReader
 import org.jline.reader.ParsedLine
 import net.aquamine.server.command.CommandSourceStack
-import net.aquamine.server.command.KryptonCommandManager
+import net.aquamine.server.command.AquaCommandManager
 import java.util.concurrent.ExecutionException
 import java.util.function.Supplier
 
@@ -14,7 +14,7 @@ import java.util.function.Supplier
  * Used for providing Brigadier completions for the console.
  */
 class BrigadierCompleter(
-    private val commandManager: KryptonCommandManager,
+    private val commandManager: AquaCommandManager,
     private val commandSourceProvider: Supplier<CommandSourceStack>
 ) : Completer {
 

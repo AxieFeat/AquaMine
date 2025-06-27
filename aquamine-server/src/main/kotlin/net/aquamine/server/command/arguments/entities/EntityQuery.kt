@@ -8,8 +8,8 @@ import net.aquamine.api.auth.GameProfile
 import net.aquamine.server.adventure.AquaAdventure
 import net.aquamine.server.command.CommandSourceStack
 import net.aquamine.server.command.arguments.CommandExceptions
-import net.aquamine.server.entity.KryptonEntity
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.AquaEntity
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.util.collection.DowncastingList
 import net.aquamine.server.util.enumhelper.GameModes
 
@@ -22,7 +22,7 @@ data class EntityQuery(val type: Selector, private val args: List<EntityArgument
 
     constructor(type: Selector) : this(type, emptyList(), "")
 
-    fun getEntities(source: KryptonPlayer): List<KryptonEntity> {
+    fun getEntities(source: AquaPlayer): List<AquaEntity> {
         val players = source.server.playerManager.players()
         when (type) {
             Selector.RANDOM_PLAYER -> return listOf(players.random())
@@ -48,16 +48,16 @@ data class EntityQuery(val type: Selector, private val args: List<EntityArgument
         }
     }
 
-    private fun tryApplyEntities(source: KryptonPlayer, exceptionType: SimpleCommandExceptionType): List<KryptonEntity> {
+    private fun tryApplyEntities(source: AquaPlayer, exceptionType: SimpleCommandExceptionType): List<AquaEntity> {
         val entities = applyArguments(source.server.players.asSequence().plus(source.world.entities), source)
         if (entities.isEmpty()) throw exceptionType.create()
         return entities
     }
 
-    fun getPlayers(source: CommandSourceStack): List<KryptonPlayer> {
+    fun getPlayers(source: CommandSourceStack): List<AquaPlayer> {
         if (source.isPlayer()) {
             if (playerName.isNotEmpty()) return listOf(playerOrThrow(source.server.getPlayer(playerName)))
-            return EntityAsPlayerList(getEntities(source.entity as KryptonPlayer))
+            return EntityAsPlayerList(getEntities(source.entity as AquaPlayer))
         }
         return listOf(playerOrThrow(source.server.getPlayer(playerName)))
     }
@@ -71,7 +71,7 @@ data class EntityQuery(val type: Selector, private val args: List<EntityArgument
         return emptyList()
     }
 
-    private fun applyArguments(originalEntities: Sequence<KryptonEntity>, source: KryptonPlayer): List<KryptonEntity> {
+    private fun applyArguments(originalEntities: Sequence<AquaEntity>, source: AquaPlayer): List<AquaEntity> {
         var entities = originalEntities
         var differenceX = 0
         var differenceY = 0
@@ -136,18 +136,18 @@ data class EntityQuery(val type: Selector, private val args: List<EntityArgument
         return entities.toList()
     }
 
-    private fun applyGameModeArgument(entities: Sequence<KryptonEntity>, value: Any, exclude: Boolean): Sequence<KryptonEntity> = entities.filter {
-        if (it !is KryptonPlayer) return@filter true
+    private fun applyGameModeArgument(entities: Sequence<AquaEntity>, value: Any, exclude: Boolean): Sequence<AquaEntity> = entities.filter {
+        if (it !is AquaPlayer) return@filter true
         val mode = GameModes.fromName(value.toString())
         if (exclude) it.gameMode != mode else it.gameMode == mode
     }
 
-    private fun applyNameArgument(entities: Sequence<KryptonEntity>, value: Any, exclude: Boolean): Sequence<KryptonEntity> = entities.filter {
+    private fun applyNameArgument(entities: Sequence<AquaEntity>, value: Any, exclude: Boolean): Sequence<AquaEntity> = entities.filter {
         val name = it.name
         if (exclude) name != value else name == value
     }
 
-    private fun applyDifferenceArgument(source: KryptonPlayer, entities: Sequence<KryptonEntity>, value: Any): Sequence<KryptonEntity> {
+    private fun applyDifferenceArgument(source: AquaPlayer, entities: Sequence<AquaEntity>, value: Any): Sequence<AquaEntity> {
         checkIntOrRange(value.toString())
         if (value.toString().startsWith("..")) {
             val distance = value.toString().replace("..", "").toInt()
@@ -168,8 +168,8 @@ data class EntityQuery(val type: Selector, private val args: List<EntityArgument
         }
     }
 
-    private inline fun applyRotationArgument(entities: Sequence<KryptonEntity>, value: Any,
-                                             crossinline valueGetter: (KryptonEntity) -> Float): Sequence<KryptonEntity> {
+    private inline fun applyRotationArgument(entities: Sequence<AquaEntity>, value: Any,
+                                             crossinline valueGetter: (AquaEntity) -> Float): Sequence<AquaEntity> {
         checkIntOrRange(value.toString())
         if (value.toString().startsWith("..")) {
             val pitch = value.toString().replace("..", "").toInt()
@@ -223,12 +223,12 @@ data class EntityQuery(val type: Selector, private val args: List<EntityArgument
         }
     }
 
-    private class EntityAsPlayerList(delegate: List<KryptonEntity>) : DowncastingList<KryptonEntity, KryptonPlayer>(delegate) {
+    private class EntityAsPlayerList(delegate: List<AquaEntity>) : DowncastingList<AquaEntity, AquaPlayer>(delegate) {
 
-        override fun createThis(delegate: List<KryptonEntity>): DowncastingList<KryptonEntity, KryptonPlayer> = EntityAsPlayerList(delegate)
+        override fun createThis(delegate: List<AquaEntity>): DowncastingList<AquaEntity, AquaPlayer> = EntityAsPlayerList(delegate)
 
-        override fun downcast(element: KryptonEntity): KryptonPlayer {
-            if (element !is KryptonPlayer) throw UnsupportedOperationException("Cannot call players if there is an entity in the arguments!")
+        override fun downcast(element: AquaEntity): AquaPlayer {
+            if (element !is AquaPlayer) throw UnsupportedOperationException("Cannot call players if there is an entity in the arguments!")
             return element
         }
     }
@@ -256,7 +256,7 @@ data class EntityQuery(val type: Selector, private val args: List<EntityArgument
         }
 
         @JvmStatic
-        private fun distance(first: KryptonEntity, second: KryptonEntity): Double = first.position.distanceSquared(second.position)
+        private fun distance(first: AquaEntity, second: AquaEntity): Double = first.position.distanceSquared(second.position)
 
         @JvmStatic
         private fun <T : Any> playerOrThrow(player: T?): T = player ?: throw EntityArgumentExceptions.PLAYER_NOT_FOUND.create()

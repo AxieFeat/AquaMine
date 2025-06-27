@@ -10,9 +10,9 @@ import org.apache.logging.log4j.LogManager
 import net.aquamine.api.registry.Registry
 import net.aquamine.api.statistic.Statistic
 import net.aquamine.api.statistic.StatisticType
-import net.aquamine.server.KryptonPlatform
-import net.aquamine.server.entity.player.KryptonPlayer
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.AquaPlatform
+import net.aquamine.server.entity.player.AquaPlayer
+import net.aquamine.server.registry.AquaRegistries
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Path
@@ -20,12 +20,12 @@ import java.nio.file.StandardOpenOption
 
 class StatisticsSerializer(private val folder: Path) {
 
-    fun loadAll(player: KryptonPlayer) {
+    fun loadAll(player: AquaPlayer) {
         val file = folder.resolve("${player.uuid}.json")
         loadAllInFile(player, file)
     }
 
-    private fun loadAllInFile(player: KryptonPlayer, file: Path) {
+    private fun loadAllInFile(player: AquaPlayer, file: Path) {
         if (!Files.isRegularFile(file)) return
         val reader = Files.newInputStream(file, StandardOpenOption.READ).reader()
 
@@ -52,10 +52,10 @@ class StatisticsSerializer(private val folder: Path) {
         }
     }
 
-    private fun loadStatistics(player: KryptonPlayer, file: Path, stats: JsonObject) {
+    private fun loadStatistics(player: AquaPlayer, file: Path, stats: JsonObject) {
         stats.keySet().forEach { key ->
             if (!stats.get(key).isJsonObject) return@forEach
-            val type = KryptonRegistries.STATISTIC_TYPE.get(Key.key(key))
+            val type = AquaRegistries.STATISTIC_TYPE.get(Key.key(key))
             if (type == null) {
                 LOGGER.warn("Invalid statistic type found in $file! Could not recognise $key!")
                 return@forEach
@@ -65,7 +65,7 @@ class StatisticsSerializer(private val folder: Path) {
         }
     }
 
-    private fun loadStatisticValue(player: KryptonPlayer, file: Path, values: JsonObject, valueKey: String, type: StatisticType<*>) {
+    private fun loadStatisticValue(player: AquaPlayer, file: Path, values: JsonObject, valueKey: String, type: StatisticType<*>) {
         val value = values.get(valueKey)
         if (!value.isJsonPrimitive) {
             LOGGER.warn("Invalid statistic found in $file! Could not recognise value ${values.get(valueKey)} for key $valueKey")
@@ -80,7 +80,7 @@ class StatisticsSerializer(private val folder: Path) {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun saveAll(player: KryptonPlayer) {
+    fun saveAll(player: AquaPlayer) {
         val tracker = player.statisticsTracker
         val file = folder.resolve("${player.uuid}.json")
 
@@ -96,7 +96,7 @@ class StatisticsSerializer(private val folder: Path) {
 
             val json = JsonObject().apply {
                 add(STATS_KEY, statsJson)
-                addProperty(DATA_VERSION_KEY, KryptonPlatform.worldVersion)
+                addProperty(DATA_VERSION_KEY, AquaPlatform.worldVersion)
             }.toString()
             Files.newOutputStream(file).writer().use { it.write(json) }
         } catch (exception: IOException) {

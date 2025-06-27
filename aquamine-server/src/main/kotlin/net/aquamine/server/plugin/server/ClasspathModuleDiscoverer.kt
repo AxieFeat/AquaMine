@@ -25,7 +25,7 @@ class ClasspathModuleDiscoverer(private val reflections: Reflections, private va
             val config = ConfigurationBuilder()
                 .setUrls(ClasspathHelper.forJavaClassPath())
                 .setScanners(Scanners.Resources)
-                .filterInputsBy { it.contains("krypton-modules") }
+                .filterInputsBy { it.contains("aquamine-modules") }
             val reflections = Reflections(config)
             val resourceLoader = Thread.currentThread().contextClassLoader
             return ClasspathModuleDiscoverer(reflections, resourceLoader)

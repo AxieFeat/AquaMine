@@ -4,11 +4,11 @@ import net.kyori.adventure.chat.ChatType
 import net.kyori.adventure.text.Component
 import net.aquamine.api.resource.ResourceKey
 import net.aquamine.server.command.CommandSourceStack
-import net.aquamine.server.entity.KryptonEntity
+import net.aquamine.server.entity.AquaEntity
 import net.aquamine.server.network.Writable
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
-import net.aquamine.server.registry.KryptonDynamicRegistries
+import net.aquamine.server.registry.AquaDynamicRegistries
 import org.kryptonmc.serialization.Codec
 import org.kryptonmc.serialization.codecs.RecordCodecBuilder
 
@@ -29,13 +29,13 @@ data class RichChatType(val chat: ChatTypeDecoration, val narration: ChatTypeDec
 
         fun withTargetName(targetName: Component): Bound = Bound(chatType, name, targetName)
 
-        fun toNetwork(): BoundNetwork = BoundNetwork(KryptonDynamicRegistries.CHAT_TYPE.getId(chatType), name, targetName)
+        fun toNetwork(): BoundNetwork = BoundNetwork(AquaDynamicRegistries.CHAT_TYPE.getId(chatType), name, targetName)
 
         companion object {
 
             @JvmStatic
             fun from(adventure: ChatType.Bound): Bound {
-                val type = checkNotNull(KryptonDynamicRegistries.CHAT_TYPE.get(adventure.type().key())) {
+                val type = checkNotNull(AquaDynamicRegistries.CHAT_TYPE.get(adventure.type().key())) {
                     "Could not find corresponding rich chat type for Adventure type ${adventure.type()}!"
                 }
                 return Bound(type, adventure.name(), adventure.target())
@@ -66,12 +66,12 @@ data class RichChatType(val chat: ChatTypeDecoration, val narration: ChatTypeDec
         }
 
         @JvmStatic
-        fun bind(key: ResourceKey<RichChatType>, entity: KryptonEntity): Bound = bind(key, entity.displayName)
+        fun bind(key: ResourceKey<RichChatType>, entity: AquaEntity): Bound = bind(key, entity.displayName)
 
         @JvmStatic
         fun bind(key: ResourceKey<RichChatType>, source: CommandSourceStack): Bound = bind(key, source.displayName)
 
         @JvmStatic
-        fun bind(key: ResourceKey<RichChatType>, name: Component): Bound = KryptonDynamicRegistries.CHAT_TYPE.getOrThrow(key).bind(name)
+        fun bind(key: ResourceKey<RichChatType>, name: Component): Bound = AquaDynamicRegistries.CHAT_TYPE.getOrThrow(key).bind(name)
     }
 }

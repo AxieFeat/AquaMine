@@ -9,9 +9,9 @@ import net.aquamine.server.item.handler.DummyItemHandler
 import net.aquamine.server.item.meta.AbstractItemMeta
 import net.aquamine.server.util.downcastApiType
 
-fun ItemStack.downcast(): KryptonItemStack = downcastApiType("ItemStack")
+fun ItemStack.downcast(): AquaItemStack = downcastApiType("ItemStack")
 
-fun ItemType.downcast(): KryptonItemType = downcastApiType("ItemType")
+fun ItemType.downcast(): AquaItemType = downcastApiType("ItemType")
 
 fun ItemMeta.downcastBase(): AbstractItemMeta<*> = downcastApiType("ItemMeta")
 

@@ -3,8 +3,8 @@ package net.aquamine.server.world.biome
 import net.aquamine.api.util.Color
 import net.aquamine.api.world.biome.Precipitation
 import net.aquamine.api.world.biome.TemperatureModifier
-import net.aquamine.server.world.biome.data.KryptonAmbientMoodSettings
-import net.aquamine.server.world.biome.data.KryptonClimate
+import net.aquamine.server.world.biome.data.AquaAmbientMoodSettings
+import net.aquamine.server.world.biome.data.AquaClimate
 
 object EndBiomes {
 
@@ -13,29 +13,29 @@ object EndBiomes {
     private val FOG = Color(160, 128, 160)
 
     @JvmStatic
-    fun endBarrens(): KryptonBiome = baseEnd()
+    fun endBarrens(): AquaBiome = baseEnd()
 
     @JvmStatic
-    fun theEnd(): KryptonBiome = baseEnd()
+    fun theEnd(): AquaBiome = baseEnd()
 
     @JvmStatic
-    fun endMidlands(): KryptonBiome = baseEnd()
+    fun endMidlands(): AquaBiome = baseEnd()
 
     @JvmStatic
-    fun endHighlands(): KryptonBiome = baseEnd()
+    fun endHighlands(): AquaBiome = baseEnd()
 
     @JvmStatic
-    fun smallEndIslands(): KryptonBiome = baseEnd()
+    fun smallEndIslands(): AquaBiome = baseEnd()
 
     @JvmStatic
-    private fun baseEnd(): KryptonBiome = KryptonBiome.Builder().apply {
-        climate(KryptonClimate(Precipitation.NONE, TEMPERATURE, DOWNFALL, TemperatureModifier.NONE))
+    private fun baseEnd(): AquaBiome = AquaBiome.Builder().apply {
+        climate(AquaClimate(Precipitation.NONE, TEMPERATURE, DOWNFALL, TemperatureModifier.NONE))
         effects {
             waterColor(OverworldBiomes.OVERWORLD_WATER)
             waterFogColor(OverworldBiomes.OVERWORLD_WATER_FOG)
             fogColor(FOG)
             skyColor(Color.BLACK)
-            mood(KryptonAmbientMoodSettings.CAVE)
+            mood(AquaAmbientMoodSettings.CAVE)
         }
     }.build()
 }

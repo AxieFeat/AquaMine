@@ -2,7 +2,7 @@ package net.aquamine.server.network
 
 import net.kyori.adventure.text.Component
 import org.apache.logging.log4j.LogManager
-import net.aquamine.server.KryptonServer
+import net.aquamine.server.AquaServer
 import net.aquamine.server.network.buffer.BinaryBuffer
 import net.aquamine.server.network.handlers.HandshakePacketHandler
 import net.aquamine.server.network.handlers.PacketHandler
@@ -33,7 +33,7 @@ import javax.crypto.spec.IvParameterSpec
 import kotlin.math.min
 
 class NioConnection(
-    private val server: KryptonServer,
+    private val server: AquaServer,
     private val worker: NetworkWorker,
     private val channel: SocketChannel,
     private var address: SocketAddress

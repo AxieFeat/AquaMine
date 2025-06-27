@@ -1,14 +1,14 @@
 package net.aquamine.server.entity.tracking
 
 import net.aquamine.api.util.Position
-import net.aquamine.server.entity.KryptonEntity
+import net.aquamine.server.entity.AquaEntity
 
 /**
  * A callback for updates to an entity's view tracking.
  *
  * This is used to decouple the logic for entity viewing from that of entity tracking.
  */
-interface EntityViewCallback<E : KryptonEntity> {
+interface EntityViewCallback<E : AquaEntity> {
 
     /**
      * Called when the entity comes in to view.

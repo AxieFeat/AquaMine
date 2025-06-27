@@ -5,7 +5,7 @@ import net.aquamine.api.entity.Entity
 import net.aquamine.api.util.Position
 import net.aquamine.server.coordinate.ChunkPos
 import net.aquamine.server.coordinate.SectionPos
-import net.aquamine.server.entity.KryptonEntity
+import net.aquamine.server.entity.AquaEntity
 import net.aquamine.server.util.ChunkUtil
 import space.vectrix.flare.fastutil.Int2ObjectSyncMap
 import space.vectrix.flare.fastutil.Long2ObjectSyncMap
@@ -27,7 +27,7 @@ class DefaultEntityTracker(private val entityViewDistance: Int) : EntityTracker 
     private val entries = EntityTypeTarget.VALUES.map { TargetEntry(it) }.toTypedArray()
     private val entityPositions = Int2ObjectSyncMap.hashmap<Position>()
 
-    override fun <E : KryptonEntity> add(entity: KryptonEntity, position: Position, target: EntityTypeTarget<E>, callback: EntityViewCallback<E>?) {
+    override fun <E : AquaEntity> add(entity: AquaEntity, position: Position, target: EntityTypeTarget<E>, callback: EntityViewCallback<E>?) {
         val previousPosition = entityPositions.putIfAbsent(entity.id, position)
         if (previousPosition != null) return
 
@@ -46,7 +46,7 @@ class DefaultEntityTracker(private val entityViewDistance: Int) : EntityTracker 
         }
     }
 
-    override fun <E : KryptonEntity> remove(entity: KryptonEntity, target: EntityTypeTarget<E>, callback: EntityViewCallback<E>?) {
+    override fun <E : AquaEntity> remove(entity: AquaEntity, target: EntityTypeTarget<E>, callback: EntityViewCallback<E>?) {
         val position = entityPositions.remove(entity.id) ?: return
 
         val index = ChunkPos.pack(position.chunkX(), position.chunkZ())
@@ -65,7 +65,7 @@ class DefaultEntityTracker(private val entityViewDistance: Int) : EntityTracker 
     }
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE") // Required to avoid conflicts
-    override fun <E : KryptonEntity> onMove(entity: KryptonEntity, newPosition: Position, target: EntityTypeTarget<E>,
+    override fun <E : AquaEntity> onMove(entity: AquaEntity, newPosition: Position, target: EntityTypeTarget<E>,
                                             callback: EntityViewCallback<E>?) {
         val oldPosition = entityPositions.put(entity.id, newPosition)
         if (oldPosition == null || oldPosition.chunkX() == newPosition.chunkX() && oldPosition.chunkZ() == newPosition.chunkZ()) {
@@ -95,7 +95,7 @@ class DefaultEntityTracker(private val entityViewDistance: Int) : EntityTracker 
     }
 
     @Suppress("UNCHECKED_CAST")
-    override fun <E : KryptonEntity> entitiesInChunkOfType(position: ChunkPos, target: EntityTypeTarget<E>): Collection<E> {
+    override fun <E : AquaEntity> entitiesInChunkOfType(position: ChunkPos, target: EntityTypeTarget<E>): Collection<E> {
         val entry = entries[target.ordinal]
         val chunkEntities = entry.getByChunk(position.pack()) as List<E>
         return Collections.unmodifiableCollection(chunkEntities)
@@ -115,7 +115,7 @@ class DefaultEntityTracker(private val entityViewDistance: Int) : EntityTracker 
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun <E : KryptonEntity> nearbyChunkEntities(chunkX: Int, chunkZ: Int, chunkRange: Int, target: EntityTypeTarget<E>, query: Consumer<E>) {
+    private fun <E : AquaEntity> nearbyChunkEntities(chunkX: Int, chunkZ: Int, chunkRange: Int, target: EntityTypeTarget<E>, query: Consumer<E>) {
         val entities = entries[target.ordinal].chunkEntities
         if (chunkRange == 0) {
             val chunkEntities = entities.get(ChunkPos.pack(chunkX, chunkZ)) as? List<E>
@@ -130,7 +130,7 @@ class DefaultEntityTracker(private val entityViewDistance: Int) : EntityTracker 
     }
 
     @Suppress("UNCHECKED_CAST")
-    override fun <E : KryptonEntity> nearbyEntitiesOfType(position: Position, range: Double, target: EntityTypeTarget<E>, query: Consumer<E>) {
+    override fun <E : AquaEntity> nearbyEntitiesOfType(position: Position, range: Double, target: EntityTypeTarget<E>, query: Consumer<E>) {
         val entities = entries[target.ordinal].chunkEntities
         val minChunkX = SectionPos.blockToSection(position.x - range)
         val minChunkZ = SectionPos.blockToSection(position.z - range)
@@ -160,7 +160,7 @@ class DefaultEntityTracker(private val entityViewDistance: Int) : EntityTracker 
     }
 
     @Suppress("UNCHECKED_CAST")
-    override fun <E : KryptonEntity> entitiesOfType(target: EntityTypeTarget<E>): Set<E> = entries[target.ordinal].entitiesView as Set<E>
+    override fun <E : AquaEntity> entitiesOfType(target: EntityTypeTarget<E>): Set<E> = entries[target.ordinal].entitiesView as Set<E>
 
     @Suppress("UNCHECKED_CAST")
     override fun <E : Entity> entitiesOfType(type: Class<E>, predicate: Predicate<E>?): Collection<E> {
@@ -179,7 +179,7 @@ class DefaultEntityTracker(private val entityViewDistance: Int) : EntityTracker 
      * any entities that went out of view.
      */
     @Suppress("UNCHECKED_CAST")
-    private fun <E : KryptonEntity> difference(old: Position, new: Position, target: EntityTypeTarget<E>, callback: EntityViewCallback<E>) {
+    private fun <E : AquaEntity> difference(old: Position, new: Position, target: EntityTypeTarget<E>, callback: EntityViewCallback<E>) {
         val entry = entries[target.ordinal]
         ChunkUtil.forDifferingChunksInRange(new.chunkX(), new.chunkZ(), old.chunkX(), old.chunkZ(), entityViewDistance, { x, z ->
             // Entities come in to view
@@ -201,7 +201,7 @@ class DefaultEntityTracker(private val entityViewDistance: Int) : EntityTracker 
     /**
      * Holder for the entities for a specific target.
      */
-    private class TargetEntry<E : KryptonEntity>(val target: EntityTypeTarget<E>) {
+    private class TargetEntry<E : AquaEntity>(val target: EntityTypeTarget<E>) {
 
         val entities: MutableSet<E> = ConcurrentHashMap.newKeySet()
         val entitiesView: Collection<E> = Collections.unmodifiableSet(entities)

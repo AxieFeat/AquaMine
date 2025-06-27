@@ -4,7 +4,7 @@ import net.kyori.adventure.key.Key
 import net.aquamine.api.effect.sound.SoundEvent
 import net.aquamine.api.effect.sound.SoundEvents
 import net.aquamine.api.registry.RegistryReference
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.registry.AquaRegistries
 
 object Instruments {
 
@@ -28,5 +28,5 @@ object Instruments {
     @JvmStatic
     @Suppress("MagicNumber")
     private fun register(name: String, sound: RegistryReference<SoundEvent>): Instrument =
-        KryptonRegistries.register(KryptonRegistries.INSTRUMENT, Key.key(name), Instrument(sound.get(), 140, 256F))
+        AquaRegistries.register(AquaRegistries.INSTRUMENT, Key.key(name), Instrument(sound.get(), 140, 256F))
 }

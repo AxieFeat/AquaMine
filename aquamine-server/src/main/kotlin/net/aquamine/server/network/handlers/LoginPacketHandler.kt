@@ -6,14 +6,14 @@ import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import org.apache.logging.log4j.LogManager
 import net.aquamine.api.auth.GameProfile
-import net.aquamine.server.KryptonServer
+import net.aquamine.server.AquaServer
 import net.aquamine.server.auth.AquaGameProfile
 import net.aquamine.server.auth.requests.SessionService
 import net.aquamine.server.config.category.ProxyCategory
-import net.aquamine.server.entity.player.KryptonPlayer
-import net.aquamine.server.event.auth.KryptonPlayerAuthenticationEvent
-import net.aquamine.server.event.player.KryptonPlayerLoginEvent
-import net.aquamine.server.event.server.KryptonSetupPermissionsEvent
+import net.aquamine.server.entity.player.AquaPlayer
+import net.aquamine.server.event.auth.AquaPlayerAuthenticationEvent
+import net.aquamine.server.event.player.AquaPlayerLoginEvent
+import net.aquamine.server.event.server.AquaSetupPermissionsEvent
 import net.aquamine.server.locale.DisconnectMessages
 import net.aquamine.server.locale.MinecraftTranslationManager
 import net.aquamine.server.network.NioConnection
@@ -41,13 +41,13 @@ import javax.crypto.spec.SecretKeySpec
  * state.
  *
  * There are two inbound packets in this state that we handle:
- * - [Login Start][net.aquamine.server.packet.`in`.login.PacketInLoginStart] -
+ * - [Login Start][PacketInLoginStart] -
  *   sent to initiate the login sequence
- * - [Encryption Response][net.aquamine.server.packet.`in`.login.PacketInEncryptionResponse] -
+ * - [Encryption Response][PacketInEncryptionResponse] -
  *   sent to confirm the client wants to enable encryption
  */
 class LoginPacketHandler(
-    private val server: KryptonServer,
+    private val server: AquaServer,
     private val connection: NioConnection,
     private val proxyForwardedData: ProxyForwardedData?
 ) : PacketHandler {
@@ -56,7 +56,7 @@ class LoginPacketHandler(
     private val velocityMessageId = RANDOM.nextInt(Short.MAX_VALUE.toInt())
     private val forwardingSecret = server.config.proxy.secret.encodeToByteArray()
 
-    private var name = "" // We cache the name here to avoid late initialization of the KryptonPlayer object.
+    private var name = "" // We cache the name here to avoid late initialization of the AquaPlayer object.
     private val verifyToken = generateVerifyToken()
 
     fun handleLoginStart(packet: PacketInLoginStart) {
@@ -88,8 +88,8 @@ class LoginPacketHandler(
         if (!callLoginEvent(profile)) return
 
         // Initialize the player and setup their permissions.
-        val player = KryptonPlayer(connection, profile, server.worldManager.default)
-        val permissionsEvent = server.eventNode.fire(KryptonSetupPermissionsEvent(player, KryptonPlayer.DEFAULT_PERMISSION_FUNCTION))
+        val player = AquaPlayer(connection, profile, server.worldManager.default)
+        val permissionsEvent = server.eventNode.fire(AquaSetupPermissionsEvent(player, AquaPlayer.DEFAULT_PERMISSION_FUNCTION))
         player.permissionFunction = permissionsEvent.result?.function ?: permissionsEvent.defaultFunction
 
         finishLogin(player)
@@ -106,7 +106,7 @@ class LoginPacketHandler(
         modifyAddressIfNeeded()
 
         // Fire the authentication event.
-        val authEvent = KryptonPlayerAuthenticationEvent(name)
+        val authEvent = AquaPlayerAuthenticationEvent(name)
         if (!authEvent.isAllowed()) return
 
         val profile = authEvent.result?.profile ?: SessionService.hasJoined(name, sharedSecret, server.config.server.ip)
@@ -116,9 +116,9 @@ class LoginPacketHandler(
         }
 
         if (!callLoginEvent(profile)) return
-        val player = KryptonPlayer(connection, profile, server.worldManager.default)
+        val player = AquaPlayer(connection, profile, server.worldManager.default)
 
-        val permissionsEvent = server.eventNode.fire(KryptonSetupPermissionsEvent(player, KryptonPlayer.DEFAULT_PERMISSION_FUNCTION))
+        val permissionsEvent = server.eventNode.fire(AquaSetupPermissionsEvent(player, AquaPlayer.DEFAULT_PERMISSION_FUNCTION))
         player.permissionFunction = permissionsEvent.result?.function ?: permissionsEvent.defaultFunction
         finishLogin(player)
     }
@@ -157,15 +157,15 @@ class LoginPacketHandler(
         // All good to go, let's construct our stuff
         LOGGER.debug("Detected Velocity login for ${data.uuid}")
         val profile = AquaGameProfile.full(data.uuid, data.username, data.properties)
-        val player = KryptonPlayer(connection, profile, server.worldManager.default)
+        val player = AquaPlayer(connection, profile, server.worldManager.default)
 
         // Setup permissions for the player
-        val permissionsEvent = server.eventNode.fire(KryptonSetupPermissionsEvent(player, KryptonPlayer.DEFAULT_PERMISSION_FUNCTION))
+        val permissionsEvent = server.eventNode.fire(AquaSetupPermissionsEvent(player, AquaPlayer.DEFAULT_PERMISSION_FUNCTION))
         player.permissionFunction = permissionsEvent.result?.function ?: permissionsEvent.defaultFunction
         finishLogin(player)
     }
 
-    private fun finishLogin(player: KryptonPlayer) {
+    private fun finishLogin(player: AquaPlayer) {
         connection.enableCompression()
         connection.send(PacketOutLoginSuccess.create(player.profile))
         connection.setState(PacketState.PLAY)
@@ -180,7 +180,7 @@ class LoginPacketHandler(
     }
 
     private fun callLoginEvent(profile: GameProfile): Boolean {
-        val event = server.eventNode.fire(KryptonPlayerLoginEvent(profile, connection.connectAddress() as InetSocketAddress))
+        val event = server.eventNode.fire(AquaPlayerLoginEvent(profile, connection.connectAddress() as InetSocketAddress))
         if (!event.isAllowed()) {
             disconnect(event.result?.reason ?: DisconnectMessages.KICKED)
             return false

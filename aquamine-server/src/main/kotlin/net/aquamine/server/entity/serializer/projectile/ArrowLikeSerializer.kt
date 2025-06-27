@@ -2,9 +2,9 @@ package net.aquamine.server.entity.serializer.projectile
 
 import net.kyori.adventure.key.Key
 import net.aquamine.api.entity.projectile.ArrowLike
-import net.aquamine.server.entity.projectile.KryptonArrowLike
+import net.aquamine.server.entity.projectile.AquaArrowLike
 import net.aquamine.server.entity.serializer.EntitySerializer
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.util.nbt.hasNumber
 import net.aquamine.server.util.nbt.putNullable
 import net.aquamine.server.util.nbt.putKeyed
@@ -12,7 +12,7 @@ import net.aquamine.server.world.block.BlockStateSerialization
 import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.StringTag
 
-object ArrowLikeSerializer : EntitySerializer<KryptonArrowLike> {
+object ArrowLikeSerializer : EntitySerializer<AquaArrowLike> {
 
     private const val CRIT_TAG = "crit"
     private const val DAMAGE_TAG = "damage"
@@ -28,7 +28,7 @@ object ArrowLikeSerializer : EntitySerializer<KryptonArrowLike> {
     private const val MAX_SHAKE_TIME = 255
     private val PICKUP_RULES = ArrowLike.PickupRule.values()
 
-    override fun load(entity: KryptonArrowLike, data: CompoundTag) {
+    override fun load(entity: AquaArrowLike, data: CompoundTag) {
         ProjectileSerializer.load(entity, data)
         entity.isCritical = data.getBoolean(CRIT_TAG)
         if (data.hasNumber(DAMAGE_TAG)) entity.baseDamage = data.getDouble(DAMAGE_TAG)
@@ -42,7 +42,7 @@ object ArrowLikeSerializer : EntitySerializer<KryptonArrowLike> {
         entity.wasShotFromCrossbow = data.getBoolean(SHOT_FROM_CROSSBOW_TAG)
 
         if (data.contains(SOUND_EVENT_TAG, StringTag.ID)) {
-            entity.sound = KryptonRegistries.SOUND_EVENT.get(Key.key(data.getString(SOUND_EVENT_TAG))) ?: entity.defaultHitGroundSound()
+            entity.sound = AquaRegistries.SOUND_EVENT.get(Key.key(data.getString(SOUND_EVENT_TAG))) ?: entity.defaultHitGroundSound()
         }
     }
 
@@ -52,7 +52,7 @@ object ArrowLikeSerializer : EntitySerializer<KryptonArrowLike> {
         return PICKUP_RULES[temp]
     }
 
-    override fun save(entity: KryptonArrowLike): CompoundTag.Builder = ProjectileSerializer.save(entity).apply {
+    override fun save(entity: AquaArrowLike): CompoundTag.Builder = ProjectileSerializer.save(entity).apply {
         putBoolean(CRIT_TAG, entity.isCritical)
         putDouble(DAMAGE_TAG, entity.baseDamage)
         putNullable(IN_BLOCK_TAG, entity.internalStuckInBlock, BlockStateSerialization::encode)

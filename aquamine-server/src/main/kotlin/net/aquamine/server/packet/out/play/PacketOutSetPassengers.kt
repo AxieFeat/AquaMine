@@ -1,7 +1,7 @@
 package net.aquamine.server.packet.out.play
 
 import net.aquamine.api.entity.Entity
-import net.aquamine.server.entity.KryptonEntity
+import net.aquamine.server.entity.AquaEntity
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.EntityPacket
@@ -20,7 +20,7 @@ data class PacketOutSetPassengers(override val entityId: Int, val passengers: In
     companion object {
 
         @JvmStatic
-        fun fromEntity(entity: KryptonEntity, passengers: List<Entity>): PacketOutSetPassengers {
+        fun fromEntity(entity: AquaEntity, passengers: List<Entity>): PacketOutSetPassengers {
             return PacketOutSetPassengers(entity.id, toIdArray(passengers))
         }
 

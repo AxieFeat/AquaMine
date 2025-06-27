@@ -3,7 +3,7 @@ package net.aquamine.server.packet.out.play.data
 import net.aquamine.server.network.Writable
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
-import net.aquamine.server.world.chunk.KryptonChunk
+import net.aquamine.server.world.chunk.AquaChunk
 import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.ImmutableCompoundTag
 import java.nio.ByteBuffer
@@ -27,10 +27,10 @@ data class ChunkPacketData(val heightmaps: CompoundTag, val data: ByteArray) : W
     companion object {
 
         @JvmStatic
-        fun fromChunk(chunk: KryptonChunk): ChunkPacketData = ChunkPacketData(extractHeightmaps(chunk), extractData(chunk))
+        fun fromChunk(chunk: AquaChunk): ChunkPacketData = ChunkPacketData(extractHeightmaps(chunk), extractData(chunk))
 
         @JvmStatic
-        private fun extractHeightmaps(chunk: KryptonChunk): CompoundTag {
+        private fun extractHeightmaps(chunk: AquaChunk): CompoundTag {
             if (chunk.heightmaps().isEmpty()) return CompoundTag.EMPTY
             val heightmaps = ImmutableCompoundTag.builder()
             chunk.heightmaps().forEach { if (it.key.sendToClient()) heightmaps.putLongArray(it.key.name, it.value.rawData()) }
@@ -38,7 +38,7 @@ data class ChunkPacketData(val heightmaps: CompoundTag, val data: ByteArray) : W
         }
 
         @JvmStatic
-        private fun extractData(chunk: KryptonChunk): ByteArray {
+        private fun extractData(chunk: AquaChunk): ByteArray {
             val result = ByteArray(chunk.sections().sumOf { it.calculateSerializedSize() })
             val writer = BinaryWriter(ByteBuffer.wrap(result))
             chunk.sections().forEach { it.write(writer) }

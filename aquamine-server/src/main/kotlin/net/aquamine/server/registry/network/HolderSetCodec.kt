@@ -4,7 +4,7 @@ import net.aquamine.api.registry.Registry
 import net.aquamine.api.resource.ResourceKey
 import net.aquamine.server.registry.holder.Holder
 import net.aquamine.server.registry.holder.HolderSet
-import net.aquamine.server.tags.KryptonTagKey
+import net.aquamine.server.tags.AquaTagKey
 import net.aquamine.server.util.ImmutableLists
 import net.aquamine.server.util.serialization.Codecs
 import org.kryptonmc.serialization.Codec
@@ -21,7 +21,7 @@ class HolderSetCodec<E> private constructor(
 ) : Codec<HolderSet<E>> {
 
     private val homogenousListCodec = homogenousList(elementCodec, noInline)
-    private val registryAwareCodec = Codec.either(KryptonTagKey.hashedCodec(registryKey), homogenousListCodec)
+    private val registryAwareCodec = Codec.either(AquaTagKey.hashedCodec(registryKey), homogenousListCodec)
 
     override fun <T> decode(input: T, ops: DataOps<T>): DataResult<Pair<HolderSet<E>, T>> {
         if (ops is RegistryOps<T>) {

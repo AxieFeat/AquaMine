@@ -9,7 +9,7 @@ import net.aquamine.server.entity.metadata.MetadataKeys
 
 /**
  * A delegating extension of entity that implements the data-backed API
- * properties to avoid putting these in KryptonEntity, making it less
+ * properties to avoid putting these in AquaEntity, making it less
  * cluttered.
  */
 interface BaseDataHolder : Entity {

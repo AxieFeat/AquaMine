@@ -4,7 +4,7 @@ import net.kyori.adventure.text.Component
 import net.aquamine.api.auth.GameProfile
 import net.aquamine.api.world.GameMode
 import net.aquamine.server.auth.AquaGameProfile
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.network.chat.RemoteChatSession
@@ -20,9 +20,9 @@ import java.util.UUID
 @JvmRecord
 data class PacketOutPlayerInfoUpdate(val actions: EnumSet<Action>, val entries: List<Entry>) : Packet {
 
-    constructor(actions: EnumSet<Action>, players: Collection<KryptonPlayer>) : this(actions, players.map(::Entry))
+    constructor(actions: EnumSet<Action>, players: Collection<AquaPlayer>) : this(actions, players.map(::Entry))
 
-    constructor(action: Action, player: KryptonPlayer) : this(EnumSet.of(action), ImmutableLists.of(Entry(player)))
+    constructor(action: Action, player: AquaPlayer) : this(EnumSet.of(action), ImmutableLists.of(Entry(player)))
 
     constructor(reader: BinaryReader) : this(reader, reader.readEnumSet())
 
@@ -83,7 +83,7 @@ data class PacketOutPlayerInfoUpdate(val actions: EnumSet<Action>, val entries: 
     data class Entry(val profileId: UUID, val profile: GameProfile, val listed: Boolean, val latency: Int, val gameMode: GameMode,
                      val displayName: Component?, val chatSession: RemoteChatSession.Data?) {
 
-        constructor(player: KryptonPlayer) : this(player.uuid, player.profile, true, player.connection.latency(), player.gameMode, null,
+        constructor(player: AquaPlayer) : this(player.uuid, player.profile, true, player.connection.latency(), player.gameMode, null,
             player.chatSession()?.asData())
     }
 
@@ -114,7 +114,7 @@ data class PacketOutPlayerInfoUpdate(val actions: EnumSet<Action>, val entries: 
     companion object {
 
         @JvmStatic
-        fun createPlayerInitializing(players: Collection<KryptonPlayer>): PacketOutPlayerInfoUpdate =
+        fun createPlayerInitializing(players: Collection<AquaPlayer>): PacketOutPlayerInfoUpdate =
             PacketOutPlayerInfoUpdate(EnumSet.allOf(Action::class.java), players)
     }
 }

@@ -4,7 +4,7 @@ import net.kyori.adventure.key.Key
 import net.aquamine.api.resource.ResourceKey
 import net.aquamine.api.resource.ResourceKeys
 import net.aquamine.api.world.biome.Biome
-import net.aquamine.server.resource.KryptonResourceKey
+import net.aquamine.server.resource.AquaResourceKey
 
 object BiomeKeys {
 
@@ -136,5 +136,5 @@ object BiomeKeys {
     val END_BARRENS: ResourceKey<Biome> = create("end_barrens")
 
     @JvmStatic
-    private fun create(key: String): ResourceKey<Biome> = KryptonResourceKey.of(ResourceKeys.BIOME, Key.key(key))
+    private fun create(key: String): ResourceKey<Biome> = AquaResourceKey.of(ResourceKeys.BIOME, Key.key(key))
 }

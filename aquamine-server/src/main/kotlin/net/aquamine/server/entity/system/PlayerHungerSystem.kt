@@ -3,13 +3,13 @@ package net.aquamine.server.entity.system
 import net.aquamine.api.world.Difficulty
 import net.aquamine.api.world.GameMode
 import net.aquamine.server.entity.metadata.MetadataKeys
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.player.AquaPlayer
 import xyz.axie.nbt.CompoundTag
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sqrt
 
-class PlayerHungerSystem(private val player: KryptonPlayer) {
+class PlayerHungerSystem(private val player: AquaPlayer) {
 
     // Sources for vanilla hunger system values:
     //      -> Minecraft Wiki https://minecraft.fandom.com/wiki/Hunger

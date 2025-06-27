@@ -1,9 +1,9 @@
 package net.aquamine.server.entity.components
 
 import net.aquamine.api.entity.Bucketable
-import net.aquamine.server.entity.KryptonMob
+import net.aquamine.server.entity.AquaMob
 import net.aquamine.server.item.meta.AbstractItemMeta
-import net.aquamine.server.item.meta.KryptonItemMeta
+import net.aquamine.server.item.meta.AquaItemMeta
 import xyz.axie.nbt.CompoundTag
 
 interface BucketStorable : Bucketable {
@@ -14,7 +14,7 @@ interface BucketStorable : Bucketable {
 
     companion object {
 
-        fun loadDefaultsFromBucket(mob: KryptonMob, tag: CompoundTag) {
+        fun loadDefaultsFromBucket(mob: AquaMob, tag: CompoundTag) {
             if (tag.contains("NoAI")) mob.hasAI = !tag.getBoolean("NoAI")
             if (tag.contains("Silent")) mob.isSilent = tag.getBoolean("Silent")
             if (tag.contains("NoGravity")) mob.hasGravity = !tag.getBoolean("NoGravity")
@@ -24,7 +24,7 @@ interface BucketStorable : Bucketable {
         }
 
         @Suppress("ExpressionBodySyntax") // There's commented out code here
-        fun saveDefaultsToBucket(mob: KryptonMob): AbstractItemMeta<*> {
+        fun saveDefaultsToBucket(mob: AquaMob): AbstractItemMeta<*> {
             // FIXME
             /*
             val nbt = item.meta.nbt
@@ -37,7 +37,7 @@ interface BucketStorable : Bucketable {
             if (mob.isInvulnerable) nbt.putBoolean("Invulnerable", mob.isInvulnerable)
             nbt.putFloat("Health", mob.health)
              */
-            return KryptonItemMeta.DEFAULT
+            return AquaItemMeta.DEFAULT
         }
     }
 }

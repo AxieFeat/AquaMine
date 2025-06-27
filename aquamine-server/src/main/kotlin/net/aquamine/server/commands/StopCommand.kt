@@ -11,7 +11,7 @@ object StopCommand {
     @JvmStatic
     fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
         dispatcher.register(literalCommand("stop") {
-            requiresPermission(KryptonPermission.STOP)
+            requiresPermission(AquaPermission.STOP)
             runs {
                 it.source.sendSuccess(CommandMessages.STOP, true)
                 // We use exit rather than stop because if this is executed from the console, the server will shut down before

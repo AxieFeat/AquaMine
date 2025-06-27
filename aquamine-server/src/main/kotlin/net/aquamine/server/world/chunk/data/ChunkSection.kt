@@ -3,9 +3,9 @@ package net.aquamine.server.world.chunk.data
 import net.aquamine.api.world.biome.Biome
 import net.aquamine.server.network.Writable
 import net.aquamine.server.network.buffer.BinaryWriter
-import net.aquamine.server.registry.KryptonRegistry
+import net.aquamine.server.registry.AquaRegistry
 import net.aquamine.server.world.biome.NoiseBiomeSource
-import net.aquamine.server.world.block.state.KryptonBlockState
+import net.aquamine.server.world.block.state.AquaBlockState
 import net.aquamine.server.world.block.palette.PaletteHolder
 
 /**
@@ -13,7 +13,7 @@ import net.aquamine.server.world.block.palette.PaletteHolder
  * states and palette information.
  */
 class ChunkSection(
-    val blocks: PaletteHolder<KryptonBlockState>,
+    val blocks: PaletteHolder<AquaBlockState>,
     val biomes: PaletteHolder<Biome>,
     val blockLight: ByteArray?,
     val skyLight: ByteArray?
@@ -25,11 +25,11 @@ class ChunkSection(
         recount()
     }
 
-    constructor(biomeRegistry: KryptonRegistry<Biome>) : this(PaletteHolder.blocks(), PaletteHolder.biomes(biomeRegistry), null, null)
+    constructor(biomeRegistry: AquaRegistry<Biome>) : this(PaletteHolder.blocks(), PaletteHolder.biomes(biomeRegistry), null, null)
 
-    fun getBlock(x: Int, y: Int, z: Int): KryptonBlockState = blocks.get(x, y, z)
+    fun getBlock(x: Int, y: Int, z: Int): AquaBlockState = blocks.get(x, y, z)
 
-    fun setBlock(x: Int, y: Int, z: Int, block: KryptonBlockState): KryptonBlockState {
+    fun setBlock(x: Int, y: Int, z: Int, block: AquaBlockState): AquaBlockState {
         val oldBlock = blocks.getAndSet(x, y, z, block)
         if (!oldBlock.isAir()) nonEmptyBlockCount--
         if (!block.isAir()) nonEmptyBlockCount++

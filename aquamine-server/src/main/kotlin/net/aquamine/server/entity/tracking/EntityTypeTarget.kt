@@ -1,7 +1,7 @@
 package net.aquamine.server.entity.tracking
 
-import net.aquamine.server.entity.KryptonEntity
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.AquaEntity
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.util.ImmutableLists
 
 /**
@@ -9,7 +9,7 @@ import net.aquamine.server.util.ImmutableLists
  * they can be retrieved as a group, which is faster than manually filtering a list
  * every time.
  */
-interface EntityTypeTarget<out E : KryptonEntity> {
+interface EntityTypeTarget<out E : AquaEntity> {
 
     val type: Class<out E>
     val ordinal: Int
@@ -17,14 +17,14 @@ interface EntityTypeTarget<out E : KryptonEntity> {
     companion object {
 
         @JvmField
-        val ENTITIES: EntityTypeTarget<KryptonEntity> = create(KryptonEntity::class.java)
+        val ENTITIES: EntityTypeTarget<AquaEntity> = create(AquaEntity::class.java)
         @JvmField
-        val PLAYERS: EntityTypeTarget<KryptonPlayer> = create(KryptonPlayer::class.java)
+        val PLAYERS: EntityTypeTarget<AquaPlayer> = create(AquaPlayer::class.java)
 
         @JvmField
-        val VALUES: List<EntityTypeTarget<KryptonEntity>> = ImmutableLists.of(ENTITIES, PLAYERS)
+        val VALUES: List<EntityTypeTarget<AquaEntity>> = ImmutableLists.of(ENTITIES, PLAYERS)
 
-        private fun <E : KryptonEntity> create(type: Class<E>): EntityTypeTarget<E> {
+        private fun <E : AquaEntity> create(type: Class<E>): EntityTypeTarget<E> {
             val ordinal = DefaultEntityTracker.TARGET_COUNTER.getAndIncrement()
             return object : EntityTypeTarget<E> {
 

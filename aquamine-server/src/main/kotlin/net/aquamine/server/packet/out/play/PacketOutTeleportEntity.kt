@@ -2,7 +2,7 @@ package net.aquamine.server.packet.out.play
 
 import net.aquamine.api.util.Position
 import net.aquamine.server.coordinate.Positioning
-import net.aquamine.server.entity.KryptonEntity
+import net.aquamine.server.entity.AquaEntity
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.EntityPacket
@@ -35,7 +35,7 @@ data class PacketOutTeleportEntity(
     companion object {
 
         @JvmStatic
-        fun create(entity: KryptonEntity): PacketOutTeleportEntity = from(entity.id, entity.position, entity.isOnGround)
+        fun create(entity: AquaEntity): PacketOutTeleportEntity = from(entity.id, entity.position, entity.isOnGround)
 
         @JvmStatic
         fun from(entityId: Int, position: Position, onGround: Boolean): PacketOutTeleportEntity {

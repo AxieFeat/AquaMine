@@ -7,17 +7,17 @@ import net.aquamine.api.registry.RegistryRoots
 import net.aquamine.api.resource.ResourceKey
 import net.aquamine.api.resource.ResourceKeys
 import net.aquamine.server.network.chat.RichChatType
-import net.aquamine.server.registry.KryptonRegistries
-import net.aquamine.server.registry.KryptonRegistry
+import net.aquamine.server.registry.AquaRegistries
+import net.aquamine.server.registry.AquaRegistry
 import net.aquamine.server.registry.dynamic.CombinedRegistryHolder
 import net.aquamine.server.registry.dynamic.FilteredRegistryHolder
 import net.aquamine.server.registry.dynamic.SimpleRegistryHolder
-import net.aquamine.server.resource.KryptonResourceKey
-import net.aquamine.server.resource.KryptonResourceKeys
+import net.aquamine.server.resource.AquaResourceKey
+import net.aquamine.server.resource.AquaResourceKeys
 import net.aquamine.server.util.Keys
 import net.aquamine.server.util.resultOrError
-import net.aquamine.server.world.biome.KryptonBiome
-import net.aquamine.server.world.dimension.KryptonDimensionType
+import net.aquamine.server.world.biome.AquaBiome
+import net.aquamine.server.world.dimension.AquaDimensionType
 import org.kryptonmc.serialization.Codec
 import org.kryptonmc.serialization.DataResult
 import org.kryptonmc.serialization.codecs.UnboundedMapCodec
@@ -25,9 +25,9 @@ import org.kryptonmc.serialization.codecs.UnboundedMapCodec
 object RegistrySerialization {
 
     private val NETWORKABLE_REGISTRIES = ImmutableMap.builder<ResourceKey<out Registry<*>>, NetworkedRegistryData<*>>().apply {
-        put(this, ResourceKeys.BIOME, KryptonBiome.NETWORK_CODEC)
-        put(this, KryptonResourceKeys.CHAT_TYPE, RichChatType.CODEC)
-        put(this, KryptonResourceKeys.DIMENSION_TYPE, KryptonDimensionType.DIRECT_CODEC)
+        put(this, ResourceKeys.BIOME, AquaBiome.NETWORK_CODEC)
+        put(this, AquaResourceKeys.CHAT_TYPE, RichChatType.CODEC)
+        put(this, AquaResourceKeys.DIMENSION_TYPE, AquaDimensionType.DIRECT_CODEC)
     }.build()
     @JvmField
     val NETWORK_CODEC: Codec<RegistryHolder> = createNetworkCodec<Any>()
@@ -52,18 +52,18 @@ object RegistrySerialization {
 
     @JvmStatic
     private fun <E> createNetworkCodec(): Codec<RegistryHolder> {
-        val keyCodec: Codec<ResourceKey<out Registry<E>>> = Keys.CODEC.xmap({ KryptonResourceKey.of(RegistryRoots.MINECRAFT, it) }, { it.location })
-        val registryCodec: Codec<KryptonRegistry<E>> = keyCodec.partialDispatch(
+        val keyCodec: Codec<ResourceKey<out Registry<E>>> = Keys.CODEC.xmap({ AquaResourceKey.of(RegistryRoots.MINECRAFT, it) }, { it.location })
+        val registryCodec: Codec<AquaRegistry<E>> = keyCodec.partialDispatch(
             "type",
             { DataResult.success(it.key) },
             { key -> getNetworkCodec(key).map { RegistryCodecs.network(key, it) } }
         )
-        val mapCodec = Codec.map(keyCodec, registryCodec) as UnboundedMapCodec<out ResourceKey<out Registry<*>>, out KryptonRegistry<*>>
+        val mapCodec = Codec.map(keyCodec, registryCodec) as UnboundedMapCodec<out ResourceKey<out Registry<*>>, out AquaRegistry<*>>
         return captureMap(mapCodec)
     }
 
     @JvmStatic
-    private fun <K : ResourceKey<out Registry<*>>, V : KryptonRegistry<*>> captureMap(codec: UnboundedMapCodec<K, V>): Codec<RegistryHolder> {
+    private fun <K : ResourceKey<out Registry<*>>, V : AquaRegistry<*>> captureMap(codec: UnboundedMapCodec<K, V>): Codec<RegistryHolder> {
         return codec.xmap(
             { registries -> SimpleRegistryHolder(registries) },
             { holder ->
@@ -78,7 +78,7 @@ object RegistrySerialization {
 
     @JvmStatic
     fun networkSafeRegistries(dynamic: RegistryHolder): RegistryHolder {
-        val statics = KryptonRegistries.StaticHolder
+        val statics = AquaRegistries.StaticHolder
         val networked = networkedRegistries(dynamic)
         return CombinedRegistryHolder(statics, networked)
     }

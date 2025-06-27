@@ -1,7 +1,7 @@
 package net.aquamine.server.network
 
-import net.aquamine.server.KryptonServer
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.AquaServer
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.packet.CachedPacket
 import net.aquamine.server.packet.Packet
 import java.util.function.Predicate
@@ -16,22 +16,22 @@ import java.util.function.Predicate
 object PacketGrouping {
 
     @JvmStatic
-    fun sendGroupedPacket(server: KryptonServer, packet: Packet) {
+    fun sendGroupedPacket(server: AquaServer, packet: Packet) {
         sendGroupedPacket(server.playerManager.players(), packet, null)
     }
 
     @JvmStatic
-    fun sendGroupedPacket(server: KryptonServer, packet: Packet, predicate: Predicate<KryptonPlayer>) {
+    fun sendGroupedPacket(server: AquaServer, packet: Packet, predicate: Predicate<AquaPlayer>) {
         sendGroupedPacket(server.playerManager.players(), packet, predicate)
     }
 
     @JvmStatic
-    fun sendGroupedPacket(players: Collection<KryptonPlayer>, packet: Packet) {
+    fun sendGroupedPacket(players: Collection<AquaPlayer>, packet: Packet) {
         sendGroupedPacket(players, packet, null)
     }
 
     @JvmStatic
-    fun sendGroupedPacket(players: Collection<KryptonPlayer>, packet: Packet, predicate: Predicate<KryptonPlayer>?) {
+    fun sendGroupedPacket(players: Collection<AquaPlayer>, packet: Packet, predicate: Predicate<AquaPlayer>?) {
         if (players.isEmpty()) {
             // Fast exit if there are no players to send to. This avoids encoding the packet entirely.
             return

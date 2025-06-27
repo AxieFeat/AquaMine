@@ -1,6 +1,6 @@
 package net.aquamine.server.util.provider
 
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.util.random.RandomSource
 import org.kryptonmc.serialization.Codec
 import org.kryptonmc.serialization.DataResult
@@ -20,7 +20,7 @@ abstract class IntProvider {
 
         private val CONSTANT_OR_DISPATCH_CODEC = Codec.either(
             Codec.INT,
-            KryptonRegistries.INT_PROVIDER_TYPE.byNameCodec().dispatch({ it.type }, { it.codec() })
+            AquaRegistries.INT_PROVIDER_TYPE.byNameCodec().dispatch({ it.type }, { it.codec() })
         )
         @JvmField
         val CODEC: Codec<IntProvider> = CONSTANT_OR_DISPATCH_CODEC.xmap(

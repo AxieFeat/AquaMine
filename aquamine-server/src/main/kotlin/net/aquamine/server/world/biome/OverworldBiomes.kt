@@ -9,7 +9,7 @@ import net.aquamine.api.world.biome.GrassColorModifier
 import net.aquamine.api.world.biome.TemperatureModifier
 import net.aquamine.server.effect.AquaMusic
 import net.aquamine.server.util.math.Maths
-import net.aquamine.server.world.biome.data.KryptonAmbientMoodSettings
+import net.aquamine.server.world.biome.data.AquaAmbientMoodSettings
 
 @Suppress("UnusedPrivateMember") // Many parameters are there for when more biome data, such as generation and mob spawning, is added
 object OverworldBiomes {
@@ -42,30 +42,30 @@ object OverworldBiomes {
     // ==============================
 
     @JvmStatic
-    fun theVoid(): KryptonBiome = createBiome(Precipitation.NONE, 0.5F, 0.5F)
+    fun theVoid(): AquaBiome = createBiome(Precipitation.NONE, 0.5F, 0.5F)
 
     // ==============================
     // Taiga
     // ==============================
 
     @JvmStatic
-    fun oldGrowthPineTaiga(): KryptonBiome = oldGrowthTaiga(false)
+    fun oldGrowthPineTaiga(): AquaBiome = oldGrowthTaiga(false)
 
     @JvmStatic
-    fun oldGrowthSpruceTaiga(): KryptonBiome = oldGrowthTaiga(true)
+    fun oldGrowthSpruceTaiga(): AquaBiome = oldGrowthTaiga(true)
 
     @JvmStatic
-    private fun oldGrowthTaiga(spruce: Boolean): KryptonBiome =
+    private fun oldGrowthTaiga(spruce: Boolean): AquaBiome =
         createBiome(Precipitation.RAIN, if (spruce) 0.25F else 0.3F, 0.8F, music = SoundEvents.MUSIC_BIOME_OLD_GROWTH_TAIGA.get())
 
     @JvmStatic
-    fun taiga(): KryptonBiome = taiga(false)
+    fun taiga(): AquaBiome = taiga(false)
 
     @JvmStatic
-    fun snowyTaiga(): KryptonBiome = taiga(true)
+    fun snowyTaiga(): AquaBiome = taiga(true)
 
     @JvmStatic
-    private fun taiga(snowy: Boolean): KryptonBiome {
+    private fun taiga(snowy: Boolean): AquaBiome {
         val precipitation = if (snowy) Precipitation.SNOW else Precipitation.RAIN
         val water = if (snowy) SNOWY_WATER else OVERWORLD_WATER
         return createBiome(precipitation, if (snowy) -0.5F else 0.25F, if (snowy) 0.4F else 0.8F, water)
@@ -76,29 +76,29 @@ object OverworldBiomes {
     // ==============================
 
     @JvmStatic
-    fun windsweptHills(): KryptonBiome = windsweptHills(false)
+    fun windsweptHills(): AquaBiome = windsweptHills(false)
 
     @JvmStatic
-    fun windsweptForest(): KryptonBiome = windsweptHills(true)
+    fun windsweptForest(): AquaBiome = windsweptHills(true)
 
     @JvmStatic
-    private fun windsweptHills(isEdge: Boolean): KryptonBiome = createBiome(Precipitation.RAIN, 0.2F, 0.3F)
+    private fun windsweptHills(isEdge: Boolean): AquaBiome = createBiome(Precipitation.RAIN, 0.2F, 0.3F)
 
     // ==============================
     // Jungle
     // ==============================
 
     @JvmStatic
-    fun sparseJungle(): KryptonBiome = baseJungle(0.8F, false, true, false)
+    fun sparseJungle(): AquaBiome = baseJungle(0.8F, false, true, false)
 
     @JvmStatic
-    fun jungle(): KryptonBiome = baseJungle(0.9F, false, false, true)
+    fun jungle(): AquaBiome = baseJungle(0.9F, false, false, true)
 
     @JvmStatic
-    fun bambooJungle(): KryptonBiome = baseJungle(0.9F, true, false, true)
+    fun bambooJungle(): AquaBiome = baseJungle(0.9F, true, false, true)
 
     @JvmStatic
-    private fun baseJungle(downfall: Float, isBamboo: Boolean, isEdge: Boolean, isLight: Boolean): KryptonBiome =
+    private fun baseJungle(downfall: Float, isBamboo: Boolean, isEdge: Boolean, isLight: Boolean): AquaBiome =
         createBiome(Precipitation.RAIN, 0.95F, downfall, music = SoundEvents.MUSIC_BIOME_JUNGLE_AND_FOREST.get())
 
     // ==============================
@@ -106,13 +106,13 @@ object OverworldBiomes {
     // ==============================
 
     @JvmStatic
-    fun badlands(): KryptonBiome = badlands(false)
+    fun badlands(): AquaBiome = badlands(false)
 
     @JvmStatic
-    fun woodedBadlands(): KryptonBiome = badlands(true)
+    fun woodedBadlands(): AquaBiome = badlands(true)
 
     @JvmStatic
-    private fun badlands(wooded: Boolean): KryptonBiome = biome {
+    private fun badlands(wooded: Boolean): AquaBiome = biome {
         climate(Climate.of(Precipitation.NONE, 2F, 0F, TemperatureModifier.NONE))
         effects {
             waterColor(OVERWORLD_WATER)
@@ -121,7 +121,7 @@ object OverworldBiomes {
             skyColor(calculateSkyColor(2F))
             foliageColor(BADLANDS_FOLIAGE)
             grassColor(BADLANDS_GRASS)
-            mood(KryptonAmbientMoodSettings.CAVE)
+            mood(AquaAmbientMoodSettings.CAVE)
         }
     }
 
@@ -130,19 +130,19 @@ object OverworldBiomes {
     // ==============================
 
     @JvmStatic
-    fun plains(): KryptonBiome = plains(false, false, false)
+    fun plains(): AquaBiome = plains(false, false, false)
 
     @JvmStatic
-    fun sunflowerPlains(): KryptonBiome = plains(true, false, false)
+    fun sunflowerPlains(): AquaBiome = plains(true, false, false)
 
     @JvmStatic
-    fun snowyPlains(): KryptonBiome = plains(false, true, false)
+    fun snowyPlains(): AquaBiome = plains(false, true, false)
 
     @JvmStatic
-    fun iceSpikes(): KryptonBiome = plains(false, true, true)
+    fun iceSpikes(): AquaBiome = plains(false, true, true)
 
     @JvmStatic
-    private fun plains(sunflowers: Boolean, icy: Boolean, spikes: Boolean): KryptonBiome =
+    private fun plains(sunflowers: Boolean, icy: Boolean, spikes: Boolean): AquaBiome =
         createBiome(if (icy) Precipitation.SNOW else Precipitation.RAIN, if (icy) 0F else 0.8F, if (icy) 0F else 0.4F)
 
     // ==============================
@@ -150,16 +150,16 @@ object OverworldBiomes {
     // ==============================
 
     @JvmStatic
-    fun savanna(): KryptonBiome = savanna(false, false)
+    fun savanna(): AquaBiome = savanna(false, false)
 
     @JvmStatic
-    fun savannaPlateau(): KryptonBiome = savanna(false, true)
+    fun savannaPlateau(): AquaBiome = savanna(false, true)
 
     @JvmStatic
-    fun windsweptSavanna(): KryptonBiome = savanna(true, false)
+    fun windsweptSavanna(): AquaBiome = savanna(true, false)
 
     @JvmStatic
-    private fun savanna(shattered: Boolean, plateau: Boolean): KryptonBiome {
+    private fun savanna(shattered: Boolean, plateau: Boolean): AquaBiome {
         val temperature = when {
             shattered -> 1.1F
             plateau -> 1F
@@ -173,16 +173,16 @@ object OverworldBiomes {
     // ==============================
 
     @JvmStatic
-    fun beach(): KryptonBiome = beach(false, false)
+    fun beach(): AquaBiome = beach(false, false)
 
     @JvmStatic
-    fun snowyBeach(): KryptonBiome = beach(true, false)
+    fun snowyBeach(): AquaBiome = beach(true, false)
 
     @JvmStatic
-    fun stonyShore(): KryptonBiome = beach(false, true)
+    fun stonyShore(): AquaBiome = beach(false, true)
 
     @JvmStatic
-    private fun beach(snowy: Boolean, stony: Boolean): KryptonBiome {
+    private fun beach(snowy: Boolean, stony: Boolean): AquaBiome {
         val temperature = when {
             snowy -> 0.05F
             stony -> 0.2F
@@ -198,25 +198,25 @@ object OverworldBiomes {
     // ==============================
 
     @JvmStatic
-    fun forest(): KryptonBiome = forest(false, false, false)
+    fun forest(): AquaBiome = forest(false, false, false)
 
     @JvmStatic
-    fun flowerForest(): KryptonBiome = forest(false, false, true)
+    fun flowerForest(): AquaBiome = forest(false, false, true)
 
     @JvmStatic
-    fun birchForest(): KryptonBiome = forest(true, false, false)
+    fun birchForest(): AquaBiome = forest(true, false, false)
 
     @JvmStatic
-    fun oldGrowthBirchForest(): KryptonBiome = forest(true, true, false)
+    fun oldGrowthBirchForest(): AquaBiome = forest(true, true, false)
 
     @JvmStatic
-    private fun forest(birch: Boolean, tall: Boolean, flower: Boolean): KryptonBiome {
+    private fun forest(birch: Boolean, tall: Boolean, flower: Boolean): AquaBiome {
         val music = SoundEvents.MUSIC_BIOME_JUNGLE_AND_FOREST.get()
         return createBiome(Precipitation.RAIN, if (birch) 0.6F else 0.7F, if (birch) 0.6F else 0.8F, music = music)
     }
 
     @JvmStatic
-    fun darkForest(): KryptonBiome = biome {
+    fun darkForest(): AquaBiome = biome {
         climate(Climate.of(Precipitation.RAIN, 0.7F, 0.8F, TemperatureModifier.NONE))
         effects {
             waterColor(OVERWORLD_WATER)
@@ -224,7 +224,7 @@ object OverworldBiomes {
             fogColor(OVERWORLD_FOG)
             skyColor(calculateSkyColor(0.7F))
             grassColorModifier(GrassColorModifier.DARK_FOREST)
-            mood(KryptonAmbientMoodSettings.CAVE)
+            mood(AquaAmbientMoodSettings.CAVE)
             backgroundMusic(AquaMusic.game(SoundEvents.MUSIC_BIOME_JUNGLE_AND_FOREST.get()))
         }
     }
@@ -234,43 +234,43 @@ object OverworldBiomes {
     // ==============================
 
     @JvmStatic
-    fun coldOcean(): KryptonBiome = coldOcean(false)
+    fun coldOcean(): AquaBiome = coldOcean(false)
 
     @JvmStatic
-    fun deepColdOcean(): KryptonBiome = coldOcean(true)
+    fun deepColdOcean(): AquaBiome = coldOcean(true)
 
     @JvmStatic
-    fun ocean(): KryptonBiome = ocean(false)
+    fun ocean(): AquaBiome = ocean(false)
 
     @JvmStatic
-    fun deepOcean(): KryptonBiome = ocean(true)
+    fun deepOcean(): AquaBiome = ocean(true)
 
     @JvmStatic
-    fun lukewarmOcean(): KryptonBiome = lukewarmOcean(false)
+    fun lukewarmOcean(): AquaBiome = lukewarmOcean(false)
 
     @JvmStatic
-    fun deepLukewarmOcean(): KryptonBiome = lukewarmOcean(true)
+    fun deepLukewarmOcean(): AquaBiome = lukewarmOcean(true)
 
     @JvmStatic
-    fun warmOcean(): KryptonBiome = baseOcean(WARM_WATER, WARM_WATER_FOG)
+    fun warmOcean(): AquaBiome = baseOcean(WARM_WATER, WARM_WATER_FOG)
 
     @JvmStatic
-    fun frozenOcean(): KryptonBiome = frozenOcean(false)
+    fun frozenOcean(): AquaBiome = frozenOcean(false)
 
     @JvmStatic
-    fun deepFrozenOcean(): KryptonBiome = frozenOcean(true)
+    fun deepFrozenOcean(): AquaBiome = frozenOcean(true)
 
     @JvmStatic
-    private fun coldOcean(deep: Boolean): KryptonBiome = baseOcean(COLD_WATER, OVERWORLD_WATER_FOG)
+    private fun coldOcean(deep: Boolean): AquaBiome = baseOcean(COLD_WATER, OVERWORLD_WATER_FOG)
 
     @JvmStatic
-    private fun ocean(deep: Boolean): KryptonBiome = baseOcean(OVERWORLD_WATER, OVERWORLD_WATER_FOG)
+    private fun ocean(deep: Boolean): AquaBiome = baseOcean(OVERWORLD_WATER, OVERWORLD_WATER_FOG)
 
     @JvmStatic
-    private fun lukewarmOcean(deep: Boolean): KryptonBiome = baseOcean(LUKEWARM_WATER, LUKEWARM_WATER_FOG)
+    private fun lukewarmOcean(deep: Boolean): AquaBiome = baseOcean(LUKEWARM_WATER, LUKEWARM_WATER_FOG)
 
     @JvmStatic
-    private fun frozenOcean(deep: Boolean): KryptonBiome {
+    private fun frozenOcean(deep: Boolean): AquaBiome {
         val temperature = if (deep) 0.5F else 0F
         return biome {
             climate(Climate.of(if (deep) Precipitation.RAIN else Precipitation.SNOW, temperature, 0.5F, TemperatureModifier.FROZEN))
@@ -279,13 +279,13 @@ object OverworldBiomes {
                 waterFogColor(OVERWORLD_WATER_FOG)
                 fogColor(OVERWORLD_FOG)
                 skyColor(calculateSkyColor(temperature))
-                mood(KryptonAmbientMoodSettings.CAVE)
+                mood(AquaAmbientMoodSettings.CAVE)
             }
         }
     }
 
     @JvmStatic
-    private fun baseOcean(waterColor: Color, waterFogColor: Color): KryptonBiome =
+    private fun baseOcean(waterColor: Color, waterFogColor: Color): AquaBiome =
         createBiome(Precipitation.RAIN, 0.5F, 0.5F, waterColor, waterFogColor)
 
     // ==============================
@@ -293,20 +293,20 @@ object OverworldBiomes {
     // ==============================
 
     @JvmStatic
-    fun desert(): KryptonBiome = createBiome(Precipitation.NONE, 2F, 0F)
+    fun desert(): AquaBiome = createBiome(Precipitation.NONE, 2F, 0F)
 
     // ==============================
     // River
     // ==============================
 
     @JvmStatic
-    fun river(): KryptonBiome = river(false)
+    fun river(): AquaBiome = river(false)
 
     @JvmStatic
-    fun frozenRiver(): KryptonBiome = river(true)
+    fun frozenRiver(): AquaBiome = river(true)
 
     @JvmStatic
-    private fun river(frozen: Boolean): KryptonBiome {
+    private fun river(frozen: Boolean): AquaBiome {
         val precipitation = if (frozen) Precipitation.SNOW else Precipitation.RAIN
         return createBiome(precipitation, if (frozen) 0F else 0.5F, 0.5F, if (frozen) COLD_WATER else OVERWORLD_WATER)
     }
@@ -316,13 +316,13 @@ object OverworldBiomes {
     // ==============================
 
     @JvmStatic
-    fun swamp(): KryptonBiome = baseSwamp(SWAMP_WATER, SWAMP_WATER_FOG, SWAMP_FOLIAGE)
+    fun swamp(): AquaBiome = baseSwamp(SWAMP_WATER, SWAMP_WATER_FOG, SWAMP_FOLIAGE)
 
     @JvmStatic
-    fun mangroveSwamp(): KryptonBiome = baseSwamp(MANGROVE_SWAMP_WATER, MANGROVE_SWAMP_WATER_FOG, MANGROVE_SWAMP_FOLIAGE)
+    fun mangroveSwamp(): AquaBiome = baseSwamp(MANGROVE_SWAMP_WATER, MANGROVE_SWAMP_WATER_FOG, MANGROVE_SWAMP_FOLIAGE)
 
     @JvmStatic
-    private fun baseSwamp(waterColor: Color, waterFogColor: Color, foliageColor: Color): KryptonBiome = biome {
+    private fun baseSwamp(waterColor: Color, waterFogColor: Color, foliageColor: Color): AquaBiome = biome {
         climate(Climate.of(Precipitation.RAIN, 0.8F, 0.9F, TemperatureModifier.NONE))
         effects {
             waterColor(waterColor)
@@ -331,7 +331,7 @@ object OverworldBiomes {
             skyColor(calculateSkyColor(0.8F))
             foliageColor(foliageColor)
             grassColorModifier(GrassColorModifier.SWAMP)
-            mood(KryptonAmbientMoodSettings.CAVE)
+            mood(AquaAmbientMoodSettings.CAVE)
             backgroundMusic(AquaMusic.game(SoundEvents.MUSIC_BIOME_SWAMP.get()))
         }
     }
@@ -341,42 +341,42 @@ object OverworldBiomes {
     // ==============================
 
     @JvmStatic
-    fun mushroomFields(): KryptonBiome = createBiome(Precipitation.RAIN, 0.9F, 1F)
+    fun mushroomFields(): AquaBiome = createBiome(Precipitation.RAIN, 0.9F, 1F)
 
     // ==============================
     // Underground
     // ==============================
 
     @JvmStatic
-    fun lushCaves(): KryptonBiome = createBiome(Precipitation.RAIN, 0.5F, 0.5F, music = SoundEvents.MUSIC_BIOME_LUSH_CAVES.get())
+    fun lushCaves(): AquaBiome = createBiome(Precipitation.RAIN, 0.5F, 0.5F, music = SoundEvents.MUSIC_BIOME_LUSH_CAVES.get())
 
     @JvmStatic
-    fun dripstoneCaves(): KryptonBiome = createBiome(Precipitation.RAIN, 0.8F, 0.4F, music = SoundEvents.MUSIC_BIOME_DRIPSTONE_CAVES.get())
+    fun dripstoneCaves(): AquaBiome = createBiome(Precipitation.RAIN, 0.8F, 0.4F, music = SoundEvents.MUSIC_BIOME_DRIPSTONE_CAVES.get())
 
     // ==============================
     // Mountain
     // ==============================
 
     @JvmStatic
-    fun meadow(): KryptonBiome = createBiome(Precipitation.RAIN, 0.5F, 0.8F, MEADOW_WATER, OVERWORLD_WATER_FOG, SoundEvents.MUSIC_BIOME_MEADOW.get())
+    fun meadow(): AquaBiome = createBiome(Precipitation.RAIN, 0.5F, 0.8F, MEADOW_WATER, OVERWORLD_WATER_FOG, SoundEvents.MUSIC_BIOME_MEADOW.get())
 
     @JvmStatic
-    fun frozenPeaks(): KryptonBiome = createBiome(Precipitation.RAIN, -0.7F, 0.9F, music = SoundEvents.MUSIC_BIOME_FROZEN_PEAKS.get())
+    fun frozenPeaks(): AquaBiome = createBiome(Precipitation.RAIN, -0.7F, 0.9F, music = SoundEvents.MUSIC_BIOME_FROZEN_PEAKS.get())
 
     @JvmStatic
-    fun jaggedPeaks(): KryptonBiome = createBiome(Precipitation.SNOW, -0.7F, 0.9F, music = SoundEvents.MUSIC_BIOME_JAGGED_PEAKS.get())
+    fun jaggedPeaks(): AquaBiome = createBiome(Precipitation.SNOW, -0.7F, 0.9F, music = SoundEvents.MUSIC_BIOME_JAGGED_PEAKS.get())
 
     @JvmStatic
-    fun stonyPeaks(): KryptonBiome = createBiome(Precipitation.RAIN, 1F, 0.3F, music = SoundEvents.MUSIC_BIOME_STONY_PEAKS.get())
+    fun stonyPeaks(): AquaBiome = createBiome(Precipitation.RAIN, 1F, 0.3F, music = SoundEvents.MUSIC_BIOME_STONY_PEAKS.get())
 
     @JvmStatic
-    fun snowySlopes(): KryptonBiome = createBiome(Precipitation.SNOW, -0.3F, 0.9F, music = SoundEvents.MUSIC_BIOME_SNOWY_SLOPES.get())
+    fun snowySlopes(): AquaBiome = createBiome(Precipitation.SNOW, -0.3F, 0.9F, music = SoundEvents.MUSIC_BIOME_SNOWY_SLOPES.get())
 
     @JvmStatic
-    fun grove(): KryptonBiome = createBiome(Precipitation.SNOW, -0.2F, 0.8F, music = SoundEvents.MUSIC_BIOME_GROVE.get())
+    fun grove(): AquaBiome = createBiome(Precipitation.SNOW, -0.2F, 0.8F, music = SoundEvents.MUSIC_BIOME_GROVE.get())
 
     @JvmStatic
-    fun deepDark(): KryptonBiome = createBiome(Precipitation.RAIN, 0.8F, 0.4F, music = SoundEvents.MUSIC_BIOME_DEEP_DARK.get())
+    fun deepDark(): AquaBiome = createBiome(Precipitation.RAIN, 0.8F, 0.4F, music = SoundEvents.MUSIC_BIOME_DEEP_DARK.get())
 
     // ******************************
     // Helpers
@@ -390,7 +390,7 @@ object OverworldBiomes {
         waterColor: Color = OVERWORLD_WATER,
         waterFogColor: Color = OVERWORLD_WATER_FOG,
         music: SoundEvent? = null
-    ): KryptonBiome = biome {
+    ): AquaBiome = biome {
         climate {
             precipitation(precipitation)
             temperature(temperature)
@@ -401,7 +401,7 @@ object OverworldBiomes {
             waterFogColor(waterFogColor)
             fogColor(OVERWORLD_FOG)
             skyColor(calculateSkyColor(temperature))
-            mood(KryptonAmbientMoodSettings.CAVE)
+            mood(AquaAmbientMoodSettings.CAVE)
             if (music != null) backgroundMusic(AquaMusic.game(music))
         }
     }
@@ -413,5 +413,5 @@ object OverworldBiomes {
     }
 
     @JvmStatic
-    private inline fun biome(builder: KryptonBiome.Builder.() -> Unit): KryptonBiome = KryptonBiome.Builder().apply(builder).build()
+    private inline fun biome(builder: AquaBiome.Builder.() -> Unit): AquaBiome = AquaBiome.Builder().apply(builder).build()
 }

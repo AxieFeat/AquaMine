@@ -17,7 +17,7 @@ object MessageCommand {
     @JvmStatic
     fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
         val messageCommand = dispatcher.register(literalCommand("msg") {
-            requiresPermission(KryptonPermission.MESSAGE)
+            requiresPermission(AquaPermission.MESSAGE)
             argument(PLAYER, EntityArgumentType.players()) {
                 argument(MESSAGE, StringArgumentType.string()) {
                     runs {

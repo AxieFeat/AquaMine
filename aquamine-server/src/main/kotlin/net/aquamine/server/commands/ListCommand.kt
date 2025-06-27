@@ -5,7 +5,7 @@ import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import net.aquamine.api.command.literal
 import net.aquamine.api.command.literalCommand
 import net.aquamine.server.command.CommandSourceStack
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.locale.CommandMessages
 
 object ListCommand {
@@ -13,7 +13,7 @@ object ListCommand {
     @JvmStatic
     fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
         dispatcher.register(literalCommand("list") {
-            requiresPermission(KryptonPermission.LIST)
+            requiresPermission(AquaPermission.LIST)
             runs { context -> sendNames(context.source) { PlainTextComponentSerializer.plainText().serialize(it.displayName) } }
             literal("uuids") {
                 runs { context ->
@@ -24,7 +24,7 @@ object ListCommand {
     }
 
     @JvmStatic
-    private inline fun sendNames(source: CommandSourceStack, nameGetter: (KryptonPlayer) -> String) {
+    private inline fun sendNames(source: CommandSourceStack, nameGetter: (AquaPlayer) -> String) {
         val names = source.server.players.map(nameGetter)
         CommandMessages.LIST_PLAYERS.sendSuccess(source, source.server.config.status.maxPlayers, names, false)
     }

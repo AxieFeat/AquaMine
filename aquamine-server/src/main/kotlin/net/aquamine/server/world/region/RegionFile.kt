@@ -296,7 +296,7 @@ class RegionFile(private val folder: Path, private val externalFolder: Path, pri
 
     companion object {
 
-        private val SYNC_WRITES = java.lang.Boolean.getBoolean("krypton.synchronize-writes")
+        private val SYNC_WRITES = java.lang.Boolean.getBoolean("aquamine.synchronize-writes")
 
         private val LOGGER = LogManager.getLogger()
         private const val SECTOR_BYTES = 4096

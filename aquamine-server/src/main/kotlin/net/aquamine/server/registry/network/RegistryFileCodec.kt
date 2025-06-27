@@ -3,7 +3,7 @@ package net.aquamine.server.registry.network
 import net.aquamine.api.registry.Registry
 import net.aquamine.api.resource.ResourceKey
 import net.aquamine.server.registry.holder.Holder
-import net.aquamine.server.resource.KryptonResourceKey
+import net.aquamine.server.resource.AquaResourceKey
 import net.aquamine.server.util.Keys
 import net.aquamine.server.util.resultOrError
 import org.kryptonmc.serialization.Codec
@@ -38,7 +38,7 @@ class RegistryFileCodec<E> private constructor(
                 return elementCodec.decode(input, ops).map { pair -> pair.mapFirst { Holder.Direct(it!!) } }
             }
             val keyResult = keyDecode.result().get()
-            val key = KryptonResourceKey.of(registryKey, keyResult.first)
+            val key = AquaResourceKey.of(registryKey, keyResult.first)
             @Suppress("UNCHECKED_CAST")
             return getter.get(key).resultOrError { "Failed to get element $key!" }
                 .map { Pair.of(it, keyResult.second) }

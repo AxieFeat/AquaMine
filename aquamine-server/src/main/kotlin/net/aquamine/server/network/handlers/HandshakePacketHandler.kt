@@ -2,8 +2,8 @@ package net.aquamine.server.network.handlers
 
 import net.kyori.adventure.text.Component
 import org.apache.logging.log4j.LogManager
-import net.aquamine.server.KryptonPlatform
-import net.aquamine.server.KryptonServer
+import net.aquamine.server.AquaPlatform
+import net.aquamine.server.AquaServer
 import net.aquamine.server.config.category.ProxyCategory
 import net.aquamine.server.locale.DisconnectMessages
 import net.aquamine.server.network.NioConnection
@@ -16,7 +16,7 @@ import net.aquamine.server.packet.out.login.PacketOutLoginDisconnect
 /**
  * Handles all inbound packets in the [Handshake][PacketState.HANDSHAKE] state.
  */
-class HandshakePacketHandler(private val server: KryptonServer, private val connection: NioConnection) : PacketHandler {
+class HandshakePacketHandler(private val server: AquaServer, private val connection: NioConnection) : PacketHandler {
 
     fun handleHandshake(packet: PacketInHandshake) {
         when (packet.nextState) {
@@ -32,7 +32,7 @@ class HandshakePacketHandler(private val server: KryptonServer, private val conn
 
         // This method of determining what to send is from vanilla Minecraft.
         // We do this first so that we don't have to deal with legacy clients.
-        if (packet.protocol != KryptonPlatform.protocolVersion) {
+        if (packet.protocol != AquaPlatform.protocolVersion) {
             val message = if (packet.protocol < 754) DisconnectMessages.OUTDATED_CLIENT else DisconnectMessages.INCOMPATIBLE
             disconnect(message)
             return

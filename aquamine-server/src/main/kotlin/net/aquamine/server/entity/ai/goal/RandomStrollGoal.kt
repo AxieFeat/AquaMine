@@ -2,10 +2,10 @@ package net.aquamine.server.entity.ai.goal
 
 import net.aquamine.api.entity.ai.goal.Goal
 import net.aquamine.api.util.Vec3i
-import net.aquamine.server.entity.KryptonMob
+import net.aquamine.server.entity.AquaMob
 import net.aquamine.server.util.random.RandomSource
 
-class RandomStrollGoal(private val entity: KryptonMob, private val radius: Int) : Goal {
+class RandomStrollGoal(private val entity: AquaMob, private val radius: Int) : Goal {
 
     private val positions = getBlocksInRange(radius)
     private val random = RandomSource.create()

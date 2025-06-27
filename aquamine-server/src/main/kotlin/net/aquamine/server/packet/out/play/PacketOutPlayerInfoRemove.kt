@@ -1,6 +1,6 @@
 package net.aquamine.server.packet.out.play
 
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
@@ -10,7 +10,7 @@ import java.util.UUID
 @JvmRecord
 data class PacketOutPlayerInfoRemove(val profileIds: List<UUID>) : Packet {
 
-    constructor(player: KryptonPlayer) : this(ImmutableLists.of(player.uuid))
+    constructor(player: AquaPlayer) : this(ImmutableLists.of(player.uuid))
 
     constructor(reader: BinaryReader) : this(reader.readList { it.readUUID() })
 

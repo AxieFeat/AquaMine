@@ -9,7 +9,7 @@ import net.aquamine.api.resource.ResourceKey
 import net.aquamine.server.network.Writable
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
-import net.aquamine.server.registry.KryptonRegistry
+import net.aquamine.server.registry.AquaRegistry
 import net.aquamine.server.registry.holder.Holder
 import net.aquamine.server.registry.network.RegistrySerialization
 
@@ -18,13 +18,13 @@ object TagSerializer {
     @JvmStatic
     fun serializeTagsToNetwork(dynamicHolder: RegistryHolder): Map<ResourceKey<out Registry<*>>, NetworkPayload> {
         return RegistrySerialization.networkSafeRegistries(dynamicHolder).registries.asSequence()
-            .map { Pair(it.key, serializeToNetwork(it as KryptonRegistry<*>)) }
+            .map { Pair(it.key, serializeToNetwork(it as AquaRegistry<*>)) }
             .filter { !it.second.isEmpty() }
             .associate { it.first to it.second }
     }
 
     @JvmStatic
-    private fun <T> serializeToNetwork(registry: KryptonRegistry<T>): NetworkPayload {
+    private fun <T> serializeToNetwork(registry: AquaRegistry<T>): NetworkPayload {
         val tags = HashMap<Key, IntList>()
         registry.tagEntries().forEach { (key, set) ->
             val ids = IntArrayList(set.size())

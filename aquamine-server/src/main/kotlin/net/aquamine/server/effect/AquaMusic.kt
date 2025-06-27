@@ -2,7 +2,7 @@ package net.aquamine.server.effect
 
 import net.aquamine.api.effect.Music
 import net.aquamine.api.effect.sound.SoundEvent
-import net.aquamine.server.effect.sound.KryptonSoundEvent
+import net.aquamine.server.effect.sound.AquaSoundEvent
 import org.kryptonmc.serialization.Codec
 import org.kryptonmc.serialization.codecs.RecordCodecBuilder
 
@@ -29,7 +29,7 @@ data class AquaMusic(
         @JvmField
         val CODEC: Codec<Music> = RecordCodecBuilder.create { instance ->
             instance.group(
-                KryptonSoundEvent.DIRECT_CODEC.fieldOf("sound").getting { it.sound },
+                AquaSoundEvent.DIRECT_CODEC.fieldOf("sound").getting { it.sound },
                 Codec.INT.fieldOf("min_delay").getting { it.minimumDelay },
                 Codec.INT.fieldOf("max_delay").getting { it.maximumDelay },
                 Codec.BOOLEAN.fieldOf("replace_current_music").getting { it.replaceCurrentMusic }

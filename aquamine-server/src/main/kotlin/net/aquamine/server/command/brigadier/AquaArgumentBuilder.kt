@@ -30,6 +30,6 @@ class AquaArgumentBuilder<S, T> private constructor(
     companion object {
 
         @JvmStatic
-        fun <S, T> kryptonArgument(name: String, type: ArgumentType<T>): AquaArgumentBuilder<S, T> = AquaArgumentBuilder(name, type)
+        fun <S, T> AquaArgument(name: String, type: ArgumentType<T>): AquaArgumentBuilder<S, T> = AquaArgumentBuilder(name, type)
     }
 }

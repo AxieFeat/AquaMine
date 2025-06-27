@@ -1,15 +1,15 @@
 package net.aquamine.server.entity.serializer
 
 import net.aquamine.api.entity.MainHand
-import net.aquamine.server.entity.components.KryptonEquipable
-import net.aquamine.server.entity.KryptonMob
+import net.aquamine.server.entity.components.AquaEquipable
+import net.aquamine.server.entity.AquaMob
 import xyz.axie.nbt.ByteTag
 import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.FloatTag
 import xyz.axie.nbt.ListTag
 import xyz.axie.nbt.list
 
-object MobSerializer : EntitySerializer<KryptonMob> {
+object MobSerializer : EntitySerializer<AquaMob> {
 
     private const val PICKUP_LOOT_TAG = "CanPickUpLoot"
     private const val PERSISTENCE_TAG = "PersistenceRequired"
@@ -20,13 +20,13 @@ object MobSerializer : EntitySerializer<KryptonMob> {
     private const val LEFT_HANDED_TAG = "LeftHanded"
     private const val NO_AI_TAG = "NoAI"
 
-    override fun load(entity: KryptonMob, data: CompoundTag) {
+    override fun load(entity: AquaMob, data: CompoundTag) {
         LivingEntitySerializer.load(entity, data)
         if (data.contains(PICKUP_LOOT_TAG, ByteTag.ID)) entity.canPickUpLoot = data.getBoolean(PICKUP_LOOT_TAG)
         entity.isPersistent = data.getBoolean(PERSISTENCE_TAG)
 
-        KryptonEquipable.loadItems(data, ARMOR_ITEMS_TAG, entity.armorItems)
-        KryptonEquipable.loadItems(data, HAND_ITEMS_TAG, entity.handItems)
+        AquaEquipable.loadItems(data, ARMOR_ITEMS_TAG, entity.armorItems)
+        AquaEquipable.loadItems(data, HAND_ITEMS_TAG, entity.handItems)
         loadChances(data, ARMOR_DROP_CHANCES_TAG, entity.armorDropChances)
         loadChances(data, HAND_DROP_CHANCES_TAG, entity.handDropChances)
 
@@ -34,11 +34,11 @@ object MobSerializer : EntitySerializer<KryptonMob> {
         entity.hasAI = !data.getBoolean(NO_AI_TAG)
     }
 
-    override fun save(entity: KryptonMob): CompoundTag.Builder = LivingEntitySerializer.save(entity).apply {
+    override fun save(entity: AquaMob): CompoundTag.Builder = LivingEntitySerializer.save(entity).apply {
         putBoolean(PICKUP_LOOT_TAG, entity.canPickUpLoot)
         putBoolean(PERSISTENCE_TAG, entity.isPersistent)
-        put(ARMOR_ITEMS_TAG, KryptonEquipable.saveItems(entity.armorItems))
-        put(HAND_ITEMS_TAG, KryptonEquipable.saveItems(entity.handItems))
+        put(ARMOR_ITEMS_TAG, AquaEquipable.saveItems(entity.armorItems))
+        put(HAND_ITEMS_TAG, AquaEquipable.saveItems(entity.handItems))
         list(ARMOR_DROP_CHANCES_TAG) { entity.armorDropChances.forEach(::addFloat) }
         list(HAND_DROP_CHANCES_TAG) { entity.handDropChances.forEach(::addFloat) }
         putBoolean(LEFT_HANDED_TAG, entity.mainHand == MainHand.LEFT)

@@ -1,6 +1,6 @@
 package net.aquamine.server.packet.out.play
 
-import net.aquamine.server.entity.KryptonExperienceOrb
+import net.aquamine.server.entity.AquaExperienceOrb
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.EntityPacket
@@ -22,7 +22,7 @@ data class PacketOutSpawnExperienceOrb(override val entityId: Int, val x: Double
     companion object {
 
         @JvmStatic
-        fun create(orb: KryptonExperienceOrb): PacketOutSpawnExperienceOrb {
+        fun create(orb: AquaExperienceOrb): PacketOutSpawnExperienceOrb {
             return PacketOutSpawnExperienceOrb(orb.id, orb.position.x, orb.position.y, orb.position.z, orb.count)
         }
     }

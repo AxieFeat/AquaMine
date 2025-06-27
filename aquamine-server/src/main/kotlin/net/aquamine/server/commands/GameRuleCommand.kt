@@ -14,7 +14,7 @@ object GameRuleCommand {
 
     @JvmStatic
     fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
-        val command = literalCommand("gamerule") { requiresPermission(KryptonPermission.GAME_RULE) }
+        val command = literalCommand("gamerule") { requiresPermission(AquaPermission.GAME_RULE) }
         GameRuleKeys.visitTypes(object : WorldGameRules.TypeVisitor {
             override fun <T : WorldGameRules.Value<T>> visit(key: WorldGameRules.Key<T>, type: WorldGameRules.Type<T>) {
                 command.then(literalCommand(key.id) {

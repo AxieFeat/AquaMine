@@ -1,11 +1,11 @@
 package net.aquamine.server.entity
 
 import org.apache.logging.log4j.LogManager
-import net.aquamine.server.entity.player.KryptonPlayer
-import net.aquamine.server.event.entity.KryptonRemoveEntityEvent
-import net.aquamine.server.event.entity.KryptonSpawnEntityEvent
+import net.aquamine.server.entity.player.AquaPlayer
+import net.aquamine.server.event.entity.AquaRemoveEntityEvent
+import net.aquamine.server.event.entity.AquaSpawnEntityEvent
 import net.aquamine.server.packet.out.play.PacketOutUpdateTime
-import net.aquamine.server.world.KryptonWorld
+import net.aquamine.server.world.AquaWorld
 import space.vectrix.flare.fastutil.Int2ObjectSyncMap
 import java.util.UUID
 import java.util.concurrent.ConcurrentHashMap
@@ -16,17 +16,17 @@ import java.util.concurrent.ConcurrentHashMap
  * This provides fast lookups for entities by both internal ID and unique ID (UUID), and also
  * supports loading and saving entities to and from chunks.
  */
-class EntityManager(private val world: KryptonWorld) {
+class EntityManager(private val world: AquaWorld) {
 
     private val entityTracker = world.entityTracker
-    private val byId = Int2ObjectSyncMap.hashmap<KryptonEntity>()
-    private val byUUID = ConcurrentHashMap<UUID, KryptonEntity>()
+    private val byId = Int2ObjectSyncMap.hashmap<AquaEntity>()
+    private val byUUID = ConcurrentHashMap<UUID, AquaEntity>()
 
-    fun entities(): MutableCollection<KryptonEntity> = byId.values
+    fun entities(): MutableCollection<AquaEntity> = byId.values
 
-    fun getById(id: Int): KryptonEntity? = byId.get(id)
+    fun getById(id: Int): AquaEntity? = byId.get(id)
 
-    fun getByUUID(uuid: UUID): KryptonEntity? = byUUID.get(uuid)
+    fun getByUUID(uuid: UUID): AquaEntity? = byUUID.get(uuid)
 
     /**
      * Spawns the entity in to the world, starting its tracking and ticking, and making it
@@ -38,7 +38,7 @@ class EntityManager(private val world: KryptonWorld) {
      * * The entity's spawn event is denied
      * * The chunk the entity is in is not loaded (throws an error)
      */
-    fun spawnEntity(entity: KryptonEntity) {
+    fun spawnEntity(entity: AquaEntity) {
         if (entity.world != world) return
         if (byUUID.containsKey(entity.uuid)) {
             LOGGER.error("UUID collision! UUID for entity ${entity.id} was the same as that of entity ${byUUID.get(entity.uuid)?.id}!")
@@ -46,7 +46,7 @@ class EntityManager(private val world: KryptonWorld) {
             return
         }
 
-        val event = world.server.eventNode.fire(KryptonSpawnEntityEvent(entity, world))
+        val event = world.server.eventNode.fire(AquaSpawnEntityEvent(entity, world))
         if (!event.isAllowed()) return
 
         val chunk = checkNotNull(world.getChunk(entity.position.chunkX(), entity.position.chunkZ())) {
@@ -67,7 +67,7 @@ class EntityManager(private val world: KryptonWorld) {
      * * The world the player is in is not the world this manager is managing
      * * The chunk the player is in is not loaded (throws an error)
      */
-    fun spawnPlayer(player: KryptonPlayer) {
+    fun spawnPlayer(player: AquaPlayer) {
         if (player.world != world) return
 
         // TODO: World border
@@ -93,10 +93,10 @@ class EntityManager(private val world: KryptonWorld) {
      * * The world the entity is in is not the world this manager is managing
      * * The entity's removal event is denied
      */
-    fun removeEntity(entity: KryptonEntity) {
+    fun removeEntity(entity: AquaEntity) {
         if (entity.world != world) return
 
-        val event = world.server.eventNode.fire(KryptonRemoveEntityEvent(entity, world))
+        val event = world.server.eventNode.fire(AquaRemoveEntityEvent(entity, world))
         if (!event.isAllowed()) return
 
         entityTracker.remove(entity, entity.trackingTarget, entity.trackingViewCallback)

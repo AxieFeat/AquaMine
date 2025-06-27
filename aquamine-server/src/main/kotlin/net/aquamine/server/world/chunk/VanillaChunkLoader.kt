@@ -5,19 +5,19 @@ import net.kyori.adventure.key.Key
 import org.apache.logging.log4j.LogManager
 import net.aquamine.api.resource.ResourceKeys
 import net.aquamine.api.world.biome.Biome
-import net.aquamine.server.KryptonPlatform
+import net.aquamine.server.AquaPlatform
 import net.aquamine.server.coordinate.ChunkPos
 import net.aquamine.server.entity.EntityFactory
-import net.aquamine.server.entity.player.KryptonPlayer
-import net.aquamine.server.registry.KryptonRegistries
-import net.aquamine.server.registry.KryptonRegistry
+import net.aquamine.server.entity.player.AquaPlayer
+import net.aquamine.server.registry.AquaRegistries
+import net.aquamine.server.registry.AquaRegistry
 import net.aquamine.server.util.nbt.getDataVersion
 import net.aquamine.server.util.nbt.putDataVersion
-import net.aquamine.server.world.KryptonWorld
+import net.aquamine.server.world.AquaWorld
 import net.aquamine.server.world.biome.BiomeKeys
-import net.aquamine.server.world.block.KryptonBlocks
+import net.aquamine.server.world.block.AquaBlocks
 import net.aquamine.server.world.block.palette.PaletteHolder
-import net.aquamine.server.world.block.state.KryptonBlockState
+import net.aquamine.server.world.block.state.AquaBlockState
 import net.aquamine.server.world.chunk.data.ChunkSection
 import net.aquamine.server.world.chunk.data.Heightmap
 import net.aquamine.server.world.region.RegionFileManager
@@ -38,14 +38,14 @@ class VanillaChunkLoader(worldFolder: Path) : ChunkLoader {
     private val regionManager = RegionFileManager(worldFolder.resolve("region"))
     private val entityRegionManager = RegionFileManager(worldFolder.resolve("entities"))
 
-    override fun loadChunk(world: KryptonWorld, pos: ChunkPos): KryptonChunk? {
+    override fun loadChunk(world: AquaWorld, pos: ChunkPos): AquaChunk? {
         val nbt = regionManager.read(pos.x, pos.z) ?: return null
         return loadData(world, pos, nbt)
     }
 
-    private fun loadData(world: KryptonWorld, pos: ChunkPos, nbt: CompoundTag): KryptonChunk {
+    private fun loadData(world: AquaWorld, pos: ChunkPos, nbt: CompoundTag): AquaChunk {
         val heightmaps = nbt.getCompound(HEIGHTMAPS_TAG)
-        val biomeRegistry = world.registryHolder.getRegistry(ResourceKeys.BIOME) as? KryptonRegistry<Biome>
+        val biomeRegistry = world.registryHolder.getRegistry(ResourceKeys.BIOME) as? AquaRegistry<Biome>
             ?: error("Cannot find biome registry in $world!")
 
         val sectionList = nbt.getList(SECTIONS_TAG, CompoundTag.ID)
@@ -59,7 +59,7 @@ class VanillaChunkLoader(worldFolder: Path) : ChunkLoader {
                 val blocks = if (sectionData.contains(BLOCK_STATES_TAG, CompoundTag.ID)) {
                     PaletteHolder.readBlocks(sectionData.getCompound(BLOCK_STATES_TAG))
                 } else {
-                    PaletteHolder(PaletteHolder.Strategy.BLOCKS, KryptonBlocks.AIR.defaultState)
+                    PaletteHolder(PaletteHolder.Strategy.BLOCKS, AquaBlocks.AIR.defaultState)
                 }
 
                 val biomes = if (sectionData.contains(BIOMES_TAG, CompoundTag.ID)) {
@@ -75,7 +75,7 @@ class VanillaChunkLoader(worldFolder: Path) : ChunkLoader {
             }
         }
 
-        val chunk = KryptonChunk(world, pos, fillMissingSections(world, sections))
+        val chunk = AquaChunk(world, pos, fillMissingSections(world, sections))
         chunk.lastUpdate = nbt.getLong(LAST_UPDATE_TAG)
         chunk.inhabitedTime = nbt.getLong(INHABITED_TIME_TAG)
 
@@ -88,7 +88,7 @@ class VanillaChunkLoader(worldFolder: Path) : ChunkLoader {
         return chunk
     }
 
-    private fun fillMissingSections(world: KryptonWorld, array: Array<ChunkSection?>): Array<ChunkSection> {
+    private fun fillMissingSections(world: AquaWorld, array: Array<ChunkSection?>): Array<ChunkSection> {
         val result = arrayOfNulls<ChunkSection>(world.sectionCount())
         if (result.size == array.size) {
             System.arraycopy(array, 0, result, 0, result.size)
@@ -101,7 +101,7 @@ class VanillaChunkLoader(worldFolder: Path) : ChunkLoader {
         return result as Array<ChunkSection>
     }
 
-    override fun loadAllEntities(chunk: KryptonChunk) {
+    override fun loadAllEntities(chunk: AquaChunk) {
         val nbt = entityRegionManager.read(chunk.x, chunk.z) ?: return
 
         nbt.getList(ENTITIES_TAG, CompoundTag.ID).forEachCompound {
@@ -113,7 +113,7 @@ class VanillaChunkLoader(worldFolder: Path) : ChunkLoader {
             } catch (_: InvalidKeyException) {
                 return@forEachCompound
             }
-            val type = KryptonRegistries.ENTITY_TYPE.get(key)
+            val type = AquaRegistries.ENTITY_TYPE.get(key)
 
             val entity = EntityFactory.create(type, chunk.world) ?: return@forEachCompound
             entity.load(it)
@@ -121,14 +121,14 @@ class VanillaChunkLoader(worldFolder: Path) : ChunkLoader {
         }
     }
 
-    override fun saveChunk(chunk: KryptonChunk) {
+    override fun saveChunk(chunk: AquaChunk) {
         val data = saveData(chunk)
         regionManager.write(chunk.x, chunk.z, data)
     }
 
-    private fun saveData(chunk: KryptonChunk): CompoundTag {
+    private fun saveData(chunk: AquaChunk): CompoundTag {
         val data = buildCompound {
-            putInt("DataVersion", KryptonPlatform.worldVersion)
+            putInt("DataVersion", AquaPlatform.worldVersion)
             putLong(LAST_UPDATE_TAG, chunk.lastUpdate)
             putLong(INHABITED_TIME_TAG, chunk.inhabitedTime)
             putString("Status", "full")
@@ -144,7 +144,7 @@ class VanillaChunkLoader(worldFolder: Path) : ChunkLoader {
                 val section = chunk.sections()[sectionIndex]
                 val sectionData = compound {
                     putByte(Y_TAG, i.toByte())
-                    put(BLOCK_STATES_TAG, section.blocks.write { KryptonBlockState.CODEC.encodeStart(it, NbtOps.INSTANCE).result().get() })
+                    put(BLOCK_STATES_TAG, section.blocks.write { AquaBlockState.CODEC.encodeStart(it, NbtOps.INSTANCE).result().get() })
                     put(BIOMES_TAG, section.biomes.write { StringTag.of(it.key().asString()) })
                     if (section.blockLight != null) putByteArray(BLOCK_LIGHT_TAG, section.blockLight)
                     if (section.skyLight != null) putByteArray(SKY_LIGHT_TAG, section.skyLight)
@@ -160,12 +160,12 @@ class VanillaChunkLoader(worldFolder: Path) : ChunkLoader {
         return data.build()
     }
 
-    override fun saveAllEntities(chunk: KryptonChunk) {
+    override fun saveAllEntities(chunk: AquaChunk) {
         val entities = chunk.world.entityTracker.entitiesInChunk(chunk.position)
         if (entities.isEmpty()) return
 
         val entityList = ImmutableListTag.builder(CompoundTag.ID)
-        entities.forEach { if (it !is KryptonPlayer) entityList.add(it.saveWithPassengers().build()) }
+        entities.forEach { if (it !is AquaPlayer) entityList.add(it.saveWithPassengers().build()) }
 
         entityRegionManager.write(chunk.x, chunk.z, compound {
             putDataVersion()
@@ -200,8 +200,8 @@ class VanillaChunkLoader(worldFolder: Path) : ChunkLoader {
         private const val ENTITIES_TAG = "Entities"
 
         @JvmStatic
-        private fun replaceMissingSections(world: KryptonWorld, sections: Array<ChunkSection?>) {
-            val biomeRegistry = world.registryHolder.getRegistry(ResourceKeys.BIOME) as KryptonRegistry<Biome>
+        private fun replaceMissingSections(world: AquaWorld, sections: Array<ChunkSection?>) {
+            val biomeRegistry = world.registryHolder.getRegistry(ResourceKeys.BIOME) as AquaRegistry<Biome>
             for (i in sections.indices) {
                 if (sections[i] == null) sections[i] = ChunkSection(biomeRegistry)
             }

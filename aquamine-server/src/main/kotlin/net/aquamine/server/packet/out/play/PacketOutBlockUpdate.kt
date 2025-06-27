@@ -4,16 +4,16 @@ import net.aquamine.api.util.Vec3i
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
-import net.aquamine.server.world.block.KryptonBlock
-import net.aquamine.server.world.block.state.KryptonBlockState
+import net.aquamine.server.world.block.AquaBlock
+import net.aquamine.server.world.block.state.AquaBlockState
 
 @JvmRecord
-data class PacketOutBlockUpdate(val position: Vec3i, val block: KryptonBlockState) : Packet {
+data class PacketOutBlockUpdate(val position: Vec3i, val block: AquaBlockState) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readBlockPos(), KryptonBlock.stateFromId(reader.readVarInt()))
+    constructor(reader: BinaryReader) : this(reader.readBlockPos(), AquaBlock.stateFromId(reader.readVarInt()))
 
     override fun write(writer: BinaryWriter) {
         writer.writeBlockPos(position)
-        writer.writeVarInt(KryptonBlock.idOf(block))
+        writer.writeVarInt(AquaBlock.idOf(block))
     }
 }

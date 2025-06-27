@@ -11,7 +11,7 @@ import net.aquamine.api.command.literalCommand
 import net.aquamine.api.entity.player.Player
 import net.aquamine.server.command.CommandSourceStack
 import net.aquamine.server.command.arguments.entities.EntityArgumentType
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.player.AquaPlayer
 
 object TitleCommand {
 
@@ -23,11 +23,11 @@ object TitleCommand {
     @JvmStatic
     fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
         dispatcher.register(literalCommand("title") {
-            requiresPermission(KryptonPermission.TITLE)
+            requiresPermission(AquaPermission.TITLE)
             argument(TARGETS, EntityArgumentType.players()) {
-                title(this@literalCommand, "actionbar", KryptonPlayer::sendActionBar)
-                title(this@literalCommand, "title", KryptonPlayer::sendTitle)
-                title(this@literalCommand, "subtitle", KryptonPlayer::sendSubtitle)
+                title(this@literalCommand, "actionbar", AquaPlayer::sendActionBar)
+                title(this@literalCommand, "title", AquaPlayer::sendTitle)
+                title(this@literalCommand, "subtitle", AquaPlayer::sendSubtitle)
                 clearOrReset(this@literalCommand, "clear", "cleared", Player::clearTitle)
                 clearOrReset(this@literalCommand, "reset", "reset", Player::resetTitle)
                 times(this@literalCommand)
@@ -37,7 +37,7 @@ object TitleCommand {
 
     @JvmStatic
     private inline fun title(builder: LiteralArgumentBuilder<CommandSourceStack>, name: String,
-                             crossinline action: (KryptonPlayer, Component) -> Unit): LiteralArgumentBuilder<CommandSourceStack> {
+                             crossinline action: (AquaPlayer, Component) -> Unit): LiteralArgumentBuilder<CommandSourceStack> {
         return builder.literal(name) {
             argument("message", StringArgumentType.string()) {
                 runs { context ->
@@ -52,7 +52,7 @@ object TitleCommand {
 
     @JvmStatic
     private inline fun clearOrReset(builder: LiteralArgumentBuilder<CommandSourceStack>, name: String, translationKey: String,
-                                    crossinline action: (KryptonPlayer) -> Unit): LiteralArgumentBuilder<CommandSourceStack> {
+                                    crossinline action: (AquaPlayer) -> Unit): LiteralArgumentBuilder<CommandSourceStack> {
         return builder.literal(name) {
             runs { context ->
                 val targets = EntityArgumentType.getPlayers(context, TARGETS)

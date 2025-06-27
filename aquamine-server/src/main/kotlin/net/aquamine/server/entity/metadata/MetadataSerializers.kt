@@ -11,14 +11,14 @@ import net.aquamine.annotations.Catalogue
 import net.aquamine.server.effect.particle.ParticleOptions
 import net.aquamine.server.entity.Pose
 import net.aquamine.server.entity.villagerdata.VillagerData
-import net.aquamine.server.item.KryptonItemStack
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.item.AquaItemStack
+import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.coordinate.GlobalPos
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.util.map.IntIdentityHashBiMap
-import net.aquamine.server.world.block.KryptonBlock
-import net.aquamine.server.world.block.state.KryptonBlockState
+import net.aquamine.server.world.block.AquaBlock
+import net.aquamine.server.world.block.state.AquaBlockState
 import xyz.axie.nbt.CompoundTag
 import java.util.OptionalInt
 import java.util.UUID
@@ -43,17 +43,17 @@ object MetadataSerializers {
     @JvmField
     val OPTIONAL_COMPONENT: MetadataSerializer<Component?> = MetadataSerializer.nullable(BinaryReader::readComponent, BinaryWriter::writeComponent)
     @JvmField
-    val ITEM_STACK: MetadataSerializer<KryptonItemStack> = MetadataSerializer.simple(BinaryReader::readItem, BinaryWriter::writeItem)
+    val ITEM_STACK: MetadataSerializer<AquaItemStack> = MetadataSerializer.simple(BinaryReader::readItem, BinaryWriter::writeItem)
     @JvmField
-    val BLOCK_STATE: MetadataSerializer<KryptonBlockState?> = MetadataSerializer.simple(
-        { reader -> reader.readVarInt().let { if (it == 0) null else KryptonBlock.stateFromId(it) } },
-        { writer, block -> if (block != null) writer.writeVarInt(KryptonBlock.idOf(block)) else writer.writeVarInt(0) }
+    val BLOCK_STATE: MetadataSerializer<AquaBlockState?> = MetadataSerializer.simple(
+        { reader -> reader.readVarInt().let { if (it == 0) null else AquaBlock.stateFromId(it) } },
+        { writer, block -> if (block != null) writer.writeVarInt(AquaBlock.idOf(block)) else writer.writeVarInt(0) }
     )
     @JvmField
     val BOOLEAN: MetadataSerializer<Boolean> = MetadataSerializer.simple(BinaryReader::readBoolean, BinaryWriter::writeBoolean)
     @JvmField
     val PARTICLE: MetadataSerializer<ParticleOptions> = MetadataSerializer.simple(::ParticleOptions) { reader, item ->
-        reader.writeId(KryptonRegistries.PARTICLE_TYPE, item.type)
+        reader.writeId(AquaRegistries.PARTICLE_TYPE, item.type)
         item.write(reader)
     }
     @JvmField
@@ -86,7 +86,7 @@ object MetadataSerializers {
     @JvmField
     val FROG_VARIANT: MetadataSerializer<FrogVariant> = MetadataSerializer.simpleEnum()
     @JvmField
-    val PAINTING_VARIANT: MetadataSerializer<PaintingVariant> = MetadataSerializer.simpleId(KryptonRegistries.PAINTING_VARIANT)
+    val PAINTING_VARIANT: MetadataSerializer<PaintingVariant> = MetadataSerializer.simpleId(AquaRegistries.PAINTING_VARIANT)
 
     init {
         SERIALIZERS.add(BYTE)

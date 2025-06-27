@@ -9,7 +9,7 @@ import com.mojang.brigadier.context.CommandContext
 import net.kyori.adventure.translation.Translatable
 import org.apache.logging.log4j.LogManager
 import net.aquamine.api.world.rule.GameRule
-import net.aquamine.server.KryptonServer
+import net.aquamine.server.AquaServer
 import net.aquamine.server.command.CommandSourceStack
 import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.compound
@@ -78,7 +78,7 @@ class WorldGameRules(private val rules: MutableMap<Key<*>, Value<*>>) {
     class Type<T : Value<T>>(
         private val argument: Supplier<ArgumentType<*>>,
         private val constructor: Function<Type<T>, T>,
-        internal val callback: BiConsumer<KryptonServer, T>,
+        internal val callback: BiConsumer<AquaServer, T>,
         private val visitorCaller: VisitorCaller<T>
     ) {
 
@@ -100,7 +100,7 @@ class WorldGameRules(private val rules: MutableMap<Key<*>, Value<*>>) {
             onUpdate(context.source.server)
         }
 
-        protected fun onUpdate(server: KryptonServer?) {
+        protected fun onUpdate(server: AquaServer?) {
             if (server != null) type.callback.accept(server, self())
         }
 
@@ -116,7 +116,7 @@ class WorldGameRules(private val rules: MutableMap<Key<*>, Value<*>>) {
 
         protected abstract fun copy(): T
 
-        abstract fun setFrom(value: T, server: KryptonServer?)
+        abstract fun setFrom(value: T, server: AquaServer?)
     }
 
     class BooleanValue(type: Type<BooleanValue>, private var value: Boolean) : Value<BooleanValue>(type) {
@@ -127,7 +127,7 @@ class WorldGameRules(private val rules: MutableMap<Key<*>, Value<*>>) {
 
         fun get(): Boolean = value
 
-        fun set(newValue: Boolean, server: KryptonServer?) {
+        fun set(newValue: Boolean, server: AquaServer?) {
             value = newValue
             onUpdate(server)
         }
@@ -144,7 +144,7 @@ class WorldGameRules(private val rules: MutableMap<Key<*>, Value<*>>) {
 
         override fun copy(): BooleanValue = BooleanValue(type, value)
 
-        override fun setFrom(value: BooleanValue, server: KryptonServer?) {
+        override fun setFrom(value: BooleanValue, server: AquaServer?) {
             this.value = value.value
             onUpdate(server)
         }
@@ -152,7 +152,7 @@ class WorldGameRules(private val rules: MutableMap<Key<*>, Value<*>>) {
         companion object {
 
             @JvmStatic
-            fun create(defaultValue: Boolean, changeListener: BiConsumer<KryptonServer, BooleanValue>): Type<BooleanValue> =
+            fun create(defaultValue: Boolean, changeListener: BiConsumer<AquaServer, BooleanValue>): Type<BooleanValue> =
                 Type({ BoolArgumentType.bool() }, { BooleanValue(it, defaultValue) }, changeListener, TypeVisitor::visitBoolean)
 
             @JvmStatic
@@ -168,7 +168,7 @@ class WorldGameRules(private val rules: MutableMap<Key<*>, Value<*>>) {
 
         fun get(): Int = value
 
-        fun set(newValue: Int, server: KryptonServer?) {
+        fun set(newValue: Int, server: AquaServer?) {
             value = newValue
             onUpdate(server)
         }
@@ -194,7 +194,7 @@ class WorldGameRules(private val rules: MutableMap<Key<*>, Value<*>>) {
 
         override fun copy(): IntegerValue = IntegerValue(type, value)
 
-        override fun setFrom(value: IntegerValue, server: KryptonServer?) {
+        override fun setFrom(value: IntegerValue, server: AquaServer?) {
             this.value = value.value
             onUpdate(server)
         }
@@ -202,7 +202,7 @@ class WorldGameRules(private val rules: MutableMap<Key<*>, Value<*>>) {
         companion object {
 
             @JvmStatic
-            fun create(defaultValue: Int, changeListener: BiConsumer<KryptonServer, IntegerValue>): Type<IntegerValue> =
+            fun create(defaultValue: Int, changeListener: BiConsumer<AquaServer, IntegerValue>): Type<IntegerValue> =
                 Type({ IntegerArgumentType.integer() }, { IntegerValue(it, defaultValue) }, changeListener, TypeVisitor::visitInteger)
 
             @JvmStatic

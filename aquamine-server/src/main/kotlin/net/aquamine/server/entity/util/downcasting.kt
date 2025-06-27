@@ -2,12 +2,12 @@ package net.aquamine.server.entity.util
 
 import net.aquamine.api.entity.Entity
 import net.aquamine.api.entity.EntityType
-import net.aquamine.server.entity.KryptonEntity
-import net.aquamine.server.entity.KryptonEntityType
+import net.aquamine.server.entity.AquaEntity
+import net.aquamine.server.entity.AquaEntityType
 import net.aquamine.server.util.downcastApiType
 
-inline fun <A : Entity, reified I : KryptonEntity> A.downcast(): I = downcastApiType("Entity")
+inline fun <A : Entity, reified I : AquaEntity> A.downcast(): I = downcastApiType("Entity")
 
-fun Entity.downcastBase(): KryptonEntity = downcast()
+fun Entity.downcastBase(): AquaEntity = downcast()
 
-fun <E : Entity, KE : KryptonEntity> EntityType<E>.downcast(): KryptonEntityType<KE> = downcastApiType("EntityType")
+fun <E : Entity, KE : AquaEntity> EntityType<E>.downcast(): AquaEntityType<KE> = downcastApiType("EntityType")

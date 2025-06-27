@@ -1,7 +1,7 @@
 package net.aquamine.server.entity.serializer
 
 import org.apache.logging.log4j.LogManager
-import net.aquamine.server.entity.KryptonLivingEntity
+import net.aquamine.server.entity.AquaLivingEntity
 import net.aquamine.server.entity.Pose
 import net.aquamine.server.entity.metadata.MetadataKeys
 import net.aquamine.server.util.nbt.getBlockPos
@@ -12,7 +12,7 @@ import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.ListTag
 import xyz.axie.nbt.StringTag
 
-object LivingEntitySerializer : EntitySerializer<KryptonLivingEntity> {
+object LivingEntitySerializer : EntitySerializer<AquaLivingEntity> {
 
     private val LOGGER = LogManager.getLogger()
     private const val ATTRIBUTES_TAG = "Attributes"
@@ -26,7 +26,7 @@ object LivingEntitySerializer : EntitySerializer<KryptonLivingEntity> {
     private const val TEAM_TAG = "Team"
     private const val SLEEPING_PREFIX = "Sleeping"
 
-    override fun load(entity: KryptonLivingEntity, data: CompoundTag) {
+    override fun load(entity: AquaLivingEntity, data: CompoundTag) {
         BaseEntitySerializer.load(entity, data)
         // AI stuff
         if (data.contains(ATTRIBUTES_TAG, ListTag.ID)) entity.attributes.load(data.getList(ATTRIBUTES_TAG, CompoundTag.ID))
@@ -57,7 +57,7 @@ object LivingEntitySerializer : EntitySerializer<KryptonLivingEntity> {
         }
     }
 
-    override fun save(entity: KryptonLivingEntity): CompoundTag.Builder = BaseEntitySerializer.save(entity).apply {
+    override fun save(entity: AquaLivingEntity): CompoundTag.Builder = BaseEntitySerializer.save(entity).apply {
         putFloat(ABSORPTION_TAG, entity.absorption)
         put(ATTRIBUTES_TAG, entity.attributes.save())
         put(BRAIN_TAG, entity.brain.save())

@@ -1,12 +1,12 @@
 package net.aquamine.server.ticking
 
 import org.apache.logging.log4j.LogManager
-import net.aquamine.server.KryptonServer
-import net.aquamine.server.event.server.KryptonTickEndEvent
-import net.aquamine.server.event.server.KryptonTickStartEvent
+import net.aquamine.server.AquaServer
+import net.aquamine.server.event.server.AquaTickEndEvent
+import net.aquamine.server.event.server.AquaTickStartEvent
 import java.util.concurrent.locks.LockSupport
 
-class TickSchedulerThread(private val server: KryptonServer) : Thread("Krypton Tick Scheduler") {
+class TickSchedulerThread(private val server: AquaServer) : Thread("AquaMine Tick Scheduler") {
 
     @Volatile
     private var tickCount = 0
@@ -15,7 +15,7 @@ class TickSchedulerThread(private val server: KryptonServer) : Thread("Krypton T
         while (server.isRunning()) {
             val startTime = System.nanoTime()
             val startTimeMillis = System.currentTimeMillis()
-            server.eventNode.fire(KryptonTickStartEvent(tickCount))
+            server.eventNode.fire(AquaTickStartEvent(tickCount))
 
             try {
                 server.tick(startTimeMillis)
@@ -25,7 +25,7 @@ class TickSchedulerThread(private val server: KryptonServer) : Thread("Krypton T
 
             val endTime = System.nanoTime()
             val tickDuration = endTime - startTime
-            server.eventNode.fire(KryptonTickEndEvent(tickCount, tickDuration, endTime))
+            server.eventNode.fire(AquaTickEndEvent(tickCount, tickDuration, endTime))
             tickCount++
 
             val waitTime = NANOS_PER_TICK - tickDuration
@@ -41,7 +41,7 @@ class TickSchedulerThread(private val server: KryptonServer) : Thread("Krypton T
         private const val NANOS_PER_MILLI = 1000L * 1000L
         private const val NANOS_PER_SECOND = MILLIS_PER_SECOND * NANOS_PER_MILLI
 
-        private val TICKS_PER_SECOND = Integer.getInteger("krypton.tps", 20)
+        private val TICKS_PER_SECOND = Integer.getInteger("aquamine.tps", 20)
         @JvmField
         val NANOS_PER_TICK: Long = NANOS_PER_SECOND / TICKS_PER_SECOND
         @JvmField

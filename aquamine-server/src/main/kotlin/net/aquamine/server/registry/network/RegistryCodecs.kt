@@ -4,10 +4,10 @@ import com.google.common.collect.ImmutableList
 import com.google.common.collect.ImmutableMap
 import net.aquamine.api.registry.Registry
 import net.aquamine.api.resource.ResourceKey
-import net.aquamine.server.registry.KryptonRegistry
-import net.aquamine.server.registry.KryptonSimpleRegistry
+import net.aquamine.server.registry.AquaRegistry
+import net.aquamine.server.registry.AquaSimpleRegistry
 import net.aquamine.server.registry.holder.HolderSet
-import net.aquamine.server.resource.KryptonResourceKey
+import net.aquamine.server.resource.AquaResourceKey
 import org.kryptonmc.serialization.Codec
 import org.kryptonmc.serialization.MapCodec
 import org.kryptonmc.serialization.codecs.RecordCodecBuilder
@@ -18,7 +18,7 @@ object RegistryCodecs {
     private fun <T> withNameAndId(key: ResourceKey<out Registry<T>>, elementCodec: MapCodec<T>): MapCodec<RegistryEntry<T>> {
         return RecordCodecBuilder.createMap { instance ->
             instance.group(
-                KryptonResourceKey.codec(key).fieldOf("name").getting { it.key },
+                AquaResourceKey.codec(key).fieldOf("name").getting { it.key },
                 Codec.INT.fieldOf("id").getting { it.id },
                 elementCodec.getting { it.value }
             ).apply(instance, ::RegistryEntry)
@@ -26,9 +26,9 @@ object RegistryCodecs {
     }
 
     @JvmStatic
-    fun <T> network(key: ResourceKey<out Registry<T>>, elementCodec: Codec<T>): Codec<KryptonRegistry<T>> {
+    fun <T> network(key: ResourceKey<out Registry<T>>, elementCodec: Codec<T>): Codec<AquaRegistry<T>> {
         return withNameAndId(key, elementCodec.fieldOf("element")).codec().listOf().xmap({ entries ->
-            val registry = KryptonSimpleRegistry.standard(key)
+            val registry = AquaSimpleRegistry.standard(key)
             entries.forEach { entry -> registry.register(entry.id, entry.key, entry.value) }
             registry
         }, { registry ->
@@ -39,10 +39,10 @@ object RegistryCodecs {
     }
 
     @JvmStatic
-    fun <E> full(key: ResourceKey<out Registry<E>>, elementCodec: Codec<E>): Codec<KryptonRegistry<E>> {
-        val elementsCodec = Codec.map(KryptonResourceKey.codec(key), elementCodec)
+    fun <E> full(key: ResourceKey<out Registry<E>>, elementCodec: Codec<E>): Codec<AquaRegistry<E>> {
+        val elementsCodec = Codec.map(AquaResourceKey.codec(key), elementCodec)
         return elementsCodec.xmap({ elements ->
-            val registry = KryptonSimpleRegistry.standard(key)
+            val registry = AquaSimpleRegistry.standard(key)
             elements.forEach { (key, value) -> registry.register(key, value) }
             registry.freeze()
         }, { ImmutableMap.copyOf(it.entries()) })

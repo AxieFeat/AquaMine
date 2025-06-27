@@ -7,7 +7,7 @@ import net.aquamine.api.permission.PermissionFunction
 import net.aquamine.api.util.Direction
 import net.aquamine.server.util.enumhelper.Directions
 
-interface BasePlayer : BaseEntity, KryptonEquipable, HungerDelegate, AbilitiesDelegate, PlayerAudience, Glider, GameModePlayer {
+interface BasePlayer : BaseEntity, AquaEquipable, HungerDelegate, AbilitiesDelegate, PlayerAudience, Glider, GameModePlayer {
 
     val permissionFunction: PermissionFunction
 

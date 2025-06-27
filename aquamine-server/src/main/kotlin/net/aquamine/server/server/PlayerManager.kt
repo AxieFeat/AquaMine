@@ -8,10 +8,10 @@ import net.aquamine.api.resource.ResourceKey
 import net.aquamine.api.statistic.CustomStatistics
 import net.aquamine.api.util.Vec3i
 import net.aquamine.api.world.World
-import net.aquamine.server.KryptonServer
-import net.aquamine.server.entity.player.KryptonPlayer
-import net.aquamine.server.event.player.KryptonJoinEvent
-import net.aquamine.server.event.player.KryptonPlayerQuitEvent
+import net.aquamine.server.AquaServer
+import net.aquamine.server.entity.player.AquaPlayer
+import net.aquamine.server.event.player.AquaJoinEvent
+import net.aquamine.server.event.player.AquaPlayerQuitEvent
 import net.aquamine.server.network.chat.RichChatType
 import net.aquamine.server.network.chat.OutgoingChatMessage
 import net.aquamine.server.network.chat.PlayerChatMessage
@@ -40,13 +40,13 @@ import net.aquamine.server.network.PacketGrouping
 import net.aquamine.server.packet.out.play.PacketOutDisconnect
 import net.aquamine.server.packet.out.play.PacketOutSystemChat
 import net.aquamine.server.packet.out.play.PacketOutUpdateTags
-import net.aquamine.server.registry.KryptonDynamicRegistries
+import net.aquamine.server.registry.AquaDynamicRegistries
 import net.aquamine.server.registry.network.RegistrySerialization
 import net.aquamine.server.tags.TagSerializer
-import net.aquamine.server.world.KryptonWorld
+import net.aquamine.server.world.AquaWorld
 import net.aquamine.server.world.biome.BiomeManager
 import net.aquamine.server.world.data.PlayerDataSerializer
-import net.aquamine.server.world.dimension.KryptonDimensionType
+import net.aquamine.server.world.dimension.AquaDimensionType
 import net.aquamine.server.world.rule.GameRuleKeys
 import org.kryptonmc.serialization.Dynamic
 import org.kryptonmc.serialization.nbt.NbtOps
@@ -56,23 +56,23 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CopyOnWriteArrayList
 
 class PlayerManager(
-    private val server: KryptonServer,
+    private val server: AquaServer,
     private val dataSerializer: PlayerDataSerializer,
     private val statsSerializer: StatisticsSerializer?
 ) {
 
     private val serializeData = server.config.advanced.serializePlayerData
-    private val players = CopyOnWriteArrayList<KryptonPlayer>()
-    private val playersByName = ConcurrentHashMap<String, KryptonPlayer>()
-    private val playersByUUID = ConcurrentHashMap<UUID, KryptonPlayer>()
+    private val players = CopyOnWriteArrayList<AquaPlayer>()
+    private val playersByName = ConcurrentHashMap<String, AquaPlayer>()
+    private val playersByUUID = ConcurrentHashMap<UUID, AquaPlayer>()
 
-    fun players(): List<KryptonPlayer> = players
+    fun players(): List<AquaPlayer> = players
 
-    fun getPlayer(name: String): KryptonPlayer? = playersByName.get(name)
+    fun getPlayer(name: String): AquaPlayer? = playersByName.get(name)
 
-    fun getPlayer(uuid: UUID): KryptonPlayer? = playersByUUID.get(uuid)
+    fun getPlayer(uuid: UUID): AquaPlayer? = playersByUUID.get(uuid)
 
-    fun addPlayer(player: KryptonPlayer) {
+    fun addPlayer(player: AquaPlayer) {
         val profile = player.profile
         val name = server.profileCache.getProfile(profile.uuid)?.name ?: profile.name
         server.profileCache.addProfile(profile)
@@ -94,7 +94,7 @@ class PlayerManager(
             player.gameModeSystem.previousGameMode(),
             server.worldManager.worlds.keys,
             RegistrySerialization.networkedRegistries(world.registryHolder),
-            KryptonDynamicRegistries.DIMENSION_TYPE.getResourceKey(world.dimensionType)!!,
+            AquaDynamicRegistries.DIMENSION_TYPE.getResourceKey(world.dimensionType)!!,
             world.dimension,
             BiomeManager.obfuscateSeed(world.seed),
             server.config.status.maxPlayers,
@@ -128,7 +128,7 @@ class PlayerManager(
         playersByUUID.put(player.uuid, player)
 
         // Fire join event and send result message
-        val joinEvent = server.eventNode.fire(KryptonJoinEvent(player, !profile.name.equals(name, true)))
+        val joinEvent = server.eventNode.fire(AquaJoinEvent(player, !profile.name.equals(name, true)))
         if (!joinEvent.isAllowed()) {
             // Use default reason if denied without specified reason
             val reason = joinEvent.result?.message ?: DisconnectMessages.KICKED
@@ -156,7 +156,7 @@ class PlayerManager(
         player.connection.send(PacketOutSetContainerContent.fromPlayerInventory(player.inventory))
     }
 
-    private fun loadPlayer(player: KryptonPlayer): ResourceKey<World> {
+    private fun loadPlayer(player: AquaPlayer): ResourceKey<World> {
         if (!serializeData) {
             // If we aren't serializing data, we need to make sure the player doesn't spawn at (0, 0, 0) every time
             player.position = player.world.data.spawnPos().asPosition()
@@ -168,7 +168,7 @@ class PlayerManager(
 
         val nbt = dataSerializer.load(player)
         val dimension = if (nbt != null) {
-            KryptonDimensionType.parseLegacy(Dynamic(NbtOps.INSTANCE, nbt.get("Dimension")))
+            AquaDimensionType.parseLegacy(Dynamic(NbtOps.INSTANCE, nbt.get("Dimension")))
                 .resultOrPartial { LOGGER.error(it) }
                 .orElse(World.OVERWORLD)
         } else {
@@ -183,8 +183,8 @@ class PlayerManager(
         return dimension
     }
 
-    fun removePlayer(player: KryptonPlayer) {
-        val event = server.eventNode.fire(KryptonPlayerQuitEvent(player))
+    fun removePlayer(player: AquaPlayer) {
+        val event = server.eventNode.fire(AquaPlayerQuitEvent(player))
 
         player.statisticsTracker.incrementStatistic(CustomStatistics.LEAVE_GAME.get())
         savePlayer(player)
@@ -202,7 +202,7 @@ class PlayerManager(
         event.quitMessage?.let { server.sendMessage(it) }
     }
 
-    fun broadcast(packet: Packet, world: KryptonWorld, x: Double, y: Double, z: Double, radius: Double, except: KryptonPlayer?) {
+    fun broadcast(packet: Packet, world: AquaWorld, x: Double, y: Double, z: Double, radius: Double, except: AquaPlayer?) {
         PacketGrouping.sendGroupedPacket(server, packet) {
             if (it === except || it.world !== world) return@sendGroupedPacket false
             val dx = x - it.position.x
@@ -212,7 +212,7 @@ class PlayerManager(
         }
     }
 
-    fun broadcast(packet: Packet, world: KryptonWorld, pos: Vec3i, radius: Double, except: KryptonPlayer?) {
+    fun broadcast(packet: Packet, world: AquaWorld, pos: Vec3i, radius: Double, except: AquaPlayer?) {
         broadcast(packet, world, pos.x.toDouble(), pos.y.toDouble(), pos.z.toDouble(), radius, except)
     }
 
@@ -221,7 +221,7 @@ class PlayerManager(
         PacketGrouping.sendGroupedPacket(server, PacketOutSystemChat(message, overlay)) { it.acceptsSystemMessages(overlay) }
     }
 
-    fun broadcastChatMessage(message: PlayerChatMessage, source: KryptonPlayer, type: RichChatType.Bound) {
+    fun broadcastChatMessage(message: PlayerChatMessage, source: AquaPlayer, type: RichChatType.Bound) {
         val trusted = verifyChatTrusted(message)
         server.console.logChatMessage(message.decoratedContent(), type, if (trusted) null else "Not Secure")
         val outgoingMessage = OutgoingChatMessage.create(message)
@@ -246,19 +246,19 @@ class PlayerManager(
         players.forEach(::savePlayer)
     }
 
-    private fun sendCommands(player: KryptonPlayer) {
+    private fun sendCommands(player: AquaPlayer) {
         player.connection.send(PacketOutEntityEvent(player.id, OP_PERMISSION_LEVEL_4))
         server.commandManager.updateCommands(player)
     }
 
-    private fun savePlayer(player: KryptonPlayer) {
+    private fun savePlayer(player: AquaPlayer) {
         if (!serializeData) return
         val savedData = dataSerializer.save(player)
         server.userManager.updateUser(player.uuid, savedData)
         statsSerializer?.saveAll(player)
     }
 
-    private fun sendWorldInfo(world: KryptonWorld, player: KryptonPlayer) {
+    private fun sendWorldInfo(world: AquaWorld, player: AquaPlayer) {
         player.connection.send(PacketOutInitializeWorldBorder.create(world.border))
         player.connection.send(PacketOutUpdateTime.create(world.data))
         player.connection.send(PacketOutSetDefaultSpawnPosition(world.data.spawnPos(), world.data.spawnAngle))
@@ -273,8 +273,9 @@ class PlayerManager(
 
         private val LOGGER = LogManager.getLogger()
         private val BRAND_KEY = Key.key("brand")
-        // The word "Krypton" encoded in to UTF-8 and then prefixed with the length, which in this case is 7.
-        private val BRAND_MESSAGE = byteArrayOf(7, 75, 114, 121, 112, 116, 111, 110)
+        private const val BRAND = "AquaMine"
+        // The word "AquaMine" encoded in to UTF-8 and then prefixed with the length, which in this case is 8.
+        private val BRAND_MESSAGE = byteArrayOf(BRAND.length.toByte(), *BRAND.toByteArray())
         private val CHAT_FILTERED_FULL = Component.translatable("chat.filtered_full")
 
         private const val ENABLE_REDUCED_DEBUG_SCREEN: Byte = 22
@@ -282,7 +283,7 @@ class PlayerManager(
         private const val OP_PERMISSION_LEVEL_4: Byte = 28
 
         @JvmStatic
-        private fun getDefaultJoinMessage(player: KryptonPlayer, joinedBefore: Boolean): Component {
+        private fun getDefaultJoinMessage(player: AquaPlayer, joinedBefore: Boolean): Component {
             val key = if (joinedBefore) "multiplayer.player.joined.renamed" else "multiplayer.player.joined"
             return Component.translatable(key, NamedTextColor.YELLOW, Component.text(player.name))
         }

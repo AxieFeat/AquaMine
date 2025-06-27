@@ -1,7 +1,7 @@
 package net.aquamine.server.network.handlers
 
 import net.kyori.adventure.text.Component
-import net.aquamine.server.KryptonServer
+import net.aquamine.server.AquaServer
 import net.aquamine.server.packet.`in`.status.PacketInPingRequest
 import net.aquamine.server.packet.out.status.PacketOutPingResponse
 import net.aquamine.server.packet.out.status.PacketOutStatusResponse
@@ -18,7 +18,7 @@ import net.aquamine.server.packet.out.login.PacketOutLoginDisconnect
  * - [Ping][net.aquamine.server.packet. in.status.PacketInPing] -
  *   pings the server (to calculate latency on its end)
  */
-class StatusPacketHandler(private val server: KryptonServer, private val connection: NioConnection) : PacketHandler {
+class StatusPacketHandler(private val server: AquaServer, private val connection: NioConnection) : PacketHandler {
 
     private var requestedStatus = false
 

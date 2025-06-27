@@ -3,9 +3,9 @@ package net.aquamine.server.entity.tracking
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import it.unimi.dsi.fastutil.ints.IntSet
 import net.aquamine.api.util.Position
-import net.aquamine.server.entity.KryptonEntity
-import net.aquamine.server.entity.player.KryptonPlayer
-import net.aquamine.server.world.KryptonWorld
+import net.aquamine.server.entity.AquaEntity
+import net.aquamine.server.entity.player.AquaPlayer
+import net.aquamine.server.world.AquaWorld
 import java.util.Collections
 import java.util.function.Consumer
 
@@ -16,7 +16,7 @@ import java.util.function.Consumer
  * out, as it is not something we want to support in the API, and there is no way we would want it in
  * the backend.
  */
-class EntityViewingEngine(private val entity: KryptonEntity) {
+class EntityViewingEngine(private val entity: AquaEntity) {
 
     // The lock to use when synchronizing operations on the engine.
     // This is a separate field to make it easier for us to change the lock if we want to, and
@@ -29,7 +29,7 @@ class EntityViewingEngine(private val entity: KryptonEntity) {
     private var trackedLocation: TrackedLocation? = null
 
     // A tracker for all players that are viewing this entity.
-    private val viewable: Tracker<KryptonPlayer> = Tracker({ player ->
+    private val viewable: Tracker<AquaPlayer> = Tracker({ player ->
         val lock1 = if (player.id < entity.id) player else entity
         val lock2 = if (lock1 === entity) player else entity
         synchronized(lock1.viewingEngine.mutex) {
@@ -51,17 +51,17 @@ class EntityViewingEngine(private val entity: KryptonEntity) {
         entity.hideFromViewer(player)
     })
     // A tracker for all entities that this entity is viewing (primarily for players).
-    private val viewing: Tracker<KryptonEntity> = Tracker(
-        if (entity is KryptonPlayer) Consumer { it.viewingEngine.viewable.addition!!.accept(entity) } else null,
-        if (entity is KryptonPlayer) Consumer { it.viewingEngine.viewable.removal!!.accept(entity) } else null
+    private val viewing: Tracker<AquaEntity> = Tracker(
+        if (entity is AquaPlayer) Consumer { it.viewingEngine.viewable.addition!!.accept(entity) } else null,
+        if (entity is AquaPlayer) Consumer { it.viewingEngine.viewable.removal!!.accept(entity) } else null
     )
 
-    fun viewers(): Set<KryptonPlayer> = viewers
+    fun viewers(): Set<AquaPlayer> = viewers
 
     /**
      * Call to indicate that the entity has moved between worlds or to a different position.
      */
-    fun updateTracker(world: KryptonWorld, position: Position) {
+    fun updateTracker(world: AquaWorld, position: Position) {
         trackedLocation = TrackedLocation(world, position)
     }
 
@@ -71,7 +71,7 @@ class EntityViewingEngine(private val entity: KryptonEntity) {
      * As all viewing is automatic, this should not need to be called outside of the
      * tracking view callback within the entity.
      */
-    fun handleEnterView(entity: KryptonEntity) {
+    fun handleEnterView(entity: AquaEntity) {
         handleViewUpdate(entity, viewing.addition, viewable.addition)
     }
 
@@ -81,19 +81,19 @@ class EntityViewingEngine(private val entity: KryptonEntity) {
      * As all viewing is automatic, this should not need to be called outside of the
      * tracking view callback within the entity.
      */
-    fun handleExitView(entity: KryptonEntity) {
+    fun handleExitView(entity: AquaEntity) {
         handleViewUpdate(entity, viewing.removal, viewable.removal)
     }
 
-    private fun handleViewUpdate(entity: KryptonEntity, viewer: Consumer<KryptonEntity>?, viewable: Consumer<KryptonPlayer>?) {
-        if (this.entity is KryptonPlayer) viewer?.accept(entity)
-        if (entity is KryptonPlayer) viewable?.accept(entity)
+    private fun handleViewUpdate(entity: AquaEntity, viewer: Consumer<AquaEntity>?, viewable: Consumer<AquaPlayer>?) {
+        if (this.entity is AquaPlayer) viewer?.accept(entity)
+        if (entity is AquaPlayer) viewable?.accept(entity)
     }
 
     @JvmRecord
-    private data class TrackedLocation(val world: KryptonWorld, val position: Position)
+    private data class TrackedLocation(val world: AquaWorld, val position: Position)
 
-    private class Tracker<E : KryptonEntity>(val addition: Consumer<E>?, val removal: Consumer<E>?) {
+    private class Tracker<E : AquaEntity>(val addition: Consumer<E>?, val removal: Consumer<E>?) {
 
         // Contains all the entity IDs that are viewable by this tracker
         val ids: IntSet = IntOpenHashSet()
@@ -109,17 +109,17 @@ class EntityViewingEngine(private val entity: KryptonEntity) {
         }
     }
 
-    private inner class SetImpl : AbstractSet<KryptonPlayer>() {
+    private inner class SetImpl : AbstractSet<AquaPlayer>() {
 
         override val size: Int
             get() = synchronized(mutex) { viewable.ids.size }
 
         override fun isEmpty(): Boolean = synchronized(mutex) { viewable.ids.isEmpty() }
 
-        override fun contains(element: KryptonPlayer): Boolean = synchronized(mutex) { viewable.isRegistered(element) }
+        override fun contains(element: AquaPlayer): Boolean = synchronized(mutex) { viewable.isRegistered(element) }
 
-        override fun iterator(): Iterator<KryptonPlayer> {
-            val players: MutableList<KryptonPlayer>
+        override fun iterator(): Iterator<AquaPlayer> {
+            val players: MutableList<AquaPlayer>
             synchronized(mutex) {
                 val bitSet = viewable.ids
                 if (bitSet.isEmpty()) return Collections.emptyIterator()
@@ -128,7 +128,7 @@ class EntityViewingEngine(private val entity: KryptonEntity) {
                 val iterator = bitSet.iterator()
                 while (iterator.hasNext()) {
                     val id = iterator.nextInt()
-                    val player = entity.world.entityManager.getById(id) as? KryptonPlayer
+                    val player = entity.world.entityManager.getById(id) as? AquaPlayer
                     if (player != null) players.add(player)
                 }
             }

@@ -6,7 +6,7 @@ import com.google.gson.stream.JsonWriter
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer
 import net.aquamine.api.auth.GameProfile
-import net.aquamine.server.KryptonPlatform
+import net.aquamine.server.AquaPlatform
 
 @JvmRecord
 data class ServerStatus(val motd: Component, val players: Players, val favicon: String?) {
@@ -62,9 +62,9 @@ data class ServerStatus(val motd: Component, val players: Players, val favicon: 
             out.name("version")
             out.beginObject()
             out.name("name")
-            out.value(KryptonPlatform.minecraftVersion)
+            out.value(AquaPlatform.minecraftVersion)
             out.name("protocol")
-            out.value(KryptonPlatform.protocolVersion)
+            out.value(AquaPlatform.protocolVersion)
             out.endObject()
             value.favicon?.let {
                 out.name("favicon")

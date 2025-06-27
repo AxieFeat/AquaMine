@@ -14,7 +14,7 @@ object SayCommand {
     @JvmStatic
     fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
         dispatcher.register(literalCommand("say") {
-            requiresPermission(KryptonPermission.SAY)
+            requiresPermission(AquaPermission.SAY)
             argument(MESSAGE, StringArgumentType.string()) {
                 runs {
                     // TODO: Update when new chat changes are implemented

@@ -1,18 +1,18 @@
 package net.aquamine.server.util.collection
 
 import com.google.common.collect.Table
-import net.aquamine.server.state.KryptonState
-import net.aquamine.server.state.property.KryptonProperty
+import net.aquamine.server.state.AquaState
+import net.aquamine.server.state.property.AquaProperty
 
 // SpottedLeaf you're a genius
-class ZeroCollidingReferenceStateTable(private val thisState: KryptonState<*, *>, values: Map<KryptonProperty<*>, Comparable<*>>) {
+class ZeroCollidingReferenceStateTable(private val thisState: AquaState<*, *>, values: Map<AquaProperty<*>, Comparable<*>>) {
 
     // upper 32 bits: starting index
     // lower 32 bits: bitset for contained ids
     private val thisIndexTable = createTable(values.keys)
     private val thisTable: Array<Comparable<*>?>
     private var indexTable: LongArray? = null
-    private var valueTable: Array<Array<KryptonState<*, *>?>?>? = null
+    private var valueTable: Array<Array<AquaState<*, *>?>?>? = null
 
     init {
         var maxId = -1
@@ -26,8 +26,8 @@ class ZeroCollidingReferenceStateTable(private val thisState: KryptonState<*, *>
         }
     }
 
-    fun loadInTable(table: Table<KryptonProperty<*>, Comparable<*>, KryptonState<*, *>>, values: Map<KryptonProperty<*>, Comparable<*>>) {
-        val combined = HashSet<KryptonProperty<*>>(table.rowKeySet())
+    fun loadInTable(table: Table<AquaProperty<*>, Comparable<*>, AquaState<*, *>>, values: Map<AquaProperty<*>, Comparable<*>>) {
+        val combined = HashSet<AquaProperty<*>>(table.rowKeySet())
         combined.addAll(values.keys)
         indexTable = createTable(combined)
 
@@ -42,7 +42,7 @@ class ZeroCollidingReferenceStateTable(private val thisState: KryptonState<*, *>
         for (property in map.keys) {
             val propertyMap = map.get(property)!!
             val id = lookupValueIndex(property, indexTable!!)
-            val states = arrayOfNulls<KryptonState<*, *>?>(property.values.size)
+            val states = arrayOfNulls<AquaState<*, *>?>(property.values.size)
             valueTable!![id] = states
             for (entry in propertyMap.entries) {
                 if (entry.value == null) continue
@@ -58,7 +58,7 @@ class ZeroCollidingReferenceStateTable(private val thisState: KryptonState<*, *>
         }
     }
 
-    private fun createTable(properties: Collection<KryptonProperty<*>>): LongArray {
+    private fun createTable(properties: Collection<AquaProperty<*>>): LongArray {
         var maxId = -1
         for (property in properties) {
             val id = property.id
@@ -79,13 +79,13 @@ class ZeroCollidingReferenceStateTable(private val thisState: KryptonState<*, *>
         return result
     }
 
-    fun get(property: KryptonProperty<*>): Comparable<*>? {
+    fun get(property: AquaProperty<*>): Comparable<*>? {
         val index = lookupValueIndex(property, thisIndexTable)
         if (index < 0 || index >= thisTable.size) return null
         return thisTable[index]
     }
 
-    fun get(property: KryptonProperty<*>, with: Comparable<*>): KryptonState<*, *>? {
+    fun get(property: AquaProperty<*>, with: Comparable<*>): AquaState<*, *>? {
         val withId = idForHelper(property, with)
         if (withId < 0) return null
 
@@ -100,7 +100,7 @@ class ZeroCollidingReferenceStateTable(private val thisState: KryptonState<*, *>
     companion object {
 
         @JvmStatic
-        private fun lookupValueIndex(property: KryptonProperty<*>, indexTable: LongArray): Int {
+        private fun lookupValueIndex(property: AquaProperty<*>, indexTable: LongArray): Int {
             val id = property.id
             val bitsetMask = 1L shl (id and 31)
             val lowerMask = bitsetMask - 1
@@ -116,6 +116,6 @@ class ZeroCollidingReferenceStateTable(private val thisState: KryptonState<*, *>
 
         @JvmStatic
         @Suppress("UNCHECKED_CAST")
-        private fun <T : Comparable<T>> idForHelper(property: KryptonProperty<T>, value: Comparable<*>): Int = property.idFor(value as T)
+        private fun <T : Comparable<T>> idForHelper(property: AquaProperty<T>, value: Comparable<*>): Int = property.idFor(value as T)
     }
 }

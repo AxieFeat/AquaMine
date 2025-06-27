@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.locks.LockSupport
 
-class TickThread(number: Int) : Thread("Krypton Ticker $number") {
+class TickThread(number: Int) : Thread("AquaMine Ticker $number") {
 
     @Volatile
     private var stopped = false

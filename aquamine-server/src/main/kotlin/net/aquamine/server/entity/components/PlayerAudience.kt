@@ -14,9 +14,9 @@ import net.aquamine.api.entity.player.Player
 import net.aquamine.server.adventure.BossBarManager
 import net.aquamine.server.adventure.AquaAdventure
 import net.aquamine.server.command.AquaSender
-import net.aquamine.server.effect.sound.KryptonSoundEvent
-import net.aquamine.server.entity.KryptonEntity
-import net.aquamine.server.item.KryptonItemStack
+import net.aquamine.server.effect.sound.AquaSoundEvent
+import net.aquamine.server.entity.AquaEntity
+import net.aquamine.server.item.AquaItemStack
 import net.aquamine.server.network.chat.RichChatType
 import net.aquamine.server.network.chat.MessageSignature
 import net.aquamine.server.packet.out.play.PacketOutClearTitles
@@ -30,15 +30,15 @@ import net.aquamine.server.packet.out.play.PacketOutSetTitleAnimationTimes
 import net.aquamine.server.packet.out.play.PacketOutSetTitleText
 import net.aquamine.server.packet.out.play.PacketOutSoundEffect
 import net.aquamine.server.packet.out.play.PacketOutStopSound
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.registry.holder.Holder
-import net.aquamine.server.world.KryptonWorld
+import net.aquamine.server.world.AquaWorld
 
 interface PlayerAudience : Player, NetworkPlayer, AquaSender {
 
-    override val world: KryptonWorld
+    override val world: AquaWorld
 
-    fun openBook(item: KryptonItemStack)
+    fun openBook(item: AquaItemStack)
 
     override fun deleteMessage(signature: SignedMessage.Signature) {
         connection.send(PacketOutDeleteChat(MessageSignature.Packed(MessageSignature(signature.bytes()))))
@@ -121,8 +121,8 @@ interface PlayerAudience : Player, NetworkPlayer, AquaSender {
 
     override fun playSound(sound: Sound, emitter: Sound.Emitter) {
         val entity = when {
-            emitter === Sound.Emitter.self() -> this as KryptonEntity
-            emitter is KryptonEntity -> emitter
+            emitter === Sound.Emitter.self() -> this as AquaEntity
+            emitter is AquaEntity -> emitter
             else -> error("Sound emitter must be an entity or self(), was $emitter")
         }
 
@@ -133,8 +133,8 @@ interface PlayerAudience : Player, NetworkPlayer, AquaSender {
 
     private fun getSoundEventHolder(sound: Sound): Holder<SoundEvent> {
         val name = sound.name()
-        val event = KryptonRegistries.SOUND_EVENT.get(name)
-        return if (event != null) KryptonRegistries.SOUND_EVENT.wrapAsHolder(event) else Holder.Direct(KryptonSoundEvent.createVariableRange(name))
+        val event = AquaRegistries.SOUND_EVENT.get(name)
+        return if (event != null) AquaRegistries.SOUND_EVENT.wrapAsHolder(event) else Holder.Direct(AquaSoundEvent.createVariableRange(name))
     }
 
     override fun stopSound(stop: SoundStop) {

@@ -7,8 +7,8 @@ import net.aquamine.api.statistic.StatisticType
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
-import net.aquamine.server.registry.KryptonRegistries
-import net.aquamine.server.registry.KryptonRegistry
+import net.aquamine.server.registry.AquaRegistries
+import net.aquamine.server.registry.AquaRegistry
 
 @JvmRecord
 data class PacketOutAwardStatistics(val statistics: Object2IntMap<Statistic<*>>) : Packet {
@@ -23,16 +23,16 @@ data class PacketOutAwardStatistics(val statistics: Object2IntMap<Statistic<*>>)
     companion object {
 
         @JvmStatic
-        private fun readStatistic(reader: BinaryReader): Statistic<*> = readStatistic(reader, reader.readById(KryptonRegistries.STATISTIC_TYPE)!!)
+        private fun readStatistic(reader: BinaryReader): Statistic<*> = readStatistic(reader, reader.readById(AquaRegistries.STATISTIC_TYPE)!!)
 
         @JvmStatic
         private fun <T> readStatistic(reader: BinaryReader, type: StatisticType<T>): Statistic<T> =
-            type.getStatistic(reader.readById(type.registry as KryptonRegistry<T>)!!)
+            type.getStatistic(reader.readById(type.registry as AquaRegistry<T>)!!)
 
         @JvmStatic
         private fun <T> writeStatistic(writer: BinaryWriter, statistic: Statistic<T>) {
-            writer.writeId(KryptonRegistries.STATISTIC_TYPE, statistic.type)
-            writer.writeId(statistic.type.registry as KryptonRegistry<T>, statistic.value)
+            writer.writeId(AquaRegistries.STATISTIC_TYPE, statistic.type)
+            writer.writeId(statistic.type.registry as AquaRegistry<T>, statistic.value)
         }
     }
 }

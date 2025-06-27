@@ -12,9 +12,9 @@ import net.kyori.adventure.text.Component
 import net.kyori.adventure.title.Title
 import net.kyori.adventure.title.TitlePart
 import net.aquamine.api.effect.sound.SoundEvent
-import net.aquamine.server.effect.sound.KryptonSoundEvent
-import net.aquamine.server.entity.KryptonEntity
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.effect.sound.AquaSoundEvent
+import net.aquamine.server.entity.AquaEntity
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.network.PacketGrouping
 import net.aquamine.server.network.chat.MessageSignature
 import net.aquamine.server.network.chat.RichChatType
@@ -31,13 +31,13 @@ import net.aquamine.server.packet.out.play.PacketOutSetSubtitleText
 import net.aquamine.server.packet.out.play.PacketOutSetTitleText
 import net.aquamine.server.packet.out.play.PacketOutSetTitleAnimationTimes
 import net.aquamine.server.packet.out.play.PacketOutSystemChat
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.registry.holder.Holder
 import kotlin.random.Random
 
 fun interface PacketGroupingAudience : ForwardingAudience {
 
-    fun players(): Collection<KryptonPlayer>
+    fun players(): Collection<AquaPlayer>
 
     fun generateSoundSeed(): Long {
         return Random.nextLong()
@@ -117,7 +117,7 @@ fun interface PacketGroupingAudience : ForwardingAudience {
 
     override fun playSound(sound: Sound, emitter: Sound.Emitter) {
         if (emitter !== Sound.Emitter.self()) {
-            val entity = if (emitter is KryptonEntity) emitter else error("Sound emitter must be an entity or self(), was $emitter!")
+            val entity = if (emitter is AquaEntity) emitter else error("Sound emitter must be an entity or self(), was $emitter!")
             val seed = sound.seed().orElseGet { generateSoundSeed() }
             val event = getSoundEventHolder(sound)
             sendGroupedPacket(PacketOutEntitySoundEffect(event, sound.source(), entity.id, sound.volume(), sound.pitch(), seed))
@@ -129,8 +129,8 @@ fun interface PacketGroupingAudience : ForwardingAudience {
 
     private fun getSoundEventHolder(sound: Sound): Holder<SoundEvent> {
         val name = sound.name()
-        val event = KryptonRegistries.SOUND_EVENT.get(name)
-        return if (event != null) KryptonRegistries.SOUND_EVENT.wrapAsHolder(event) else Holder.Direct(KryptonSoundEvent.createVariableRange(name))
+        val event = AquaRegistries.SOUND_EVENT.get(name)
+        return if (event != null) AquaRegistries.SOUND_EVENT.wrapAsHolder(event) else Holder.Direct(AquaSoundEvent.createVariableRange(name))
     }
 
     override fun stopSound(stop: SoundStop) {

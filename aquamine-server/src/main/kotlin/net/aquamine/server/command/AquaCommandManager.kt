@@ -40,8 +40,8 @@ import net.aquamine.server.command.registrar.BrigadierCommandRegistrar
 import net.aquamine.server.command.registrar.RawCommandRegistrar
 import net.aquamine.server.command.registrar.SimpleCommandRegistrar
 import net.aquamine.server.commands.aqua.AquaCommand
-import net.aquamine.server.entity.player.KryptonPlayer
-import net.aquamine.server.event.player.KryptonPlayerUpdateCommandsEvent
+import net.aquamine.server.entity.player.AquaPlayer
+import net.aquamine.server.event.player.AquaPlayerUpdateCommandsEvent
 import net.aquamine.server.packet.out.play.PacketOutCommands
 import net.aquamine.server.util.downcastApiType
 import java.util.concurrent.CompletableFuture
@@ -52,7 +52,7 @@ import kotlin.concurrent.write
 import kotlin.math.max
 import kotlin.math.min
 
-class KryptonCommandManager : CommandManager {
+class AquaCommandManager : CommandManager {
 
     @GuardedBy("lock")
     private val dispatcher = CommandDispatcher<Source>() // Reads and writes MUST be locked by this lock!
@@ -127,13 +127,13 @@ class KryptonCommandManager : CommandManager {
     fun suggest(results: ParseResults<Source>): CompletableFuture<Suggestions> = dispatcher.getCompletionSuggestions(results)
 
     override fun updateCommands(player: Player) {
-        if (player !is KryptonPlayer) return
+        if (player !is AquaPlayer) return
         // We copy the root node to avoid a command changing whilst we're trying to send it to the client.
         val node = RootCommandNode<CommandSourceStack>()
         lock.read {
             dispatcher.root.children.forEach { if (it.requirement.test(player.createCommandSourceStack())) node.addChild(it) }
         }
-        player.server.eventNode.fire(KryptonPlayerUpdateCommandsEvent(player, node))
+        player.server.eventNode.fire(AquaPlayerUpdateCommandsEvent(player, node))
         player.connection.send(PacketOutCommands.createFromRootNode(node))
     }
 

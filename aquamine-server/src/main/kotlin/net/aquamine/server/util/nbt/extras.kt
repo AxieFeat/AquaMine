@@ -2,7 +2,7 @@ package net.aquamine.server.util.nbt
 
 import net.kyori.adventure.key.Keyed
 import net.aquamine.api.util.Vec3i
-import net.aquamine.server.KryptonPlatform
+import net.aquamine.server.AquaPlatform
 import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.ImmutableCompoundTag
 import xyz.axie.nbt.IntTag
@@ -15,7 +15,7 @@ fun CompoundTag.hasNumber(name: String): Boolean = contains(name, NUMBER_TYPE)
 
 fun CompoundTag.getDataVersion(): Int = if (contains(DATA_VERSION_TAG, IntTag.ID)) getInt(DATA_VERSION_TAG) else -1
 
-fun CompoundTag.Builder.putDataVersion(): CompoundTag.Builder = putInt(DATA_VERSION_TAG, KryptonPlatform.worldVersion)
+fun CompoundTag.Builder.putDataVersion(): CompoundTag.Builder = putInt(DATA_VERSION_TAG, AquaPlatform.worldVersion)
 
 fun <E : Enum<E>> CB.putStringEnum(name: String, value: E): CB = putString(name, value.name.lowercase())
 

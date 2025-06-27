@@ -2,7 +2,7 @@ package net.aquamine.server.world.components
 
 import net.aquamine.api.util.Vec3i
 import net.aquamine.server.coordinate.SectionPos
-import net.aquamine.server.world.chunk.KryptonChunk
+import net.aquamine.server.world.chunk.AquaChunk
 
 interface ChunkGetter : HeightAccessor {
 
@@ -30,7 +30,7 @@ interface ChunkGetter : HeightAccessor {
         return true
     }
 
-    fun getChunk(x: Int, z: Int, shouldCreate: Boolean): KryptonChunk?
+    fun getChunk(x: Int, z: Int, shouldCreate: Boolean): AquaChunk?
 
-    fun getChunk(x: Int, z: Int): KryptonChunk?
+    fun getChunk(x: Int, z: Int): AquaChunk?
 }

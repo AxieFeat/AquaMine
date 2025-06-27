@@ -52,19 +52,19 @@ object NetherBiomes {
     private val WARPED_PARTICLES = AmbientParticleSettings.of(ParticleTypes.WARPED_SPORE.get(), null, 0.01428F)
 
     @JvmStatic
-    fun netherWastes(): KryptonBiome = baseNether(WASTES_FOG, WASTES_LOOP, WASTES_MOOD, WASTES_ADDITIONS, WASTES_MUSIC)
+    fun netherWastes(): AquaBiome = baseNether(WASTES_FOG, WASTES_LOOP, WASTES_MOOD, WASTES_ADDITIONS, WASTES_MUSIC)
 
     @JvmStatic
-    fun soulSandValley(): KryptonBiome = baseNether(VALLEY_FOG, VALLEY_LOOP, VALLEY_MOOD, VALLEY_ADDITIONS, VALLEY_MUSIC, VALLEY_PARTICLES)
+    fun soulSandValley(): AquaBiome = baseNether(VALLEY_FOG, VALLEY_LOOP, VALLEY_MOOD, VALLEY_ADDITIONS, VALLEY_MUSIC, VALLEY_PARTICLES)
 
     @JvmStatic
-    fun basaltDeltas(): KryptonBiome = baseNether(DELTAS_FOG, DELTAS_LOOP, DELTAS_MOOD, DELTAS_ADDITIONS, DELTAS_MUSIC, DELTAS_PARTICLES)
+    fun basaltDeltas(): AquaBiome = baseNether(DELTAS_FOG, DELTAS_LOOP, DELTAS_MOOD, DELTAS_ADDITIONS, DELTAS_MUSIC, DELTAS_PARTICLES)
 
     @JvmStatic
-    fun crimsonForest(): KryptonBiome = baseNether(CRIMSON_FOG, CRIMSON_LOOP, CRIMSON_MOOD, CRIMSON_ADDITIONS, CRIMSON_MUSIC, CRIMSON_PARTICLES)
+    fun crimsonForest(): AquaBiome = baseNether(CRIMSON_FOG, CRIMSON_LOOP, CRIMSON_MOOD, CRIMSON_ADDITIONS, CRIMSON_MUSIC, CRIMSON_PARTICLES)
 
     @JvmStatic
-    fun warpedForest(): KryptonBiome = baseNether(WARPED_FOG, WARPED_LOOP, WARPED_MOOD, WARPED_ADDITIONS, WARPED_MUSIC, WARPED_PARTICLES)
+    fun warpedForest(): AquaBiome = baseNether(WARPED_FOG, WARPED_LOOP, WARPED_MOOD, WARPED_ADDITIONS, WARPED_MUSIC, WARPED_PARTICLES)
 
     @JvmStatic
     private fun baseNether(
@@ -74,7 +74,7 @@ object NetherBiomes {
         additions: SoundEvent,
         music: SoundEvent,
         particles: AmbientParticleSettings? = null
-    ): KryptonBiome = KryptonBiome.Builder().apply {
+    ): AquaBiome = AquaBiome.Builder().apply {
         climate(Climate.of(Precipitation.NONE, 2F, 0F, TemperatureModifier.NONE))
         effects {
             waterColor(OverworldBiomes.OVERWORLD_WATER)

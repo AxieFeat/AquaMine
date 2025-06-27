@@ -4,13 +4,13 @@ import net.kyori.adventure.text.Component
 import net.aquamine.api.entity.Hand
 import net.aquamine.api.item.ItemTypes
 import net.aquamine.api.util.Vec3i
-import net.aquamine.server.entity.player.KryptonPlayer
-import net.aquamine.server.item.KryptonItemStack
-import net.aquamine.server.registry.KryptonRegistries
-import net.aquamine.server.state.property.KryptonProperty
+import net.aquamine.server.entity.player.AquaPlayer
+import net.aquamine.server.item.AquaItemStack
+import net.aquamine.server.registry.AquaRegistries
+import net.aquamine.server.state.property.AquaProperty
 import net.aquamine.server.util.collection.Iterables
-import net.aquamine.server.world.KryptonWorld
-import net.aquamine.server.world.block.state.KryptonBlockState
+import net.aquamine.server.world.AquaWorld
+import net.aquamine.server.world.block.state.AquaBlockState
 import net.aquamine.server.world.chunk.flag.SetBlockFlag
 import java.util.function.Consumer
 
@@ -18,7 +18,7 @@ object DebugStickHandler : ItemHandler {
 
     private val translation by lazy { ItemTypes.DEBUG_STICK.get().translationKey() }
 
-    override fun canAttackBlock(player: KryptonPlayer, world: KryptonWorld, block: KryptonBlockState, pos: Vec3i): Boolean {
+    override fun canAttackBlock(player: AquaPlayer, world: AquaWorld, block: AquaBlockState, pos: Vec3i): Boolean {
         handleInteraction(player, world, block, pos, false, player.getHeldItem(Hand.MAIN)) { player.setHeldItem(Hand.MAIN, it) }
         return false
     }
@@ -39,13 +39,13 @@ object DebugStickHandler : ItemHandler {
     // TODO: We need to get information about where the item was so we can replace it with a copy that has the modified metadata,
     //  as all item stacks are immutable, so we can't just simply modify the data on the item like vanilla does.
     @JvmStatic
-    private fun handleInteraction(player: KryptonPlayer, world: KryptonWorld, state: KryptonBlockState, pos: Vec3i, isUse: Boolean,
-                                  item: KryptonItemStack, setter: Consumer<KryptonItemStack>): Boolean {
+    private fun handleInteraction(player: AquaPlayer, world: AquaWorld, state: AquaBlockState, pos: Vec3i, isUse: Boolean,
+                                  item: AquaItemStack, setter: Consumer<AquaItemStack>): Boolean {
         if (!player.canUseGameMasterBlocks()) return false
         val block = state.block
         val definition = block.stateDefinition
         val properties = definition.properties()
-        val key = KryptonRegistries.BLOCK.getKey(block).asString()
+        val key = AquaRegistries.BLOCK.getKey(block).asString()
         if (properties.isEmpty()) {
             player.sendActionBar(Component.translatable("$translation.empty", Component.text(key)))
             return false
@@ -70,10 +70,10 @@ object DebugStickHandler : ItemHandler {
     }
 
     @JvmStatic
-    private fun <T : Comparable<T>> cycleState(state: KryptonBlockState, property: KryptonProperty<T>, reversed: Boolean): KryptonBlockState =
+    private fun <T : Comparable<T>> cycleState(state: AquaBlockState, property: AquaProperty<T>, reversed: Boolean): AquaBlockState =
         state.setProperty(property, Iterables.findRelative(property.values, state.requireProperty(property), reversed)!!)
 
     @JvmStatic
-    private fun <T : Comparable<T>> toString(state: KryptonBlockState, property: KryptonProperty<T>): Component =
+    private fun <T : Comparable<T>> toString(state: AquaBlockState, property: AquaProperty<T>): Component =
         Component.text(property.toString(state.requireProperty(property)))
 }

@@ -3,7 +3,7 @@ package net.aquamine.server.packet.out.play.data
 import net.aquamine.server.network.Writable
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
-import net.aquamine.server.world.chunk.KryptonChunk
+import net.aquamine.server.world.chunk.AquaChunk
 import java.util.BitSet
 
 @JvmRecord
@@ -42,7 +42,7 @@ data class LightPacketData(
     companion object {
 
         @JvmStatic
-        fun fromChunk(chunk: KryptonChunk, trustEdges: Boolean): LightPacketData {
+        fun fromChunk(chunk: AquaChunk, trustEdges: Boolean): LightPacketData {
             val sections = chunk.sections()
 
             val skyMask = BitSet()

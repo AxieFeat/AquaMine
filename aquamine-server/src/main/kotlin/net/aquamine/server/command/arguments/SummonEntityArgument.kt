@@ -6,7 +6,7 @@ import com.mojang.brigadier.context.CommandContext
 import net.kyori.adventure.key.InvalidKeyException
 import net.kyori.adventure.key.Key
 import net.aquamine.server.command.CommandSourceStack
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.registry.AquaRegistries
 
 /**
  * An argument type that parses entity types that are summonable, in the form
@@ -31,7 +31,7 @@ object SummonEntityArgument : ArgumentType<Key> {
      */
     @JvmStatic
     fun ensureSummonable(key: Key): Key {
-        val type = KryptonRegistries.ENTITY_TYPE.get(key)
+        val type = AquaRegistries.ENTITY_TYPE.get(key)
         if (!type.isSummonable) throw ERROR_UNKNOWN_ENTITY.create(key)
         return type.key()
     }

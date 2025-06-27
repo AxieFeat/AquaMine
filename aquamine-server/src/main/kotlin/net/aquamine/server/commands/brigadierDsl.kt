@@ -14,7 +14,7 @@ inline fun <T : Builder<T>> Builder<T>.runs(crossinline action: (CommandContext<
 }
 
 @BrigadierDsl
-fun LiteralArgumentBuilder<CommandSourceStack>.requiresPermission(permission: KryptonPermission): LiteralArgumentBuilder<CommandSourceStack> =
+fun LiteralArgumentBuilder<CommandSourceStack>.requiresPermission(permission: AquaPermission): LiteralArgumentBuilder<CommandSourceStack> =
     requires { it.hasPermission(permission) }
 
 /**

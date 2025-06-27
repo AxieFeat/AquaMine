@@ -17,8 +17,8 @@ import java.util.UUID
 
 /**
  * Serializes and deserializes hover events that used to be stored as
- * components and are now dedicated objects. This uses Krypton's SNBT codec
- * and Krypton NBT to parse NBT.
+ * components and are now dedicated objects. This uses AquaMine's SNBT codec
+ * and AquaMine NBT to parse NBT.
  */
 object NBTLegacyHoverEventSerializer : LegacyHoverEventSerializer {
 

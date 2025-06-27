@@ -3,13 +3,13 @@ package net.aquamine.server.entity.ai.targeting
 import net.aquamine.api.entity.EquipmentSlot
 import net.aquamine.api.item.ItemTypes
 import net.aquamine.api.world.Difficulty
-import net.aquamine.server.entity.KryptonArmorStand
-import net.aquamine.server.entity.KryptonEntityType
-import net.aquamine.server.entity.KryptonEntityTypes
-import net.aquamine.server.entity.KryptonLivingEntity
-import net.aquamine.server.entity.KryptonMob
-import net.aquamine.server.entity.player.KryptonPlayer
-import net.aquamine.server.item.KryptonItemStack
+import net.aquamine.server.entity.AquaArmorStand
+import net.aquamine.server.entity.AquaEntityType
+import net.aquamine.server.entity.AquaEntityTypes
+import net.aquamine.server.entity.AquaLivingEntity
+import net.aquamine.server.entity.AquaMob
+import net.aquamine.server.entity.player.AquaPlayer
+import net.aquamine.server.item.AquaItemStack
 import java.util.function.Predicate
 import kotlin.math.max
 
@@ -19,10 +19,10 @@ class TargetingConditions(
     private val range: Double,
     private val checkLineOfSight: Boolean,
     private val testInvisible: Boolean,
-    private val selector: Predicate<KryptonLivingEntity>?
+    private val selector: Predicate<AquaLivingEntity>?
 ) {
 
-    fun canTarget(attacker: KryptonLivingEntity?, target: KryptonLivingEntity): Boolean {
+    fun canTarget(attacker: AquaLivingEntity?, target: AquaLivingEntity): Boolean {
         if (attacker === target) return false // Can't attack ourselves
         if (!target.canBeSeenByAnyone()) return false // Target cannot be seen at all by anyone
         if (selector != null && !selector.test(target)) return false // Target doesn't match the selector
@@ -46,7 +46,7 @@ class TargetingConditions(
         return true
     }
 
-    private fun getVisibilityPercent(entity: KryptonLivingEntity, viewer: KryptonLivingEntity): Double {
+    private fun getVisibilityPercent(entity: AquaLivingEntity, viewer: AquaLivingEntity): Double {
         var result = 1.0
 
         // Hostile mobs are less likely to see targets when they are sneaking
@@ -66,11 +66,11 @@ class TargetingConditions(
         return result
     }
 
-    private fun getArmorCoverPercentage(entity: KryptonLivingEntity): Float {
+    private fun getArmorCoverPercentage(entity: AquaLivingEntity): Float {
         val armor = when (entity) {
-            is KryptonArmorStand -> entity.armorItems
-            is KryptonMob -> entity.armorItems
-            is KryptonPlayer -> entity.inventory.armor
+            is AquaArmorStand -> entity.armorItems
+            is AquaMob -> entity.armorItems
+            is AquaPlayer -> entity.inventory.armor
             else -> return 0F
         }
 
@@ -84,12 +84,12 @@ class TargetingConditions(
         return if (count > 0) nonEmpty.toFloat() / count.toFloat() else 0F
     }
 
-    private fun hasHeadForType(type: KryptonEntityType<*>, head: KryptonItemStack): Boolean {
-        return type === KryptonEntityTypes.SKELETON && head.eq(ItemTypes.SKELETON_SKULL.get()) ||
-                type === KryptonEntityTypes.ZOMBIE && head.eq(ItemTypes.ZOMBIE_HEAD.get()) ||
+    private fun hasHeadForType(type: AquaEntityType<*>, head: AquaItemStack): Boolean {
+        return type === AquaEntityTypes.SKELETON && head.eq(ItemTypes.SKELETON_SKULL.get()) ||
+                type === AquaEntityTypes.ZOMBIE && head.eq(ItemTypes.ZOMBIE_HEAD.get()) ||
 //                type === KryptonEntityTypes.PIGLIN && head.eq(ItemTypes.PIGLIN_HEAD.get()) ||
 //                type === KryptonEntityTypes.PIGLIN_BRUTE && head.eq(ItemTypes.PIGLIN_HEAD.get()) ||
-                type === KryptonEntityTypes.CREEPER && head.eq(ItemTypes.CREEPER_HEAD.get())
+                type === AquaEntityTypes.CREEPER && head.eq(ItemTypes.CREEPER_HEAD.get())
     }
 
     class Builder(private val combat: Boolean) {
@@ -97,7 +97,7 @@ class TargetingConditions(
         private var range = -1.0
         private var lineOfSight = true
         private var invisibles = true
-        private var selector: Predicate<KryptonLivingEntity>? = null
+        private var selector: Predicate<AquaLivingEntity>? = null
 
         fun range(amount: Double): Builder = apply { range = amount }
 
@@ -105,7 +105,7 @@ class TargetingConditions(
 
         fun ignoreInvisibles(): Builder = apply { invisibles = false }
 
-        fun selector(value: Predicate<KryptonLivingEntity>?): Builder = apply { selector = value }
+        fun selector(value: Predicate<AquaLivingEntity>?): Builder = apply { selector = value }
 
         fun build(): TargetingConditions = TargetingConditions(combat, range, lineOfSight, invisibles, selector)
     }

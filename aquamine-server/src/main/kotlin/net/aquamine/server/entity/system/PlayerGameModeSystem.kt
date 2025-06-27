@@ -4,8 +4,8 @@ import org.apache.logging.log4j.LogManager
 import net.aquamine.api.event.player.PlayerChangeGameModeEvent
 import net.aquamine.api.util.Vec3i
 import net.aquamine.api.world.GameMode
-import net.aquamine.server.entity.player.KryptonPlayer
-import net.aquamine.server.event.player.KryptonPlayerChangeGameModeEvent
+import net.aquamine.server.entity.player.AquaPlayer
+import net.aquamine.server.event.player.AquaPlayerChangeGameModeEvent
 import net.aquamine.server.item.handler
 import net.aquamine.server.network.PacketGrouping
 import net.aquamine.server.packet.`in`.play.PacketInPlayerAction
@@ -14,10 +14,10 @@ import net.aquamine.server.packet.out.play.PacketOutBlockUpdate
 import net.aquamine.server.packet.out.play.PacketOutPlayerInfoUpdate
 import net.aquamine.server.packet.out.play.PacketOutPlayerInfoUpdate.Action
 import net.aquamine.server.util.enumhelper.GameModes
-import net.aquamine.server.world.block.state.KryptonBlockState
+import net.aquamine.server.world.block.state.AquaBlockState
 
 // TODO: Most of this logic is from vanilla, and we can probably get rid of it and replace it with something better.
-class PlayerGameModeSystem(private val player: KryptonPlayer) {
+class PlayerGameModeSystem(private val player: AquaPlayer) {
 
     private var gameMode = GameMode.SURVIVAL
     private var previousGameMode: GameMode? = null
@@ -64,7 +64,7 @@ class PlayerGameModeSystem(private val player: KryptonPlayer) {
     fun changeGameMode(mode: GameMode): PlayerChangeGameModeEvent? {
         if (mode == gameMode) return null
 
-        val event = player.server.eventNode.fire(KryptonPlayerChangeGameModeEvent(player, gameMode, mode))
+        val event = player.server.eventNode.fire(AquaPlayerChangeGameModeEvent(player, gameMode, mode))
         if (!event.isAllowed()) return event
 
         setGameMode(event.result?.newGameMode ?: mode, gameMode)
@@ -179,7 +179,7 @@ class PlayerGameModeSystem(private val player: KryptonPlayer) {
         if (player.server.config.world.sendSpawnProtectionMessage) player.sendActionBar(player.server.config.world.spawnProtectionMessage)
     }
 
-    private fun incrementDestroyProgress(block: KryptonBlockState, pos: Vec3i, startTick: Int): Float {
+    private fun incrementDestroyProgress(block: AquaBlockState, pos: Vec3i, startTick: Int): Float {
         val tickDifference = currentTick - startTick
         val progress = block.getDestroyProgress(player, player.world, pos) * (tickDifference + 1).toFloat()
         val state = (progress * 10F).toInt()

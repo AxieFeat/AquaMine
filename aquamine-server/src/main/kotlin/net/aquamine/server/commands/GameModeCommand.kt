@@ -11,7 +11,7 @@ import net.aquamine.api.world.GameMode
 import net.aquamine.server.adventure.AquaAdventure
 import net.aquamine.server.command.CommandSourceStack
 import net.aquamine.server.command.arguments.entities.EntityArgumentType
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.locale.CommandMessages
 import net.aquamine.server.util.enumhelper.GameModes
 import net.aquamine.server.world.rule.GameRuleKeys
@@ -25,7 +25,7 @@ object GameModeCommand {
 
     @JvmStatic
     fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
-        val command = literalCommand("gamemode") { requiresPermission(KryptonPermission.GAME_MODE) }
+        val command = literalCommand("gamemode") { requiresPermission(AquaPermission.GAME_MODE) }
         GameModes.VALUES.forEach { mode ->
             command.then(literalCommand(mode.name.lowercase()) {
                 runs { setMode(it.source, listOf(it.source.getPlayerOrError()), mode) }
@@ -55,7 +55,7 @@ object GameModeCommand {
     }
 
     @JvmStatic
-    private fun setMode(source: CommandSourceStack, targets: List<KryptonPlayer>, mode: GameMode): Int {
+    private fun setMode(source: CommandSourceStack, targets: List<AquaPlayer>, mode: GameMode): Int {
         var count = 0
         targets.forEach {
             it.updateGameMode(mode)
@@ -66,7 +66,7 @@ object GameModeCommand {
     }
 
     @JvmStatic
-    private fun notifyGameModeChanged(source: CommandSourceStack, player: KryptonPlayer, mode: GameMode) {
+    private fun notifyGameModeChanged(source: CommandSourceStack, player: AquaPlayer, mode: GameMode) {
         if (source.entity === player) {
             CommandMessages.GAME_MODE_SELF.sendSuccess(source, mode, true)
             return

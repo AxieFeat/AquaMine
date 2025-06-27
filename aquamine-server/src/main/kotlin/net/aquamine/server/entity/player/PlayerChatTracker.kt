@@ -32,7 +32,7 @@ import java.util.concurrent.atomic.AtomicReference
 /**
  * Tracks the chat chain for an individual player, ensuring it is not broken.
  */
-class PlayerChatTracker(private val player: KryptonPlayer) {
+class PlayerChatTracker(private val player: AquaPlayer) {
 
     private val server = player.server
 

@@ -6,7 +6,7 @@ import net.aquamine.server.packet.out.play.PacketOutAbilities
 
 /**
  * A delegate that moves the API implementations for abilities out of the main
- * KryptonPlayer class to make it less cluttered.
+ * AquaPlayer class to make it less cluttered.
  *
  * Note that, due to the way invulnerability works, it does not have an
  * overriding delegate here to abilities.

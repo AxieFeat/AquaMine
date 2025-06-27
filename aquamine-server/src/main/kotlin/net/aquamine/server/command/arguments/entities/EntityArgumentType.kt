@@ -4,7 +4,7 @@ import com.mojang.brigadier.StringReader
 import com.mojang.brigadier.arguments.ArgumentType
 import com.mojang.brigadier.context.CommandContext
 import net.aquamine.server.command.CommandSourceStack
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.player.AquaPlayer
 
 /**
  * An argument type that parses an entity selector, such as `@a` or `@p`.
@@ -70,7 +70,7 @@ data class EntityArgumentType(val onlyPlayers: Boolean, val singleTarget: Boolea
         fun entities(): EntityArgumentType = ENTITIES
 
         @JvmStatic
-        fun getPlayers(context: CommandContext<CommandSourceStack>, name: String): List<KryptonPlayer> =
+        fun getPlayers(context: CommandContext<CommandSourceStack>, name: String): List<AquaPlayer> =
             context.getArgument(name, EntityQuery::class.java).getPlayers(context.source)
     }
 }

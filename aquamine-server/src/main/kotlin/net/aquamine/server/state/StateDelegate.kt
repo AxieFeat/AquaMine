@@ -2,17 +2,17 @@ package net.aquamine.server.state
 
 import net.aquamine.api.state.Property
 import net.aquamine.api.state.State
-import net.aquamine.server.state.property.KryptonProperty
+import net.aquamine.server.state.property.AquaProperty
 import net.aquamine.server.state.property.downcast
 
 /**
  * This is a big hack that is used by state implementors to allow the
- * KryptonState generic to be a KryptonState instance whilst avoiding the clash
+ * AquaState generic to be a AquaState instance whilst avoiding the clash
  * in supertype generic types.
  */
-interface StateDelegate<S : State<S>, K : KryptonState<*, K>> : State<S> {
+interface StateDelegate<S : State<S>, K : AquaState<*, K>> : State<S> {
 
-    override val availableProperties: Set<KryptonProperty<*>>
+    override val availableProperties: Set<AquaProperty<*>>
         get() = asState().values.keys
     override val properties: Map<Property<*>, Comparable<*>>
         @Suppress("UNCHECKED_CAST") get() = asState().values as Map<Property<*>, Comparable<*>>

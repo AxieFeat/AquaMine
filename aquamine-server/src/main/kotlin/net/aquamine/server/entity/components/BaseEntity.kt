@@ -3,16 +3,16 @@ package net.aquamine.server.entity.components
 import net.kyori.adventure.identity.Identity
 import net.kyori.adventure.text.event.HoverEvent
 import net.kyori.adventure.util.TriState
-import net.aquamine.server.KryptonServer
+import net.aquamine.server.AquaServer
 import net.aquamine.server.entity.Pose
 import net.aquamine.server.entity.metadata.MetadataKeys
-import net.aquamine.server.world.KryptonWorld
+import net.aquamine.server.world.AquaWorld
 import java.util.function.UnaryOperator
 
 interface BaseEntity : BaseDataHolder, NameableTeamMember, Rideable, WaterPushable, Damageable, Interactable {
 
-    override val world: KryptonWorld
-    override val server: KryptonServer
+    override val world: AquaWorld
+    override val server: AquaServer
         get() = world.server
 
     fun isRemoved(): Boolean

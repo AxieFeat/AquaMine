@@ -2,19 +2,19 @@ package net.aquamine.server.entity.ai.targeting
 
 import net.aquamine.api.entity.ai.goal.TargetFinder
 import net.aquamine.api.util.Position
-import net.aquamine.server.entity.KryptonLivingEntity
-import net.aquamine.server.entity.KryptonMob
-import net.aquamine.server.entity.attribute.KryptonAttributeTypes
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.AquaLivingEntity
+import net.aquamine.server.entity.AquaMob
+import net.aquamine.server.entity.attribute.AquaAttributeTypes
+import net.aquamine.server.entity.player.AquaPlayer
 
 @Suppress("UnusedPrivateMember")
 abstract class AbstractTargetFinder(
-    protected val mob: KryptonMob,
+    protected val mob: AquaMob,
     protected val mustSee: Boolean,
     private val mustReach: Boolean
 ) : TargetFinder {
 
-    protected var targetMob: KryptonMob? = null
+    protected var targetMob: AquaMob? = null
 
     override fun shouldRemove(): Boolean {
         var target = mob.target()
@@ -39,9 +39,9 @@ abstract class AbstractTargetFinder(
         mob.setTarget(null)
     }
 
-    protected open fun getFollowRange(): Double = mob.attributes.getValue(KryptonAttributeTypes.FOLLOW_RANGE)
+    protected open fun getFollowRange(): Double = mob.attributes.getValue(AquaAttributeTypes.FOLLOW_RANGE)
 
-    protected fun <T : KryptonLivingEntity> findNearestEntity(nearby: Collection<T>, conditions: TargetingConditions, attacker: KryptonLivingEntity?,
+    protected fun <T : AquaLivingEntity> findNearestEntity(nearby: Collection<T>, conditions: TargetingConditions, attacker: AquaLivingEntity?,
                                                               position: Position): T? {
         var nearestDistance = Double.MAX_VALUE
         var result: T? = null
@@ -57,7 +57,7 @@ abstract class AbstractTargetFinder(
         return result
     }
 
-    protected fun findNearestPlayer(conditions: TargetingConditions, attacker: KryptonLivingEntity?, position: Position): KryptonPlayer? {
+    protected fun findNearestPlayer(conditions: TargetingConditions, attacker: AquaLivingEntity?, position: Position): AquaPlayer? {
         return findNearestEntity(mob.world.players, conditions, attacker, position)
     }
 }

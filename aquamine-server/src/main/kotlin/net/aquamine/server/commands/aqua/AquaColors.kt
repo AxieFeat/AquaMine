@@ -3,7 +3,7 @@ package net.aquamine.server.commands.aqua
 import net.kyori.adventure.text.format.TextColor
 
 /**
- * Common Krypton colour constants.
+ * Common AquaMine colour constants.
  */
 object AquaColors {
 

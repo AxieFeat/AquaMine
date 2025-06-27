@@ -4,7 +4,7 @@ import com.google.common.collect.Multimap
 import net.kyori.adventure.key.Key
 import org.apache.logging.log4j.LogManager
 import net.aquamine.api.entity.attribute.AttributeModifier
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.util.map.nullableComputeIfAbsent
 import xyz.axie.nbt.ListTag
 import xyz.axie.nbt.list
@@ -12,40 +12,40 @@ import java.util.UUID
 
 class AttributeMap(private val supplier: AttributeSupplier) {
 
-    private val attributes = HashMap<KryptonAttributeType, KryptonAttribute>()
-    private val dirty = HashSet<KryptonAttribute>()
+    private val attributes = HashMap<AquaAttributeType, AquaAttribute>()
+    private val dirty = HashSet<AquaAttribute>()
 
-    fun syncable(): Collection<KryptonAttribute> = attributes.values.filter { it.type.sendToClient }
+    fun syncable(): Collection<AquaAttribute> = attributes.values.filter { it.type.sendToClient }
 
-    fun hasAttribute(type: KryptonAttributeType): Boolean = attributes.get(type) != null || supplier.hasAttribute(type)
+    fun hasAttribute(type: AquaAttributeType): Boolean = attributes.get(type) != null || supplier.hasAttribute(type)
 
-    fun hasModifier(type: KryptonAttributeType, modifierId: UUID): Boolean {
+    fun hasModifier(type: AquaAttributeType, modifierId: UUID): Boolean {
         val attribute = attributes.get(type) ?: return supplier.hasModifier(type, modifierId)
         return attribute.getModifier(modifierId) != null
     }
 
     // Would use a method reference for onModified, but for whatever reason, using a method reference generates a kotlin.Function
     // implementation and then creates a Consumer that delegates to that.
-    fun getAttribute(type: KryptonAttributeType): KryptonAttribute? =
+    fun getAttribute(type: AquaAttributeType): AquaAttribute? =
         attributes.nullableComputeIfAbsent(type) { supplier.create(type) { onModified(it) } }
 
-    fun getValue(type: KryptonAttributeType): Double = attributes.get(type)?.calculateValue() ?: supplier.getValue(type)
+    fun getValue(type: AquaAttributeType): Double = attributes.get(type)?.calculateValue() ?: supplier.getValue(type)
 
-    fun getBaseValue(type: KryptonAttributeType): Double = attributes.get(type)?.baseValue ?: supplier.getBaseValue(type)
+    fun getBaseValue(type: AquaAttributeType): Double = attributes.get(type)?.baseValue ?: supplier.getBaseValue(type)
 
-    fun getModifierValue(type: KryptonAttributeType, modifierId: UUID): Double {
+    fun getModifierValue(type: AquaAttributeType, modifierId: UUID): Double {
         val attribute = attributes.get(type) ?: return supplier.getModifierValue(type, modifierId)
         return requireNotNull(attribute.getModifier(modifierId)) { "Modifier $modifierId could not be found for attribute ${type.key()}!" }.amount
     }
 
-    fun removeModifiers(modifiers: Multimap<KryptonAttributeType, AttributeModifier>) {
+    fun removeModifiers(modifiers: Multimap<AquaAttributeType, AttributeModifier>) {
         modifiers.asMap().forEach { (type, modifiers) ->
             val attribute = attributes.get(type)
             if (attribute != null) modifiers.forEach(attribute::removeModifier)
         }
     }
 
-    fun addModifiers(modifiers: Multimap<KryptonAttributeType, AttributeModifier>) {
+    fun addModifiers(modifiers: Multimap<AquaAttributeType, AttributeModifier>) {
         modifiers.forEach { type, modifier ->
             val attribute = getAttribute(type)
             if (attribute != null) {
@@ -62,7 +62,7 @@ class AttributeMap(private val supplier: AttributeSupplier) {
     fun load(list: ListTag) {
         list.forEachCompound {
             val key = Key.key(it.getString("Name"))
-            val type = KryptonRegistries.ATTRIBUTE.get(key)
+            val type = AquaRegistries.ATTRIBUTE.get(key)
             if (type == null) {
                 LOGGER.warn("Ignoring unknown attribute $key.")
                 return@forEachCompound
@@ -75,13 +75,13 @@ class AttributeMap(private val supplier: AttributeSupplier) {
 
     fun isDirty(): Boolean = dirty.isNotEmpty()
 
-    fun dirty(): List<KryptonAttribute> {
+    fun dirty(): List<AquaAttribute> {
         val copy = ArrayList(dirty)
         dirty.clear()
         return copy
     }
 
-    private fun onModified(attribute: KryptonAttribute) {
+    private fun onModified(attribute: AquaAttribute) {
         if (attribute.type.sendToClient) dirty.add(attribute)
     }
 

@@ -7,7 +7,7 @@ import net.aquamine.server.world.data.WorldDataSerializer
 /**
  * Classes required for the creation of the server.
  *
- * This exists to avoid having many constructor parameters in KryptonServer.
+ * This exists to avoid having many constructor parameters in AquaServer.
  */
 @JvmRecord
 data class InitContext(

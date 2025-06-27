@@ -1,7 +1,7 @@
 package net.aquamine.server.entity.serializer.animal
 
 import net.aquamine.api.entity.animal.type.FoxVariant
-import net.aquamine.server.entity.animal.KryptonFox
+import net.aquamine.server.entity.animal.AquaFox
 import net.aquamine.server.entity.serializer.AgeableSerializer
 import net.aquamine.server.entity.serializer.EntitySerializer
 import net.aquamine.server.util.uuid.UUIDUtil
@@ -15,7 +15,7 @@ import xyz.axie.nbt.StringTag
 import xyz.axie.nbt.list
 import java.util.UUID
 
-object FoxSerializer : EntitySerializer<KryptonFox> {
+object FoxSerializer : EntitySerializer<AquaFox> {
 
     private const val TRUSTED_TAG = "Trusted"
     private const val SLEEPING_TAG = "Sleeping"
@@ -24,7 +24,7 @@ object FoxSerializer : EntitySerializer<KryptonFox> {
     private const val CROUCHING_TAG = "Crouching"
     private val TYPE_NAMES = FoxVariant.values().associateBy { it.name.lowercase() }
 
-    override fun load(entity: KryptonFox, data: CompoundTag) {
+    override fun load(entity: AquaFox, data: CompoundTag) {
         AgeableSerializer.load(entity, data)
         data.getList(TRUSTED_TAG, IntArrayTag.ID).forEachIntArray { addTrustedId(entity, UUIDUtil.fromIntArray(it)) }
         entity.isSleeping = data.getBoolean(SLEEPING_TAG)
@@ -33,7 +33,7 @@ object FoxSerializer : EntitySerializer<KryptonFox> {
         entity.isCrouching = data.getBoolean(CROUCHING_TAG)
     }
 
-    override fun save(entity: KryptonFox): CompoundTag.Builder = AgeableSerializer.save(entity).apply {
+    override fun save(entity: AquaFox): CompoundTag.Builder = AgeableSerializer.save(entity).apply {
         list(TRUSTED_TAG) {
             addNullable(entity.firstTrusted, ListTag.Builder::addUUID)
             addNullable(entity.secondTrusted, ListTag.Builder::addUUID)
@@ -45,7 +45,7 @@ object FoxSerializer : EntitySerializer<KryptonFox> {
     }
 
     @JvmStatic
-    private fun addTrustedId(entity: KryptonFox, uuid: UUID?) {
+    private fun addTrustedId(entity: AquaFox, uuid: UUID?) {
         if (entity.firstTrusted != null) entity.secondTrusted = uuid else entity.firstTrusted = uuid
     }
 

@@ -3,17 +3,17 @@ package net.aquamine.server.world.block
 import com.google.gson.JsonObject
 import net.kyori.adventure.key.Key
 import net.aquamine.api.block.BlockSoundGroup
-import net.aquamine.server.registry.KryptonRegistry
-import net.aquamine.server.state.property.KryptonProperty
-import net.aquamine.server.state.property.KryptonPropertyFactory
-import net.aquamine.server.util.KryptonDataLoader
+import net.aquamine.server.registry.AquaRegistry
+import net.aquamine.server.state.property.AquaProperty
+import net.aquamine.server.state.property.AquaPropertyFactory
+import net.aquamine.server.util.AquaDataLoader
 import net.aquamine.server.world.block.data.BlockSoundGroups
 import net.aquamine.server.world.block.handlers.DefaultBlockHandler
 import net.aquamine.server.world.material.Material
 import net.aquamine.server.world.material.Materials
 import java.lang.reflect.Modifier
 
-class BlockLoader(registry: KryptonRegistry<KryptonBlock>) : KryptonDataLoader<KryptonBlock>("blocks", registry) {
+class BlockLoader(registry: AquaRegistry<AquaBlock>) : AquaDataLoader<AquaBlock>("blocks", registry) {
 
     private val materialsByName: Map<String, Material> = Materials::class.java.declaredFields.asSequence()
         .filter { Modifier.isPublic(it.modifiers) && Modifier.isStatic(it.modifiers) }
@@ -25,7 +25,7 @@ class BlockLoader(registry: KryptonRegistry<KryptonBlock>) : KryptonDataLoader<K
         .filter { BlockSoundGroup::class.java.isAssignableFrom(it.type) }
         .associate { it.name to it.get(null) as BlockSoundGroup }
 
-    override fun create(key: Key, value: JsonObject): KryptonBlock {
+    override fun create(key: Key, value: JsonObject): AquaBlock {
         val materialName = "STONE"
         val soundGroupName = "STONE"
         val states = value.getAsJsonArray("states").first().asJsonObject
@@ -47,15 +47,15 @@ class BlockLoader(registry: KryptonRegistry<KryptonBlock>) : KryptonDataLoader<K
         )
 
         val blockProperties =  value.get("properties").asJsonArray
-        val stateProperties = mutableListOf<KryptonProperty<*>>()
+        val stateProperties = mutableListOf<AquaProperty<*>>()
 
         blockProperties.forEach {
             try {
-                stateProperties.add(KryptonPropertyFactory.findByName(it.asString))
+                stateProperties.add(AquaPropertyFactory.findByName(it.asString))
             } catch (ignore: Exception) {}
         }
 
         // TODO: Update this to get the handlers from somewhere
-        return KryptonBlock(properties, DefaultBlockHandler, DefaultBlockHandler, DefaultBlockHandler, DefaultBlockHandler, stateProperties)
+        return AquaBlock(properties, DefaultBlockHandler, DefaultBlockHandler, DefaultBlockHandler, DefaultBlockHandler, stateProperties)
     }
 }

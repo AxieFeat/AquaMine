@@ -16,8 +16,8 @@ import net.aquamine.server.auth.AquaGameProfile
 import net.aquamine.server.auth.AquaProfileProperty
 import net.aquamine.server.coordinate.BlockPos
 import net.aquamine.server.item.ItemFactory
-import net.aquamine.server.item.KryptonItemStack
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.item.AquaItemStack
+import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.registry.holder.Holder
 import net.aquamine.server.util.crypto.Crypto
 import net.aquamine.server.util.hit.BlockHitResult
@@ -115,12 +115,12 @@ class BinaryReader(private val buffer: ByteBuffer) {
         return GsonComponentSerializer.gson().deserialize(text)
     }
 
-    fun readItem(): KryptonItemStack {
-        if (!readBoolean()) return KryptonItemStack.EMPTY
-        val type = readById(KryptonRegistries.ITEM)!!
+    fun readItem(): AquaItemStack {
+        if (!readBoolean()) return AquaItemStack.EMPTY
+        val type = readById(AquaRegistries.ITEM)!!
         val count = readByte()
         val nbt = readNBT()
-        return KryptonItemStack(type, count.toInt(), ItemFactory.create(type, nbt))
+        return AquaItemStack(type, count.toInt(), ItemFactory.create(type, nbt))
     }
 
     fun readBlockPos(): Vec3i = BlockPos.unpack(readLong())

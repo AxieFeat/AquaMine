@@ -6,7 +6,7 @@ import net.kyori.adventure.chat.SignedMessage
 import net.kyori.adventure.text.Component
 import net.aquamine.api.Server
 import net.aquamine.server.adventure.PacketGroupingAudience
-import net.aquamine.server.entity.player.KryptonPlayer
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.server.PlayerManager
 import java.util.Collections
 
@@ -14,10 +14,10 @@ interface ServerAudience : Server, PacketGroupingAudience {
 
     val playerManager: PlayerManager
 
-    override val players: Collection<KryptonPlayer>
+    override val players: Collection<AquaPlayer>
         get() = players()
 
-    override fun players(): Collection<KryptonPlayer> = Collections.unmodifiableCollection(playerManager.players())
+    override fun players(): Collection<AquaPlayer> = Collections.unmodifiableCollection(playerManager.players())
 
     override fun audiences(): Iterable<Audience> = players().asSequence().plus(console).asIterable()
 

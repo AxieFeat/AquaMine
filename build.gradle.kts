@@ -7,6 +7,6 @@ allprojects {
 
     group = "net.aquamine"
     version = "1.0"
-    description = "Minecraft server implementation based on KryptonMC"
+    description = "Minecraft server implementation based on KryptonMC (AquaMine)"
 
 }

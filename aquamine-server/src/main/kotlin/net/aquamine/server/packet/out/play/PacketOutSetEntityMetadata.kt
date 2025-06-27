@@ -10,7 +10,7 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.EntityPacket
 
 /**
- * The way we construct and use metadata in Krypton is a bit strange, as unlike vanilla, we do not store a
+ * The way we construct and use metadata in AquaMine is a bit strange, as unlike vanilla, we do not store a
  * reference to this data from within the entities, it is constructed manually when a player joins.
  *
  * This packet informs the client of all the metadata it should assign to the specified [entityId]

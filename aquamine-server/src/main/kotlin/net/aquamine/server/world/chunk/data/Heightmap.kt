@@ -6,20 +6,20 @@ import net.aquamine.server.util.bits.BitStorage
 import net.aquamine.server.util.math.Maths
 import net.aquamine.server.util.bits.SimpleBitStorage
 import net.aquamine.server.util.serialization.EnumCodecs
-import net.aquamine.server.world.block.KryptonBlocks
-import net.aquamine.server.world.block.state.KryptonBlockState
-import net.aquamine.server.world.chunk.KryptonChunk
+import net.aquamine.server.world.block.AquaBlocks
+import net.aquamine.server.world.block.state.AquaBlockState
+import net.aquamine.server.world.chunk.AquaChunk
 import org.kryptonmc.serialization.Codec
 import java.util.EnumSet
 import java.util.function.Predicate
 
-class Heightmap(private val chunk: KryptonChunk, val type: Type) {
+class Heightmap(private val chunk: AquaChunk, val type: Type) {
 
     private val data: BitStorage = SimpleBitStorage(Maths.ceillog2(chunk.height() + 1), 256)
 
     fun rawData(): LongArray = data.data
 
-    fun update(x: Int, y: Int, z: Int, block: KryptonBlockState): Boolean {
+    fun update(x: Int, y: Int, z: Int, block: AquaBlockState): Boolean {
         val firstAvailable = firstAvailable(x, z)
         if (y <= firstAvailable - 2) return false
 
@@ -41,7 +41,7 @@ class Heightmap(private val chunk: KryptonChunk, val type: Type) {
         return false
     }
 
-    fun setData(chunk: KryptonChunk, type: Type, rawData: LongArray) {
+    fun setData(chunk: AquaChunk, type: Type, rawData: LongArray) {
         val current = data.data
         if (current.size != rawData.size) {
             LOGGER.warn("Ignoring heightmap data for chunk ${chunk.position} as the size is not what was expected. " +
@@ -62,7 +62,7 @@ class Heightmap(private val chunk: KryptonChunk, val type: Type) {
 
     private fun firstAvailable(index: Int): Int = data.get(index) + chunk.minimumBuildHeight()
 
-    enum class Type(private val usage: Usage, val isOpaque: Predicate<KryptonBlockState>) {
+    enum class Type(private val usage: Usage, val isOpaque: Predicate<AquaBlockState>) {
 
         WORLD_SURFACE_WG(Usage.WORLD_GENERATION, NOT_AIR),
         WORLD_SURFACE(Usage.CLIENT, NOT_AIR),
@@ -92,12 +92,12 @@ class Heightmap(private val chunk: KryptonChunk, val type: Type) {
 
     companion object {
 
-        private val NOT_AIR: Predicate<KryptonBlockState> = Predicate { !it.isAir() }
-        private val BLOCKS_MOTION: Predicate<KryptonBlockState> = Predicate { it.blocksMotion() }
+        private val NOT_AIR: Predicate<AquaBlockState> = Predicate { !it.isAir() }
+        private val BLOCKS_MOTION: Predicate<AquaBlockState> = Predicate { it.blocksMotion() }
         private val LOGGER = LogManager.getLogger()
 
         @JvmStatic
-        fun prime(chunk: KryptonChunk, toPrime: Set<Type>) {
+        fun prime(chunk: AquaChunk, toPrime: Set<Type>) {
             val size = toPrime.size
             val heightmaps = ObjectArrayList<Heightmap>(size)
             val iterator = heightmaps.iterator()
@@ -107,7 +107,7 @@ class Heightmap(private val chunk: KryptonChunk, val type: Type) {
                     toPrime.forEach { heightmaps.add(chunk.getOrCreateHeightmap(it)) }
                     for (y in highest - 1 downTo chunk.minimumBuildHeight()) {
                         val block = chunk.getBlock(x, y, z)
-                        if (!block.eq(KryptonBlocks.AIR)) {
+                        if (!block.eq(AquaBlocks.AIR)) {
                             while (iterator.hasNext()) {
                                 val heightmap = iterator.next()
                                 if (!heightmap.type.isOpaque.test(block)) continue

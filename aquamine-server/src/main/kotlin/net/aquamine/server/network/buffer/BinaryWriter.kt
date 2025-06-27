@@ -11,8 +11,8 @@ import net.aquamine.api.util.Rotation
 import net.aquamine.api.util.Vec3d
 import net.aquamine.api.util.Vec3i
 import net.aquamine.server.coordinate.BlockPos
-import net.aquamine.server.item.KryptonItemStack
-import net.aquamine.server.registry.KryptonRegistries
+import net.aquamine.server.item.AquaItemStack
+import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.registry.holder.Holder
 import net.aquamine.server.util.hit.BlockHitResult
 import net.aquamine.server.util.map.IntBiMap
@@ -168,13 +168,13 @@ class BinaryWriter(private val buffer: ByteBuffer) {
         writeString(GsonComponentSerializer.gson().serialize(value))
     }
 
-    fun writeItem(item: KryptonItemStack) {
-        if (item === KryptonItemStack.EMPTY) {
+    fun writeItem(item: AquaItemStack) {
+        if (item === AquaItemStack.EMPTY) {
             writeBoolean(false)
             return
         }
         writeBoolean(true)
-        writeId(KryptonRegistries.ITEM, item.type)
+        writeId(AquaRegistries.ITEM, item.type)
         writeByte(item.amount.toByte())
         writeNBT(item.meta.data)
     }
