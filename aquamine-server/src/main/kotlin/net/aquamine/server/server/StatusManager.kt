@@ -30,7 +30,7 @@ class StatusManager(private val playerManager: PlayerManager, motd: Component, m
         status.players.online = playersOnline
         val sampleSize = min(playersOnline, MAXIMUM_SAMPLED_PLAYERS)
         val playerOffset = Maths.nextInt(random, 0, playersOnline - sampleSize)
-        val sample = Array(sampleSize) { playerManager.players().get(it + playerOffset).profile }.apply { shuffle() }
+        val sample = Array(sampleSize) { playerManager.players()[it + playerOffset].profile }.apply { shuffle() }
         status.players.sample = sample
     }
 

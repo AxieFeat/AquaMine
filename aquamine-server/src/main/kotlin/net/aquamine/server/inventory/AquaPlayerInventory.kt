@@ -40,16 +40,16 @@ class AquaPlayerInventory(override val owner: AquaPlayer) : AquaInventory(0, TYP
         set(value) = setArmor(ArmorSlot.BOOTS, value)
 
     override val mainHand: AquaItemStack
-        get() = items.get(heldSlot)
+        get() = items[heldSlot]
     override var offHand: AquaItemStack = AquaItemStack.EMPTY
 
     override var heldSlot: Int = 0
 
-    override fun getArmor(slot: ArmorSlot): AquaItemStack = armor.get(slot.ordinal)
+    override fun getArmor(slot: ArmorSlot): AquaItemStack = armor[slot.ordinal]
 
     override fun setArmor(slot: ArmorSlot, item: ItemStack) {
         if (item !is AquaItemStack) return
-        armor.set(slot.ordinal, item)
+        armor[slot.ordinal] = item
     }
 
     override fun getHeldItem(hand: Hand): AquaItemStack {
@@ -72,11 +72,11 @@ class AquaPlayerInventory(override val owner: AquaPlayer) : AquaInventory(0, TYP
 
     fun setItem(index: Int, item: AquaItemStack) {
         when (index) {
-            0 -> crafting.set(CRAFTING_SLOT, item)
-            in 1..CRAFTING_GRID_SIZE -> crafting.set(index - 1, item)
-            in CRAFTING_SIZE until HOTBAR_SIZE -> armor.set(index - CRAFTING_SIZE, item)
-            in HOTBAR_SIZE until INVENTORY_SIZE -> items.set(index, item)
-            in INVENTORY_SIZE until OFFHAND_SLOT -> items.set(index - INVENTORY_SIZE, item)
+            0 -> crafting[CRAFTING_SLOT] = item
+            in 1..CRAFTING_GRID_SIZE -> crafting[index - 1] = item
+            in CRAFTING_SIZE until HOTBAR_SIZE -> armor[index - CRAFTING_SIZE] = item
+            in HOTBAR_SIZE until INVENTORY_SIZE -> items[index] = item
+            in INVENTORY_SIZE until OFFHAND_SLOT -> items[index - INVENTORY_SIZE] = item
             OFFHAND_SLOT -> offHand = item
         }
         owner.connection.send(PacketOutSetContainerSlot(id.toByte(), incrementStateId(), index.toShort(), item))
@@ -84,22 +84,22 @@ class AquaPlayerInventory(override val owner: AquaPlayer) : AquaInventory(0, TYP
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(SIZE)
-        writer.writeItem(crafting.get(CRAFTING_SIZE - 1))
+        writer.writeItem(crafting[CRAFTING_SIZE - 1])
         for (i in 0 until CRAFTING_GRID_SIZE) {
-            writer.writeItem(crafting.get(i))
+            writer.writeItem(crafting[i])
         }
         armor.forEach(writer::writeItem)
         for (i in 0 until MAIN_SIZE) {
-            writer.writeItem(items.get(i + HOTBAR_SIZE))
+            writer.writeItem(items[i + HOTBAR_SIZE])
         }
         for (i in 0 until HOTBAR_SIZE) {
-            writer.writeItem(items.get(i))
+            writer.writeItem(items[i])
         }
         writer.writeItem(offHand)
     }
 
     fun getDestroySpeed(state: AquaBlockState): Float {
-        val item = items.get(heldSlot)
+        val item = items[heldSlot]
         return item.type.handler().destroySpeed(item, state)
     }
 
@@ -111,11 +111,11 @@ class AquaPlayerInventory(override val owner: AquaPlayer) : AquaInventory(0, TYP
             val slot = it.getByte("Slot").toInt()
             val stack = AquaItemStack.from(it)
             when (slot) {
-                in items.indices -> items.set(slot, stack)
-                BOOTS_DATA_SLOT -> armor.set(BOOTS_SLOT, stack)
-                LEGGINGS_DATA_SLOT -> armor.set(LEGGINGS_SLOT, stack)
-                CHESTPLATE_DATA_SLOT -> armor.set(CHESTPLATE_SLOT, stack)
-                HELMET_DATA_SLOT -> armor.set(HELMET_SLOT, stack)
+                in items.indices -> items[slot] = stack
+                BOOTS_DATA_SLOT -> armor[BOOTS_SLOT] = stack
+                LEGGINGS_DATA_SLOT -> armor[LEGGINGS_SLOT] = stack
+                CHESTPLATE_DATA_SLOT -> armor[CHESTPLATE_SLOT] = stack
+                HELMET_DATA_SLOT -> armor[HELMET_SLOT] = stack
                 OFFHAND_DATA_SLOT -> offHand = stack
             }
         }

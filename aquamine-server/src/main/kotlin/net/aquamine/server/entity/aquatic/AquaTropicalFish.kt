@@ -51,7 +51,7 @@ class AquaTropicalFish(world: AquaWorld) : AquaSchoolingFish(world), TropicalFis
     @Suppress("MagicNumber") // Nothing in here is magic as it's all explained in comments
     companion object {
 
-        private val VARIANTS = TropicalFishVariant.values()
+        private val VARIANTS = TropicalFishVariant.entries.toTypedArray()
         private const val NO_SHAPE_PATTERN_MASK = -65536 // 11111111 11111111 00000000 00000000 (clear bits 0-15)
         private const val NO_BASE_COLOR_MASK = -16711681 // 11111111 00000000 11111111 11111111 (clear bits 16-23)
         private const val NO_PATTERN_COLOR_MASK = -65281 // 11111111 11111111 00000000 11111111 (clear bits 8-15)

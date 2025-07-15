@@ -27,7 +27,7 @@ object MinecraftTranslationManager {
             reader.beginObject()
             while (reader.hasNext()) {
                 val key = reader.nextName()
-                val value = reader.nextString().replace(UNSUPPORTED_FORMAT_REGEX, "%\$1s")
+                val value = reader.nextString().replace(UNSUPPORTED_FORMAT_REGEX, "%$1s")
                 REGISTRY.register(key, Locale.US, MessageFormat(value, Locale.US))
             }
             reader.endObject()

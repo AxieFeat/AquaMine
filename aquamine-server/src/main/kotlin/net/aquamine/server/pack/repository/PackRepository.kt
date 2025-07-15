@@ -51,7 +51,7 @@ class PackRepository(vararg sources: RepositorySource) {
 
     fun selectedPacks(): Collection<Pack> = selected
 
-    fun getPackById(id: String): Pack? = available.get(id)
+    fun getPackById(id: String): Pack? = available[id]
 
     fun isAvailable(id: String): Boolean = available.containsKey(id)
 

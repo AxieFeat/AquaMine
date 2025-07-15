@@ -13,9 +13,9 @@ import net.aquamine.server.packet.out.login.PacketOutLoginDisconnect
  * [Status][net.aquamine.server.packet.PacketState.STATUS] state.
  *
  * There are two packets in this state that we handle:
- * - [Status request][net.aquamine.server.packet. in.status.PacketInStatusRequest] -
+ * - [Status request][net.aquamine.server.packet.in.status.PacketInStatusRequest] -
  *   sent by the client to request status information
- * - [Ping][net.aquamine.server.packet. in.status.PacketInPing] -
+ * - [Ping][net.aquamine.server.packet.in.status.PacketInPingRequest] -
  *   pings the server (to calculate latency on its end)
  */
 class StatusPacketHandler(private val server: AquaServer, private val connection: NioConnection) : PacketHandler {

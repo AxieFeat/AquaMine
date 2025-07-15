@@ -18,7 +18,7 @@ data class YggdrasilSessionKey(val publicKey: PublicKey) {
         @JvmStatic
         private fun load(): YggdrasilSessionKey {
             try {
-                val keyBytes = YggdrasilSessionKey::class.java.getResourceAsStream("/yggdrasil_session_pubkey.der").readAllBytes()
+                val keyBytes = YggdrasilSessionKey::class.java.getResourceAsStream("/yggdrasil_session_pubkey.der")!!.readAllBytes()
                 return YggdrasilSessionKey(Crypto.bytesToRsaPublicKey(keyBytes))
             } catch (exception: Exception) {
                 throw IllegalStateException("Cannot load Yggdrasil session public key!", exception)

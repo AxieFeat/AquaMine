@@ -6,7 +6,7 @@ import net.aquamine.server.entity.player.Abilities
 object GameModes {
 
     @JvmField
-    val VALUES: Array<GameMode> = GameMode.values()
+    val VALUES: Array<GameMode> = GameMode.entries.toTypedArray()
     private val BY_NAME = VALUES.associateBy { it.name.lowercase() }
 
     @JvmStatic
@@ -16,7 +16,7 @@ object GameModes {
     fun fromIdOrDefault(id: Int): GameMode = fromId(id) ?: GameMode.SURVIVAL
 
     @JvmStatic
-    fun fromName(name: String): GameMode? = BY_NAME.get(name)
+    fun fromName(name: String): GameMode? = BY_NAME[name]
 
     @JvmStatic
     fun updatePlayerAbilities(mode: GameMode, abilities: Abilities) {

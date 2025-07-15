@@ -187,7 +187,7 @@ open class AquaEventNode<T : Event>(
                 // Filtering
                 if (hasPredicate) {
                     val value = filter.getHandler(event)
-                    if (!predicate!!.test(event, value)) return@Consumer
+                    if (!predicate.test(event, value)) return@Consumer
                 }
                 // Normal listeners
                 if (hasListeners) listeners.forEach { listener -> listener.accept(event) }

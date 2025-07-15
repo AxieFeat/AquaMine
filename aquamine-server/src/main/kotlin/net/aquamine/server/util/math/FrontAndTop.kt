@@ -20,8 +20,8 @@ enum class FrontAndTop(val front: Direction, val top: Direction) {
 
     companion object {
 
-        private val LOOKUP_TOP_FRONT = Int2ObjectOpenHashMap<FrontAndTop>(values().size).apply {
-            values().forEach { put(lookupKey(it.front, it.top), it) }
+        private val LOOKUP_TOP_FRONT = Int2ObjectOpenHashMap<FrontAndTop>(entries.size).apply {
+            FrontAndTop.entries.forEach { put(lookupKey(it.front, it.top), it) }
         }
 
         @JvmStatic

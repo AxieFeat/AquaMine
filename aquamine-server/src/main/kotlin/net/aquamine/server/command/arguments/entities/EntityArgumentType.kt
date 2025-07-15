@@ -34,10 +34,10 @@ data class EntityArgumentType(val onlyPlayers: Boolean, val singleTarget: Boolea
         private val PLAYER_NAME_REGEX = Regex("[a-zA-Z0-9_]{1,16}")
 
         // Constants
-        private val PLAYER = EntityArgumentType(true, true)
-        private val PLAYERS = EntityArgumentType(true, false)
-        private val ENTITY = EntityArgumentType(false, true)
-        private val ENTITIES = EntityArgumentType(false, false)
+        private val PLAYER = EntityArgumentType(onlyPlayers = true, singleTarget = true)
+        private val PLAYERS = EntityArgumentType(onlyPlayers = true, singleTarget = false)
+        private val ENTITY = EntityArgumentType(onlyPlayers = false, singleTarget = true)
+        private val ENTITIES = EntityArgumentType(onlyPlayers = false, singleTarget = false)
 
         @JvmStatic
         fun from(players: Boolean, singleTarget: Boolean): EntityArgumentType {

@@ -8,7 +8,7 @@ import net.aquamine.server.network.buffer.BinaryWriter
  * Entity argument types are serialized with flags indicating if the selector
  * has a single target, and if it only targets players.
  *
- * See [here](https://wiki.vg/Command_Data#minecraft:entity)
+ * See [here](https://minecraft.wiki/w/Java_Edition_protocol/Command_data#minecraft:entity)
  */
 object EntityArgumentSerializer : FlaggedArgumentSerializer<EntityArgumentType> {
 

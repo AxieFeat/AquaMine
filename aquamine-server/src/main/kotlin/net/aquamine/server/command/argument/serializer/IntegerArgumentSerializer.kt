@@ -13,7 +13,7 @@ import net.aquamine.server.network.buffer.BinaryWriter
  * We then further write the minimum and maximum values, if they are not equal
  * to -[Int.MAX_VALUE] and [Int.MAX_VALUE] respectively.
  *
- * See [here](https://wiki.vg/Command_Data#brigadier:integer)
+ * See [here](https://minecraft.wiki/w/Java_Edition_protocol/Command_data#brigadier:integer)
  */
 object IntegerArgumentSerializer : FlaggedArgumentSerializer<IntegerArgumentType> {
 

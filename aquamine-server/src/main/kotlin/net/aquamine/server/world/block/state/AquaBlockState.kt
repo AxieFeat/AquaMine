@@ -187,7 +187,7 @@ class AquaBlockState(
                 val key = AquaRegistries.BLOCK.getKey(state.block)
                 error("$key has a collision shape and an offset type, but is not marked as dynamic in its properties!")
             }
-            largeCollisionShape = Direction.Axis.values().any { collisionShape.min(it) < 0.0 || collisionShape.max(it) > 1.0 }
+            largeCollisionShape = Direction.Axis.entries.any { collisionShape.min(it) < 0.0 || collisionShape.max(it) > 1.0 }
             DIRECTIONS.forEach { direction ->
                 SUPPORT_TYPES.forEach {
                     faceSturdy[getFaceSupportIndex(direction, it)] = it.isSupporting(state, BlockGetter.Empty, Vec3i.ZERO, direction)
@@ -200,8 +200,8 @@ class AquaBlockState(
 
         companion object {
 
-            private val DIRECTIONS = Direction.values()
-            private val SUPPORT_TYPES = SupportType.values()
+            private val DIRECTIONS = Direction.entries.toTypedArray()
+            private val SUPPORT_TYPES = SupportType.entries.toTypedArray()
 
             @JvmStatic
             private fun getFaceSupportIndex(direction: Direction, type: SupportType): Int = direction.ordinal * SUPPORT_TYPES.size + type.ordinal

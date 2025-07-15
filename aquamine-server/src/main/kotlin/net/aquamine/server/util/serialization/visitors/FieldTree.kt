@@ -8,13 +8,13 @@ class FieldTree(val depth: Int, val selectedFields: MutableMap<String, TagType<*
 
     fun addEntry(selector: FieldSelector) {
         if (depth <= selector.path.size) {
-            fieldsToRecurse.computeIfAbsent(selector.path.get(depth - 1)) { FieldTree(depth + 1) }.addEntry(selector)
+            fieldsToRecurse.computeIfAbsent(selector.path[depth - 1]) { FieldTree(depth + 1) }.addEntry(selector)
         } else {
             selectedFields.put(selector.name, selector.type)
         }
     }
 
-    fun isSelected(type: TagType<*>, name: String): Boolean = type == selectedFields.get(name)
+    fun isSelected(type: TagType<*>, name: String): Boolean = type == selectedFields[name]
 
     companion object {
 

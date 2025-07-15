@@ -48,7 +48,7 @@ open class AquaAttributeModifier(
 
         @JvmStatic
         protected val LOGGER: Logger = LogManager.getLogger()
-        private val BASIC_OPERATIONS = BasicModifierOperation.values()
+        private val BASIC_OPERATIONS = BasicModifierOperation.entries.toTypedArray()
 
         @JvmStatic
         fun load(data: CompoundTag): AquaAttributeModifier? {

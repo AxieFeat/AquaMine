@@ -26,7 +26,7 @@ object ArrowLikeSerializer : EntitySerializer<AquaArrowLike> {
     private const val SOUND_EVENT_TAG = "SoundEvent"
 
     private const val MAX_SHAKE_TIME = 255
-    private val PICKUP_RULES = ArrowLike.PickupRule.values()
+    private val PICKUP_RULES = ArrowLike.PickupRule.entries.toTypedArray()
 
     override fun load(entity: AquaArrowLike, data: CompoundTag) {
         ProjectileSerializer.load(entity, data)

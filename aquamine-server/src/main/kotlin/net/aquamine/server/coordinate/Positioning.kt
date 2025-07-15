@@ -11,8 +11,6 @@ object Positioning {
      * Calculates the change in position between the given [new] and [old] coordinates.
      * No idea why Mojang thought having player coordinates be absolute and entity
      * coordinates be relative.
-     *
-     * See [here](https://wiki.vg/Protocol#Entity_Position)
      */
     @JvmStatic
     fun calculateDelta(new: Double, old: Double): Short = ((new * 32 - old * 32) * 128).toInt().toShort()

@@ -34,8 +34,8 @@ enum class AxisCycle {
     companion object {
 
         @JvmField
-        val AXIS_VALUES: Array<Direction.Axis> = Direction.Axis.values()
-        private val VALUES = values()
+        val AXIS_VALUES: Array<Direction.Axis> = Direction.Axis.entries.toTypedArray()
+        private val VALUES = entries.toTypedArray()
 
         @JvmStatic
         fun between(from: Direction.Axis, to: Direction.Axis): AxisCycle = VALUES[Math.floorMod(to.ordinal - from.ordinal, 3)]

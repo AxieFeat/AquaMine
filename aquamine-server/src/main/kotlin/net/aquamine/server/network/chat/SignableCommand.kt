@@ -27,8 +27,8 @@ data class SignableCommand<S>(val arguments: List<Argument<S>>) {
             while (currentContext.child.also { childContext = it } != null) {
                 val differentRoots = childContext!!.rootNode != context.rootNode
                 if (!differentRoots) break
-                arguments.addAll(collectArguments(text, childContext!!))
-                currentContext = childContext!!
+                arguments.addAll(collectArguments(text, childContext))
+                currentContext = childContext
             }
             return SignableCommand(arguments)
         }
@@ -39,7 +39,7 @@ data class SignableCommand<S>(val arguments: List<Argument<S>>) {
             context.nodes.forEach {
                 val node = it.node
                 if (node !is ArgumentCommandNode<S, *> || node.type !is SignedArgument<*>) return@forEach
-                val argument = context.arguments.get(node.name)
+                val argument = context.arguments[node.name]
                 if (argument != null) result.add(Argument(node, argument.range.get(text)))
             }
             return result

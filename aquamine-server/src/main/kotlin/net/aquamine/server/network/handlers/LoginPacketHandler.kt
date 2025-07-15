@@ -100,7 +100,7 @@ class LoginPacketHandler(
         if (!verifyToken.contentEquals(Encryption.decrypt(packet.verifyToken))) return
 
         // We decrypt the shared secret with the server's private key and then create a new AES streaming
-        // cipher to use for encryption and decryption (see https://wiki.vg/Protocol_Encryption).
+        // cipher to use for encryption and decryption (see https://minecraft.wiki/w/Java_Edition_protocol/Encryption).
         val sharedSecret = Encryption.decrypt(packet.secret)
         connection.enableEncryption(SecretKeySpec(sharedSecret, Encryption.SYMMETRIC_ALGORITHM))
         modifyAddressIfNeeded()

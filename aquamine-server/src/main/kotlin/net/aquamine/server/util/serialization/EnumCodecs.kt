@@ -12,11 +12,11 @@ object EnumCodecs {
     private const val PRE_BUILT_LOOKUP_MAP_THRESHOLD = 16
 
     @JvmField
-    val TEMPERATURE_MODIFIER: Codec<TemperatureModifier> = of { TemperatureModifier.values() }
+    val TEMPERATURE_MODIFIER: Codec<TemperatureModifier> = of { TemperatureModifier.entries.toTypedArray() }
     @JvmField
-    val PRECIPITATION: Codec<Precipitation> = of { Precipitation.values() }
+    val PRECIPITATION: Codec<Precipitation> = of { Precipitation.entries.toTypedArray() }
     @JvmField
-    val GRASS_COLOR_MODIFIER: Codec<GrassColorModifier> = of { GrassColorModifier.values() }
+    val GRASS_COLOR_MODIFIER: Codec<GrassColorModifier> = of { GrassColorModifier.entries.toTypedArray() }
 
     @JvmStatic
     fun <E : Enum<E>> of(valueSupplier: Supplier<Array<E>>): EnumCodec<E> = of(valueSupplier) { it.name.lowercase() }
@@ -27,7 +27,7 @@ object EnumCodecs {
         // We only create a lookup map if the amount of values is large enough that the map would really be beneficial.
         if (values.size > PRE_BUILT_LOOKUP_MAP_THRESHOLD) {
             val valueMap = values.associateBy(toName::apply)
-            return EnumCodec { valueMap.get(it) }
+            return EnumCodec { valueMap[it] }
         }
         return EnumCodec { name -> values.firstOrNull { toName.apply(it) == name } }
     }

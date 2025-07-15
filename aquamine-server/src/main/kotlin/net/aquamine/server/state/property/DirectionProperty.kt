@@ -10,7 +10,7 @@ class DirectionProperty(name: String, values: Collection<Direction>) : EnumPrope
 
     companion object {
 
-        private val VALUES = Direction.values()
+        private val VALUES = Direction.entries.toTypedArray()
         private val VALUE_SET = Sets.immutableEnumSet(EnumSet.allOf(Direction::class.java))
 
         @JvmStatic

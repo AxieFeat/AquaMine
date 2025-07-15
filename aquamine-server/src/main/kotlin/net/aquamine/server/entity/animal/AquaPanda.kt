@@ -85,7 +85,7 @@ class AquaPanda(world: AquaWorld) : AquaAnimal(world), Panda {
         private const val FLAG_ROLLING = 2
         private const val FLAG_SITTING = 3
         private const val FLAG_LYING_ON_BACK = 4
-        private val GENES = PandaGene.values()
+        private val GENES = PandaGene.entries.toTypedArray()
 
         private const val DEFAULT_MOVEMENT_SPEED = 0.15
         private const val DEFAULT_ATTACK_DAMAGE = 6.0

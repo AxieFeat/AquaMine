@@ -13,7 +13,7 @@ import net.aquamine.server.network.buffer.BinaryWriter
  * We then further write the minimum and maximum values, if they are not equal
  * to -[Long.MAX_VALUE] and [Long.MAX_VALUE] respectively.
  *
- * See [here](https://wiki.vg/Command_Data#brigadier:long)
+ * See [here](https://minecraft.wiki/w/Java_Edition_protocol/Command_data#brigadier:long)
  */
 object LongArgumentSerializer : FlaggedArgumentSerializer<LongArgumentType> {
 

@@ -7,7 +7,7 @@ import xyz.axie.nbt.CompoundTag
 
 object ParrotSerializer : EntitySerializer<AquaParrot> {
 
-    private val TYPES = ParrotVariant.values()
+    private val TYPES = ParrotVariant.entries.toTypedArray()
     private const val VARIANT_TAG = "Variant"
 
     override fun load(entity: AquaParrot, data: CompoundTag) {

@@ -6,7 +6,7 @@ object ListExtras {
     inline fun <T> toIntArray(list: List<T>, converter: (T) -> Int): IntArray {
         val array = IntArray(list.size)
         for (i in list.indices) {
-            array[i] = converter(list.get(i))
+            array[i] = converter(list[i])
         }
         return array
     }

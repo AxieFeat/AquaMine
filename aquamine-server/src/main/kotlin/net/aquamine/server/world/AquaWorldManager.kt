@@ -71,8 +71,8 @@ class AquaWorldManager(
     }
 
     override fun saveWorld(world: World): CompletableFuture<Void> {
-        val AquaWorld = world.downcast() // Moved outside of the block to fail fast
-        return CompletableFuture.runAsync({ AquaWorld.save() }, worldExecutor)
+        val aquaWorld = world.downcast() // Moved outside of the block to fail fast
+        return CompletableFuture.runAsync({ aquaWorld.save() }, worldExecutor)
     }
 
     override fun isLoaded(key: Key): Boolean = worlds.containsKey(ResourceKey.of(ResourceKeys.DIMENSION, key))

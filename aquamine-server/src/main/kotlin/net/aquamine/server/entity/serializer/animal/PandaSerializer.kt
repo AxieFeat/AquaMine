@@ -12,7 +12,7 @@ object PandaSerializer : EntitySerializer<AquaPanda> {
 
     private const val MAIN_GENE_TAG = "MainGene"
     private const val HIDDEN_GENE_TAG = "HiddenGene"
-    private val GENE_NAMES = PandaGene.values().associateBy { it.name.lowercase() }
+    private val GENE_NAMES = PandaGene.entries.associateBy { it.name.lowercase() }
 
     override fun load(entity: AquaPanda, data: CompoundTag) {
         AgeableSerializer.load(entity, data)

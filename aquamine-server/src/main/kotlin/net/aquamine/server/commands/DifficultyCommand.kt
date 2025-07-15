@@ -17,7 +17,7 @@ object DifficultyCommand {
             requiresPermission(AquaPermission.DIFFICULTY)
             runs { CommandMessages.DIFFICULTY_QUERY.sendSuccess(it.source, it.source.world.difficulty, false) }
         }
-        Difficulty.values().forEach { difficulty ->
+        Difficulty.entries.forEach { difficulty ->
             command.then(literalCommand(difficulty.name.lowercase()) {
                 runs {
                     if (it.source.world.difficulty == difficulty) throw ERROR_ALREADY_DIFFICULT.create(difficulty.name.lowercase())

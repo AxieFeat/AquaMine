@@ -85,7 +85,7 @@ class PathPackResources(name: String, private val root: Path, builtin: Boolean) 
                         if (location == null) {
                             LOGGER.error("Invalid path in pack: $namespace:$fullPath! Ignoring...")
                         } else {
-                            output.accept(location, Supplier { Files.newInputStream(file) })
+                            output.accept(location) { Files.newInputStream(file) }
                         }
                     }
                 }

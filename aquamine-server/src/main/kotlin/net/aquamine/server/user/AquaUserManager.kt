@@ -19,14 +19,14 @@ class AquaUserManager(private val server: AquaServer, private val dataSerializer
     private val executor = Executors.newSingleThreadExecutor(daemonThreadFactory("AquaMine User Data Loader"))
 
     fun updateUser(uuid: UUID, data: CompoundTag) {
-        users.get(uuid)?.data = data
+        users[uuid]?.data = data
     }
 
-    override fun getUser(uuid: UUID): User? = users.get(uuid)
+    override fun getUser(uuid: UUID): User? = users[uuid]
 
     override fun getUser(name: String): User? {
         val profile = server.profileCache.getProfile(name) ?: return null
-        return users.get(profile.uuid)
+        return users[profile.uuid]
     }
 
     override fun loadUser(uuid: UUID): CompletableFuture<User?> {

@@ -18,17 +18,101 @@ object AquaDimensionTypes {
     @JvmField
     val END_EFFECTS: Key = Key.key("the_end")
     @JvmField
-    val OVERWORLD: AquaDimensionType = register("overworld", AquaDimensionType(OptionalLong.empty(), true, false, false, true, 1.0, true,
-        false, -64, 384, 384, BlockTags.INFINIBURN_OVERWORLD, OVERWORLD_EFFECTS, 0F, MonsterSettings(false, true, UniformInt(0, 7), 0)))
+    val OVERWORLD: AquaDimensionType = register(
+        key = "overworld",
+        type = AquaDimensionType(OptionalLong.empty(),
+        hasSkylight = true,
+        hasCeiling = false,
+        isUltrawarm = false,
+        isNatural = true,
+        coordinateScale = 1.0,
+        allowBeds = true,
+        allowRespawnAnchors = false,
+        minimumY = -64,
+        height = 384,
+        logicalHeight = 384,
+        infiniburn = BlockTags.INFINIBURN_OVERWORLD,
+        effects = OVERWORLD_EFFECTS,
+        ambientLight = 0F,
+        monsterSettings = MonsterSettings(
+            piglinSafe = false,
+            hasRaids = true,
+            monsterSpawnLightLevel = UniformInt(0, 7),
+            monsterSpawnBlockLightLimit = 0
+        )
+    ))
     @JvmField
-    val THE_NETHER: AquaDimensionType = register("the_nether", AquaDimensionType(OptionalLong.of(18000L), false, true, true, false, 8.0, false,
-        true, 0, 256, 128, BlockTags.INFINIBURN_NETHER, NETHER_EFFECTS, 0.1F, MonsterSettings(true, false, ConstantInt.of(11), 15)))
+    val THE_NETHER: AquaDimensionType = register(
+        key = "the_nether",
+        type = AquaDimensionType(OptionalLong.of(18000L),
+        hasSkylight = false,
+        hasCeiling = true,
+        isUltrawarm = true,
+        isNatural = false,
+        coordinateScale = 8.0,
+        allowBeds = false,
+        allowRespawnAnchors = true,
+        minimumY = 0,
+        height = 256,
+        logicalHeight = 128,
+        infiniburn = BlockTags.INFINIBURN_NETHER,
+        effects = NETHER_EFFECTS,
+        ambientLight = 0.1F,
+        monsterSettings = MonsterSettings(
+            piglinSafe = true,
+            hasRaids = false,
+            monsterSpawnLightLevel = ConstantInt.of(11),
+            monsterSpawnBlockLightLimit = 15
+        )
+    ))
     @JvmField
-    val THE_END: AquaDimensionType = register("the_end", AquaDimensionType(OptionalLong.of(6000L), false, false, false, false, 1.0, false,
-        false, 0, 256, 256, BlockTags.INFINIBURN_END, END_EFFECTS, 0F, MonsterSettings(false, true, UniformInt(0, 7), 0)))
+    val THE_END: AquaDimensionType = register(
+        key = "the_end",
+        type = AquaDimensionType(OptionalLong.of(6000L),
+        hasSkylight = false,
+        hasCeiling = false,
+        isUltrawarm = false,
+        isNatural = false,
+        coordinateScale = 1.0,
+        allowBeds = false,
+        allowRespawnAnchors = false,
+        minimumY = 0,
+        height = 256,
+        logicalHeight = 256,
+        infiniburn = BlockTags.INFINIBURN_END,
+        effects = END_EFFECTS,
+        ambientLight = 0F,
+        monsterSettings = MonsterSettings(
+            piglinSafe = false,
+            hasRaids = true,
+            monsterSpawnLightLevel = UniformInt(0, 7),
+            monsterSpawnBlockLightLimit = 0
+        )
+    ))
     @JvmField
-    val OVERWORLD_CAVES: AquaDimensionType = register("overworld_caves", AquaDimensionType(OptionalLong.empty(), true, true, false, true, 1.0,
-        true, false, -64, 384, 384, BlockTags.INFINIBURN_OVERWORLD, OVERWORLD_EFFECTS, 0F, MonsterSettings(false, true, UniformInt(0, 7), 0)))
+    val OVERWORLD_CAVES: AquaDimensionType = register(
+        key ="overworld_caves",
+        type = AquaDimensionType(OptionalLong.empty(),
+        hasSkylight = true,
+        hasCeiling = true,
+        isUltrawarm = false,
+        isNatural = true,
+        coordinateScale = 1.0,
+        allowBeds = true,
+        allowRespawnAnchors = false,
+        minimumY = -64,
+        height = 384,
+        logicalHeight = 384,
+        infiniburn = BlockTags.INFINIBURN_OVERWORLD,
+        effects = OVERWORLD_EFFECTS,
+        ambientLight = 0F,
+        monsterSettings = MonsterSettings(
+            piglinSafe = false,
+            hasRaids = true,
+            monsterSpawnLightLevel = UniformInt(0, 7),
+            monsterSpawnBlockLightLimit = 0
+        )
+    ))
 
     @JvmStatic
     private fun register(key: String, type: AquaDimensionType): AquaDimensionType =

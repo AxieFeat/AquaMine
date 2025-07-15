@@ -65,7 +65,7 @@ class VanillaPackResourcesBuilder {
 
     fun pushUniversalPath(path: Path): VanillaPackResourcesBuilder = apply {
         pushRootPath(path)
-        PackType.values().forEach { pushPathForType(it, path.resolve(it.directory)) }
+        PackType.entries.forEach { pushPathForType(it, path.resolve(it.directory)) }
     }
 
     fun pushAssetPath(type: PackType, path: Path): VanillaPackResourcesBuilder = apply {
@@ -79,7 +79,7 @@ class VanillaPackResourcesBuilder {
 
     fun build(): VanillaPackResources {
         val pathsByType = EnumMap<PackType, List<Path>>(PackType::class.java)
-        PackType.values().forEach { pathsByType.put(it, copyAndReverse(pathsForType.getOrDefault(it, ImmutableSets.of()))) }
+        PackType.entries.forEach { pathsByType.put(it, copyAndReverse(pathsForType.getOrDefault(it, ImmutableSets.of()))) }
         return VanillaPackResources(metadata, ImmutableSets.copyOf(namespaces), copyAndReverse(rootPaths), pathsByType)
     }
 
@@ -92,7 +92,7 @@ class VanillaPackResourcesBuilder {
         private fun getRootDirectoriesForPackTypes(): Map<PackType, Path> {
             synchronized(VanillaPackResources::class.java) {
                 val result = ImmutableMap.builder<PackType, Path>()
-                PackType.values().forEach { type ->
+                PackType.entries.forEach { type ->
                     val assetsMarker = "/${type.directory}/.mcassetsroot"
                     val resourceUrl = VanillaPackResources::class.java.getResource(assetsMarker)
                     if (resourceUrl == null) {

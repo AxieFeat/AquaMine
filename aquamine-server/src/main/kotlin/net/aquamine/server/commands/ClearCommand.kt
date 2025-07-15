@@ -37,7 +37,7 @@ object ClearCommand {
     private fun clear(source: CommandSourceStack, targets: List<AquaPlayer>, predicate: ItemStackPredicate, maxCount: Int) {
         val amount = if (maxCount == -1) "all" else maxCount.toString()
         if (targets.size == 1) {
-            val target = targets.get(0)
+            val target = targets[0]
             clear(target, predicate, maxCount)
             CommandMessages.CLEAR_SINGLE.sendSuccess(source, amount, target.displayName, true)
             target.connection.send(PacketOutSetContainerContent.fromPlayerInventory(target.inventory))

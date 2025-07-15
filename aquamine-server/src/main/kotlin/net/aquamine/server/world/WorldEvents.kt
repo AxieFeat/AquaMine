@@ -3,7 +3,7 @@ package net.aquamine.server.world
 /**
  * These are specific world events that will be sent by the server to easily
  * signal to clients when they occur. The seemingly arbitrary IDs are from
- * [here](https://wiki.vg/Protocol#Effect).
+ * [here](https://minecraft.wiki/w/Java_Edition_protocol/Packets#World_Event).
  */
 object WorldEvents {
 

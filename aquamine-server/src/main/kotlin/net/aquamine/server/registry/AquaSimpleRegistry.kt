@@ -113,7 +113,7 @@ open class AquaSimpleRegistry<T> protected constructor(override val key: Resourc
         byLocation.put(key.location, holder)
         byValue.put(value, holder)
         byId.size(max(byId.size, id + 1))
-        byId.set(id, holder)
+        byId[id] = holder
         toId.put(value, id)
         if (nextId <= id) nextId = id + 1
         holdersInOrder = null
@@ -144,13 +144,13 @@ open class AquaSimpleRegistry<T> protected constructor(override val key: Resourc
 
     override fun getId(value: T): Int = toId.getInt(value)
 
-    override fun get(key: Key): T? = byLocation.get(key)?.value()
+    override fun get(key: Key): T? = byLocation[key]?.value()
 
-    override fun get(key: ResourceKey<T>): T? = byKey.get(key)?.value()
+    override fun get(key: ResourceKey<T>): T? = byKey[key]?.value()
 
     override fun get(id: Int): T? {
         if (id < 0 || id >= byId.size) return null
-        return byId.get(id)?.value()
+        return byId[id]?.value()
     }
 
     /*
@@ -161,10 +161,10 @@ open class AquaSimpleRegistry<T> protected constructor(override val key: Resourc
 
     override fun getHolder(id: Int): Holder.Reference<T>? {
         if (id < 0 || id >= byId.size) return null
-        return byId.get(id)
+        return byId[id]
     }
 
-    override fun getHolder(key: ResourceKey<T>): Holder.Reference<T>? = byKey.get(key)
+    override fun getHolder(key: ResourceKey<T>): Holder.Reference<T>? = byKey[key]
 
     override fun createIntrusiveHolder(value: T): Holder.Reference<T> {
         val holders = requireNotNull(unregisteredIntrusiveHolders) { "This registry cannot create intrusive holders!" }
@@ -195,10 +195,10 @@ open class AquaSimpleRegistry<T> protected constructor(override val key: Resourc
 
     override fun tagNames(): Stream<TagKey<T>> = tags.keys.stream()
 
-    override fun getTag(key: TagKey<T>): HolderSet.Named<T>? = tags.get(key)
+    override fun getTag(key: TagKey<T>): HolderSet.Named<T>? = tags[key]
 
     override fun getOrCreateTag(key: TagKey<T>): HolderSet.Named<T> {
-        var tag = tags.get(key)
+        var tag = tags[key]
         if (tag == null) {
             tag = createTag(key)
             tags = IdentityHashMap(tags).apply { put(key, tag) }

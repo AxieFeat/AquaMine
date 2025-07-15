@@ -94,7 +94,7 @@ class AquaAxolotl(world: AquaWorld) : AquaAnimal(world), Axolotl, BucketStorable
     companion object {
 
         private const val MAX_AIR_TICKS = 5 * 60 * 20 // 5 minutes in ticks
-        private val VARIANTS = AxolotlVariant.values()
+        private val VARIANTS = AxolotlVariant.entries.toTypedArray()
 
         private const val DEFAULT_MAX_HEALTH = 14.0
         private const val DEFAULT_MOVEMENT_SPEED = 1.0

@@ -23,7 +23,7 @@ class IntHashBiMap<T>(expectedSize: Int) : IntBiMap<T> {
         while (valueById.size <= value) {
             valueById.add(null)
         }
-        valueById.set(value, key)
+        valueById[value] = key
         if (nextId <= value) nextId = value + 1
     }
 

@@ -41,7 +41,7 @@ class AquaParrot(world: AquaWorld) : AquaTamable(world), Parrot {
 
     companion object {
 
-        private val TYPES = ParrotVariant.values()
+        private val TYPES = ParrotVariant.entries.toTypedArray()
 
         private const val DEFAULT_MAX_HEALTH = 6.0
         private const val DEFAULT_FLYING_SPEED = 0.4

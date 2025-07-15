@@ -117,7 +117,7 @@ fun interface PacketGroupingAudience : ForwardingAudience {
 
     override fun playSound(sound: Sound, emitter: Sound.Emitter) {
         if (emitter !== Sound.Emitter.self()) {
-            val entity = if (emitter is AquaEntity) emitter else error("Sound emitter must be an entity or self(), was $emitter!")
+            val entity = emitter as? AquaEntity ?: error("Sound emitter must be an entity or self(), was $emitter!")
             val seed = sound.seed().orElseGet { generateSoundSeed() }
             val event = getSoundEventHolder(sound)
             sendGroupedPacket(PacketOutEntitySoundEffect(event, sound.source(), entity.id, sound.volume(), sound.pitch(), seed))

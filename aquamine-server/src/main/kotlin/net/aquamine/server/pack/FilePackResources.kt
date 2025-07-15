@@ -89,7 +89,7 @@ class FilePackResources(name: String, private val file: File, builtin: Boolean) 
             val relativePath = name.substring(namespaceFolder.length)
             val key = Keys.create(namespace, relativePath)
             if (key != null) {
-                output.accept(key, Supplier { zip.getInputStream(entry) })
+                output.accept(key) { zip.getInputStream(entry) }
             } else {
                 LOGGER.warn("Invalid path in data pack: $namespace:$relativePath! Ignoring...")
             }

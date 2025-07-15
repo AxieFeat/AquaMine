@@ -81,7 +81,7 @@ class AquaFox(world: AquaWorld) : AquaAnimal(world), Fox {
         private const val FLAG_SLEEPING = 5
         private const val FLAG_FACEPLANTED = 6
         private const val FLAG_DEFENDING = 7
-        private val TYPES = FoxVariant.values()
+        private val TYPES = FoxVariant.entries.toTypedArray()
 
         private const val DEFAULT_MOVEMENT_SPEED = 0.3
         private const val DEFAULT_MAX_HEALTH = 10.0

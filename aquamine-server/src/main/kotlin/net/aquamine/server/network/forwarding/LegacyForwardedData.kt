@@ -25,8 +25,8 @@ data class LegacyForwardedData(
             val split = string.split('\u0000')
             // We need to have the original IP, forwarded IP, and the UUID at bare minimum.
             if (split.size < 3) return null
-            val properties = if (split.size > 3) AquaProfileProperty.Adapter.readJsonList(split.get(3)) else persistentListOf()
-            return LegacyForwardedData(split.get(0), split.get(1), MojangUUIDTypeAdapter.fromString(split.get(2)), properties)
+            val properties = if (split.size > 3) AquaProfileProperty.Adapter.readJsonList(split[3]) else persistentListOf()
+            return LegacyForwardedData(split[0], split[1], MojangUUIDTypeAdapter.fromString(split[2]), properties)
         }
     }
 }

@@ -50,7 +50,7 @@ data class PacketOutUpdateTeams(
 
         companion object {
 
-            private val BY_ID = values()
+            private val BY_ID = entries.toTypedArray()
 
             @JvmStatic
             fun fromId(id: Int): Action? = BY_ID.getOrNull(id)

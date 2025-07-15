@@ -66,14 +66,14 @@ class AquaArmorStand(world: AquaWorld) : AquaLivingEntity(world), ArmorStand, Aq
     }
 
     override fun getEquipment(slot: EquipmentSlot): AquaItemStack = when (slot.type) {
-        EquipmentSlot.Type.HAND -> handItems.get(EquipmentSlots.index(slot))
-        EquipmentSlot.Type.ARMOR -> armorItems.get(EquipmentSlots.index(slot))
+        EquipmentSlot.Type.HAND -> handItems[EquipmentSlots.index(slot)]
+        EquipmentSlot.Type.ARMOR -> armorItems[EquipmentSlots.index(slot)]
     }
 
     override fun setEquipment(slot: EquipmentSlot, item: AquaItemStack) {
         when (slot.type) {
-            EquipmentSlot.Type.HAND -> handItems.set(EquipmentSlots.index(slot), item)
-            EquipmentSlot.Type.ARMOR -> armorItems.set(EquipmentSlots.index(slot), item)
+            EquipmentSlot.Type.HAND -> handItems[EquipmentSlots.index(slot)] = item
+            EquipmentSlot.Type.ARMOR -> armorItems[EquipmentSlots.index(slot)] = item
         }
     }
 

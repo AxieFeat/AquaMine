@@ -269,6 +269,6 @@ class AquaScoreboard : Scoreboard {
 
     companion object {
 
-        private val DISPLAY_SLOTS = DisplaySlot.values()
+        private val DISPLAY_SLOTS = DisplaySlot.entries.toTypedArray()
     }
 }

@@ -4,7 +4,7 @@ import net.aquamine.api.item.data.DyeColor
 
 object DyeColors {
 
-    private val VALUES = DyeColor.values()
+    private val VALUES = DyeColor.entries.toTypedArray()
 
     @JvmStatic
     fun fromId(id: Int): DyeColor {

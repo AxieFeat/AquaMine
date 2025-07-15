@@ -32,7 +32,7 @@ class VanillaPackResources(
     fun listRawPaths(packType: PackType, location: Key, action: Consumer<Path>) {
         FileUtil.decomposePath(location.value()).get()
             .ifLeft { segments ->
-                pathsForType.get(packType)!!.forEach { action.accept(FileUtil.resolvePath(it.resolve(location.namespace()), segments)) }
+                pathsForType[packType]!!.forEach { action.accept(FileUtil.resolvePath(it.resolve(location.namespace()), segments)) }
             }
             .ifRight { LOGGER.error("Invalid path $location! ${it.message}") }
     }
@@ -40,17 +40,17 @@ class VanillaPackResources(
     override fun listResources(packType: PackType, namespace: String, path: String, output: PackResources.ResourceOutput) {
         FileUtil.decomposePath(path).get()
             .ifLeft { segments ->
-                val paths = pathsForType.get(packType)!!
+                val paths = pathsForType[packType]!!
                 val pathCount = paths.size
                 if (pathCount == 1) {
-                    getResources(output, namespace, paths.get(0), segments)
+                    getResources(output, namespace, paths[0], segments)
                     return@ifLeft
                 }
                 val streams = HashMap<Key, Supplier<InputStream>>()
                 for (i in 0 until pathCount - 1) {
-                    getResources(streams::putIfAbsent, namespace, paths.get(i), segments)
+                    getResources(streams::putIfAbsent, namespace, paths[i], segments)
                 }
-                val lastPath = paths.get(pathCount - 1)
+                val lastPath = paths[pathCount - 1]
                 if (streams.isEmpty()) {
                     getResources(output, namespace, lastPath, segments)
                 } else {
@@ -64,7 +64,7 @@ class VanillaPackResources(
     override fun getResource(packType: PackType, location: Key): Supplier<InputStream> {
         return FileUtil.decomposePath(location.value()).get().map(
             { segments ->
-                pathsForType.get(packType)!!.forEach { path ->
+                pathsForType[packType]!!.forEach { path ->
                     val relative = FileUtil.resolvePath(path.resolve(location.namespace()), segments)
                     if (Files.exists(relative)) return@map Supplier { Files.newInputStream(relative) }
                 }

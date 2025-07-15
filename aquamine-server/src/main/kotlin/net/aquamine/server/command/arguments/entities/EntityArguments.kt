@@ -40,7 +40,7 @@ object EntityArguments {
 
         companion object {
 
-            private val BY_NAME = values().associateBy { it.name.lowercase() }
+            private val BY_NAME = entries.associateBy { it.name.lowercase() }
 
             /**
              * Gets the sorter with the given [name].

@@ -50,7 +50,7 @@ interface Neutral {
             val target = entity.world.entityManager.getByUUID(targetId)
             if (target != null) {
                 if (target is AquaMob) entity.lastHurtByMob = target
-                if (target.type === EntityTypes.PLAYER) entity.lastHurtByPlayer = target as AquaPlayer
+                if (target.type === EntityTypes.PLAYER.get()) entity.lastHurtByPlayer = target as AquaPlayer
             }
         }
 

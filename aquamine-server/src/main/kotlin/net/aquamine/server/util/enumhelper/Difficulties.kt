@@ -4,7 +4,7 @@ import net.aquamine.api.world.Difficulty
 
 object Difficulties {
 
-    private val VALUES = Difficulty.values()
+    private val VALUES = Difficulty.entries.toTypedArray()
     private val BY_NAME = VALUES.associateBy { it.name.lowercase() }
 
     @JvmStatic

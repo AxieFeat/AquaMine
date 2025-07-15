@@ -91,7 +91,7 @@ class NetworkServer(private val server: AquaServer) {
 
     private fun findWorker(): NetworkWorker {
         index = ++index % WORKER_COUNT
-        return workers.get(index)
+        return workers[index]
     }
 
     companion object {

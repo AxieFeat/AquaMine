@@ -86,6 +86,6 @@ class AquaWrittenBookMeta(data: CompoundTag) : AbstractItemMeta<AquaWrittenBookM
         private const val AUTHOR_TAG = "author"
         private const val PAGES_TAG = "pages"
         private const val GENERATION_TAG = "generation"
-        private val GENERATIONS = WrittenBookGeneration.values()
+        private val GENERATIONS = WrittenBookGeneration.entries.toTypedArray()
     }
 }

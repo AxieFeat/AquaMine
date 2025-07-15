@@ -44,7 +44,7 @@ class CollectFields(vararg selectors: FieldSelector) : CollectToTag() {
             return super.visitEntry(type, name)
         }
         if (type == CompoundTag.TYPE) {
-            val childTree = tree.fieldsToRecurse.get(name)
+            val childTree = tree.fieldsToRecurse[name]
             if (childTree != null) {
                 stack.push(childTree)
                 return super.visitEntry(type, name)

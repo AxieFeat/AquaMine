@@ -40,7 +40,7 @@ object ItemStackParser { // TODO: Tags for ItemStackPredicate etc.
             }
             /* FIXME: When we implement command build context and holder lookups, rewrite this
             if (tag != null) {
-                val tags = KryptonTagManager.get(TagTypes.ITEMS, tag) ?: throw UNKNOWN_ITEM_TAG.create(tag.toString())
+                val tags = AquaTagManager.get(TagTypes.ITEMS, tag) ?: throw UNKNOWN_ITEM_TAG.create(tag.toString())
                 return@ItemStackPredicate tags.contains(it.type)
             }
              */

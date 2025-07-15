@@ -63,6 +63,6 @@ open class AquaBoat(world: AquaWorld) : AquaEntity(world), Boat {
         private const val DEFAULT_DAMAGE_TIMER = 10
         private const val DAMAGE_INCREASE_MULTIPLIER = 10F
 
-        private val TYPES = BoatVariant.values()
+        private val TYPES = BoatVariant.entries.toTypedArray()
     }
 }

@@ -29,7 +29,7 @@ abstract class InvocableCommandRegistrar<C : IC<A>, A>(lock: Lock, private val a
     protected abstract fun getArgs(arguments: Map<String, ParsedArgument<*, *>>): A
 
     protected inline fun <reified V> readArguments(arguments: Map<String, ParsedArgument<*, *>>, fallback: V): V {
-        val argument = arguments.get("arguments") ?: return fallback
+        val argument = arguments["arguments"] ?: return fallback
         try {
             return V::class.java.cast(argument.result)
         } catch (exception: ClassCastException) {

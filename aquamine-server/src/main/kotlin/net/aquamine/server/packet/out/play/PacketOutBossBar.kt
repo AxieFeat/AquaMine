@@ -113,8 +113,8 @@ data class PacketOutBossBar(val uuid: UUID, val action: Action) : Packet {
 
     companion object {
 
-        private val COLORS = Color.values()
-        private val OVERLAYS = Overlay.values()
+        private val COLORS = Color.entries.toTypedArray()
+        private val OVERLAYS = Overlay.entries.toTypedArray()
 
         @JvmStatic
         private fun readColor(reader: BinaryReader): Color = COLORS[reader.readVarInt()]

@@ -54,7 +54,7 @@ data class AquaItemStack(override val type: AquaItemType, override val amount: I
         return AquaItemStack(type, amount, meta as AbstractItemMeta<*>)
     }
 
-    //override fun withMeta(builder: ItemMeta.Builder.() -> Unit): KryptonItemStack = withMeta(ItemMeta.builder().apply(builder).build())
+    //override fun withMeta(builder: ItemMeta.Builder.() -> Unit): AquaItemStack = withMeta(ItemMeta.builder().apply(builder).build())
 
     override fun toBuilder(): Builder = Builder(this)
 

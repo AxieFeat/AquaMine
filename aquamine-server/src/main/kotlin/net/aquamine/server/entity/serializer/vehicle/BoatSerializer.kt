@@ -11,7 +11,7 @@ import xyz.axie.nbt.StringTag
 object BoatSerializer : EntitySerializer<AquaBoat> {
 
     private const val TYPE_TAG = "Type"
-    private val TYPE_NAMES = BoatVariant.values().associateBy { it.name.lowercase() }
+    private val TYPE_NAMES = BoatVariant.entries.associateBy { it.name.lowercase() }
 
     override fun load(entity: AquaBoat, data: CompoundTag) {
         BaseEntitySerializer.load(entity, data)

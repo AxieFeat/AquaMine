@@ -89,13 +89,13 @@ object OverworldBiomes {
     // ==============================
 
     @JvmStatic
-    fun sparseJungle(): AquaBiome = baseJungle(0.8F, false, true, false)
+    fun sparseJungle(): AquaBiome = baseJungle(0.8F, isBamboo = false, isEdge = true, isLight = false)
 
     @JvmStatic
-    fun jungle(): AquaBiome = baseJungle(0.9F, false, false, true)
+    fun jungle(): AquaBiome = baseJungle(0.9F, isBamboo = false, isEdge = false, isLight = true)
 
     @JvmStatic
-    fun bambooJungle(): AquaBiome = baseJungle(0.9F, true, false, true)
+    fun bambooJungle(): AquaBiome = baseJungle(0.9F, isBamboo = true, isEdge = false, isLight = true)
 
     @JvmStatic
     private fun baseJungle(downfall: Float, isBamboo: Boolean, isEdge: Boolean, isLight: Boolean): AquaBiome =
@@ -130,16 +130,16 @@ object OverworldBiomes {
     // ==============================
 
     @JvmStatic
-    fun plains(): AquaBiome = plains(false, false, false)
+    fun plains(): AquaBiome = plains(sunflowers = false, icy = false, spikes = false)
 
     @JvmStatic
-    fun sunflowerPlains(): AquaBiome = plains(true, false, false)
+    fun sunflowerPlains(): AquaBiome = plains(sunflowers = true, icy = false, spikes = false)
 
     @JvmStatic
-    fun snowyPlains(): AquaBiome = plains(false, true, false)
+    fun snowyPlains(): AquaBiome = plains(sunflowers = false, icy = true, spikes = false)
 
     @JvmStatic
-    fun iceSpikes(): AquaBiome = plains(false, true, true)
+    fun iceSpikes(): AquaBiome = plains(sunflowers = false, icy = true, spikes = true)
 
     @JvmStatic
     private fun plains(sunflowers: Boolean, icy: Boolean, spikes: Boolean): AquaBiome =
@@ -150,13 +150,13 @@ object OverworldBiomes {
     // ==============================
 
     @JvmStatic
-    fun savanna(): AquaBiome = savanna(false, false)
+    fun savanna(): AquaBiome = savanna(shattered = false, plateau = false)
 
     @JvmStatic
-    fun savannaPlateau(): AquaBiome = savanna(false, true)
+    fun savannaPlateau(): AquaBiome = savanna(shattered = false, plateau = true)
 
     @JvmStatic
-    fun windsweptSavanna(): AquaBiome = savanna(true, false)
+    fun windsweptSavanna(): AquaBiome = savanna(shattered = true, plateau = false)
 
     @JvmStatic
     private fun savanna(shattered: Boolean, plateau: Boolean): AquaBiome {
@@ -173,13 +173,13 @@ object OverworldBiomes {
     // ==============================
 
     @JvmStatic
-    fun beach(): AquaBiome = beach(false, false)
+    fun beach(): AquaBiome = beach(snowy = false, stony = false)
 
     @JvmStatic
-    fun snowyBeach(): AquaBiome = beach(true, false)
+    fun snowyBeach(): AquaBiome = beach(snowy = true, stony = false)
 
     @JvmStatic
-    fun stonyShore(): AquaBiome = beach(false, true)
+    fun stonyShore(): AquaBiome = beach(snowy = false, stony = true)
 
     @JvmStatic
     private fun beach(snowy: Boolean, stony: Boolean): AquaBiome {
@@ -198,16 +198,16 @@ object OverworldBiomes {
     // ==============================
 
     @JvmStatic
-    fun forest(): AquaBiome = forest(false, false, false)
+    fun forest(): AquaBiome = forest(birch = false, tall = false, flower = false)
 
     @JvmStatic
-    fun flowerForest(): AquaBiome = forest(false, false, true)
+    fun flowerForest(): AquaBiome = forest(birch = false, tall = false, flower = true)
 
     @JvmStatic
-    fun birchForest(): AquaBiome = forest(true, false, false)
+    fun birchForest(): AquaBiome = forest(birch = true, tall = false, flower = false)
 
     @JvmStatic
-    fun oldGrowthBirchForest(): AquaBiome = forest(true, true, false)
+    fun oldGrowthBirchForest(): AquaBiome = forest(birch = true, tall = true, flower = false)
 
     @JvmStatic
     private fun forest(birch: Boolean, tall: Boolean, flower: Boolean): AquaBiome {

@@ -66,7 +66,7 @@ class RecipeBookSettings private constructor(private val settings: MutableMap<Re
             RecipeBookType.BLAST_FURNACE to Pair("isBlastingFurnaceGuiOpen", "isBlastingFurnaceFilteringCraftable"),
             RecipeBookType.SMOKER to Pair("isSmokerGuiOpen", "isSmokerFilteringCraftable")
         )
-        private val VALUES = RecipeBookType.values()
+        private val VALUES = RecipeBookType.entries.toTypedArray()
 
         @JvmStatic
         fun read(data: CompoundTag): RecipeBookSettings {

@@ -18,7 +18,7 @@ class RandomStrollGoal(private val entity: AquaMob, private val radius: Int) : G
         var remainingAttempt = positions.size
         while (remainingAttempt-- > 0) {
             val index = random.nextInt(positions.size)
-            val position = positions.get(index)
+            val position = positions[index]
             val target = entity.position.add(position)
             if (entity.navigator.tryPathTo(target.asVec3d())) break
         }

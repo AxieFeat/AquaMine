@@ -11,13 +11,13 @@ object EquipmentSlots {
         ArmorSlot.CHESTPLATE to EquipmentSlot.CHEST,
         ArmorSlot.HELMET to EquipmentSlot.HEAD
     )
-    private val BY_NAME = EquipmentSlot.values().associateBy { it.name.lowercase() }
+    private val BY_NAME = EquipmentSlot.entries.associateBy { it.name.lowercase() }
 
     @JvmStatic
-    fun fromArmorSlot(slot: ArmorSlot): EquipmentSlot = BY_ARMOR_SLOT.get(slot)!!
+    fun fromArmorSlot(slot: ArmorSlot): EquipmentSlot = BY_ARMOR_SLOT[slot]!!
 
     @JvmStatic
-    fun fromName(name: String): EquipmentSlot? = BY_NAME.get(name)
+    fun fromName(name: String): EquipmentSlot? = BY_NAME[name]
 
     @JvmStatic
     fun index(slot: EquipmentSlot): Int = when (slot.type) {

@@ -13,7 +13,7 @@ import net.aquamine.server.network.buffer.BinaryWriter
  *   as SINGLE_WORD
  * * GREEDY_STRING - reads until there is nothing more to be read
  *
- * See [here](https://wiki.vg/Command_Data#brigadier:string)
+ * See [here](https://minecraft.wiki/w/Java_Edition_protocol/Command_data#brigadier:string)
  */
 object StringArgumentSerializer : ArgumentSerializer<StringArgumentType> {
 

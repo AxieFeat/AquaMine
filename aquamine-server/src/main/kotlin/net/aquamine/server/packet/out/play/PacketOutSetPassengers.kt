@@ -25,6 +25,6 @@ data class PacketOutSetPassengers(override val entityId: Int, val passengers: In
         }
 
         @JvmStatic
-        private fun toIdArray(entities: List<Entity>): IntArray = IntArray(entities.size) { entities.get(it).id }
+        private fun toIdArray(entities: List<Entity>): IntArray = IntArray(entities.size) { entities[it].id }
     }
 }

@@ -65,9 +65,9 @@ object PlayerSerializer : EntitySerializer<AquaPlayer> {
 
         if (data.contains(AQUAMINE_TAG, CompoundTag.ID)) {
             entity.hasJoinedBefore = true
-            val AquaData = data.getCompound(AQUAMINE_TAG)
-            entity.firstJoined = Instant.ofEpochMilli(AquaData.getLong(FIRST_JOINED_TAG))
-            entity.lastJoined = Instant.ofEpochMilli(AquaData.getLong(LAST_JOINED_TAG))
+            val aquaData = data.getCompound(AQUAMINE_TAG)
+            entity.firstJoined = Instant.ofEpochMilli(aquaData.getLong(FIRST_JOINED_TAG))
+            entity.lastJoined = Instant.ofEpochMilli(aquaData.getLong(LAST_JOINED_TAG))
         }
     }
 

@@ -51,7 +51,7 @@ class MetadataHolder(private val entity: BaseDataHolder) {
         var entries: MutableList<Entry<*>>? = null
         itemsById.values.forEach {
             if (entries == null) entries = ArrayList()
-            entries!!.add(it.export())
+            entries.add(it.export())
         }
         return entries
     }

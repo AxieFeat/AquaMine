@@ -13,7 +13,7 @@ import net.aquamine.server.network.buffer.BinaryWriter
  * We then further write the minimum and maximum values, if they are not equal
  * to -[Double.MAX_VALUE] and [Double.MAX_VALUE] respectively.
  *
- * See [here](https://wiki.vg/Command_Data#brigadier:double)
+ * See [here](https://minecraft.wiki/w/Java_Edition_protocol/Command_data#brigadier:double)
  */
 object DoubleArgumentSerializer : FlaggedArgumentSerializer<DoubleArgumentType> {
 

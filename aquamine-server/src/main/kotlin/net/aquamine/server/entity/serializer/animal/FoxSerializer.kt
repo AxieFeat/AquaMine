@@ -22,7 +22,7 @@ object FoxSerializer : EntitySerializer<AquaFox> {
     private const val TYPE_TAG = "Type"
     private const val SITTING_TAG = "Sitting"
     private const val CROUCHING_TAG = "Crouching"
-    private val TYPE_NAMES = FoxVariant.values().associateBy { it.name.lowercase() }
+    private val TYPE_NAMES = FoxVariant.entries.associateBy { it.name.lowercase() }
 
     override fun load(entity: AquaFox, data: CompoundTag) {
         AgeableSerializer.load(entity, data)

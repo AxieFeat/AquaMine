@@ -23,7 +23,7 @@ enum class SymmetricGroup3(first: Int, second: Int, third: Int) {
     companion object {
 
         private const val ORDER = 3
-        private val VALUES = values()
+        private val VALUES = entries.toTypedArray()
         private val CAYLEY_TABLE = Array(VALUES.size) { rowIndex ->
             val row = VALUES[rowIndex]
             Array(VALUES.size) { columnIndex ->

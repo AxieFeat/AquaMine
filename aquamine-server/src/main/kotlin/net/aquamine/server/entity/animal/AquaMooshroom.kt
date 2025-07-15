@@ -27,7 +27,7 @@ class AquaMooshroom(world: AquaWorld) : AquaCow(world), Mooshroom {
 
     companion object {
 
-        private val TYPE_NAMES = MooshroomVariant.values().associateBy { it.name.lowercase() }
+        private val TYPE_NAMES = MooshroomVariant.entries.associateBy { it.name.lowercase() }
 
         @JvmStatic
         fun deserializeType(name: String): MooshroomVariant = TYPE_NAMES.getOrDefault(name, MooshroomVariant.RED)

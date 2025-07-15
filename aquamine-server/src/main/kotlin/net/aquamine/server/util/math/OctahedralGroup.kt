@@ -81,13 +81,13 @@ enum class OctahedralGroup(
     fun rotate(direction: Direction): Direction {
         if (rotatedDirections == null) {
             rotatedDirections = EnumMap(Direction::class.java)
-            Direction.values().forEach {
-                val axis = Direction.Axis.values()[permutation.getPermutation(it.axis.ordinal)]
+            Direction.entries.forEach {
+                val axis = Direction.Axis.entries[permutation.getPermutation(it.axis.ordinal)]
                 val axisDirection = if (inverts(axis)) it.axisDirection.opposite else it.axisDirection
                 rotatedDirections!!.put(it, Directions.fromAxisAndDirection(axis, axisDirection))
             }
         }
-        return rotatedDirections!!.get(direction)!!
+        return rotatedDirections!![direction]!!
     }
 
     fun inverts(axis: Direction.Axis): Boolean = when (axis) {
@@ -102,7 +102,7 @@ enum class OctahedralGroup(
 
     companion object {
 
-        private val VALUES = values()
+        private val VALUES = entries.toTypedArray()
         private val CAYLEY_TABLE = createCayleyTable()
         // We use streams here because of findAny and toArray.
         private val INVERSE_TABLE: Array<OctahedralGroup> = Arrays.stream(VALUES)
@@ -123,7 +123,7 @@ enum class OctahedralGroup(
                     for (i in 0 until 3) {
                         permutations.add(rowInversions.getBoolean(i) xor columnInversions.getBoolean(row.permutation.getPermutation(i)))
                     }
-                    inversions.get(Pair(symmetricGroup, permutations))!!
+                    inversions[Pair(symmetricGroup, permutations)]!!
                 }
             }
         }

@@ -48,7 +48,7 @@ data class AquaFireworkEffect(
         private const val TRAIL_TAG = "Trail"
         private const val COLORS_TAG = "Colors"
         private const val FADE_COLORS_TAG = "FadeColors"
-        private val EFFECT_TYPES = FireworkEffectType.values()
+        private val EFFECT_TYPES = FireworkEffectType.entries.toTypedArray()
 
         @JvmStatic
         fun load(data: CompoundTag): AquaFireworkEffect {

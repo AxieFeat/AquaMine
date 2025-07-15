@@ -54,7 +54,7 @@ class AquaRabbit(world: AquaWorld) : AquaAnimal(world), Rabbit {
     companion object {
 
         private const val KILLER_TYPE = 99
-        private val TYPES = RabbitVariant.values()
+        private val TYPES = RabbitVariant.entries.toTypedArray()
         private val TEMPTING_ITEMS = setOf(ItemTypes.CARROT.get(), ItemTypes.GOLDEN_CARROT.get(), ItemTypes.DANDELION.get())
 
         private const val DEFAULT_MAX_HEALTH = 3.0

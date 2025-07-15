@@ -24,7 +24,7 @@ abstract class AquaInventory(
         return stateId
     }
 
-    final override fun getItem(index: Int): AquaItemStack = items.get(index)
+    final override fun getItem(index: Int): AquaItemStack = items[index]
 
     final override fun hasItem(item: ItemStack): Boolean = items.contains(item)
 
@@ -35,14 +35,14 @@ abstract class AquaInventory(
                 val initialAmount = element.amount
                 val maxAmount = element.type.maximumStackSize
                 if (initialAmount + item.amount <= maxAmount) {
-                    items.set(index, element.withAmount(initialAmount + item.amount))
+                    items[index] = element.withAmount(initialAmount + item.amount)
                     return
                 } else if (element.amount != maxAmount) {
-                    items.set(index, element.withAmount(maxAmount))
+                    items[index] = element.withAmount(maxAmount)
                     if (item.amount == 0) return
                 }
             } else if (element.isEmpty()) {
-                items.set(index, item)
+                items[index] = item
                 return
             }
         }
@@ -51,13 +51,13 @@ abstract class AquaInventory(
     final override fun removeItem(item: ItemStack) {
         items.forEachIndexed { index, element ->
             if (element != item) return@forEachIndexed
-            items.set(index, AquaItemStack.EMPTY)
+            items[index] = AquaItemStack.EMPTY
             return
         }
     }
 
     final override fun clear() {
-        items.forEachIndexed { index, _ -> items.set(index, AquaItemStack.EMPTY) }
+        items.forEachIndexed { index, _ -> items[index] = AquaItemStack.EMPTY }
     }
 
     final override fun iterator(): Iterator<AquaItemStack> = items.iterator()

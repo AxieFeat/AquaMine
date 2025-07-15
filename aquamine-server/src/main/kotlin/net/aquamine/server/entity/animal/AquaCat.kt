@@ -61,7 +61,7 @@ class AquaCat(world: AquaWorld) : AquaTamable(world), Cat {
 
     companion object {
 
-        private val VARIANTS = CatVariant.values()
+        private val VARIANTS = CatVariant.entries.toTypedArray()
         private const val DEFAULT_MAX_HEALTH = 10.0
         private const val DEFAULT_MOVEMENT_SPEED = 0.3
         private const val DEFAULT_ATTACK_DAMAGE = 3.0

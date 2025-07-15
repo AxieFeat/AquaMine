@@ -38,14 +38,14 @@ class LastSeenMessagesValidator(private val lastSeenCount: Int) {
         val entries = ObjectArrayList<MessageSignature>(update.acknowledged.cardinality())
         for (i in 0 until lastSeenCount) {
             val isAcknowledged = update.acknowledged.get(i)
-            val entry = trackedMessages.get(i)
+            val entry = trackedMessages[i]
             if (isAcknowledged) {
                 if (entry == null) return null
-                trackedMessages.set(i, entry.acknowledge())
+                trackedMessages[i] = entry.acknowledge()
                 entries.add(entry.signature)
             } else {
                 if (entry != null && !entry.pending) return null
-                trackedMessages.set(i, null)
+                trackedMessages[i] = null
             }
         }
         return LastSeenMessages(entries)

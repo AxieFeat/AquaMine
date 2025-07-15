@@ -47,7 +47,7 @@ data class PacketOutSynchronizePlayerPosition(
 
         companion object {
 
-            private val VALUES = values()
+            private val VALUES = entries.toTypedArray()
 
             @JvmStatic
             fun unpack(flags: Int): Set<RelativeArgument> {

@@ -9,7 +9,7 @@ import javax.crypto.Cipher
  * A utility for generating the server's key pair and decrypting data with the
  * public key.
  *
- * See [here](https://wiki.vg/Protocol_Encryption#Key_Exchange)
+ * See [here](https://minecraft.wiki/w/Java_Edition_protocol/Encryption#Key_Exchange)
  */
 object Encryption {
 
