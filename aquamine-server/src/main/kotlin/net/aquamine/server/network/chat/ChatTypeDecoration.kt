@@ -8,8 +8,8 @@ import net.kyori.adventure.translation.Translatable
 import net.aquamine.server.adventure.network.AdventureCodecs
 import net.aquamine.server.util.ImmutableLists
 import net.aquamine.server.util.serialization.EnumCodecs
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.codecs.RecordCodecBuilder
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.codecs.RecordCodecBuilder
 
 @JvmRecord
 data class ChatTypeDecoration(private val translationKey: String, val parameters: List<Parameter>, val style: Style) : Translatable {

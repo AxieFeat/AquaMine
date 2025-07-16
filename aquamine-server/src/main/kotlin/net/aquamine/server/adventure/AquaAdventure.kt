@@ -25,7 +25,7 @@ object AquaAdventure {
     private val NAMED_TEXT_COLORS = Reflection.accessField<NamedTextColor, List<NamedTextColor>>("VALUES")
     private val NAMED_TEXT_COLOR_ID_MAP = Object2IntArrayMap<NamedTextColor>(NAMED_TEXT_COLORS.size).apply {
         for (i in NAMED_TEXT_COLORS.indices) {
-            put(NAMED_TEXT_COLORS.get(i), i)
+            put(NAMED_TEXT_COLORS[i], i)
         }
     }
 
@@ -36,7 +36,7 @@ object AquaAdventure {
     fun getColorId(color: NamedTextColor): Int = NAMED_TEXT_COLOR_ID_MAP.getInt(color)
 
     @JvmStatic
-    fun getColorFromId(id: Int): NamedTextColor = NAMED_TEXT_COLORS.get(id)
+    fun getColorFromId(id: Int): NamedTextColor = NAMED_TEXT_COLORS[id]
 
     @JvmStatic
     fun toItemStack(book: Book): AquaItemStack {

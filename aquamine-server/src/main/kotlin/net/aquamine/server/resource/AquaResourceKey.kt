@@ -4,7 +4,7 @@ import net.kyori.adventure.key.Key
 import net.aquamine.api.registry.Registry
 import net.aquamine.api.resource.ResourceKey
 import net.aquamine.server.util.Keys
-import org.kryptonmc.serialization.Codec
+import net.aquamine.serialization.Codec
 import java.util.Collections
 import java.util.IdentityHashMap
 

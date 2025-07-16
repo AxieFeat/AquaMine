@@ -9,7 +9,7 @@ import net.aquamine.server.util.nbt.getNullableCompound
 import net.aquamine.server.util.nbt.putBlockPos
 import net.aquamine.server.util.serialization.Codecs
 import xyz.axie.nbt.CompoundTag
-import org.kryptonmc.serialization.nbt.NbtOps
+import net.aquamine.serialization.nbt.NbtOps
 
 class AquaCompassMeta(data: CompoundTag) : AbstractItemMeta<AquaCompassMeta>(data), CompassMeta {
 

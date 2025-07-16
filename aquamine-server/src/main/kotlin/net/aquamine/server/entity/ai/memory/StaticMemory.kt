@@ -2,7 +2,7 @@ package net.aquamine.server.entity.ai.memory
 
 import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.compound
-import org.kryptonmc.serialization.nbt.NbtOps
+import net.aquamine.serialization.nbt.NbtOps
 
 // A static memory is a memory that does not expire.
 class StaticMemory<T : Any>(override val value: T?) : Memory<T> {

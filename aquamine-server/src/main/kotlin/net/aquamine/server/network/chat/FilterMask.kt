@@ -4,7 +4,7 @@ import net.aquamine.server.network.Writable
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.util.serialization.Codecs
-import org.kryptonmc.serialization.Codec
+import net.aquamine.serialization.Codec
 import java.util.BitSet
 import java.util.function.Supplier
 

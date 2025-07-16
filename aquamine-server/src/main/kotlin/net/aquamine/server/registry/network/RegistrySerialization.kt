@@ -18,9 +18,9 @@ import net.aquamine.server.util.Keys
 import net.aquamine.server.util.resultOrError
 import net.aquamine.server.world.biome.AquaBiome
 import net.aquamine.server.world.dimension.AquaDimensionType
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.DataResult
-import org.kryptonmc.serialization.codecs.UnboundedMapCodec
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.DataResult
+import net.aquamine.serialization.codecs.UnboundedMapCodec
 
 object RegistrySerialization {
 

@@ -82,18 +82,6 @@ class AquaServer(override val config: AquaConfig, val profileCache: GameProfileC
         LOGGER.debug("Registering commands...")
         commandManager.registerBuiltins()
 
-        // Warn about piracy being unsupported if proxy forwarding is not enabled, because video game piracy is bad.
-        if (!config.server.onlineMode && config.proxy.mode == ProxyCategory.Mode.NONE) {
-            LOGGER.warn("-----------------------------------------------------------------------------------")
-            LOGGER.warn("THIS SERVER IS IN OFFLINE MODE! NO ATTEMPTS WILL BE MADE TO AUTHENTICATE USERS!")
-            LOGGER.warn("While this may allow players without full Minecraft accounts to connect, it also allows hackers to connect with any " +
-                    "username they choose! Beware!")
-            LOGGER.warn("Please beware that connections made to the server will not be encrypted, meaning hackers could potentially intercept " +
-                    "sensitive data!")
-            LOGGER.warn("To get rid of this message, change \"online-mode\" to true in the configuration file")
-            LOGGER.warn("-----------------------------------------------------------------------------------")
-        }
-
         LOGGER.info("Preparing world ${config.world.name}...")
         worldManager.init()
 

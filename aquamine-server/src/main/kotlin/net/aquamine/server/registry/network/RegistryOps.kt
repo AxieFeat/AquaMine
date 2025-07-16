@@ -5,7 +5,7 @@ import net.aquamine.api.resource.ResourceKey
 import net.aquamine.server.registry.holder.HolderGetter
 import net.aquamine.server.registry.holder.HolderOwner
 import net.aquamine.server.util.serialization.DelegatingOps
-import org.kryptonmc.serialization.DataOps
+import net.aquamine.serialization.DataOps
 
 class RegistryOps<T> private constructor(delegate: DataOps<T>, private val lookupProvider: RegistryInfoLookup) : DelegatingOps<T>(delegate) {
 

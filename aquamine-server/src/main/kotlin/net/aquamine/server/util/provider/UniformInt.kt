@@ -2,8 +2,8 @@ package net.aquamine.server.util.provider
 
 import net.aquamine.server.util.math.Maths
 import net.aquamine.server.util.random.RandomSource
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.codecs.RecordCodecBuilder
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.codecs.RecordCodecBuilder
 
 class UniformInt(override val minimumValue: Int, override val maximumValue: Int) : IntProvider() {
 

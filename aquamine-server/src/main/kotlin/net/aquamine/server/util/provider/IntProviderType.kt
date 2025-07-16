@@ -1,6 +1,6 @@
 package net.aquamine.server.util.provider
 
-import org.kryptonmc.serialization.Codec
+import net.aquamine.serialization.Codec
 
 fun interface IntProviderType<P : IntProvider> {
 

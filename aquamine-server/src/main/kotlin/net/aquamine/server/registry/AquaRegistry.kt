@@ -15,7 +15,7 @@ import net.aquamine.server.util.ImmutableLists
 import net.aquamine.server.util.Keys
 import net.aquamine.server.util.map.IntBiMap
 import net.aquamine.server.util.successOrError
-import org.kryptonmc.serialization.Codec
+import net.aquamine.serialization.Codec
 import java.util.Optional
 import java.util.stream.Stream
 import java.util.stream.StreamSupport

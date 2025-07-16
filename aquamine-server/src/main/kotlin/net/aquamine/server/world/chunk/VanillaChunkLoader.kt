@@ -29,7 +29,7 @@ import xyz.axie.nbt.LongArrayTag
 import xyz.axie.nbt.StringTag
 import xyz.axie.nbt.buildCompound
 import xyz.axie.nbt.compound
-import org.kryptonmc.serialization.nbt.NbtOps
+import net.aquamine.serialization.nbt.NbtOps
 import java.nio.file.Path
 import java.util.EnumSet
 

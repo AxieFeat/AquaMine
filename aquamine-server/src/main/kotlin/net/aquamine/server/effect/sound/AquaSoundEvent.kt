@@ -8,8 +8,8 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.registry.holder.Holder
 import net.aquamine.server.registry.network.RegistryFileCodec
 import net.aquamine.server.util.Keys
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.codecs.RecordCodecBuilder
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.codecs.RecordCodecBuilder
 import java.util.Optional
 
 @JvmRecord

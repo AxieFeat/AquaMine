@@ -19,6 +19,8 @@ dependencyResolutionManagement {
 }
 
 pluginManagement {
+    includeBuild("build-logic")
+
     repositories {
         maven("https://repo.spongepowered.org/repository/maven-public/")
         gradlePluginPortal()

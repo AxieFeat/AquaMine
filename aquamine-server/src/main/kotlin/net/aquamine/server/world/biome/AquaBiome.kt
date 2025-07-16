@@ -12,8 +12,8 @@ import net.aquamine.server.registry.network.RegistryCodecs
 import net.aquamine.server.registry.network.RegistryFileCodec
 import net.aquamine.server.world.biome.data.AquaBiomeEffects
 import net.aquamine.server.world.biome.data.AquaClimate
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.codecs.RecordCodecBuilder
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.codecs.RecordCodecBuilder
 
 class AquaBiome(override val climate: Climate, override val effects: BiomeEffects) : Biome {
 

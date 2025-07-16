@@ -3,6 +3,7 @@ package net.aquamine.server.adventure.provider
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import java.util.function.Consumer
 
+@Suppress("UnstableApiUsage")
 class AquaPlainTextComponentSerializerProvider : PlainTextComponentSerializer.Provider {
 
     override fun plainTextSimple(): PlainTextComponentSerializer = PlainTextComponentSerializer.builder().build()

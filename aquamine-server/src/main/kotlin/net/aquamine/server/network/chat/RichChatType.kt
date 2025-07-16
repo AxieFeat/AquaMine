@@ -9,8 +9,8 @@ import net.aquamine.server.network.Writable
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.registry.AquaDynamicRegistries
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.codecs.RecordCodecBuilder
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.codecs.RecordCodecBuilder
 
 /**
  * Named as such to distinguish it from Adventure's ChatType.

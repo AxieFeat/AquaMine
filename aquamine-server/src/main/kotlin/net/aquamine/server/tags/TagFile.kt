@@ -1,7 +1,7 @@
 package net.aquamine.server.tags
 
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.codecs.RecordCodecBuilder
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.codecs.RecordCodecBuilder
 
 @JvmRecord
 data class TagFile(val entries: List<TagEntry>, val replace: Boolean) {

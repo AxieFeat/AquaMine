@@ -2,9 +2,9 @@ package net.aquamine.server.tags
 
 import net.kyori.adventure.key.Key
 import net.aquamine.server.util.serialization.Codecs
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.codecs.RecordCodecBuilder
-import org.kryptonmc.util.Either
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.codecs.RecordCodecBuilder
+import net.aquamine.util.Either
 import java.util.function.Consumer
 import java.util.function.Predicate
 

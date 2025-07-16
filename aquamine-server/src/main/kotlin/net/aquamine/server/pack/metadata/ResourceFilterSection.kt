@@ -2,8 +2,8 @@ package net.aquamine.server.pack.metadata
 
 import net.aquamine.server.util.ImmutableLists
 import net.aquamine.server.util.KeyPattern
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.codecs.RecordCodecBuilder
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.codecs.RecordCodecBuilder
 
 class ResourceFilterSection(blockList: List<KeyPattern>) {
 

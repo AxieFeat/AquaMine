@@ -19,8 +19,8 @@ import xyz.axie.nbt.ListTag
 import xyz.axie.nbt.StringTag
 import xyz.axie.nbt.compound
 import xyz.axie.nbt.list
-import org.kryptonmc.serialization.Dynamic
-import org.kryptonmc.serialization.nbt.NbtOps
+import net.aquamine.serialization.Dynamic
+import net.aquamine.serialization.nbt.NbtOps
 import java.time.Instant
 import java.util.UUID
 

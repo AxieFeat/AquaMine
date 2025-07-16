@@ -13,7 +13,7 @@ import net.aquamine.server.AquaServer
 import net.aquamine.server.command.CommandSourceStack
 import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.compound
-import org.kryptonmc.serialization.DynamicLike
+import net.aquamine.serialization.DynamicLike
 import java.util.function.BiConsumer
 import java.util.function.Function
 import java.util.function.Supplier

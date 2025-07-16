@@ -48,8 +48,8 @@ import net.aquamine.server.world.biome.BiomeManager
 import net.aquamine.server.world.data.PlayerDataSerializer
 import net.aquamine.server.world.dimension.AquaDimensionType
 import net.aquamine.server.world.rule.GameRuleKeys
-import org.kryptonmc.serialization.Dynamic
-import org.kryptonmc.serialization.nbt.NbtOps
+import net.aquamine.serialization.Dynamic
+import net.aquamine.serialization.nbt.NbtOps
 import java.time.Instant
 import java.util.UUID
 import java.util.concurrent.ConcurrentHashMap

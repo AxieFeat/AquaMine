@@ -19,11 +19,11 @@ import net.aquamine.server.util.provider.ConstantInt
 import net.aquamine.server.util.provider.IntProvider
 import net.aquamine.server.util.provider.UniformInt
 import net.aquamine.server.util.serialization.Codecs
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.DataResult
-import org.kryptonmc.serialization.Dynamic
-import org.kryptonmc.serialization.MapCodec
-import org.kryptonmc.serialization.codecs.RecordCodecBuilder
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.DataResult
+import net.aquamine.serialization.Dynamic
+import net.aquamine.serialization.MapCodec
+import net.aquamine.serialization.codecs.RecordCodecBuilder
 import java.util.Optional
 import java.util.OptionalLong
 import kotlin.math.cos

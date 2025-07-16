@@ -26,8 +26,8 @@ import net.aquamine.server.world.components.BlockGetter
 import net.aquamine.server.world.components.WorldAccessor
 import net.aquamine.server.world.fluid.AquaFluidState
 import net.aquamine.server.world.material.Material
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.MapCodec
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.MapCodec
 import java.util.function.Predicate
 
 @Suppress("UnusedPrivateMember")

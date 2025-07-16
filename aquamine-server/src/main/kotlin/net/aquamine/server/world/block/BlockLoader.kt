@@ -46,7 +46,7 @@ class BlockLoader(registry: AquaRegistry<AquaBlock>) : AquaDataLoader<AquaBlock>
             value.get("dynamicShape").asBoolean
         )
 
-        val blockProperties =  value.get("properties").asJsonArray
+        val blockProperties = value.get("properties").asJsonArray
         val stateProperties = mutableListOf<AquaProperty<*>>()
 
         blockProperties.forEach {

@@ -5,7 +5,7 @@ import net.aquamine.annotations.Catalogue
 import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.coordinate.GlobalPos
 import net.aquamine.server.util.uuid.UUIDUtil
-import org.kryptonmc.serialization.Codec
+import net.aquamine.serialization.Codec
 import java.util.UUID
 
 @Catalogue(MemoryKey::class)

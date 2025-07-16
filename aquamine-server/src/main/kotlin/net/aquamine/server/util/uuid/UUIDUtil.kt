@@ -3,7 +3,7 @@ package net.aquamine.server.util.uuid
 import net.aquamine.server.util.serialization.Codecs
 import xyz.axie.nbt.IntArrayTag
 import xyz.axie.nbt.Tag
-import org.kryptonmc.serialization.Codec
+import net.aquamine.serialization.Codec
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.util.Arrays

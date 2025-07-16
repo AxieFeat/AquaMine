@@ -2,8 +2,8 @@ package net.aquamine.server.util
 
 import net.kyori.adventure.key.InvalidKeyException
 import net.kyori.adventure.key.Key
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.DataResult
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.DataResult
 
 object Keys {
 

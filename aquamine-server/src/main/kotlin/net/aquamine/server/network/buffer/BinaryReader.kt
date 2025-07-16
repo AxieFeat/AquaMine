@@ -28,8 +28,8 @@ import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.EndTag
 import xyz.axie.nbt.io.TagCompression
 import xyz.axie.nbt.io.TagIO
-import org.kryptonmc.serialization.Decoder
-import org.kryptonmc.serialization.nbt.NbtOps
+import net.aquamine.serialization.Decoder
+import net.aquamine.serialization.nbt.NbtOps
 import java.io.InputStream
 import java.nio.ByteBuffer
 import java.security.PublicKey

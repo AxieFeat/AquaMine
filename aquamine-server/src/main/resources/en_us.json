@@ -190,7 +190,7 @@
   "menu.savingLevel": "Saving world",
   "menu.working": "Working...",
   "menu.savingChunks": "Saving chunks",
-  "menu.preparingSpawn": "Preparing spawn area: %s%%",
+  "menu.preparingSpawn": "Preparing spawn area: {0}%",
   "menu.loadingForcedChunks": "Loading forced chunks for dimension %s",
   "menu.generatingTerrain": "Building terrain",
   "menu.convertingLevel": "Converting world",

@@ -5,7 +5,7 @@ import net.aquamine.api.util.BoundingBox
 import net.aquamine.api.util.Vec3i
 import net.aquamine.server.util.math.Maths
 import net.aquamine.server.util.serialization.Codecs
-import org.kryptonmc.serialization.Codec
+import net.aquamine.serialization.Codec
 import java.util.stream.IntStream
 import java.util.stream.Stream
 import java.util.stream.StreamSupport

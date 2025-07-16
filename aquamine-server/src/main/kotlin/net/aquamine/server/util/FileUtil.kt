@@ -1,6 +1,6 @@
 package net.aquamine.server.util
 
-import org.kryptonmc.serialization.DataResult
+import net.aquamine.serialization.DataResult
 import java.nio.file.Files
 import java.nio.file.Path
 import java.util.regex.Pattern

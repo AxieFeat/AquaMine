@@ -2,7 +2,7 @@ package net.aquamine.server.util.math
 
 import net.aquamine.api.util.Direction
 import net.aquamine.server.util.serialization.EnumCodecs
-import org.kryptonmc.serialization.Codec
+import net.aquamine.serialization.Codec
 
 enum class Mirror(val rotation: OctahedralGroup) {
 

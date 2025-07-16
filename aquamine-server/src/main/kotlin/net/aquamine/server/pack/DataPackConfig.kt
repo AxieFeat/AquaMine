@@ -1,8 +1,8 @@
 package net.aquamine.server.pack
 
 import com.google.common.collect.ImmutableList
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.codecs.RecordCodecBuilder
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.codecs.RecordCodecBuilder
 
 class DataPackConfig(enabled: List<String>, disabled: List<String>) {
 

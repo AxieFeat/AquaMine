@@ -4,9 +4,9 @@ import net.aquamine.api.world.biome.Climate
 import net.aquamine.api.world.biome.Precipitation
 import net.aquamine.api.world.biome.TemperatureModifier
 import net.aquamine.server.util.serialization.EnumCodecs
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.MapCodec
-import org.kryptonmc.serialization.codecs.RecordCodecBuilder
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.MapCodec
+import net.aquamine.serialization.codecs.RecordCodecBuilder
 
 @JvmRecord
 data class AquaClimate(

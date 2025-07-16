@@ -3,6 +3,7 @@ package net.aquamine.server.adventure.provider
 import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer
 import java.util.function.Consumer
 
+@Suppress("UnstableApiUsage")
 class AquaGsonComponentSerializerProvider : GsonComponentSerializer.Provider {
 
     override fun gson(): GsonComponentSerializer =

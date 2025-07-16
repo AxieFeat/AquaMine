@@ -4,10 +4,10 @@ import com.google.common.collect.ImmutableList
 import com.google.common.collect.ImmutableMap
 import com.google.common.collect.ImmutableSortedMap
 import net.aquamine.server.state.property.AquaProperty
-import org.kryptonmc.serialization.Decoder
-import org.kryptonmc.serialization.Encoder
-import org.kryptonmc.serialization.MapCodec
-import org.kryptonmc.util.Pair
+import net.aquamine.serialization.Decoder
+import net.aquamine.serialization.Encoder
+import net.aquamine.serialization.MapCodec
+import net.aquamine.util.Pair
 import java.util.Collections
 import java.util.function.Function
 import java.util.function.Supplier

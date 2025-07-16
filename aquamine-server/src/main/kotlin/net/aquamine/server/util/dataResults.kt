@@ -1,6 +1,6 @@
 package net.aquamine.server.util
 
-import org.kryptonmc.serialization.DataResult
+import net.aquamine.serialization.DataResult
 import java.util.Optional
 
 inline fun <R> Optional<R>.successOrError(crossinline message: () -> String): DataResult<R> =

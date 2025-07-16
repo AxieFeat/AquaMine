@@ -12,8 +12,8 @@ import net.aquamine.api.world.biome.GrassColorModifier
 import net.aquamine.server.effect.sound.AquaSoundEvent
 import net.aquamine.server.util.ColorUtil
 import net.aquamine.server.util.serialization.EnumCodecs
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.codecs.RecordCodecBuilder
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.codecs.RecordCodecBuilder
 import java.util.Optional
 
 @JvmRecord

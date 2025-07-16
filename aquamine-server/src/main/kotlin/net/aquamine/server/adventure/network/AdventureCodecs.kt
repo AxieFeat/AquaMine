@@ -6,9 +6,9 @@ import net.kyori.adventure.text.format.TextDecoration
 import net.kyori.adventure.text.format.TextDecoration.State as DecorationState
 import net.aquamine.server.util.Keys
 import net.aquamine.server.util.OptionalBoolean
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.MapCodec
-import org.kryptonmc.serialization.codecs.RecordCodecBuilder
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.MapCodec
+import net.aquamine.serialization.codecs.RecordCodecBuilder
 import java.util.Optional
 
 object AdventureCodecs {

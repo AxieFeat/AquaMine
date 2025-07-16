@@ -4,8 +4,8 @@ import net.aquamine.api.effect.sound.SoundEvent
 import net.aquamine.api.effect.sound.SoundEvents
 import net.aquamine.api.world.biome.AmbientMoodSettings
 import net.aquamine.server.effect.sound.AquaSoundEvent
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.codecs.RecordCodecBuilder
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.codecs.RecordCodecBuilder
 
 @JvmRecord
 data class AquaAmbientMoodSettings(

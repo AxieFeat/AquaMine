@@ -1,8 +1,8 @@
 package net.aquamine.server.pack.metadata
 
 import com.google.gson.JsonObject
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.gson.GsonOps
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.gson.GsonOps
 
 interface MetadataSectionSerializer<T> {
 

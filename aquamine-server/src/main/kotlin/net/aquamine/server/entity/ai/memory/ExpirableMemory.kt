@@ -2,7 +2,7 @@ package net.aquamine.server.entity.ai.memory
 
 import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.compound
-import org.kryptonmc.serialization.nbt.NbtOps
+import net.aquamine.serialization.nbt.NbtOps
 
 class ExpirableMemory<T : Any>(override val value: T?, private var ttl: Long) : Memory<T> {
 

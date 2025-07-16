@@ -11,7 +11,7 @@ import net.aquamine.server.util.nbt.putBlockPosParts
 import net.aquamine.server.util.serialization.Codecs
 import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.StringTag
-import org.kryptonmc.serialization.nbt.NbtOps
+import net.aquamine.serialization.nbt.NbtOps
 
 @JvmRecord
 data class RespawnData(val position: Vec3i, val dimension: ResourceKey<World>, val angle: Float, val forced: Boolean) {

@@ -3,7 +3,7 @@ package net.aquamine.server.registry.holder
 import net.aquamine.api.tags.TagKey
 import net.aquamine.server.util.ImmutableLists
 import net.aquamine.server.util.ImmutableSets
-import org.kryptonmc.util.Either
+import net.aquamine.util.Either
 import java.util.Optional
 import java.util.Spliterator
 import java.util.stream.Stream

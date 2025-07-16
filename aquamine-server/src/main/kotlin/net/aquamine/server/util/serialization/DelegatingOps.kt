@@ -1,11 +1,11 @@
 package net.aquamine.server.util.serialization
 
-import org.kryptonmc.serialization.DataOps
-import org.kryptonmc.serialization.DataResult
-import org.kryptonmc.serialization.ListBuilder
-import org.kryptonmc.serialization.MapLike
-import org.kryptonmc.serialization.RecordBuilder
-import org.kryptonmc.util.Pair
+import net.aquamine.serialization.DataOps
+import net.aquamine.serialization.DataResult
+import net.aquamine.serialization.ListBuilder
+import net.aquamine.serialization.MapLike
+import net.aquamine.serialization.RecordBuilder
+import net.aquamine.util.Pair
 import java.nio.ByteBuffer
 import java.util.function.BiConsumer
 import java.util.function.Consumer

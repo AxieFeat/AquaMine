@@ -3,6 +3,8 @@ package net.aquamine.server.adventure.provider
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
 import java.util.function.Consumer
 
+@Suppress("UnstableApiUsage")
+
 class AquaLegacyComponentSerializerProvider : LegacyComponentSerializer.Provider {
 
     override fun legacy(): Consumer<LegacyComponentSerializer.Builder> = Consumer {}

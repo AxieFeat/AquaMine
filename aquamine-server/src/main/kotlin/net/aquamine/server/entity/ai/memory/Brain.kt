@@ -4,7 +4,7 @@ import net.kyori.adventure.key.Key
 import net.aquamine.server.registry.AquaRegistries
 import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.compound
-import org.kryptonmc.serialization.nbt.NbtOps
+import net.aquamine.serialization.nbt.NbtOps
 import java.util.concurrent.ConcurrentHashMap
 
 /**

@@ -21,8 +21,8 @@ import net.aquamine.server.util.writeVarInt
 import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.io.TagCompression
 import xyz.axie.nbt.io.TagIO
-import org.kryptonmc.serialization.Encoder
-import org.kryptonmc.serialization.nbt.NbtOps
+import net.aquamine.serialization.Encoder
+import net.aquamine.serialization.nbt.NbtOps
 import java.io.OutputStream
 import java.nio.ByteBuffer
 import java.security.PublicKey

@@ -6,8 +6,8 @@ import com.google.common.collect.ImmutableMap
 import com.google.common.collect.Table
 import net.aquamine.server.util.collection.ZeroCollidingReferenceStateTable
 import net.aquamine.server.state.property.AquaProperty
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.MapCodec
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.MapCodec
 import java.util.Optional
 import java.util.function.Function
 

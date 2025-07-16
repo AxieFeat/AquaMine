@@ -8,9 +8,9 @@ import net.aquamine.server.registry.AquaRegistry
 import net.aquamine.server.registry.AquaSimpleRegistry
 import net.aquamine.server.registry.holder.HolderSet
 import net.aquamine.server.resource.AquaResourceKey
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.MapCodec
-import org.kryptonmc.serialization.codecs.RecordCodecBuilder
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.MapCodec
+import net.aquamine.serialization.codecs.RecordCodecBuilder
 
 object RegistryCodecs {
 

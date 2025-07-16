@@ -3,7 +3,7 @@ package net.aquamine.server.state.property
 import net.aquamine.api.state.Property
 import net.aquamine.server.state.AquaState
 import net.aquamine.server.util.resultOrError
-import org.kryptonmc.serialization.Codec
+import net.aquamine.serialization.Codec
 import java.util.concurrent.atomic.AtomicInteger
 
 abstract class AquaProperty<T : Comparable<T>> protected constructor(

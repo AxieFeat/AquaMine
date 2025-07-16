@@ -8,8 +8,8 @@ import net.aquamine.server.network.Writable
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.util.serialization.Codecs
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.codecs.RecordCodecBuilder
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.codecs.RecordCodecBuilder
 
 @JvmRecord
 data class GlobalPos(val dimension: ResourceKey<World>, val position: Vec3i) : Writable {

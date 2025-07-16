@@ -6,8 +6,8 @@ import net.aquamine.api.registry.Registry
 import net.aquamine.api.resource.ResourceKey
 import net.aquamine.api.tags.TagKey
 import net.aquamine.server.util.Keys
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.DataResult
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.DataResult
 
 @JvmRecord
 data class AquaTagKey<T>(override val registry: ResourceKey<out Registry<T>>, override val location: Key) : TagKey<T> {

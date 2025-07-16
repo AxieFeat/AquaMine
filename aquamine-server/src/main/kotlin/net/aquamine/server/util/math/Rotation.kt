@@ -3,7 +3,7 @@ package net.aquamine.server.util.math
 import net.aquamine.api.util.Direction
 import net.aquamine.server.util.enumhelper.Directions
 import net.aquamine.server.util.serialization.EnumCodecs
-import org.kryptonmc.serialization.Codec
+import net.aquamine.serialization.Codec
 
 enum class Rotation(val id: String, val rotation: OctahedralGroup) {
 

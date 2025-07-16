@@ -1,7 +1,7 @@
 package net.aquamine.server.util
 
 import net.aquamine.api.util.Color
-import org.kryptonmc.serialization.Codec
+import net.aquamine.serialization.Codec
 
 object ColorUtil {
 

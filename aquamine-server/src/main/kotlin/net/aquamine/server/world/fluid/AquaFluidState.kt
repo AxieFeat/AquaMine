@@ -12,8 +12,8 @@ import net.aquamine.server.state.StateDelegate
 import net.aquamine.server.state.property.AquaProperty
 import net.aquamine.server.world.block.state.AquaBlockState
 import net.aquamine.server.world.components.BlockGetter
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.MapCodec
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.MapCodec
 import java.util.stream.Stream
 
 class AquaFluidState(

@@ -6,11 +6,11 @@ import net.aquamine.server.registry.holder.Holder
 import net.aquamine.server.resource.AquaResourceKey
 import net.aquamine.server.util.Keys
 import net.aquamine.server.util.resultOrError
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.DataOps
-import org.kryptonmc.serialization.DataResult
-import org.kryptonmc.serialization.Lifecycle
-import org.kryptonmc.util.Pair
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.DataOps
+import net.aquamine.serialization.DataResult
+import net.aquamine.serialization.Lifecycle
+import net.aquamine.util.Pair
 
 class RegistryFileCodec<E> private constructor(
     private val registryKey: ResourceKey<out Registry<E>>,

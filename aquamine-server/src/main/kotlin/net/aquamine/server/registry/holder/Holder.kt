@@ -4,7 +4,7 @@ import net.kyori.adventure.key.Key
 import net.aquamine.api.resource.ResourceKey
 import net.aquamine.api.tags.TagKey
 import net.aquamine.server.util.ImmutableSets
-import org.kryptonmc.util.Either
+import net.aquamine.util.Either
 import java.util.Optional
 import java.util.function.Predicate
 import java.util.stream.Stream

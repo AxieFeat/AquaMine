@@ -36,7 +36,7 @@ data class EntityQuery(val type: Selector, private val args: List<EntityArgument
                 return players.plus(source.world.entities)
             }
             Selector.NEAREST_PLAYER -> {
-                var currentNearest = players.get(0)
+                var currentNearest = players[0]
                 players.forEach { if (distance(it, source) < distance(currentNearest, source)) currentNearest = it }
                 return listOf(currentNearest)
             }
@@ -249,7 +249,7 @@ data class EntityQuery(val type: Selector, private val args: List<EntityArgument
             }
             val values = input.split("..")
             try {
-                return IntRange(values.get(0).toInt(), values.get(1).toInt())
+                return IntRange(values[0].toInt(), values[1].toInt())
             } catch (_: NumberFormatException) {
                 return null
             }

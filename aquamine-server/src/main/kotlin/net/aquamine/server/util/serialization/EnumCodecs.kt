@@ -3,7 +3,7 @@ package net.aquamine.server.util.serialization
 import net.aquamine.api.world.biome.Precipitation
 import net.aquamine.api.world.biome.GrassColorModifier
 import net.aquamine.api.world.biome.TemperatureModifier
-import org.kryptonmc.serialization.Codec
+import net.aquamine.serialization.Codec
 import java.util.function.Function
 import java.util.function.Supplier
 

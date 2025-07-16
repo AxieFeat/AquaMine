@@ -1,9 +1,9 @@
 package net.aquamine.server.util.provider
 
 import net.aquamine.server.util.random.RandomSource
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.codecs.RecordCodecBuilder
-import org.kryptonmc.util.Either
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.codecs.RecordCodecBuilder
+import net.aquamine.util.Either
 
 class ConstantInt private constructor(val value: Int) : IntProvider() {
 

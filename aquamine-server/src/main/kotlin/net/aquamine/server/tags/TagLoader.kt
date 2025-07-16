@@ -8,9 +8,9 @@ import net.kyori.adventure.key.Key
 import org.apache.logging.log4j.LogManager
 import net.aquamine.server.pack.resources.ResourceManager
 import net.aquamine.server.resource.FileToIdConverter
-import org.kryptonmc.serialization.Dynamic
-import org.kryptonmc.serialization.gson.GsonOps
-import org.kryptonmc.util.Either
+import net.aquamine.serialization.Dynamic
+import net.aquamine.serialization.gson.GsonOps
+import net.aquamine.util.Either
 import java.util.function.BiConsumer
 import java.util.function.Function
 

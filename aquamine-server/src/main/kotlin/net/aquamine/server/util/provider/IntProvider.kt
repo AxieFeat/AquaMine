@@ -2,9 +2,9 @@ package net.aquamine.server.util.provider
 
 import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.util.random.RandomSource
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.DataResult
-import org.kryptonmc.util.Either
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.DataResult
+import net.aquamine.util.Either
 import java.util.function.Function
 
 @Suppress("UnnecessaryAbstractClass")

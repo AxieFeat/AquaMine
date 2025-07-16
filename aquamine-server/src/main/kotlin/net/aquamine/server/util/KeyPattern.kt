@@ -2,8 +2,8 @@ package net.aquamine.server.util
 
 import net.kyori.adventure.key.Key
 import net.aquamine.server.util.serialization.Codecs
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.codecs.RecordCodecBuilder
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.codecs.RecordCodecBuilder
 import java.util.Optional
 import java.util.function.Predicate
 import java.util.regex.Pattern

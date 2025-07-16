@@ -7,11 +7,11 @@ import net.aquamine.server.registry.holder.HolderSet
 import net.aquamine.server.tags.AquaTagKey
 import net.aquamine.server.util.ImmutableLists
 import net.aquamine.server.util.serialization.Codecs
-import org.kryptonmc.serialization.Codec
-import org.kryptonmc.serialization.DataOps
-import org.kryptonmc.serialization.DataResult
-import org.kryptonmc.util.Either
-import org.kryptonmc.util.Pair
+import net.aquamine.serialization.Codec
+import net.aquamine.serialization.DataOps
+import net.aquamine.serialization.DataResult
+import net.aquamine.util.Either
+import net.aquamine.util.Pair
 import java.util.function.Function
 
 class HolderSetCodec<E> private constructor(

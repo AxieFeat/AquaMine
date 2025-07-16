@@ -3,7 +3,7 @@ package net.aquamine.server.adventure.network
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.format.TextColor
 import net.aquamine.server.util.resultOrError
-import org.kryptonmc.serialization.DataResult
+import net.aquamine.serialization.DataResult
 import java.util.Locale
 
 object TextColorSerialization {

@@ -9,7 +9,7 @@ import net.aquamine.server.util.serialization.EnumCodecs
 import net.aquamine.server.world.block.AquaBlocks
 import net.aquamine.server.world.block.state.AquaBlockState
 import net.aquamine.server.world.chunk.AquaChunk
-import org.kryptonmc.serialization.Codec
+import net.aquamine.serialization.Codec
 import java.util.EnumSet
 import java.util.function.Predicate
 
