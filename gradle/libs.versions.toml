@@ -30,7 +30,6 @@ commonsLang = "3.17.0"
 gson = "2.13.1"
 reflections = "0.10.2"
 clikt = "5.0.3"
-articData = "1.19-88313627"
 
 [libraries]
 
@@ -52,7 +51,6 @@ commonsLang = { group = "org.apache.commons", name = "commons-lang3", version.re
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 reflections = { group = "org.reflections", name = "reflections", version.ref = "reflections" }
 clikt = { group = "com.github.ajalt.clikt", name = "clikt", version.ref = "clikt" }
-articData = { group = "de.articdive", name = "articdata", version.ref = "articData" }
 
 kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-collections = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinCollections" }

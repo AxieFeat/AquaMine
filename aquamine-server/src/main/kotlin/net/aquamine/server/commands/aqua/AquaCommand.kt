@@ -12,6 +12,7 @@ object AquaCommand {
         dispatcher.register(literalCommand("aquamine") {
             registerSubCommand(this, PluginsCommand)
             registerSubCommand(this, InfoCommand)
+            registerSubCommand(this, StatusCommand)
         })
     }
 

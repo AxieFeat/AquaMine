@@ -26,9 +26,8 @@ class BlockLoader(registry: AquaRegistry<AquaBlock>) : AquaDataLoader<AquaBlock>
         .associate { it.name to it.get(null) as BlockSoundGroup }
 
     override fun create(key: Key, value: JsonObject): AquaBlock {
-        val materialName = "STONE"
-        val soundGroupName = "STONE"
-        val states = value.getAsJsonArray("states").first().asJsonObject
+        val materialName = value.get("material").asString
+        val soundGroupName = value.get("soundGroup").asString
 
         val properties = BlockProperties(
             requireNotNull(materialsByName[materialName]) { "Could not find material for name $materialName!" },
@@ -36,24 +35,17 @@ class BlockLoader(registry: AquaRegistry<AquaBlock>) : AquaDataLoader<AquaBlock>
             requireNotNull(soundGroupsByName[soundGroupName]) { "Could not find sound group for name $soundGroupName!" },
             value.get("explosionResistance").asFloat,
             value.get("defaultHardness").asFloat,
-            states.get("toolRequired").asBoolean,
+            value.get("toolRequired").asBoolean,
             value.get("friction").asFloat,
             value.get("speedFactor").asFloat,
             value.get("jumpFactor").asFloat,
             if (value.has("drops")) Key.key(value.get("drops").asString) else null,
-            states.get("occludes").asBoolean,
-            states.get("air").asBoolean,
+            value.get("occludes").asBoolean,
+            value.get("air").asBoolean,
             value.get("dynamicShape").asBoolean
         )
 
-        val blockProperties = value.get("properties").asJsonArray
-        val stateProperties = mutableListOf<AquaProperty<*>>()
-
-        blockProperties.forEach {
-            try {
-                stateProperties.add(AquaPropertyFactory.findByName(it.asString))
-            } catch (ignore: Exception) {}
-        }
+        val stateProperties = value.get("properties").asJsonArray.map { AquaPropertyFactory.findByName(it.asString) }
 
         // TODO: Update this to get the handlers from somewhere
         return AquaBlock(properties, DefaultBlockHandler, DefaultBlockHandler, DefaultBlockHandler, DefaultBlockHandler, stateProperties)

@@ -14,14 +14,15 @@ import java.util.stream.Stream
 object InfoCommand : AquaSubCommand {
 
     private val MESSAGE = Component.text()
-        .append(Component.text("This server is running ", AquaColors.LIGHTER_PURPLE))
+        .append(Component.text("This server is running ",NamedTextColor.WHITE))
         .append(Component.text()
             .content("AquaMine ")
-            .color(AquaColors.STANDARD_PURPLE)
+            .color(AquaColors.LIGHTER_PURPLE)
             .decorate(TextDecoration.BOLD))
-        .append(Component.text(AquaPlatform.version, NamedTextColor.GREEN))
-        .append(Component.text(" for Minecraft ", AquaColors.LIGHTER_PURPLE))
-        .append(Component.text(AquaPlatform.minecraftVersion, NamedTextColor.GREEN))
+        .append(Component.text(AquaPlatform.version, AquaColors.VIVID_SKY_BLUE))
+        .append(Component.text(" for ",NamedTextColor.WHITE))
+        .append(Component.text("Minecraft ", AquaColors.LIGHTER_PURPLE))
+        .append(Component.text(AquaPlatform.minecraftVersion, AquaColors.VIVID_SKY_BLUE))
         .build()
 
     override fun aliases(): Stream<String> = Stream.of("about", "version")

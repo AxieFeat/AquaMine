@@ -59,7 +59,7 @@ class PluginLoader(private val pluginManager: AquaPluginManager, private val sou
 
         loadedPlugins.forEach { (container, module, eventNode) ->
             val description = container.description
-            val source = sourceByPluginId.get(description.id) ?: error("No source for container plugin ${description.id}! This is a bug!")
+            val source = sourceByPluginId[description.id] ?: error("No source for container plugin ${description.id}! This is a bug!")
 
             try {
                 source.createPlugin(container, module, commonModule)

@@ -39,6 +39,15 @@ project("plugin-annotation-processor")
 project("generator")
 project("demo")
 
+project("plugins")
+
+plugin("tablist")
+plugin("spark")
+
 fun project(projectName: String) {
     include("${rootProject.name.lowercase()}-$projectName")
+}
+
+fun plugin(pluginName: String) {
+    include("${rootProject.name.lowercase()}-plugins:$pluginName")
 }

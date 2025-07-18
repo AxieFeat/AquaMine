@@ -24,8 +24,13 @@ class TickSchedulerThread(private val server: AquaServer) : Thread("AquaMine Tic
             }
 
             val endTime = System.nanoTime()
+            val endTimeMillis = System.currentTimeMillis()
+
             val tickDuration = endTime - startTime
-            server.eventNode.fire(AquaTickEndEvent(tickCount, tickDuration, endTime))
+            val tickDurationMillis = endTimeMillis - startTimeMillis
+
+            server.eventNode.fire(AquaTickEndEvent(tickCount, tickDuration, tickDurationMillis, endTime))
+
             tickCount++
 
             val waitTime = NANOS_PER_TICK - tickDuration
@@ -34,7 +39,6 @@ class TickSchedulerThread(private val server: AquaServer) : Thread("AquaMine Tic
     }
 
     companion object {
-
         private val LOGGER = LogManager.getLogger()
 
         private const val MILLIS_PER_SECOND = 1000L

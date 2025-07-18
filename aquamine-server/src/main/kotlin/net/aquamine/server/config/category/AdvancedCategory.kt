@@ -14,8 +14,6 @@ data class AdvancedCategory(
     val enforceSecureProfiles: Boolean = true,
     @Comment("The maximum number of updates to block neighbours that may be executed in bulk.")
     val maximumChainedNeighbourUpdates: Int = 1000000,
-    @Comment("If we should enable bStats metrics for the server")
-    val metrics: Boolean = true,
     @Comment("The duration (in seconds) a single tick must take before the single tick profiler reports it.")
     val saveThreshold: Int = 5,
     @Comment("Whether player chat messages should be sent to the console. Disable if you have a lot of players sending a lot of messages.")

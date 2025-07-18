@@ -6,7 +6,7 @@ import net.aquamine.server.util.ImmutableMaps
 class BuiltInMetadata private constructor(private val values: Map<MetadataSectionSerializer<*>, *>) {
 
     @Suppress("UNCHECKED_CAST")
-    fun <T> get(serializer: MetadataSectionSerializer<T>): T = values.get(serializer) as T
+    fun <T> get(serializer: MetadataSectionSerializer<T>): T = values[serializer] as T
 
     companion object {
 

@@ -78,7 +78,7 @@ class PlayerManager(
         server.profileCache.addProfile(profile)
 
         val dimension = loadPlayer(player)
-        val world = server.worldManager.worlds.get(dimension) ?: server.worldManager.default
+        val world = server.worldManager.worlds[dimension] ?: server.worldManager.default
         player.world = world
 
         val location = player.position

@@ -43,7 +43,7 @@ class AquaObjective(
 
     override fun removeScore(score: Score): Boolean = removeScore(score.member)
 
-    class Builder(private val scoreboard: AquaScoreboard) : Objective.Builder, Objective.Builder.NamedStep, Objective.Builder.EndStep {
+    class Builder(private val scoreboard: AquaScoreboard) : Objective.Builder {
 
         private var name: String? = null
         private var criterion: Criterion? = null

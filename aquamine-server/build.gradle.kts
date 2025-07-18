@@ -10,8 +10,6 @@ dependencies {
     api(projects.aquamineApi)
     api(projects.aquaminePluginAnnotationProcessor)
 
-    implementation(libs.articData)
-
     api(libs.kotlinGuice)
     api(libs.fastutil)
     api(libs.nbt)

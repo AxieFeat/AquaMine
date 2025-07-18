@@ -1,8 +1,10 @@
 package net.aquamine.server
 
+import net.aquamine.api.block.Blocks
 import org.apache.commons.lang3.SystemUtils
 import org.apache.logging.log4j.LogManager
 import net.aquamine.api.event.GlobalEventNode
+import net.aquamine.api.registry.Registries
 import net.aquamine.api.scheduling.ExecutionType
 import net.aquamine.api.scheduling.TaskTime
 import net.aquamine.api.world.World
@@ -26,6 +28,8 @@ import net.aquamine.server.user.AquaUserManager
 import net.aquamine.server.network.PacketFraming
 import net.aquamine.server.network.socket.NetworkServer
 import net.aquamine.server.plugin.loader.PluginLoader
+import net.aquamine.server.registry.AquaRegistries
+import net.aquamine.server.registry.AquaRegistry
 import net.aquamine.server.server.InitContext
 import net.aquamine.server.ticking.TickDispatcher
 import net.aquamine.server.ticking.TickThreadProvider
@@ -33,6 +37,7 @@ import net.aquamine.server.util.crypto.YggdrasilSessionKey
 import net.aquamine.server.util.random.RandomSource
 import net.aquamine.server.world.AquaWorld
 import net.aquamine.server.world.AquaWorldManager
+import net.aquamine.server.world.block.AquaBlock
 import net.aquamine.server.world.chunk.AquaChunk
 import java.io.IOException
 import java.net.InetAddress

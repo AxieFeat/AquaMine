@@ -1,0 +1,6 @@
+{
+  "id": "spark",
+  "description": "Implementation of Spark",
+  "version": "1.0",
+  "main": "net.aquamine.spark.SparkPlugin"
+}

@@ -56,9 +56,6 @@ data class AquaConfig(
         private val HEADER = """
             This is the main AquaMine configuration file. All settings in this file apply globally
             across the entire server, regardless of what they are.
-
-            If you need any help with any of the settings in this file, you can join us on Discord
-            at https://discord.gg/4QuwYACDRX
         """.trimIndent()
 
         private val OPTIONS = ConfigurationOptions.defaults()

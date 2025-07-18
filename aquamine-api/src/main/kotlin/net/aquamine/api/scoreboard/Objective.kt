@@ -86,57 +86,45 @@ interface Objective : ScoreboardBound {
          * @return This builder.
          */
         @Contract("_ -> this", mutates = "this")
-        fun name(name: String): NamedStep
+        fun name(name: String): Builder
 
         /**
-         * An intermediary step that ensures the name of the objective is set.
+         * Sets the criterion for the objective to the given [criterion].
+         *
+         * @param criterion The criterion.
+         *
+         * @return This builder.
          */
-        interface NamedStep {
-
-            /**
-             * Sets the criterion for the objective to the given [criterion].
-             *
-             * @param criterion The criterion.
-             *
-             * @return This builder.
-             */
-            @Contract("_ -> this", mutates = "this")
-            fun criterion(criterion: Criterion): EndStep
-        }
+        @Contract("_ -> this", mutates = "this")
+        fun criterion(criterion: Criterion): Builder
 
         /**
-         * The end step that ensures the name and the criterion of the
-         * objective are set.
+         * Sets the display name of the objective to the given [name].
+         *
+         * @param name The display name.
+         *
+         * @return This builder.
          */
-        interface EndStep {
+        @Contract("_ -> this", mutates = "this")
+        fun displayName(name: Component): Builder
 
-            /**
-             * Sets the display name of the objective to the given [name].
-             *
-             * @param name The display name.
-             *
-             * @return This builder.
-             */
-            @Contract("_ -> this", mutates = "this")
-            fun displayName(name: Component): EndStep
+        /**
+         * Sets the render type for the objective to the given [type].
+         *
+         * @param type The render type.
+         *
+         * @return This builder.
+         */
+        @Contract("_ -> this", mutates = "this")
+        fun renderType(type: ObjectiveRenderType): Builder
 
-            /**
-             * Sets the render type for the objective to the given [type].
-             *
-             * @param type The render type.
-             *
-             * @return This builder.
-             */
-            @Contract("_ -> this", mutates = "this")
-            fun renderType(type: ObjectiveRenderType): EndStep
+        /**
+         * Builds the objective and adds it to the scoreboard.
+         *
+         * @return The built objective.
+         */
+        @Contract("-> new", pure = true)
+        fun buildAndRegister(): Objective
 
-            /**
-             * Builds the objective and adds it to the scoreboard.
-             *
-             * @return The built objective.
-             */
-            @Contract("-> new", pure = true)
-            fun buildAndRegister(): Objective
-        }
     }
 }

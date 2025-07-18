@@ -42,17 +42,17 @@ object AquaProperties {
     @JvmField
     val CAN_SUMMON: BooleanProperty = BooleanProperty("can_summon")
     @JvmField
-    val CHISELED_BOOKSHELF_FIRST_SLOT_OCCUPIED: BooleanProperty = BooleanProperty("slot_0_occupied")
+    val CHISELED_BOOKSHELF_SLOT_0_OCCUPIED: BooleanProperty = BooleanProperty("slot_0_occupied")
     @JvmField
-    val CHISELED_BOOKSHELF_SECOND_SLOT_OCCUPIED: BooleanProperty = BooleanProperty("slot_1_occupied")
+    val CHISELED_BOOKSHELF_SLOT_1_OCCUPIED: BooleanProperty = BooleanProperty("slot_1_occupied")
     @JvmField
-    val CHISELED_BOOKSHELF_THIRD_SLOT_OCCUPIED: BooleanProperty = BooleanProperty("slot_2_occupied")
+    val CHISELED_BOOKSHELF_SLOT_2_OCCUPIED: BooleanProperty = BooleanProperty("slot_2_occupied")
     @JvmField
-    val CHISELED_BOOKSHELF_FOURTH_SLOT_OCCUPIED: BooleanProperty = BooleanProperty("slot_3_occupied")
+    val CHISELED_BOOKSHELF_SLOT_3_OCCUPIED: BooleanProperty = BooleanProperty("slot_3_occupied")
     @JvmField
-    val CHISELED_BOOKSHELF_FIFTH_SLOT_OCCUPIED: BooleanProperty = BooleanProperty("slot_4_occupied")
+    val CHISELED_BOOKSHELF_SLOT_4_OCCUPIED: BooleanProperty = BooleanProperty("slot_4_occupied")
     @JvmField
-    val CHISELED_BOOKSHELF_SIXTH_SLOT_OCCUPIED: BooleanProperty = BooleanProperty("slot_5_occupied")
+    val CHISELED_BOOKSHELF_SLOT_5_OCCUPIED: BooleanProperty = BooleanProperty("slot_5_occupied")
     @JvmField
     val CONDITIONAL: BooleanProperty = BooleanProperty("conditional")
     @JvmField
@@ -76,11 +76,11 @@ object AquaProperties {
     @JvmField
     val HAS_BOOK: BooleanProperty = BooleanProperty("has_book")
     @JvmField
-    val HAS_FIRST_BOTTLE: BooleanProperty = BooleanProperty("has_bottle_0")
+    val HAS_BOTTLE_0: BooleanProperty = BooleanProperty("has_bottle_0")
     @JvmField
-    val HAS_SECOND_BOTTLE: BooleanProperty = BooleanProperty("has_bottle_1")
+    val HAS_BOTTLE_1: BooleanProperty = BooleanProperty("has_bottle_1")
     @JvmField
-    val HAS_THIRD_BOTTLE: BooleanProperty = BooleanProperty("has_bottle_2")
+    val HAS_BOTTLE_2: BooleanProperty = BooleanProperty("has_bottle_2")
     @JvmField
     val HAS_RECORD: BooleanProperty = BooleanProperty("has_record")
     @JvmField
@@ -149,19 +149,19 @@ object AquaProperties {
     @JvmField
     val CANDLES: IntProperty = IntProperty("candles", 1, 4)
     @JvmField
-    val CAULDRON_LEVEL: IntProperty = IntProperty("level", 1, 3)
+    val LEVEL_CAULDRON: IntProperty = IntProperty("level", 1, 3)
     @JvmField
-    val COMPOSTER_LEVEL: IntProperty = IntProperty("level", 0, 8)
+    val LEVEL_COMPOSTER: IntProperty = IntProperty("level", 0, 8)
     @JvmField
     val DELAY: IntProperty = IntProperty("delay", 1, 4)
     @JvmField
-    val DISTANCE: IntProperty = IntProperty("distance", 1, 7)
+    val STABILITY_DISTANCE: IntProperty = IntProperty("distance", 1, 7)
     @JvmField
     val EGGS: IntProperty = IntProperty("eggs", 1, 4)
     @JvmField
     val HATCH: IntProperty = IntProperty("hatch", 0, 2)
     @JvmField
-    val HONEY_LEVEL: IntProperty = IntProperty("honey_level", 0, 5)
+    val LEVEL_HONEY: IntProperty = IntProperty("honey_level", 0, 5)
     @JvmField
     val LAYERS: IntProperty = IntProperty("layers", 1, 8)
     @JvmField
@@ -179,9 +179,9 @@ object AquaProperties {
     @JvmField
     val RESPAWN_ANCHOR_CHARGES: IntProperty = IntProperty("charges", 0, 4)
     @JvmField
-    val ROTATION: IntProperty = IntProperty("rotation", 0, 15)
+    val ROTATION_16: IntProperty = IntProperty("rotation", 0, 15)
     @JvmField
-    val SCAFFOLD_DISTANCE: IntProperty = IntProperty("distance", 0, 7)
+    val DISTANCE: IntProperty = IntProperty("distance", 0, 7)
     @JvmField
     val STAGE: IntProperty = IntProperty("stage", 0, 1)
 
@@ -202,7 +202,7 @@ object AquaProperties {
     @JvmField
     val CHEST_TYPE: EnumProperty<ChestType> = EnumProperty.create("type")
     @JvmField
-    val COMPARATOR_MODE: EnumProperty<ComparatorMode> = EnumProperty.create("mode")
+    val MODE_COMPARATOR: EnumProperty<ComparatorMode> = EnumProperty.create("mode")
     @JvmField
     val DOOR_HINGE: EnumProperty<DoorHingeSide> = EnumProperty.create("hinge")
     @JvmField
@@ -210,19 +210,13 @@ object AquaProperties {
     @JvmField
     val DRIPSTONE_THICKNESS: EnumProperty<DripstoneThickness> = EnumProperty.create("thickness")
     @JvmField
-    val EAST_REDSTONE_SIDE: EnumProperty<RedstoneSide> = EnumProperty.create("east")
-    @JvmField
-    val EAST_WALL_SIDE: EnumProperty<WallSide> = EnumProperty.create("east")
+    val EAST_WALL: EnumProperty<WallSide> = EnumProperty.create("east")
     @JvmField
     val HALF: EnumProperty<Half> = EnumProperty.create("half")
     @JvmField
     val HORIZONTAL_AXIS: EnumProperty<Direction.Axis> = EnumProperty.create("axis", Direction.Axis.X, Direction.Axis.Z)
     @JvmField
-    val INSTRUMENT: EnumProperty<NoteBlockInstrument> = EnumProperty.create("instrument")
-    @JvmField
-    val NORTH_REDSTONE_SIDE: EnumProperty<RedstoneSide> = EnumProperty.create("north")
-    @JvmField
-    val NORTH_WALL_SIDE: EnumProperty<WallSide> = EnumProperty.create("north")
+    val NORTH_WALL: EnumProperty<WallSide> = EnumProperty.create("north")
     @JvmField
     val ORIENTATION: EnumProperty<Orientation> = EnumProperty.create("orientation")
     @JvmField
@@ -234,23 +228,29 @@ object AquaProperties {
     @JvmField
     val SLAB_TYPE: EnumProperty<SlabType> = EnumProperty.create("type")
     @JvmField
-    val SOUTH_REDSTONE_SIDE: EnumProperty<RedstoneSide> = EnumProperty.create("south")
-    @JvmField
-    val SOUTH_WALL_SIDE: EnumProperty<WallSide> = EnumProperty.create("south")
+    val SOUTH_WALL: EnumProperty<WallSide> = EnumProperty.create("south")
     @JvmField
     val STAIR_SHAPE: EnumProperty<StairShape> = EnumProperty.create("shape")
     @JvmField
-    val STRUCTURE_MODE: EnumProperty<StructureMode> = EnumProperty.create("mode")
-    @JvmField
-    val STRAIGHT_RAIL_SHAPE: EnumProperty<RailShape> = EnumProperty.create("shape") {
-        it != RailShape.NORTH_EAST && it != RailShape.NORTH_WEST && it != RailShape.SOUTH_EAST && it != RailShape.SOUTH_WEST
-    }
+    val STRUCTUREBLOCK_MODE: EnumProperty<StructureMode> = EnumProperty.create("mode")
     @JvmField
     val TILT: EnumProperty<Tilt> = EnumProperty.create("tilt")
     @JvmField
-    val WEST_REDSTONE_SIDE: EnumProperty<RedstoneSide> = EnumProperty.create("west")
+    val WEST_WALL: EnumProperty<WallSide> = EnumProperty.create("west")
     @JvmField
-    val WEST_WALL_SIDE: EnumProperty<WallSide> = EnumProperty.create("west")
+    val NOTEBLOCK_INSTRUMENT: EnumProperty<NoteBlockInstrument> = EnumProperty.create("instrument")
+    @JvmField
+    val RAIL_SHAPE_STRAIGHT: EnumProperty<RailShape> = EnumProperty.create("shape")
+    @JvmField
+    val STAIRS_SHAPE: EnumProperty<StairShape> = EnumProperty.create("shape")
+    @JvmField
+    val EAST_REDSTONE: EnumProperty<RedstoneSide> = EnumProperty.create("east")
+    @JvmField
+    val NORTH_REDSTONE: EnumProperty<RedstoneSide> = EnumProperty.create("north")
+    @JvmField
+    val SOUTH_REDSTONE: EnumProperty<RedstoneSide> = EnumProperty.create("south")
+    @JvmField
+    val WEST_REDSTONE: EnumProperty<RedstoneSide> = EnumProperty.create("west")
 
     // ==============================
     // Direction properties
@@ -259,7 +259,7 @@ object AquaProperties {
     @JvmField
     val FACING: DirectionProperty = DirectionProperty.create("facing")
     @JvmField
-    val HOPPER_FACING: DirectionProperty = DirectionProperty.create("facing") { it != Direction.UP }
+    val FACING_HOPPER: DirectionProperty = DirectionProperty.create("facing") { it != Direction.UP }
     @JvmField
     val HORIZONTAL_FACING: DirectionProperty = DirectionProperty.create("facing", Directions.Plane.HORIZONTAL)
     @JvmField

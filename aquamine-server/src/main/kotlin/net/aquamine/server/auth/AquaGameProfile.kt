@@ -54,11 +54,14 @@ class AquaGameProfile private constructor(
             var uuid: UUID? = null
             var name: String? = null
             val properties = persistentListOf<ProfileProperty>().builder()
+
             while (reader.hasNext()) {
                 when (reader.nextName()) {
                     "id" -> uuid = MojangUUIDTypeAdapter.read(reader)
                     "name" -> name = reader.nextString()
                     "properties" -> reader.readListTo(properties, AquaProfileProperty.Adapter::read)
+
+                    else -> reader.skipValue()
                 }
             }
 

@@ -50,7 +50,7 @@ class BatchingNeighbourUpdater(private val world: AquaWorld, private val maxChai
         try {
             while (!stack.isEmpty() || addedThisLayer.isNotEmpty()) {
                 for (i in addedThisLayer.size - 1 downTo 0) {
-                    stack.push(addedThisLayer.get(i))
+                    stack.push(addedThisLayer[i])
                 }
                 addedThisLayer.clear()
                 val topUpdate = stack.peek()

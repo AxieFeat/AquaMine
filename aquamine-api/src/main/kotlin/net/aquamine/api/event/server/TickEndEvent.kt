@@ -11,7 +11,12 @@ interface TickEndEvent : TickEvent {
     /**
      * The approximate duration of the tick, in nanoseconds.
      */
-    val tickDuration: Long
+    val tickDurationNanos: Long
+
+    /**
+     * The approximate duration of the tick, in milliseconds.
+     */
+    val tickDurationMillis: Long
 
     /**
      * The approximate time when the tick finished processing, in nanoseconds.

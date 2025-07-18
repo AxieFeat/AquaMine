@@ -36,8 +36,6 @@ interface BaseServer : ServerAudience {
 
     fun isRunning(): Boolean
 
-    fun stop()
-
     override fun getPlayer(name: String): AquaPlayer? = playerManager.getPlayer(name)
 
     override fun getPlayer(uuid: UUID): AquaPlayer? = playerManager.getPlayer(uuid)

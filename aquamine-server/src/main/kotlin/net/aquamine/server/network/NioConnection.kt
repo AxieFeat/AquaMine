@@ -1,7 +1,5 @@
 package net.aquamine.server.network
 
-import net.kyori.adventure.text.Component
-import org.apache.logging.log4j.LogManager
 import net.aquamine.server.AquaServer
 import net.aquamine.server.network.buffer.BinaryBuffer
 import net.aquamine.server.network.handlers.HandshakePacketHandler
@@ -9,16 +7,11 @@ import net.aquamine.server.network.handlers.PacketHandler
 import net.aquamine.server.network.handlers.TickablePacketHandler
 import net.aquamine.server.network.interceptor.PacketInterceptorRegistry
 import net.aquamine.server.network.socket.NetworkWorker
-import net.aquamine.server.packet.CachedPacket
-import net.aquamine.server.packet.FramedPacket
-import net.aquamine.server.packet.GenericPacket
-import net.aquamine.server.packet.InboundPacket
-import net.aquamine.server.packet.Packet
-import net.aquamine.server.packet.PacketRegistry
-import net.aquamine.server.packet.PacketState
+import net.aquamine.server.packet.*
 import net.aquamine.server.packet.out.login.PacketOutSetCompression
 import net.aquamine.server.util.ObjectPool
-import java.lang.ClassCastException
+import net.kyori.adventure.text.Component
+import org.apache.logging.log4j.LogManager
 import java.net.SocketAddress
 import java.nio.ByteBuffer
 import java.nio.channels.ClosedChannelException

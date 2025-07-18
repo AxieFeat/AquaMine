@@ -133,4 +133,10 @@ interface Server : ForwardingAudience {
      * @return The player, or null if not present.
      */
     fun getPlayer(name: String): Player?
+
+    /**
+     * Attempts save all and stop the server.
+     */
+    fun stop()
+
 }
