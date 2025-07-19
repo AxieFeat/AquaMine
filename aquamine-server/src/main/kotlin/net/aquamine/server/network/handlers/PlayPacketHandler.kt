@@ -79,6 +79,29 @@ import net.aquamine.server.locale.DisconnectMessages
 import net.aquamine.server.locale.MinecraftTranslationManager
 import net.aquamine.server.network.NioConnection
 import net.aquamine.server.network.PacketGrouping
+import net.aquamine.server.packet.`in`.play.PacketInAdvancementTab
+import net.aquamine.server.packet.`in`.play.PacketInChatAck
+import net.aquamine.server.packet.`in`.play.PacketInClickContainer
+import net.aquamine.server.packet.`in`.play.PacketInClickContainerButton
+import net.aquamine.server.packet.`in`.play.PacketInCloseContainer
+import net.aquamine.server.packet.`in`.play.PacketInCraftRecipeRequest
+import net.aquamine.server.packet.`in`.play.PacketInEditBook
+import net.aquamine.server.packet.`in`.play.PacketInGenerateStructure
+import net.aquamine.server.packet.`in`.play.PacketInNameItem
+import net.aquamine.server.packet.`in`.play.PacketInPickItem
+import net.aquamine.server.packet.`in`.play.PacketInPingResponse
+import net.aquamine.server.packet.`in`.play.PacketInQueryBlockTag
+import net.aquamine.server.packet.`in`.play.PacketInSelectTrade
+import net.aquamine.server.packet.`in`.play.PacketInSetBeaconEffect
+import net.aquamine.server.packet.`in`.play.PacketInSetDisplayedRecipe
+import net.aquamine.server.packet.`in`.play.PacketInSetRecipeBookState
+import net.aquamine.server.packet.`in`.play.PacketInSpectate
+import net.aquamine.server.packet.`in`.play.PacketInSteerBoat
+import net.aquamine.server.packet.`in`.play.PacketInUpdateCommandBlock
+import net.aquamine.server.packet.`in`.play.PacketInUpdateCommandBlockMinecart
+import net.aquamine.server.packet.`in`.play.PacketInUpdateSign
+import net.aquamine.server.packet.`in`.play.PacketInUpdateStructureBlock
+import net.aquamine.server.packet.`in`.play.PacketInVehicleMove
 import java.time.Duration
 
 /**
@@ -282,7 +305,7 @@ class PlayPacketHandler(
     // TODO: This entire thing needs to be rewritten
     fun handleUseItemOn(packet: PacketInUseItemOn) {
         if (!player.canBuild) return // If they can't place blocks, they are irrelevant :)
-
+        throw ArrayIndexOutOfBoundsException("Hiii")
         val world = player.world
         val position = packet.hitResult.position
         val state = world.getBlock(position)
@@ -405,6 +428,98 @@ class PlayPacketHandler(
             return
         }
         server.eventNode.fire(AquaPlayerResourcePackStatusEvent(player, packet.status))
+    }
+
+    fun handleCloseContainer(packet: PacketInCloseContainer) {
+
+    }
+
+    fun handleClickContainer(packet: PacketInClickContainer) {
+
+    }
+
+    fun handleBlockTagQuery(packet: PacketInQueryBlockTag) {
+
+    }
+
+    fun handleChatAck(packet: PacketInChatAck) {
+
+    }
+
+    fun handleClickContainerButton(packet: PacketInClickContainerButton) {
+
+    }
+
+    fun handleEditBook(packet: PacketInEditBook) {
+
+    }
+
+    fun handleGenerateStructure(packet: PacketInGenerateStructure) {
+
+    }
+
+    fun handleVehicleMove(packet: PacketInVehicleMove) {
+
+    }
+
+    fun handleSteerBoat(packet: PacketInSteerBoat) {
+
+    }
+
+    fun handlePickItem(packet: PacketInPickItem) {
+
+    }
+
+    fun handleCraftRecipeRequest(packet: PacketInCraftRecipeRequest) {
+
+    }
+
+    fun handlePingResponse(packet: PacketInPingResponse) {
+
+    }
+
+    fun handleSetRecipeBookState(packet: PacketInSetRecipeBookState) {
+
+    }
+
+    fun handleSetDisplayedRecipe(packet: PacketInSetDisplayedRecipe) {
+
+    }
+
+    fun handleNameItem(packet: PacketInNameItem) {
+
+    }
+
+    fun handleAdvancementTab(packet: PacketInAdvancementTab) {
+
+    }
+
+    fun handleSelectTrade(packet: PacketInSelectTrade) {
+
+    }
+
+    fun handleSetBeaconEffect(packet: PacketInSetBeaconEffect) {
+
+    }
+
+    fun handleUpdateCommandBlock(packet: PacketInUpdateCommandBlock) {
+
+    }
+
+    fun handleUpdateCommandBlockMinecart(packet: PacketInUpdateCommandBlockMinecart) {
+
+    }
+
+    fun handleUpdateStructureBlock(packet: PacketInUpdateStructureBlock) {
+
+    }
+
+    fun handleUpdateSign(packet: PacketInUpdateSign) {
+
+    }
+
+    fun handleSpectate(packet: PacketInSpectate) {
+
     }
 
     companion object {

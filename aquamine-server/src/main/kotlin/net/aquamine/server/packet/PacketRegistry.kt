@@ -7,110 +7,11 @@ import net.aquamine.server.packet.`in`.handshake.PacketInHandshake
 import net.aquamine.server.packet.`in`.login.PacketInEncryptionResponse
 import net.aquamine.server.packet.`in`.login.PacketInLoginStart
 import net.aquamine.server.packet.`in`.login.PacketInPluginResponse
-import net.aquamine.server.packet.`in`.play.PacketInAbilities
-import net.aquamine.server.packet.`in`.play.PacketInSwingArm
-import net.aquamine.server.packet.`in`.play.PacketInSetHeldItem
-import net.aquamine.server.packet.out.play.PacketOutChatSuggestions
-import net.aquamine.server.packet.out.play.PacketOutDeleteChat
-import net.aquamine.server.packet.out.play.PacketOutDisguisedChat
-import net.aquamine.server.packet.out.play.PacketOutPlayerInfoRemove
-import net.aquamine.server.packet.`in`.play.PacketInChat
-import net.aquamine.server.packet.`in`.play.PacketInClientInformation
-import net.aquamine.server.packet.`in`.play.PacketInClientCommand
-import net.aquamine.server.packet.`in`.play.PacketInChatCommand
-import net.aquamine.server.packet.`in`.play.PacketInChatSessionUpdate
-import net.aquamine.server.packet.`in`.play.PacketInSetCreativeModeSlot
-import net.aquamine.server.packet.`in`.play.PacketInPlayerCommand
-import net.aquamine.server.packet.`in`.play.PacketInQueryEntityTag
-import net.aquamine.server.packet.`in`.play.PacketInInteract
-import net.aquamine.server.packet.`in`.play.PacketInKeepAlive
-import net.aquamine.server.packet.`in`.play.PacketInUseItemOn
-import net.aquamine.server.packet.`in`.play.PacketInPlayerAction
-import net.aquamine.server.packet.`in`.play.PacketInSetPlayerOnGround
-import net.aquamine.server.packet.`in`.play.PacketInSetPlayerPosition
-import net.aquamine.server.packet.`in`.play.PacketInSetPlayerPositionAndRotation
-import net.aquamine.server.packet.`in`.play.PacketInSetPlayerRotation
-import net.aquamine.server.packet.`in`.play.PacketInUseItem
-import net.aquamine.server.packet.`in`.play.PacketInPluginMessage
-import net.aquamine.server.packet.`in`.play.PacketInResourcePack
-import net.aquamine.server.packet.`in`.play.PacketInPlayerInput
-import net.aquamine.server.packet.`in`.play.PacketInCommandSuggestionsRequest
-import net.aquamine.server.packet.`in`.play.PacketInConfirmTeleportation
+import net.aquamine.server.packet.`in`.play.*
 import net.aquamine.server.packet.`in`.status.PacketInPingRequest
 import net.aquamine.server.packet.`in`.status.PacketInStatusRequest
-import net.aquamine.server.packet.out.login.PacketOutEncryptionRequest
-import net.aquamine.server.packet.out.login.PacketOutLoginDisconnect
-import net.aquamine.server.packet.out.login.PacketOutLoginSuccess
-import net.aquamine.server.packet.out.login.PacketOutPluginRequest
-import net.aquamine.server.packet.out.login.PacketOutSetCompression
-import net.aquamine.server.packet.out.play.PacketOutAbilities
-import net.aquamine.server.packet.out.play.PacketOutAcknowledgeBlockChange
-import net.aquamine.server.packet.out.play.PacketOutSetActionBarText
-import net.aquamine.server.packet.out.play.PacketOutAnimation
-import net.aquamine.server.packet.out.play.PacketOutUpdateAttributes
-import net.aquamine.server.packet.out.play.PacketOutAwardStatistics
-import net.aquamine.server.packet.out.play.PacketOutBlockUpdate
-import net.aquamine.server.packet.out.play.PacketOutBossBar
-import net.aquamine.server.packet.out.play.PacketOutChangeDifficulty
-import net.aquamine.server.packet.out.play.PacketOutChunkDataAndLight
-import net.aquamine.server.packet.out.play.PacketOutClearTitles
-import net.aquamine.server.packet.out.play.PacketOutCommandSuggestionsResponse
-import net.aquamine.server.packet.out.play.PacketOutCommands
-import net.aquamine.server.packet.out.play.PacketOutRemoveEntities
-import net.aquamine.server.packet.out.play.PacketOutDisconnect
-import net.aquamine.server.packet.out.play.PacketOutDisplayObjective
-import net.aquamine.server.packet.out.play.PacketOutEntityEvent
-import net.aquamine.server.packet.out.play.PacketOutEntitySoundEffect
-import net.aquamine.server.packet.out.play.PacketOutGameEvent
-import net.aquamine.server.packet.out.play.PacketOutSetHeadRotation
-import net.aquamine.server.packet.out.play.PacketOutInitializeWorldBorder
-import net.aquamine.server.packet.out.play.PacketOutKeepAlive
-import net.aquamine.server.packet.out.play.PacketOutLogin
-import net.aquamine.server.packet.out.play.PacketOutSetEntityMetadata
-import net.aquamine.server.packet.out.play.PacketOutTagQueryResponse
-import net.aquamine.server.packet.out.play.PacketOutUpdateObjectives
-import net.aquamine.server.packet.out.play.PacketOutOpenBook
-import net.aquamine.server.packet.out.play.PacketOutParticle
-import net.aquamine.server.packet.out.play.PacketOutPlayerChat
-import net.aquamine.server.packet.out.play.PacketOutPlayerInfoUpdate
-import net.aquamine.server.packet.out.play.PacketOutSetTabListHeaderAndFooter
-import net.aquamine.server.packet.out.play.PacketOutSynchronizePlayerPosition
-import net.aquamine.server.packet.out.play.PacketOutPluginMessage
-import net.aquamine.server.packet.out.play.PacketOutResourcePack
-import net.aquamine.server.packet.out.play.PacketOutSetBlockDestroyStage
-import net.aquamine.server.packet.out.play.PacketOutSetCamera
-import net.aquamine.server.packet.out.play.PacketOutSetContainerContent
-import net.aquamine.server.packet.out.play.PacketOutSetContainerSlot
-import net.aquamine.server.packet.out.play.PacketOutSetCooldown
-import net.aquamine.server.packet.out.play.PacketOutSetEntityVelocity
-import net.aquamine.server.packet.out.play.PacketOutSetHeldItem
-import net.aquamine.server.packet.out.play.PacketOutSetPassengers
-import net.aquamine.server.packet.out.play.PacketOutSoundEffect
-import net.aquamine.server.packet.out.play.PacketOutSpawnEntity
-import net.aquamine.server.packet.out.play.PacketOutSpawnExperienceOrb
-import net.aquamine.server.packet.out.play.PacketOutSpawnPlayer
-import net.aquamine.server.packet.out.play.PacketOutSetDefaultSpawnPosition
-import net.aquamine.server.packet.out.play.PacketOutStopSound
-import net.aquamine.server.packet.out.play.PacketOutSetSubtitleText
-import net.aquamine.server.packet.out.play.PacketOutSystemChat
-import net.aquamine.server.packet.out.play.PacketOutUpdateTags
-import net.aquamine.server.packet.out.play.PacketOutUpdateTeams
-import net.aquamine.server.packet.out.play.PacketOutTeleportEntity
-import net.aquamine.server.packet.out.play.PacketOutUpdateTime
-import net.aquamine.server.packet.out.play.PacketOutSetTitleText
-import net.aquamine.server.packet.out.play.PacketOutSetTitleAnimationTimes
-import net.aquamine.server.packet.out.play.PacketOutUnloadChunk
-import net.aquamine.server.packet.out.play.PacketOutUpdateRecipeBook
-import net.aquamine.server.packet.out.play.PacketOutUpdateEntityPosition
-import net.aquamine.server.packet.out.play.PacketOutUpdateEntityPositionAndRotation
-import net.aquamine.server.packet.out.play.PacketOutUpdateEntityRotation
-import net.aquamine.server.packet.out.play.PacketOutSetHealth
-import net.aquamine.server.packet.out.play.PacketOutUpdateLight
-import net.aquamine.server.packet.out.play.PacketOutUpdateRecipes
-import net.aquamine.server.packet.out.play.PacketOutUpdateScore
-import net.aquamine.server.packet.out.play.PacketOutSetCenterChunk
-import net.aquamine.server.packet.out.play.PacketOutUpdateEnabledFeatures
-import net.aquamine.server.packet.out.play.PacketOutWorldEvent
+import net.aquamine.server.packet.out.login.*
+import net.aquamine.server.packet.out.play.*
 import net.aquamine.server.packet.out.status.PacketOutPingResponse
 import net.aquamine.server.packet.out.status.PacketOutStatusResponse
 import java.nio.ByteBuffer
@@ -152,28 +53,53 @@ object PacketRegistry {
 
         // Play
         registerInbound(PacketState.PLAY, 0x00) { PacketInConfirmTeleportation(it) }
+        registerInbound(PacketState.PLAY, 0x01) { PacketInQueryBlockTag(it) }
+        // 0x02 difficulty packet
+        registerInbound(PacketState.PLAY, 0x03) { PacketInChatAck(it) }
         registerInbound(PacketState.PLAY, 0x04) { PacketInChatCommand(it) }
         registerInbound(PacketState.PLAY, 0x05) { PacketInChat(it) }
         registerInbound(PacketState.PLAY, 0x06) { PacketInClientCommand(it) }
         registerInbound(PacketState.PLAY, 0x07) { PacketInClientInformation(it) }
         registerInbound(PacketState.PLAY, 0x08) { PacketInCommandSuggestionsRequest(it) }
+        registerInbound(PacketState.PLAY, 0x09) { PacketInClickContainerButton(it) }
+        registerInbound(PacketState.PLAY, 0x0A) { PacketInClickContainer(it) }
+        registerInbound(PacketState.PLAY, 0x0B) { PacketInCloseContainer(it) }
         registerInbound(PacketState.PLAY, 0x0C) { PacketInPluginMessage(it) }
+        registerInbound(PacketState.PLAY, 0x0D) { PacketInEditBook(it) }
         registerInbound(PacketState.PLAY, 0x0E) { PacketInQueryEntityTag(it) }
         registerInbound(PacketState.PLAY, 0x0F) { PacketInInteract(it) }
+        registerInbound(PacketState.PLAY, 0x10) { PacketInGenerateStructure(it) }
         registerInbound(PacketState.PLAY, 0x11) { PacketInKeepAlive(it) }
+        // 0x12 not used by server
         registerInbound(PacketState.PLAY, 0x13) { PacketInSetPlayerPosition(it) }
         registerInbound(PacketState.PLAY, 0x14) { PacketInSetPlayerPositionAndRotation(it) }
         registerInbound(PacketState.PLAY, 0x15) { PacketInSetPlayerRotation(it) }
         registerInbound(PacketState.PLAY, 0x16) { PacketInSetPlayerOnGround(it) }
+        registerInbound(PacketState.PLAY, 0x17) { PacketInVehicleMove(it) }
+        registerInbound(PacketState.PLAY, 0x18) { PacketInSteerBoat(it) }
+        registerInbound(PacketState.PLAY, 0x19) { PacketInPickItem(it) }
+        registerInbound(PacketState.PLAY, 0x1A) { PacketInCraftRecipeRequest(it) }
         registerInbound(PacketState.PLAY, 0x1B) { PacketInAbilities(it) }
         registerInbound(PacketState.PLAY, 0x1C) { PacketInPlayerAction(it) }
         registerInbound(PacketState.PLAY, 0x1D) { PacketInPlayerCommand(it) }
         registerInbound(PacketState.PLAY, 0x1E) { PacketInPlayerInput(it) }
+        registerInbound(PacketState.PLAY, 0x1F) { PacketInPingResponse(it) }
         registerInbound(PacketState.PLAY, 0x20) { PacketInChatSessionUpdate(it) }
+        registerInbound(PacketState.PLAY, 0x21) { PacketInSetRecipeBookState(it) }
+        registerInbound(PacketState.PLAY, 0x22) { PacketInSetDisplayedRecipe(it) }
+        registerInbound(PacketState.PLAY, 0x23) { PacketInNameItem(it) }
         registerInbound(PacketState.PLAY, 0x24) { PacketInResourcePack(it) }
+        registerInbound(PacketState.PLAY, 0x25) { PacketInAdvancementTab(it) }
+        registerInbound(PacketState.PLAY, 0x26) { PacketInSelectTrade(it) }
+        registerInbound(PacketState.PLAY, 0x27) { PacketInSetBeaconEffect(it) }
         registerInbound(PacketState.PLAY, 0x28) { PacketInSetHeldItem(it) }
+        registerInbound(PacketState.PLAY, 0x29) { PacketInUpdateCommandBlock(it) }
+        registerInbound(PacketState.PLAY, 0x2A) { PacketInUpdateCommandBlockMinecart(it) }
         registerInbound(PacketState.PLAY, 0x2B) { PacketInSetCreativeModeSlot(it) }
+        registerInbound(PacketState.PLAY, 0x2D) { PacketInUpdateStructureBlock(it) }
+        registerInbound(PacketState.PLAY, 0x2E) { PacketInUpdateSign(it) }
         registerInbound(PacketState.PLAY, 0x2F) { PacketInSwingArm(it) }
+        registerInbound(PacketState.PLAY, 0x30) { PacketInSpectate(it) }
         registerInbound(PacketState.PLAY, 0x31) { PacketInUseItemOn(it) }
         registerInbound(PacketState.PLAY, 0x32) { PacketInUseItem(it) }
 

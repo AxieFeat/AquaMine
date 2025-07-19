@@ -54,6 +54,6 @@ enum class Rotation(val id: String, val rotation: OctahedralGroup) {
     companion object {
 
         @JvmField
-        val CODEC: Codec<Rotation> = EnumCodecs.of({ Rotation.values() }, { it.id })
+        val CODEC: Codec<Rotation> = EnumCodecs.of({ entries.toTypedArray() }, { it.id })
     }
 }

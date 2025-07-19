@@ -1,6 +1,7 @@
 package net.aquamine.server.network
 
 import net.aquamine.server.AquaServer
+import net.aquamine.server.commands.KickCommand
 import net.aquamine.server.network.buffer.BinaryBuffer
 import net.aquamine.server.network.handlers.HandshakePacketHandler
 import net.aquamine.server.network.handlers.PacketHandler
@@ -9,6 +10,7 @@ import net.aquamine.server.network.interceptor.PacketInterceptorRegistry
 import net.aquamine.server.network.socket.NetworkWorker
 import net.aquamine.server.packet.*
 import net.aquamine.server.packet.out.login.PacketOutSetCompression
+import net.aquamine.server.packet.out.play.PacketOutDisconnect
 import net.aquamine.server.util.ObjectPool
 import net.kyori.adventure.text.Component
 import org.apache.logging.log4j.LogManager
@@ -105,6 +107,7 @@ class NioConnection(
         try {
             cacheBuffer = PacketReading.readPackets(readBuffer, compressionEnabled) { id, payload ->
                 if (!connected) return@readPackets // Prevent packet corruption
+
                 var packet: InboundPacket<*>? = null
                 try {
                     packet = processPacket(id, payload)
@@ -131,6 +134,11 @@ class NioConnection(
             // cast to the handler type and catch that if it fails.
             LOGGER.error("Received invalid packet from ${connectAddress()}!")
             disconnect(INVALID_PACKET)
+        } catch (throwable: Throwable) {
+            // TODO add crash report in player kick reason
+            throwable.printStackTrace()
+            send(PacketOutDisconnect(Component.text("Some exception during handling your packet :(")))
+            disconnect(Component.text("Some exception during handling packet"))
         }
         return packet
     }

@@ -169,7 +169,7 @@ class AquaPlayer(
     override fun getEquipment(slot: EquipmentSlot): AquaItemStack = when {
         slot == EquipmentSlot.MAIN_HAND -> inventory.mainHand
         slot == EquipmentSlot.OFF_HAND -> inventory.offHand
-        slot.type == EquipmentSlot.Type.ARMOR -> inventory.armor.get(EquipmentSlots.index(slot))
+        slot.type == EquipmentSlot.Type.ARMOR -> inventory.armor[EquipmentSlots.index(slot)]
         else -> AquaItemStack.EMPTY
     }
 
@@ -177,7 +177,7 @@ class AquaPlayer(
         when {
             slot == EquipmentSlot.MAIN_HAND -> inventory.setHeldItem(Hand.MAIN, item)
             slot == EquipmentSlot.OFF_HAND -> inventory.setHeldItem(Hand.OFF, item)
-            slot.type == EquipmentSlot.Type.ARMOR -> inventory.armor.set(EquipmentSlots.index(slot), item)
+            slot.type == EquipmentSlot.Type.ARMOR -> inventory.armor[EquipmentSlots.index(slot)] = item
         }
     }
 
