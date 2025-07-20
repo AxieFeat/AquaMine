@@ -8,9 +8,17 @@ import net.aquamine.server.packet.InboundPacket
 import net.aquamine.server.util.hit.BlockHitResult
 
 @JvmRecord
-data class PacketInUseItemOn(val hand: Hand, val hitResult: BlockHitResult, val sequence: Int) : InboundPacket<PlayPacketHandler> {
+data class PacketInUseItemOn(
+    val hand: Hand,
+    val hitResult: BlockHitResult,
+    val sequence: Int
+) : InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readEnum<Hand>(), reader.readBlockHitResult(), reader.readVarInt())
+    constructor(reader: BinaryReader) : this(
+        hand = reader.readEnum<Hand>(),
+        hitResult = reader.readBlockHitResult(),
+        sequence = reader.readVarInt()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeEnum(hand)

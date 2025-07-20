@@ -10,9 +10,13 @@ import net.aquamine.server.packet.Packet
  * @param slot the slot to change to
  */
 @JvmRecord
-data class PacketOutSetHeldItem(val slot: Int) : Packet {
+data class PacketOutSetHeldItem(
+    val slot: Int
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readByte().toInt())
+    constructor(reader: BinaryReader) : this(
+        slot = reader.readByte().toInt()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeByte(slot.toByte())

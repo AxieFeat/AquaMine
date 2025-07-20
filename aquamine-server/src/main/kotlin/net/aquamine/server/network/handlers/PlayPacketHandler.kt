@@ -248,7 +248,6 @@ class PlayPacketHandler(
         if (player.gameMode != GameMode.CREATIVE) return
         val item = packet.clickedItem
         val slot = packet.slot.toInt()
-        println("$slot: ${item.type.key()} x${item.amount}")
         val inValidRange = slot >= 1 && slot < AquaPlayerInventory.SIZE
         val isValid = item.isEmpty() || item.meta.damage >= 0 && item.amount <= 64 && !item.isEmpty()
         if (inValidRange && isValid) player.inventory.setItem(slot, packet.clickedItem)
@@ -305,7 +304,7 @@ class PlayPacketHandler(
     // TODO: This entire thing needs to be rewritten
     fun handleUseItemOn(packet: PacketInUseItemOn) {
         if (!player.canBuild) return // If they can't place blocks, they are irrelevant :)
-        throw ArrayIndexOutOfBoundsException("Hiii")
+
         val world = player.world
         val position = packet.hitResult.position
         val state = world.getBlock(position)

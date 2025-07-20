@@ -21,8 +21,13 @@ data class PacketInChat(
         require(message.length <= MAX_MESSAGE_LENGTH) { "Message too long! Max: $MAX_MESSAGE_LENGTH" }
     }
 
-    constructor(reader: BinaryReader) : this(reader.readString(), reader.readInstant(), reader.readLong(),
-        reader.readNullable(MessageSignature::read), LastSeenMessages.Update(reader))
+    constructor(reader: BinaryReader) : this(
+        message = reader.readString(),
+        timestamp = reader.readInstant(),
+        salt = reader.readLong(),
+        signature = reader.readNullable(MessageSignature::read),
+        lastSeenMessages = LastSeenMessages.Update(reader)
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeString(message)

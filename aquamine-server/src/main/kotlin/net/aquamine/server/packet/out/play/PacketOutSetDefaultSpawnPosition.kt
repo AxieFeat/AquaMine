@@ -6,9 +6,15 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
 
 @JvmRecord
-data class PacketOutSetDefaultSpawnPosition(val position: Vec3i, val angle: Float) : Packet {
+data class PacketOutSetDefaultSpawnPosition(
+    val position: Vec3i,
+    val angle: Float
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readBlockPos(), reader.readFloat())
+    constructor(reader: BinaryReader) : this(
+        position = reader.readBlockPos(),
+        angle = reader.readFloat()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeBlockPos(position)

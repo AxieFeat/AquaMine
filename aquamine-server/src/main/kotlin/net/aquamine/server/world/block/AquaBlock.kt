@@ -27,7 +27,6 @@ import net.aquamine.server.world.block.handler.BlockShapesProvider
 import net.aquamine.server.world.block.state.AquaBlockState
 import net.aquamine.server.world.chunk.flag.SetBlockFlag
 
-@Suppress("LeakingThis")
 @CataloguedBy(AquaBlocks::class)
 class AquaBlock(
     val properties: BlockProperties,

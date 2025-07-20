@@ -8,13 +8,19 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
 
 @JvmRecord
-data class PacketOutStopSound(val source: Sound.Source?, val sound: Key?) : Packet {
+data class PacketOutStopSound(
+    val source: Sound.Source?,
+    val sound: Key?
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader, reader.readByte().toInt())
+    constructor(reader: BinaryReader) : this(
+        reader = reader,
+        flags = reader.readByte().toInt()
+    )
 
     private constructor(reader: BinaryReader, flags: Int) : this(
-        if (flags and 1 > 0) reader.readEnum<Sound.Source>() else null,
-        if (flags and 2 > 0) reader.readKey() else null
+        source = if (flags and 1 > 0) reader.readEnum<Sound.Source>() else null,
+        sound = if (flags and 2 > 0) reader.readKey() else null
     )
 
     override fun write(writer: BinaryWriter) {

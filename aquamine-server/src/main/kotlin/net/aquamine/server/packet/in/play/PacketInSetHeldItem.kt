@@ -6,9 +6,13 @@ import net.aquamine.server.network.handlers.PlayPacketHandler
 import net.aquamine.server.packet.InboundPacket
 
 @JvmRecord
-data class PacketInSetHeldItem(val slot: Short) : InboundPacket<PlayPacketHandler> {
+data class PacketInSetHeldItem(
+    val slot: Short
+) : InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readShort())
+    constructor(reader: BinaryReader) : this(
+        slot = reader.readShort()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeShort(slot)

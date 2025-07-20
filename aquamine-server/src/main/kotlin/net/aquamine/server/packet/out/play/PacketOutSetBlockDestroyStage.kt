@@ -6,9 +6,17 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.EntityPacket
 
 @JvmRecord
-data class PacketOutSetBlockDestroyStage(override val entityId: Int, val position: Vec3i, val destroyStage: Byte) : EntityPacket {
+data class PacketOutSetBlockDestroyStage(
+    override val entityId: Int,
+    val position: Vec3i,
+    val destroyStage: Byte
+) : EntityPacket {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), reader.readBlockPos(), reader.readByte())
+    constructor(reader: BinaryReader) : this(
+        entityId = reader.readVarInt(),
+        position = reader.readBlockPos(),
+        destroyStage = reader.readByte()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(entityId)

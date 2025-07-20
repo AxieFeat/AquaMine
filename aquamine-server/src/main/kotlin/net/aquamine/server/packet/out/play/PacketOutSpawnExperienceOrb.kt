@@ -6,10 +6,21 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.EntityPacket
 
 @JvmRecord
-data class PacketOutSpawnExperienceOrb(override val entityId: Int, val x: Double, val y: Double, val z: Double, val count: Int) : EntityPacket {
+data class PacketOutSpawnExperienceOrb(
+    override val entityId: Int,
+    val x: Double,
+    val y: Double,
+    val z: Double,
+    val count: Int
+) : EntityPacket {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), reader.readDouble(), reader.readDouble(), reader.readDouble(),
-        reader.readShort().toInt())
+    constructor(reader: BinaryReader) : this(
+        entityId = reader.readVarInt(),
+        x = reader.readDouble(),
+        y = reader.readDouble(),
+        z = reader.readDouble(),
+        count = reader.readShort().toInt()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(entityId)

@@ -21,8 +21,15 @@ data class PacketOutPlayerChat(
     val chatType: RichChatType.BoundNetwork
 ) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readUUID(), reader.readVarInt(), reader.readNullable(MessageSignature::read),
-        SignedMessageBody.Packed(reader), reader.readNullable { it.readComponent() }, FilterMask.read(reader), RichChatType.BoundNetwork(reader))
+    constructor(reader: BinaryReader) : this(
+        sender = reader.readUUID(),
+        index = reader.readVarInt(),
+        signature = reader.readNullable(MessageSignature::read),
+        body = SignedMessageBody.Packed(reader),
+        unsignedContent = reader.readNullable { it.readComponent() },
+        filterMask = FilterMask.read(reader),
+        chatType = RichChatType.BoundNetwork(reader)
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeUUID(sender)

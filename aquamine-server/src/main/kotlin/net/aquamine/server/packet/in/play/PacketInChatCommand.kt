@@ -21,8 +21,13 @@ data class PacketInChatCommand(
         require(command.length <= MAX_COMMAND_LENGTH) { "Command is too long! Max: $MAX_COMMAND_LENGTH" }
     }
 
-    constructor(reader: BinaryReader) : this(reader.readString(), reader.readInstant(), reader.readLong(), ArgumentSignatures(reader),
-        LastSeenMessages.Update(reader))
+    constructor(reader: BinaryReader) : this(
+        command = reader.readString(),
+        timestamp = reader.readInstant(),
+        salt = reader.readLong(),
+        argumentSignatures = ArgumentSignatures(reader),
+        lastSeenMessages = LastSeenMessages.Update(reader)
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeString(command)

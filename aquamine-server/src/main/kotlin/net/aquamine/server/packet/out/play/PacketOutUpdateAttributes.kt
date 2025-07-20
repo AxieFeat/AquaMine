@@ -12,19 +12,25 @@ import net.aquamine.server.registry.AquaRegistries
 import java.util.Collections
 
 @JvmRecord
-data class PacketOutUpdateAttributes(override val entityId: Int, val attributes: Collection<AttributeSnapshot>) : EntityPacket {
+data class PacketOutUpdateAttributes(
+    override val entityId: Int,
+    val attributes: Collection<AttributeSnapshot>
+) : EntityPacket {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), reader.readList { _ ->
-        val type = reader.readKey().let { requireNotNull(AquaRegistries.ATTRIBUTE.get(it)) { "Cannot find attribute type with key $it!" } }
-        val base = reader.readDouble()
-        val modifiers = reader.readList {
-            val uuid = it.readUUID()
-            val amount = it.readDouble()
-            val operation = AquaAttributeModifier.getOperationById(it.readByte().toInt())
-            AquaAttributeModifier(uuid, "Unknown read attribute", amount, operation)
+    constructor(reader: BinaryReader) : this(
+        entityId = reader.readVarInt(),
+        attributes = reader.readList { _ ->
+            val type = reader.readKey().let { requireNotNull(AquaRegistries.ATTRIBUTE.get(it)) { "Cannot find attribute type with key $it!" } }
+            val base = reader.readDouble()
+            val modifiers = reader.readList {
+                val uuid = it.readUUID()
+                val amount = it.readDouble()
+                val operation = AquaAttributeModifier.getOperationById(it.readByte().toInt())
+                AquaAttributeModifier(uuid, "Unknown read attribute", amount, operation)
+            }
+            AttributeSnapshot(type, base, modifiers)
         }
-        AttributeSnapshot(type, base, modifiers)
-    })
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(entityId)

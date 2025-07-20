@@ -6,9 +6,17 @@ import net.aquamine.server.packet.Packet
 
 @JvmRecord
 @Suppress("ArrayInDataClass")
-data class PacketOutPluginRequest(val id: Int, val channel: String, val data: ByteArray) : Packet {
+data class PacketOutPluginRequest(
+    val id: Int,
+    val channel: String,
+    val data: ByteArray
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), reader.readString(), reader.readAllBytes())
+    constructor(reader: BinaryReader) : this(
+        id = reader.readVarInt(),
+        channel = reader.readString(),
+        data = reader.readAllBytes()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(id)

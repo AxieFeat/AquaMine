@@ -50,9 +50,9 @@ class StateDefinition<O, S : AquaState<O, S>>(
 
     fun properties(): Collection<AquaProperty<*>> = propertiesByName.values
 
-    fun any(): S = states.get(0)
+    fun any(): S = states[0]
 
-    fun getProperty(name: String): AquaProperty<*>? = propertiesByName.get(name)
+    fun getProperty(name: String): AquaProperty<*>? = propertiesByName[name]
 
     override fun toString(): String = "StateDefinition(block=$owner, properties=${propertiesByName.values.map { it.name }})"
 

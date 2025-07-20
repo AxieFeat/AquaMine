@@ -6,9 +6,15 @@ import net.aquamine.server.network.handlers.PlayPacketHandler
 import net.aquamine.server.packet.InboundPacket
 
 @JvmRecord
-data class PacketInQueryEntityTag(val transactionId: Int, val entityId: Int) : InboundPacket<PlayPacketHandler> {
+data class PacketInQueryEntityTag(
+    val transactionId: Int,
+    val entityId: Int
+) : InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), reader.readVarInt())
+    constructor(reader: BinaryReader) : this(
+        transactionId = reader.readVarInt(),
+        entityId = reader.readVarInt()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(transactionId)

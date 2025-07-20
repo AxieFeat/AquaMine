@@ -2,6 +2,7 @@ package net.aquamine.server.network
 
 import net.aquamine.server.AquaServer
 import net.aquamine.server.commands.KickCommand
+import net.aquamine.server.commands.aqua.AquaColors
 import net.aquamine.server.network.buffer.BinaryBuffer
 import net.aquamine.server.network.handlers.HandshakePacketHandler
 import net.aquamine.server.network.handlers.PacketHandler
@@ -9,10 +10,13 @@ import net.aquamine.server.network.handlers.TickablePacketHandler
 import net.aquamine.server.network.interceptor.PacketInterceptorRegistry
 import net.aquamine.server.network.socket.NetworkWorker
 import net.aquamine.server.packet.*
+import net.aquamine.server.packet.`in`.play.PacketInClickContainerButton
 import net.aquamine.server.packet.out.login.PacketOutSetCompression
 import net.aquamine.server.packet.out.play.PacketOutDisconnect
 import net.aquamine.server.util.ObjectPool
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.format.NamedTextColor
+import net.kyori.adventure.text.format.TextColor
 import org.apache.logging.log4j.LogManager
 import java.net.SocketAddress
 import java.nio.ByteBuffer
@@ -135,9 +139,52 @@ class NioConnection(
             LOGGER.error("Received invalid packet from ${connectAddress()}!")
             disconnect(INVALID_PACKET)
         } catch (throwable: Throwable) {
-            // TODO add crash report in player kick reason
             throwable.printStackTrace()
-            send(PacketOutDisconnect(Component.text("Some exception during handling your packet :(")))
+            // TODO remake 'crash report'
+            send(PacketOutDisconnect(
+                Component.text("AquaMine", AquaColors.LIGHTER_PURPLE)
+                    .append(Component.text(" | ", NamedTextColor.GRAY))
+                    .append(Component.text("Crash report", NamedTextColor.WHITE))
+                    .append(Component.text(" #71851", NamedTextColor.GRAY))
+                    .appendNewline()
+                    .appendNewline()
+                    .append(
+                        Component.text("What happened? ", TextColor.fromHexString("#eb3440")),
+                        Component.text("Don't panic!", TextColor.fromHexString("#34eb6e"))
+                            .appendNewline()
+                            .appendNewline(),
+                        Component.text("We just couldn't handle your connection,", TextColor.fromHexString("#f2fff4"))
+                            .appendNewline(),
+                        Component.text("please ", TextColor.fromHexString("#f2fff4"))
+                            .append(Component.text("send this report to support", AquaColors.VIVID_SKY_BLUE))
+                            .append(Component.text(":", TextColor.fromHexString("#f2fff4")))
+                            .appendNewline()
+                            .appendNewline()
+                            .appendNewline()
+                    )
+                    .append(
+                        Component.text("${packet::class.simpleName} ", AquaColors.STANDARD_PURPLE),
+                        Component.text("(0x${Integer.toHexString(packetId)} $currentState)", NamedTextColor.GRAY),
+                        Component.newline().appendNewline(),
+                        Component.text("${throwable::class.java.packageName}.", NamedTextColor.GRAY),
+                        Component.text("${throwable::class.simpleName}", TextColor.fromHexString("#eb9f34")),
+                        Component.text(": ", NamedTextColor.GRAY),
+                        Component.text("${throwable.message}", TextColor.fromHexString("#f2fff4")).appendNewline(),
+                        Component.text("at ${
+                            run {
+                                val element = throwable.stackTrace.first()
+                                "${element.className.split(".").last()}.${element.methodName}() (${element.fileName}:${element.lineNumber})"
+                            }
+                        }", NamedTextColor.DARK_GRAY)
+                    )
+                    .appendNewline()
+                    .appendNewline()
+                    .appendNewline()
+                    .append(
+                        Component.text("Discord: ", TextColor.fromHexString("#f2fff4"))
+                            .append(Component.text("discord.aquamine.net", TextColor.fromHexString("#346eeb")))
+                    )
+            ))
             disconnect(Component.text("Some exception during handling packet"))
         }
         return packet

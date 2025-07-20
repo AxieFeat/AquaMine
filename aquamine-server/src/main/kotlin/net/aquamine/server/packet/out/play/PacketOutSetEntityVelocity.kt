@@ -7,9 +7,19 @@ import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 
 @JvmRecord
-data class PacketOutSetEntityVelocity(override val entityId: Int, val x: Short, val y: Short, val z: Short) : EntityPacket {
+data class PacketOutSetEntityVelocity(
+    override val entityId: Int,
+    val x: Short,
+    val y: Short,
+    val z: Short
+) : EntityPacket {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), reader.readShort(), reader.readShort(), reader.readShort())
+    constructor(reader: BinaryReader) : this(
+        entityId = reader.readVarInt(),
+        x = reader.readShort(),
+        y = reader.readShort(),
+        z = reader.readShort()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(entityId)

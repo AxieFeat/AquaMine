@@ -6,9 +6,15 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
 
 @JvmRecord
-data class PacketOutSystemChat(val message: Component, val overlay: Boolean) : Packet {
+data class PacketOutSystemChat(
+    val message: Component,
+    val overlay: Boolean
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readComponent(), reader.readBoolean())
+    constructor(reader: BinaryReader) : this(
+        message = reader.readComponent(),
+        overlay = reader.readBoolean()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeComponent(message)

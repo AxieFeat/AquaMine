@@ -7,9 +7,15 @@ import net.aquamine.server.network.chat.RichChatType
 import net.aquamine.server.packet.Packet
 
 @JvmRecord
-data class PacketOutDisguisedChat(val message: Component, val chatType: RichChatType.BoundNetwork) : Packet {
+data class PacketOutDisguisedChat(
+    val message: Component,
+    val chatType: RichChatType.BoundNetwork
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readComponent(), RichChatType.BoundNetwork(reader))
+    constructor(reader: BinaryReader) : this(
+        message = reader.readComponent(),
+        chatType = RichChatType.BoundNetwork(reader)
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeComponent(message)

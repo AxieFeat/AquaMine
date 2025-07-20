@@ -6,9 +6,13 @@ import net.aquamine.server.network.handlers.PlayPacketHandler
 import net.aquamine.server.packet.InboundPacket
 
 @JvmRecord
-data class PacketInChatAck(val offset: Int) : InboundPacket<PlayPacketHandler> {
+data class PacketInChatAck(
+    val offset: Int
+) : InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt())
+    constructor(reader: BinaryReader) : this(
+        offset = reader.readVarInt()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(offset)

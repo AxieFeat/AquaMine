@@ -7,9 +7,15 @@ import net.aquamine.server.packet.InboundPacket
 
 @JvmRecord
 @Suppress("ArrayInDataClass")
-data class PacketInEncryptionResponse(val secret: ByteArray, val verifyToken: ByteArray) : InboundPacket<LoginPacketHandler> {
+data class PacketInEncryptionResponse(
+    val secret: ByteArray,
+    val verifyToken: ByteArray
+) : InboundPacket<LoginPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readByteArray(), reader.readByteArray())
+    constructor(reader: BinaryReader) : this(
+        secret = reader.readByteArray(),
+        verifyToken = reader.readByteArray()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeByteArray(secret)

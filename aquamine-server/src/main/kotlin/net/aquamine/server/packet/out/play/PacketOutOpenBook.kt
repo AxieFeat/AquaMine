@@ -6,9 +6,13 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
 
 @JvmRecord
-data class PacketOutOpenBook(val hand: Hand) : Packet {
+data class PacketOutOpenBook(
+    val hand: Hand
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readEnum<Hand>())
+    constructor(reader: BinaryReader) : this(
+        hand = reader.readEnum()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeEnum(hand)

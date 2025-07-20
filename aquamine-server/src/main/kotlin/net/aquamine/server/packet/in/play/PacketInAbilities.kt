@@ -6,9 +6,13 @@ import net.aquamine.server.network.handlers.PlayPacketHandler
 import net.aquamine.server.packet.InboundPacket
 
 @JvmRecord
-data class PacketInAbilities(val isFlying: Boolean) : InboundPacket<PlayPacketHandler> {
+data class PacketInAbilities(
+    val isFlying: Boolean
+) : InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readByte().toInt() and 2 != 0)
+    constructor(reader: BinaryReader) : this(
+        isFlying = reader.readByte().toInt() and 2 != 0
+    )
 
     override fun write(writer: BinaryWriter) {
         var flags = 0

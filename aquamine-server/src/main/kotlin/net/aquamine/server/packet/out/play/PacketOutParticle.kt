@@ -32,12 +32,30 @@ data class PacketOutParticle(
     val data: ParticleData?
 ) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader, reader.readVarInt(), reader.readBoolean(), reader.readDouble(), reader.readDouble(),
-        reader.readDouble(), reader.readFloat(), reader.readFloat(), reader.readFloat(), reader.readFloat(), reader.readInt())
+    constructor(reader: BinaryReader) : this(
+        reader = reader,
+        typeId = reader.readVarInt(),
+        longDistance = reader.readBoolean(),
+        x = reader.readDouble(),
+        y = reader.readDouble(),
+        z = reader.readDouble(),
+        offsetX = reader.readFloat(),
+        offsetY = reader.readFloat(),
+        offsetZ = reader.readFloat(),
+        maxSpeed = reader.readFloat(),
+        count = reader.readInt()
+    )
 
-    private constructor(reader: BinaryReader, typeId: Int, longDistance: Boolean, x: Double, y: Double, z: Double, offsetX: Float, offsetY: Float,
-                        offsetZ: Float, maxSpeed: Float,
-                        count: Int) : this(typeId, longDistance, x, y, z, offsetX, offsetY, offsetZ, maxSpeed, count, readData(typeId, reader))
+    // This constructor created because we need typeId for function readData
+    private constructor(
+        reader: BinaryReader,
+        typeId: Int,
+        longDistance: Boolean,
+        x: Double, y: Double, z: Double,
+        offsetX: Float, offsetY: Float, offsetZ: Float,
+        maxSpeed: Float,
+        count: Int
+    ) : this(typeId, longDistance, x, y, z, offsetX, offsetY, offsetZ, maxSpeed, count, readData(typeId, reader))
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(typeId)

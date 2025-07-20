@@ -8,11 +8,17 @@ import net.aquamine.server.util.ImmutableLists
 import java.util.UUID
 
 @JvmRecord
-data class PacketOutPlayerInfoRemove(val profileIds: List<UUID>) : Packet {
+data class PacketOutPlayerInfoRemove(
+    val profileIds: List<UUID>
+) : Packet {
 
-    constructor(player: AquaPlayer) : this(ImmutableLists.of(player.uuid))
+    constructor(player: AquaPlayer) : this(
+        profileIds = ImmutableLists.of(player.uuid)
+    )
 
-    constructor(reader: BinaryReader) : this(reader.readList { it.readUUID() })
+    constructor(reader: BinaryReader) : this(
+        profileIds = reader.readList { it.readUUID() }
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeCollection(profileIds, writer::writeUUID)

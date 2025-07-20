@@ -7,9 +7,13 @@ import net.aquamine.server.network.handlers.PlayPacketHandler
 import net.aquamine.server.packet.InboundPacket
 
 @JvmRecord
-data class PacketInResourcePack(val status: Status) : InboundPacket<PlayPacketHandler> {
+data class PacketInResourcePack(
+    val status: Status
+) : InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readEnum<Status>())
+    constructor(reader: BinaryReader) : this(
+        status =  reader.readEnum()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeEnum(status)

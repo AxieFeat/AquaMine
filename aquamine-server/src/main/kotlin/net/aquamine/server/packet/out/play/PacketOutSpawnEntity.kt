@@ -28,9 +28,21 @@ data class PacketOutSpawnEntity(
     val velocityZ: Short
 ) : EntityPacket {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), reader.readUUID(), reader.readById(AquaRegistries.ENTITY_TYPE)!!,
-        reader.readDouble(), reader.readDouble(), reader.readDouble(), reader.readByte(), reader.readByte(), reader.readByte(), reader.readVarInt(),
-        reader.readShort(), reader.readShort(), reader.readShort())
+    constructor(reader: BinaryReader) : this(
+        entityId = reader.readVarInt(),
+        uuid = reader.readUUID(),
+        type = reader.readById(AquaRegistries.ENTITY_TYPE)!!,
+        x = reader.readDouble(),
+        y = reader.readDouble(),
+        z = reader.readDouble(),
+        pitch = reader.readByte(),
+        yaw = reader.readByte(),
+        headYaw = reader.readByte(),
+        data = reader.readVarInt(),
+        velocityX = reader.readShort(),
+        velocityY = reader.readShort(),
+        velocityZ = reader.readShort()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(entityId)

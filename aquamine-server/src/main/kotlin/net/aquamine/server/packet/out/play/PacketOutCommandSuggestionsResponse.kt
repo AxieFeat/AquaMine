@@ -12,17 +12,23 @@ import net.aquamine.server.packet.Packet
 
 /**
  * Sent by the server as a response to the
- * [tab complete][net.aquamine.server.packet. in.play.PacketInCommandSuggestionsRequest].
+ * [tab complete][net.aquamine.server.packet.in.play.PacketInCommandSuggestionsRequest].
  * Contains all of the matches that the server got for the command provided by
  * the request packet.
  *
- * @param id the unique ID sent by the client to identify this request
- * @param suggestions the suggestions for the client
+ * @param id The unique ID sent by the client to identify this request.
+ * @param suggestions The suggestions for the client.
  */
 @JvmRecord
-data class PacketOutCommandSuggestionsResponse(val id: Int, val suggestions: Suggestions) : Packet {
+data class PacketOutCommandSuggestionsResponse(
+    val id: Int,
+    val suggestions: Suggestions
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), readSuggestions(reader))
+    constructor(reader: BinaryReader) : this(
+        id = reader.readVarInt(),
+        suggestions = readSuggestions(reader)
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(id)

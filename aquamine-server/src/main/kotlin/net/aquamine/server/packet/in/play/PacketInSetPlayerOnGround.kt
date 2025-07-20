@@ -7,9 +7,13 @@ import net.aquamine.server.packet.InboundPacket
 import net.aquamine.server.packet.MovementPacket
 
 @JvmRecord
-data class PacketInSetPlayerOnGround(override val onGround: Boolean) : MovementPacket, InboundPacket<PlayPacketHandler> {
+data class PacketInSetPlayerOnGround(
+    override val onGround: Boolean
+) : MovementPacket, InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readBoolean())
+    constructor(reader: BinaryReader) : this(
+        onGround = reader.readBoolean()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeBoolean(onGround)

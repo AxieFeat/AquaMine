@@ -7,9 +7,15 @@ import net.aquamine.server.network.handlers.PlayPacketHandler
 import net.aquamine.server.packet.InboundPacket
 
 @JvmRecord
-data class PacketInQueryBlockTag(val transactionId: Int, val blockPosition: Vec3i) : InboundPacket<PlayPacketHandler> {
+data class PacketInQueryBlockTag(
+    val transactionId: Int,
+    val blockPosition: Vec3i
+) : InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), reader.readBlockPos())
+    constructor(reader: BinaryReader) : this(
+        transactionId = reader.readVarInt(),
+        blockPosition = reader.readBlockPos()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(transactionId)

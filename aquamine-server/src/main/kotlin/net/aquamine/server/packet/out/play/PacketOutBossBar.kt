@@ -11,9 +11,15 @@ import net.aquamine.server.packet.Packet
 import java.util.UUID
 
 @JvmRecord
-data class PacketOutBossBar(val uuid: UUID, val action: Action) : Packet {
+data class PacketOutBossBar(
+    val uuid: UUID,
+    val action: Action
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readUUID(), reader.readEnum<ActionType>().read(reader))
+    constructor(reader: BinaryReader) : this(
+        uuid = reader.readUUID(),
+        action = reader.readEnum<ActionType>().read(reader)
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeUUID(uuid)

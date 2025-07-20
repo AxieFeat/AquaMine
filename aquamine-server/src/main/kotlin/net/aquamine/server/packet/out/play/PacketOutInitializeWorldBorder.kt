@@ -17,8 +17,16 @@ data class PacketOutInitializeWorldBorder(
     val warningTime: Int
 ) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readDouble(), reader.readDouble(), reader.readDouble(), reader.readDouble(),
-        reader.readVarLong(), reader.readVarInt(), reader.readVarInt(), reader.readVarInt())
+    constructor(reader: BinaryReader) : this(
+        centerX = reader.readDouble(),
+        centerZ = reader.readDouble(),
+        oldSize = reader.readDouble(),
+        newSize = reader.readDouble(),
+        speed = reader.readVarLong(),
+        teleportBoundary = reader.readVarInt(),
+        warningBlocks =reader.readVarInt(),
+        warningTime = reader.readVarInt()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeDouble(centerX)

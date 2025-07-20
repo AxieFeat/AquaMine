@@ -18,19 +18,34 @@ import java.util.UUID
  * Updates information on the tab list (called the player list by vanilla).
  */
 @JvmRecord
-data class PacketOutPlayerInfoUpdate(val actions: EnumSet<Action>, val entries: List<Entry>) : Packet {
+data class PacketOutPlayerInfoUpdate(
+    val actions: EnumSet<Action>,
+    val entries: List<Entry>
+) : Packet {
 
-    constructor(actions: EnumSet<Action>, players: Collection<AquaPlayer>) : this(actions, players.map(::Entry))
+    constructor(actions: EnumSet<Action>, players: Collection<AquaPlayer>) : this(
+        actions = actions,
+        entries = players.map(::Entry)
+    )
 
-    constructor(action: Action, player: AquaPlayer) : this(EnumSet.of(action), ImmutableLists.of(Entry(player)))
+    constructor(action: Action, player: AquaPlayer) : this(
+        actions = EnumSet.of(action),
+        entries = ImmutableLists.of(Entry(player))
+    )
 
-    constructor(reader: BinaryReader) : this(reader, reader.readEnumSet())
+    constructor(reader: BinaryReader) : this(
+        reader = reader,
+        actions = reader.readEnumSet()
+    )
 
-    private constructor(reader: BinaryReader, actions: EnumSet<Action>) : this(actions, reader.readList {
-        val builder = EntryBuilder(reader.readUUID())
-        actions.forEach { action -> action.reader.read(it, builder) }
-        builder.build()
-    })
+    private constructor(reader: BinaryReader, actions: EnumSet<Action>) : this(
+        actions = actions,
+        entries = reader.readList {
+            val builder = EntryBuilder(reader.readUUID())
+            actions.forEach { action -> action.reader.read(it, builder) }
+            builder.build()
+        }
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeEnumSet(actions)

@@ -22,8 +22,15 @@ data class PacketOutSpawnPlayer(
     val pitch: Byte
 ) : EntityPacket {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), reader.readUUID(), reader.readDouble(), reader.readDouble(), reader.readDouble(),
-        reader.readByte(), reader.readByte())
+    constructor(reader: BinaryReader) : this(
+        entityId = reader.readVarInt(),
+        uuid = reader.readUUID(),
+        x = reader.readDouble(),
+        y = reader.readDouble(),
+        z = reader.readDouble(),
+        yaw = reader.readByte(),
+        pitch = reader.readByte()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(entityId)

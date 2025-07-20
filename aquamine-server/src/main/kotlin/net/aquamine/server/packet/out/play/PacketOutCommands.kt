@@ -25,9 +25,15 @@ import java.util.function.BiPredicate
 import java.util.function.Predicate
 
 @JvmRecord
-data class PacketOutCommands(val nodes: List<Node>, val rootIndex: Int) : Packet {
+data class PacketOutCommands(
+    val nodes: List<Node>,
+    val rootIndex: Int
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readList(::readNode), reader.readVarInt()) {
+    constructor(reader: BinaryReader) : this(
+        nodes = reader.readList(::readNode),
+        rootIndex = reader.readVarInt()
+    ) {
         validateEntries(nodes) { node, indices -> node.canBuild(indices) }
         validateEntries(nodes) { node, indices -> node.canResolve(indices) }
     }

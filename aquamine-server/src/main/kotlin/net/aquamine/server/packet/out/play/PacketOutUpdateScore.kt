@@ -8,7 +8,12 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
 
 @JvmRecord
-data class PacketOutUpdateScore(val name: String, val action: Int, val objectiveName: String?, val score: Int) : Packet {
+data class PacketOutUpdateScore(
+    val name: String,
+    val action: Int,
+    val objectiveName: String?,
+    val score: Int
+) : Packet {
 
     init {
         require(name.length <= MAX_NAME_LENGTH) { "Name too long! Max: $MAX_NAME_LENGTH" }
@@ -17,10 +22,19 @@ data class PacketOutUpdateScore(val name: String, val action: Int, val objective
         }
     }
 
-    constructor(reader: BinaryReader) : this(reader, reader.readString(), reader.readVarInt(), reader.readString().ifEmpty { null })
+    constructor(reader: BinaryReader) : this(
+        reader = reader,
+        name = reader.readString(),
+        action = reader.readVarInt(),
+        objectiveName = reader.readString().ifEmpty { null }
+    )
 
-    private constructor(reader: BinaryReader, name: String, action: Int, objectiveName: String?) : this(name, action, objectiveName,
-        if (action != Actions.REMOVE) reader.readVarInt() else 0)
+    private constructor(reader: BinaryReader, name: String, action: Int, objectiveName: String?) : this(
+        name = name,
+        action = action,
+        objectiveName = objectiveName,
+        score = if (action != Actions.REMOVE) reader.readVarInt() else 0
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeString(name)

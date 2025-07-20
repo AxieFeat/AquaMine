@@ -8,9 +8,15 @@ import net.aquamine.server.world.block.AquaBlock
 import net.aquamine.server.world.block.state.AquaBlockState
 
 @JvmRecord
-data class PacketOutBlockUpdate(val position: Vec3i, val block: AquaBlockState) : Packet {
+data class PacketOutBlockUpdate(
+    val position: Vec3i,
+    val block: AquaBlockState
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readBlockPos(), AquaBlock.stateFromId(reader.readVarInt()))
+    constructor(reader: BinaryReader) : this(
+        position = reader.readBlockPos(),
+        block = AquaBlock.stateFromId(reader.readVarInt())
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeBlockPos(position)

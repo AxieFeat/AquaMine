@@ -20,11 +20,19 @@ data class PacketInClientInformation(
 ) : InboundPacket<PlayPacketHandler> {
 
     init {
-        require(locale.length <= 16) { "Locale too long! Max: 16" }
+        require(locale.length <= LOCALE_MAX_LENGTH) { "Locale too long! Max: $LOCALE_MAX_LENGTH" }
     }
 
-    constructor(reader: BinaryReader) : this(reader.readString(), reader.readByte(), reader.readEnum(), reader.readBoolean(),
-        reader.readByte(), reader.readEnum(), reader.readBoolean(), reader.readBoolean())
+    constructor(reader: BinaryReader) : this(
+        locale = reader.readString(),
+        viewDistance = reader.readByte(),
+        chatVisibility = reader.readEnum(),
+        chatColors = reader.readBoolean(),
+        skinSettings = reader.readByte(),
+        mainHand = reader.readEnum(),
+        filterText = reader.readBoolean(),
+        allowsListing = reader.readBoolean()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeString(locale)
@@ -39,5 +47,10 @@ data class PacketInClientInformation(
 
     override fun handle(handler: PlayPacketHandler) {
         handler.handleClientInformation(this)
+    }
+
+    companion object {
+
+        private const val LOCALE_MAX_LENGTH = 16
     }
 }

@@ -16,7 +16,13 @@ data class PacketOutUpdateEntityPosition(
     override val onGround: Boolean
 ) : EntityPacket, MovementPacket {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), reader.readShort(), reader.readShort(), reader.readShort(), reader.readBoolean())
+    constructor(reader: BinaryReader) : this(
+        entityId = reader.readVarInt(),
+        deltaX = reader.readShort(),
+        deltaY = reader.readShort(),
+        deltaZ = reader.readShort(),
+        onGround = reader.readBoolean()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(entityId)

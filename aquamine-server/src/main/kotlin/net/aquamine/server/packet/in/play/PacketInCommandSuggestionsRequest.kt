@@ -6,13 +6,19 @@ import net.aquamine.server.network.handlers.PlayPacketHandler
 import net.aquamine.server.packet.InboundPacket
 
 @JvmRecord
-data class PacketInCommandSuggestionsRequest(val id: Int, val command: String) : InboundPacket<PlayPacketHandler> {
+data class PacketInCommandSuggestionsRequest(
+    val id: Int,
+    val command: String
+) : InboundPacket<PlayPacketHandler> {
 
     init {
         require(command.length <= COMMAND_MAX_LENGTH) { "Command too long! Max: $COMMAND_MAX_LENGTH" }
     }
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), reader.readString())
+    constructor(reader: BinaryReader) : this(
+        id = reader.readVarInt(),
+        command = reader.readString()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(id)

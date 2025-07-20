@@ -6,9 +6,13 @@ import net.aquamine.server.network.handlers.PlayPacketHandler
 import net.aquamine.server.packet.InboundPacket
 
 @JvmRecord
-data class PacketInCloseContainer(val containerId: Byte) : InboundPacket<PlayPacketHandler> {
+data class PacketInCloseContainer(
+    val containerId: Byte
+) : InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readByte())
+    constructor(reader: BinaryReader) : this(
+        containerId = reader.readByte()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeByte(containerId)

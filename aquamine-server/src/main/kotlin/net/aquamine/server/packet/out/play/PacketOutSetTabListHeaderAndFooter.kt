@@ -13,9 +13,15 @@ import net.aquamine.server.packet.Packet
  * the player list.
  */
 @JvmRecord
-data class PacketOutSetTabListHeaderAndFooter(val header: Component, val footer: Component) : Packet {
+data class PacketOutSetTabListHeaderAndFooter(
+    val header: Component,
+    val footer: Component
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readComponent(), reader.readComponent())
+    constructor(reader: BinaryReader) : this(
+        header = reader.readComponent(),
+        footer = reader.readComponent()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeComponent(header)

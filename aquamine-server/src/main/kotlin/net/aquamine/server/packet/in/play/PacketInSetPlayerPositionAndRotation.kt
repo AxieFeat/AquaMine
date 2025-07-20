@@ -17,8 +17,14 @@ data class PacketInSetPlayerPositionAndRotation(
     override val onGround: Boolean
 ) : MovementPacket, InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readDouble(), reader.readDouble(), reader.readDouble(), reader.readFloat(), reader.readFloat(),
-        reader.readBoolean())
+    constructor(reader: BinaryReader) : this(
+        x = reader.readDouble(),
+        y = reader.readDouble(),
+        z = reader.readDouble(),
+        yaw = reader.readFloat(),
+        pitch = reader.readFloat(),
+        onGround = reader.readBoolean()
+    )
 
     fun position(): Position = Position(x, y, z, yaw, pitch)
 

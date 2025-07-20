@@ -19,8 +19,15 @@ data class PacketOutTeleportEntity(
     override val onGround: Boolean
 ) : EntityPacket, MovementPacket {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), reader.readDouble(), reader.readDouble(), reader.readDouble(), reader.readByte(),
-        reader.readByte(), reader.readBoolean())
+    constructor(reader: BinaryReader) : this(
+        entityId = reader.readVarInt(),
+        x = reader.readDouble(),
+        y = reader.readDouble(),
+        z = reader.readDouble(),
+        yaw = reader.readByte(),
+        pitch = reader.readByte(),
+        onGround = reader.readBoolean()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(entityId)

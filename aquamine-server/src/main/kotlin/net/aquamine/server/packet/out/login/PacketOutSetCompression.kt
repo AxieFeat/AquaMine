@@ -9,9 +9,13 @@ import net.aquamine.server.packet.Packet
  * that are >= [threshold] in size will be compressed.
  */
 @JvmRecord
-data class PacketOutSetCompression(val threshold: Int) : Packet {
+data class PacketOutSetCompression(
+    val threshold: Int
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt())
+    constructor(reader: BinaryReader) : this(
+        threshold = reader.readVarInt()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(threshold)

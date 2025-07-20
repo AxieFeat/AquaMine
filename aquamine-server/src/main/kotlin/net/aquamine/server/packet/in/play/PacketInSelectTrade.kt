@@ -10,7 +10,9 @@ data class PacketInSelectTrade(
     val selectedSlot: Int
 ) : InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt())
+    constructor(reader: BinaryReader) : this(
+        selectedSlot = reader.readVarInt()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(selectedSlot)

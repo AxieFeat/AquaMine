@@ -11,9 +11,17 @@ import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.registry.AquaRegistry
 
 @JvmRecord
-data class PacketOutAwardStatistics(val statistics: Object2IntMap<Statistic<*>>) : Packet {
+data class PacketOutAwardStatistics(
+    val statistics: Object2IntMap<Statistic<*>>
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readMap(::Object2IntOpenHashMap, ::readStatistic, BinaryReader::readVarInt))
+    constructor(reader: BinaryReader) : this(
+        statistics = reader.readMap(
+            ::Object2IntOpenHashMap,
+            ::readStatistic,
+            BinaryReader::readVarInt
+        )
+    )
 
     override fun write(writer: BinaryWriter) {
         // The second argument can't be a method reference because of type inference.

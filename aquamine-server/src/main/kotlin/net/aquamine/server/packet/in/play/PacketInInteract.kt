@@ -8,9 +8,17 @@ import net.aquamine.server.network.handlers.PlayPacketHandler
 import net.aquamine.server.packet.InboundPacket
 
 @JvmRecord
-data class PacketInInteract(val entityId: Int, val action: Action, val sneaking: Boolean) : InboundPacket<PlayPacketHandler> {
+data class PacketInInteract(
+    val entityId: Int,
+    val action: Action,
+    val sneaking: Boolean
+) : InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), reader.readEnum<ActionType>().read(reader), reader.readBoolean())
+    constructor(reader: BinaryReader) : this(
+        entityId = reader.readVarInt(),
+        action = reader.readEnum<ActionType>().read(reader),
+        sneaking = reader.readBoolean()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(entityId)

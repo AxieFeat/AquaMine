@@ -7,9 +7,15 @@ import net.aquamine.server.network.handlers.PlayPacketHandler
 import net.aquamine.server.packet.InboundPacket
 
 @JvmRecord
-data class PacketInUseItem(val hand: Hand, val sequence: Int) : InboundPacket<PlayPacketHandler> {
+data class PacketInUseItem(
+    val hand: Hand,
+    val sequence: Int
+) : InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readEnum<Hand>(), reader.readVarInt())
+    constructor(reader: BinaryReader) : this(
+        hand = reader.readEnum(),
+        sequence = reader.readVarInt()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeEnum(hand)

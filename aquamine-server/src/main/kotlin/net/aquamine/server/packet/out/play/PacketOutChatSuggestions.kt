@@ -5,9 +5,15 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
 
 @JvmRecord
-data class PacketOutChatSuggestions(val action: Action, val entries: List<String>) : Packet {
+data class PacketOutChatSuggestions(
+    val action: Action,
+    val entries: List<String>
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readEnum(), reader.readList { it.readString() })
+    constructor(reader: BinaryReader) : this(
+        action = reader.readEnum(),
+        entries = reader.readList { it.readString() }
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeEnum(action)

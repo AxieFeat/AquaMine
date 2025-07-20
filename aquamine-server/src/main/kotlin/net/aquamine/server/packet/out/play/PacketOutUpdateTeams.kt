@@ -24,10 +24,18 @@ data class PacketOutUpdateTeams(
         require(name.length <= MAX_NAME_LENGTH) { "Team name too long! Max: $MAX_NAME_LENGTH" }
     }
 
-    constructor(reader: BinaryReader) : this(reader, reader.readString(), Action.fromId(reader.readByte().toInt())!!)
+    constructor(reader: BinaryReader) : this(
+        reader = reader,
+        name = reader.readString(),
+        action = Action.fromId(reader.readByte().toInt())!!
+    )
 
-    private constructor(reader: BinaryReader, name: String, action: Action) : this(name, action, readParameters(reader, action),
-        readMembers(reader, action))
+    private constructor(reader: BinaryReader, name: String, action: Action) : this(
+        name = name,
+        action = action,
+        parameters = readParameters(reader, action),
+        members = readMembers(reader, action)
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeString(name)

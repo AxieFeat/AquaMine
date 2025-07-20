@@ -13,9 +13,13 @@ import net.aquamine.server.packet.Packet
  * point.
  */
 @JvmRecord
-data class PacketOutLoginDisconnect(val reason: Component) : Packet {
+data class PacketOutLoginDisconnect(
+    val reason: Component
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readComponent())
+    constructor(reader: BinaryReader) : this(
+        reason = reader.readComponent()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeComponent(reason)

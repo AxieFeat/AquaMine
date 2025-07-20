@@ -5,9 +5,13 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.EntityPacket
 
 @JvmRecord
-data class PacketOutSetCamera(override val entityId: Int) : EntityPacket {
+data class PacketOutSetCamera(
+    override val entityId: Int
+) : EntityPacket {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt())
+    constructor(reader: BinaryReader) : this(
+        entityId = reader.readVarInt()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(entityId)

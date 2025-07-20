@@ -19,9 +19,15 @@ import net.aquamine.server.packet.EntityPacket
  * @param packedEntries the list of packed metadata items to send
  */
 @JvmRecord
-data class PacketOutSetEntityMetadata(override val entityId: Int, val packedEntries: Collection<MetadataHolder.Entry<*>>?) : EntityPacket {
+data class PacketOutSetEntityMetadata(
+    override val entityId: Int,
+    val packedEntries: Collection<MetadataHolder.Entry<*>>?
+) : EntityPacket {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), readEntries(reader))
+    constructor(reader: BinaryReader) : this(
+        entityId = reader.readVarInt(),
+        packedEntries = readEntries(reader)
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(entityId)

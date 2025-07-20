@@ -15,7 +15,12 @@ data class PacketInPlayerAction(
     val sequence: Int
 ) : InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readEnum<Action>(), reader.readBlockPos(), reader.readEnum(), reader.readVarInt())
+    constructor(reader: BinaryReader) : this(
+        action = reader.readEnum<Action>(),
+        position = reader.readBlockPos(),
+        direction = reader.readEnum(),
+        sequence = reader.readVarInt()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeEnum(action)

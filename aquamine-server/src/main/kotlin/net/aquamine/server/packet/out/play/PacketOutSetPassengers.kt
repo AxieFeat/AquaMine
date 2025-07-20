@@ -8,9 +8,15 @@ import net.aquamine.server.packet.EntityPacket
 
 @JvmRecord
 @Suppress("ArrayInDataClass")
-data class PacketOutSetPassengers(override val entityId: Int, val passengers: IntArray) : EntityPacket {
+data class PacketOutSetPassengers(
+    override val entityId: Int,
+    val passengers: IntArray
+) : EntityPacket {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), reader.readVarIntArray())
+    constructor(reader: BinaryReader) : this(
+        entityId = reader.readVarInt(),
+        passengers = reader.readVarIntArray()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(entityId)

@@ -6,9 +6,13 @@ import net.aquamine.server.network.handlers.PlayPacketHandler
 import net.aquamine.server.packet.InboundPacket
 
 @JvmRecord
-data class PacketInConfirmTeleportation(val id: Int) : InboundPacket<PlayPacketHandler> {
+data class PacketInConfirmTeleportation(
+    val id: Int
+) : InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt())
+    constructor(reader: BinaryReader) : this(
+        id = reader.readVarInt()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(id)

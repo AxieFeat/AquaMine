@@ -15,10 +15,20 @@ data class PacketOutAbilities(
     val walkingSpeed: Float
 ) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readByte().toInt(), reader.readFloat(), reader.readFloat())
+    constructor(reader: BinaryReader) : this(
+        flags = reader.readByte().toInt(),
+        flyingSpeed = reader.readFloat(),
+        walkingSpeed = reader.readFloat()
+    )
 
-    private constructor(flags: Int, flyingSpeed: Float, walkingSpeed: Float) : this(flags and FLAG_INVULNERABLE != 0, flags and FLAG_FLYING != 0,
-        flags and FLAG_CAN_FLY != 0, flags and FLAG_CAN_INSTANTLY_BUILD != 0, flyingSpeed, walkingSpeed)
+    private constructor(flags: Int, flyingSpeed: Float, walkingSpeed: Float) : this(
+        isInvulnerable = flags and FLAG_INVULNERABLE != 0,
+        isFlying = flags and FLAG_FLYING != 0,
+        canFly = flags and FLAG_CAN_FLY != 0,
+        canInstantlyBuild = flags and FLAG_CAN_INSTANTLY_BUILD != 0,
+        flyingSpeed = flyingSpeed,
+        walkingSpeed = walkingSpeed
+    )
 
     override fun write(writer: BinaryWriter) {
         var flags = 0

@@ -10,9 +10,15 @@ import java.nio.ByteBuffer
 
 @JvmRecord
 @Suppress("ArrayInDataClass")
-data class ChunkPacketData(val heightmaps: CompoundTag, val data: ByteArray) : Writable {
+data class ChunkPacketData(
+    val heightmaps: CompoundTag,
+    val data: ByteArray
+) : Writable {
 
-    constructor(reader: BinaryReader) : this(reader.readNBT(), reader.readByteArray()) {
+    constructor(reader: BinaryReader) : this(
+        heightmaps = reader.readNBT(),
+        data = reader.readByteArray()
+    ) {
         reader.readVarInt() // Number of block entities
     }
 

@@ -7,9 +7,13 @@ import net.aquamine.server.packet.Packet
 
 @JvmRecord
 @Suppress("ArrayInDataClass")
-data class PacketOutRemoveEntities(val ids: IntArray) : Packet {
+data class PacketOutRemoveEntities(
+    val ids: IntArray
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readVarIntArray())
+    constructor(reader: BinaryReader) : this(
+        ids = reader.readVarIntArray()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarIntArray(ids)

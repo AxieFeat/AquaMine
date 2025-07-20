@@ -6,9 +6,13 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
 
 @JvmRecord
-data class PacketOutSetTitleText(val title: Component) : Packet {
+data class PacketOutSetTitleText(
+    val title: Component
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readComponent())
+    constructor(reader: BinaryReader) : this(
+        title = reader.readComponent()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeComponent(title)

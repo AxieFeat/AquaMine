@@ -9,9 +9,13 @@ import net.aquamine.server.packet.InboundPacket
  * Sent when the client pings the server.
  */
 @JvmRecord
-data class PacketInPingRequest(val payload: Long) : InboundPacket<StatusPacketHandler> {
+data class PacketInPingRequest(
+    val payload: Long
+) : InboundPacket<StatusPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readLong())
+    constructor(reader: BinaryReader) : this(
+        payload = reader.readLong()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeLong(payload)

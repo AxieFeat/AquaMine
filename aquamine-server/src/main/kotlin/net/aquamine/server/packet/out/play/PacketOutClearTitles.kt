@@ -5,9 +5,13 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
 
 @JvmRecord
-data class PacketOutClearTitles(val reset: Boolean) : Packet {
+data class PacketOutClearTitles(
+    val reset: Boolean
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readBoolean())
+    constructor(reader: BinaryReader) : this(
+        reset = reader.readBoolean()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeBoolean(reset)

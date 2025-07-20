@@ -14,7 +14,12 @@ data class PacketInHandshake(
     val nextState: PacketState
 ) : InboundPacket<HandshakePacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), reader.readString(), reader.readUnsignedShort(), reader.readEnum())
+    constructor(reader: BinaryReader) : this(
+        protocol = reader.readVarInt(),
+        address = reader.readString(),
+        port = reader.readUnsignedShort(),
+        nextState = reader.readEnum()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(protocol)

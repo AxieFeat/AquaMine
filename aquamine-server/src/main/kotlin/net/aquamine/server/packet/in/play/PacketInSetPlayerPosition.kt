@@ -14,7 +14,12 @@ data class PacketInSetPlayerPosition(
     override val onGround: Boolean
 ) : MovementPacket, InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readDouble(), reader.readDouble(), reader.readDouble(), reader.readBoolean())
+    constructor(reader: BinaryReader) : this(
+        x = reader.readDouble(),
+        y = reader.readDouble(),
+        z = reader.readDouble(),
+        onGround = reader.readBoolean()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeDouble(x)

@@ -7,9 +7,17 @@ import net.aquamine.server.packet.Packet
 import java.time.Duration
 
 @JvmRecord
-data class PacketOutSetTitleAnimationTimes(val fadeInTicks: Int, val stayTicks: Int, val fadeOutTicks: Int) : Packet {
+data class PacketOutSetTitleAnimationTimes(
+    val fadeInTicks: Int,
+    val stayTicks: Int,
+    val fadeOutTicks: Int
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readInt(), reader.readInt(), reader.readInt())
+    constructor(reader: BinaryReader) : this(
+        fadeInTicks = reader.readInt(),
+        stayTicks = reader.readInt(),
+        fadeOutTicks = reader.readInt()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeInt(fadeInTicks)

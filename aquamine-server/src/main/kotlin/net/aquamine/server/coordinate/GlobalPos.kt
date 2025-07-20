@@ -12,9 +12,15 @@ import net.aquamine.serialization.Codec
 import net.aquamine.serialization.codecs.RecordCodecBuilder
 
 @JvmRecord
-data class GlobalPos(val dimension: ResourceKey<World>, val position: Vec3i) : Writable {
+data class GlobalPos(
+    val dimension: ResourceKey<World>,
+    val position: Vec3i
+) : Writable {
 
-    constructor(reader: BinaryReader) : this(ResourceKey.of(ResourceKeys.DIMENSION, reader.readKey()), reader.readBlockPos())
+    constructor(reader: BinaryReader) : this(
+        dimension = ResourceKey.of(ResourceKeys.DIMENSION, reader.readKey()),
+        position = reader.readBlockPos()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeResourceKey(dimension)

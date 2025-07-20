@@ -12,13 +12,21 @@ import net.aquamine.server.packet.Packet
  */
 @JvmRecord
 @Suppress("ArrayInDataClass")
-data class PacketOutEncryptionRequest(val serverId: String, val publicKey: ByteArray, val verifyToken: ByteArray) : Packet {
+data class PacketOutEncryptionRequest(
+    val serverId: String,
+    val publicKey: ByteArray,
+    val verifyToken: ByteArray
+) : Packet {
 
     init {
         require(serverId.length <= MAX_SERVER_ID_LENGTH) { "Server ID too long! Max: $MAX_SERVER_ID_LENGTH" }
     }
 
-    constructor(reader: BinaryReader) : this(reader.readString(), reader.readByteArray(), reader.readByteArray())
+    constructor(reader: BinaryReader) : this(
+        serverId = reader.readString(),
+        publicKey = reader.readByteArray(),
+        verifyToken = reader.readByteArray()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeString(serverId)

@@ -7,9 +7,15 @@ import net.aquamine.server.packet.Packet
 
 @JvmRecord
 @Suppress("ArrayInDataClass")
-data class PacketOutPluginMessage(val channel: Key, val content: ByteArray) : Packet {
+data class PacketOutPluginMessage(
+    val channel: Key,
+    val content: ByteArray
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readKey(), reader.readAllBytes())
+    constructor(reader: BinaryReader) : this(
+        channel = reader.readKey(),
+        content = reader.readAllBytes()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeKey(channel)

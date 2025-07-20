@@ -6,9 +6,19 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
 
 @JvmRecord
-data class PacketOutSetContainerSlot(val id: Byte, val stateId: Int, val slot: Short, val item: AquaItemStack) : Packet {
+data class PacketOutSetContainerSlot(
+    val id: Byte,
+    val stateId: Int,
+    val slot: Short,
+    val item: AquaItemStack
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readByte(), reader.readVarInt(), reader.readShort(), reader.readItem())
+    constructor(reader: BinaryReader) : this(
+        id = reader.readByte(),
+        stateId = reader.readVarInt(),
+        slot = reader.readShort(),
+        item = reader.readItem()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeByte(id)

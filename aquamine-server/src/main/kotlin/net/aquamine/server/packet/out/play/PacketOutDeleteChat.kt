@@ -6,9 +6,13 @@ import net.aquamine.server.network.chat.MessageSignature
 import net.aquamine.server.packet.Packet
 
 @JvmRecord
-data class PacketOutDeleteChat(val messageSignature: MessageSignature.Packed) : Packet {
+data class PacketOutDeleteChat(
+    val messageSignature: MessageSignature.Packed
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(MessageSignature.Packed.read(reader))
+    constructor(reader: BinaryReader) : this(
+        messageSignature = MessageSignature.Packed.read(reader)
+    )
 
     override fun write(writer: BinaryWriter) {
         messageSignature.write(writer)

@@ -36,23 +36,23 @@ data class PacketOutLogin(
 ) : EntityPacket {
 
     constructor(reader: BinaryReader) : this(
-        reader.readInt(),
-        reader.readBoolean(),
-        GameModes.fromId(reader.readByte().toInt())!!,
-        GameModes.fromId(reader.readByte().toInt())!!,
-        reader.readCollection({ Sets.newHashSetWithExpectedSize(it) }) { ResourceKey.of(ResourceKeys.DIMENSION, reader.readKey()) },
-        reader.decode(RegistrySerialization.NETWORK_CODEC),
-        ResourceKey.of(ResourceKeys.DIMENSION_TYPE, reader.readKey()),
-        ResourceKey.of(ResourceKeys.DIMENSION, reader.readKey()),
-        reader.readLong(),
-        reader.readVarInt(),
-        reader.readVarInt(),
-        reader.readVarInt(),
-        reader.readBoolean(),
-        reader.readBoolean(),
-        reader.readBoolean(),
-        reader.readBoolean(),
-        reader.readNullable { GlobalPos(it) }
+        entityId = reader.readInt(),
+        isHardcore = reader.readBoolean(),
+        gameMode = GameModes.fromId(reader.readByte().toInt())!!,
+        oldGameMode = GameModes.fromId(reader.readByte().toInt())!!,
+        dimensions = reader.readCollection({ Sets.newHashSetWithExpectedSize(it) }) { ResourceKey.of(ResourceKeys.DIMENSION, reader.readKey()) },
+        registryHolder = reader.decode(RegistrySerialization.NETWORK_CODEC),
+        dimensionType = ResourceKey.of(ResourceKeys.DIMENSION_TYPE, reader.readKey()),
+        dimension = ResourceKey.of(ResourceKeys.DIMENSION, reader.readKey()),
+        seed = reader.readLong(),
+        maxPlayers = reader.readVarInt(),
+        viewDistance = reader.readVarInt(),
+        simulationDistance = reader.readVarInt(),
+        reducedDebugInfo = reader.readBoolean(),
+        enableRespawnScreen = reader.readBoolean(),
+        isDebug = reader.readBoolean(),
+        isFlat = reader.readBoolean(),
+        deathLocation = reader.readNullable { GlobalPos(it) }
     )
 
     override fun write(writer: BinaryWriter) {

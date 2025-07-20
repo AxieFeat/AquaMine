@@ -10,19 +10,28 @@ import net.aquamine.server.packet.Packet
  * Tells the client to perform an action to an objective for a scoreboard.
  */
 @JvmRecord
-data class PacketOutUpdateObjectives(val name: String, val action: Byte, val displayName: Component, val renderType: Int) : Packet {
+data class PacketOutUpdateObjectives(
+    val name: String,
+    val action: Byte,
+    val displayName: Component,
+    val renderType: Int
+) : Packet {
 
     init {
-        require(name.length <= 16) { "Objective name too long! Max: 16" }
+        require(name.length <= NAME_MAX_LENGTH) { "Objective name too long! Max: $NAME_MAX_LENGTH" }
     }
 
-    constructor(reader: BinaryReader) : this(reader, reader.readString(), reader.readByte())
+    constructor(reader: BinaryReader) : this(
+        reader = reader,
+        name = reader.readString(),
+        action = reader.readByte()
+    )
 
     private constructor(reader: BinaryReader, name: String, action: Byte) : this(
-        name,
-        action,
-        if (action != Actions.REMOVE) reader.readComponent() else Component.empty(),
-        if (action != Actions.REMOVE) reader.readVarInt() else 0
+        name = name,
+        action = action,
+        displayName = if (action != Actions.REMOVE) reader.readComponent() else Component.empty(),
+        renderType = if (action != Actions.REMOVE) reader.readVarInt() else 0
     )
 
     override fun write(writer: BinaryWriter) {
@@ -42,6 +51,8 @@ data class PacketOutUpdateObjectives(val name: String, val action: Byte, val dis
     }
 
     companion object {
+
+        private const val NAME_MAX_LENGTH = 16
 
         @JvmStatic
         fun create(objective: Objective): PacketOutUpdateObjectives = createOrRemove(objective, Actions.CREATE)

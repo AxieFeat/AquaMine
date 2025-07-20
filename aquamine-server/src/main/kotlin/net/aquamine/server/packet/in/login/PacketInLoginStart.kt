@@ -7,13 +7,19 @@ import net.aquamine.server.packet.InboundPacket
 import java.util.UUID
 
 @JvmRecord
-data class PacketInLoginStart(val name: String, val profileId: UUID?) : InboundPacket<LoginPacketHandler> {
+data class PacketInLoginStart(
+    val name: String,
+    val profileId: UUID?
+) : InboundPacket<LoginPacketHandler> {
 
     init {
-        require(name.length <= 16) { "Name must be 16 characters or less!" }
+        require(name.length <= NAME_MAX_LENGTH) { "Name too long! Max: $NAME_MAX_LENGTH" }
     }
 
-    constructor(reader: BinaryReader) : this(reader.readString(), reader.readNullable(BinaryReader::readUUID))
+    constructor(reader: BinaryReader) : this(
+        name = reader.readString(),
+        profileId = reader.readNullable(BinaryReader::readUUID)
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeString(name)
@@ -22,5 +28,10 @@ data class PacketInLoginStart(val name: String, val profileId: UUID?) : InboundP
 
     override fun handle(handler: LoginPacketHandler) {
         handler.handleLoginStart(this)
+    }
+
+    companion object {
+
+        private const val NAME_MAX_LENGTH = 16
     }
 }

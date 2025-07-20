@@ -6,9 +6,19 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
 
 @JvmRecord
-data class PacketOutWorldEvent(val event: Int, val position: Vec3i, val data: Int, val isGlobal: Boolean) : Packet {
+data class PacketOutWorldEvent(
+    val event: Int,
+    val position: Vec3i,
+    val data: Int,
+    val isGlobal: Boolean
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readInt(), reader.readBlockPos(), reader.readInt(), reader.readBoolean())
+    constructor(reader: BinaryReader) : this(
+        event = reader.readInt(),
+        position = reader.readBlockPos(),
+        data = reader.readInt(),
+        isGlobal = reader.readBoolean()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeInt(event)

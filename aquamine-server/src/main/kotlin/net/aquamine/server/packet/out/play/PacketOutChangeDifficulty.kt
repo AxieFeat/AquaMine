@@ -7,9 +7,15 @@ import net.aquamine.server.packet.Packet
 import net.aquamine.server.util.enumhelper.Difficulties
 
 @JvmRecord
-data class PacketOutChangeDifficulty(val difficulty: Difficulty, val isLocked: Boolean) : Packet {
+data class PacketOutChangeDifficulty(
+    val difficulty: Difficulty,
+    val isLocked: Boolean
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(Difficulties.fromId(reader.readByte().toInt())!!, reader.readBoolean())
+    constructor(reader: BinaryReader) : this(
+        difficulty = Difficulties.fromId(reader.readByte().toInt())!!,
+        isLocked = reader.readBoolean()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeByte(difficulty.ordinal.toByte())

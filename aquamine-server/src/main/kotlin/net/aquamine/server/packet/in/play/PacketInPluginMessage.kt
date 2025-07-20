@@ -8,9 +8,15 @@ import net.aquamine.server.packet.InboundPacket
 
 @JvmRecord
 @Suppress("ArrayInDataClass")
-data class PacketInPluginMessage(val channel: Key, val data: ByteArray) : InboundPacket<PlayPacketHandler> {
+data class PacketInPluginMessage(
+    val channel: Key,
+    val data: ByteArray
+) : InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readKey(), reader.readAllBytes())
+    constructor(reader: BinaryReader) : this(
+        channel = reader.readKey(),
+        data = reader.readAllBytes()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeKey(channel)

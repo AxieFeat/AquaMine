@@ -7,9 +7,15 @@ import net.aquamine.server.packet.InboundPacket
 
 @JvmRecord
 @Suppress("ArrayInDataClass")
-data class PacketInPluginResponse(val messageId: Int, val data: ByteArray?) : InboundPacket<LoginPacketHandler> {
+data class PacketInPluginResponse(
+    val messageId: Int,
+    val data: ByteArray?
+) : InboundPacket<LoginPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), reader.readNullable(BinaryReader::readAllBytes))
+    constructor(reader: BinaryReader) : this(
+        messageId = reader.readVarInt(),
+        data = reader.readNullable(BinaryReader::readAllBytes)
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(messageId)

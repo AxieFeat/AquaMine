@@ -6,9 +6,13 @@ import net.aquamine.server.network.handlers.PlayPacketHandler
 import net.aquamine.server.packet.InboundPacket
 
 @JvmRecord
-data class PacketInKeepAlive(val id: Long) : InboundPacket<PlayPacketHandler> {
+data class PacketInKeepAlive(
+    val id: Long
+) : InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readLong())
+    constructor(reader: BinaryReader) : this(
+        id = reader.readLong()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeLong(id)

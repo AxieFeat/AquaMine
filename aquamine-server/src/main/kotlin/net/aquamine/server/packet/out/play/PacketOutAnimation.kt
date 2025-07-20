@@ -5,9 +5,15 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.EntityPacket
 
 @JvmRecord
-data class PacketOutAnimation(override val entityId: Int, val animation: Byte) : EntityPacket {
+data class PacketOutAnimation(
+    override val entityId: Int,
+    val animation: Byte
+) : EntityPacket {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), reader.readByte())
+    constructor(reader: BinaryReader) : this(
+        entityId = reader.readVarInt(),
+        animation = reader.readByte()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(entityId)

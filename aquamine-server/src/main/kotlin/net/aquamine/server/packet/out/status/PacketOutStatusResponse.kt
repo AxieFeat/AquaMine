@@ -9,9 +9,13 @@ import net.aquamine.server.packet.Packet
  * Response to the client's earlier [status request][net.aquamine.server.packet.in.status.PacketInStatusRequest] packet.
  */
 @JvmRecord
-data class PacketOutStatusResponse(val response: String) : Packet {
+data class PacketOutStatusResponse(
+    val response: String
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readString())
+    constructor(reader: BinaryReader) : this(
+        response = reader.readString()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeString(response)

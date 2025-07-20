@@ -5,9 +5,15 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
 
 @JvmRecord
-data class PacketOutUnloadChunk(val x: Int, val z: Int) : Packet {
+data class PacketOutUnloadChunk(
+    val x: Int,
+    val z: Int
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readInt(), reader.readInt())
+    constructor(reader: BinaryReader) : this(
+        x = reader.readInt(),
+        z = reader.readInt()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeInt(x)

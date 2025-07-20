@@ -8,9 +8,15 @@ import net.aquamine.server.packet.EntityPacket
  * Sent to indicate a status for an entity.
  */
 @JvmRecord
-data class PacketOutEntityEvent(override val entityId: Int, val event: Byte) : EntityPacket {
+data class PacketOutEntityEvent(
+    override val entityId: Int,
+    val event: Byte
+) : EntityPacket {
 
-    constructor(reader: BinaryReader) : this(reader.readInt(), reader.readByte())
+    constructor(reader: BinaryReader) : this(
+        entityId = reader.readInt(),
+        event = reader.readByte()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeInt(entityId)

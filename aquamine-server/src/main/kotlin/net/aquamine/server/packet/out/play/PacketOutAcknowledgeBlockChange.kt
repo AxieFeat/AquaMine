@@ -5,9 +5,13 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
 
 @JvmRecord
-data class PacketOutAcknowledgeBlockChange(val sequence: Int) : Packet {
+data class PacketOutAcknowledgeBlockChange(
+    val sequence: Int
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt())
+    constructor(reader: BinaryReader) : this(
+        sequence = reader.readVarInt()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(sequence)

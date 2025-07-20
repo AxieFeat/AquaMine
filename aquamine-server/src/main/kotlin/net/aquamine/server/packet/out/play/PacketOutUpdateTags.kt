@@ -9,9 +9,13 @@ import net.aquamine.server.resource.AquaResourceKeys
 import net.aquamine.server.tags.TagSerializer
 
 @JvmRecord
-data class PacketOutUpdateTags(val tags: Map<ResourceKey<out Registry<*>>, TagSerializer.NetworkPayload>) : Packet {
+data class PacketOutUpdateTags(
+    val tags: Map<ResourceKey<out Registry<*>>, TagSerializer.NetworkPayload>
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(readTags(reader))
+    constructor(reader: BinaryReader) : this(
+        tags = readTags(reader)
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeMap(tags, BinaryWriter::writeResourceKey) { w, payload -> payload.write(w) }

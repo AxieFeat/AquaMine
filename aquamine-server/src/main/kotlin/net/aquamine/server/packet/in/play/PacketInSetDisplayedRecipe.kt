@@ -14,7 +14,9 @@ data class PacketInSetDisplayedRecipe(
         require(recipeId.length <= RECIPE_MAX_LENGTH) { "Recipe too long! Max: $RECIPE_MAX_LENGTH" }
     }
 
-    constructor(reader: BinaryReader) : this(reader.readString())
+    constructor(reader: BinaryReader) : this(
+        recipeId = reader.readString()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeString(recipeId)

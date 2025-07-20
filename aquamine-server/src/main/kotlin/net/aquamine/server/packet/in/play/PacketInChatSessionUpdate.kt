@@ -7,9 +7,13 @@ import net.aquamine.server.network.chat.RemoteChatSession
 import net.aquamine.server.packet.InboundPacket
 
 @JvmRecord
-data class PacketInChatSessionUpdate(val chatSession: RemoteChatSession.Data) : InboundPacket<PlayPacketHandler> {
+data class PacketInChatSessionUpdate(
+    val chatSession: RemoteChatSession.Data
+) : InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(RemoteChatSession.Data.read(reader))
+    constructor(reader: BinaryReader) : this(
+        chatSession = RemoteChatSession.Data.read(reader)
+    )
 
     override fun write(writer: BinaryWriter) {
         RemoteChatSession.Data.write(writer, chatSession)

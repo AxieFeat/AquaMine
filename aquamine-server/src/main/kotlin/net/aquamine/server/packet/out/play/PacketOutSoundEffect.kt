@@ -21,8 +21,16 @@ data class PacketOutSoundEffect(
     val seed: Long
 ) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readById(AquaRegistries.SOUND_EVENT.asHolderIdMap(), AquaSoundEvent::read),
-        reader.readEnum(), reader.readInt(), reader.readInt(), reader.readInt(), reader.readFloat(), reader.readFloat(), reader.readLong())
+    constructor(reader: BinaryReader) : this(
+        event = reader.readById(AquaRegistries.SOUND_EVENT.asHolderIdMap(), AquaSoundEvent::read),
+        source = reader.readEnum(),
+        x = reader.readInt(),
+        y = reader.readInt(),
+        z = reader.readInt(),
+        volume = reader.readFloat(),
+        pitch = reader.readFloat(),
+        seed = reader.readLong()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeId(AquaRegistries.SOUND_EVENT.asHolderIdMap(), event, AquaSoundEvent::write)

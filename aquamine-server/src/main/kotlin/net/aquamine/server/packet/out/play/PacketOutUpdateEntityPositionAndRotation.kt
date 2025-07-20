@@ -18,11 +18,33 @@ data class PacketOutUpdateEntityPositionAndRotation(
     override val onGround: Boolean
 ) : EntityPacket, MovementPacket {
 
-    constructor(entityId: Int, dx: Short, dy: Short, dz: Short, yaw: Float, pitch: Float,
-                onGround: Boolean) : this(entityId, dx, dy, dz, Positioning.encodeRotation(yaw), Positioning.encodeRotation(pitch), onGround)
+    constructor(
+        entityId: Int,
+        dx: Short,
+        dy: Short,
+        dz: Short,
+        yaw: Float,
+        pitch: Float,
+        onGround: Boolean
+    ) : this(
+        entityId = entityId,
+        deltaX = dx,
+        deltaY = dy,
+        deltaZ = dz,
+        yaw = Positioning.encodeRotation(yaw),
+        pitch = Positioning.encodeRotation(pitch),
+        onGround = onGround
+    )
 
-    constructor(reader: BinaryReader) : this(reader.readVarInt(), reader.readShort(), reader.readShort(), reader.readShort(), reader.readByte(),
-        reader.readByte(), reader.readBoolean())
+    constructor(reader: BinaryReader) : this(
+        entityId = reader.readVarInt(),
+        deltaX = reader.readShort(),
+        deltaY = reader.readShort(),
+        deltaZ = reader.readShort(),
+        yaw = reader.readByte(),
+        pitch = reader.readByte(),
+        onGround = reader.readBoolean()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeVarInt(entityId)

@@ -14,10 +14,18 @@ data class PacketOutUpdateRecipeBook(
     val settings: RecipeBookSettings
 ) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader, reader.readEnum(), RecipeBookSettings.read(reader))
+    constructor(reader: BinaryReader) : this(
+        reader = reader,
+        action = reader.readEnum(),
+        settings = RecipeBookSettings.read(reader)
+    )
 
-    private constructor(reader: BinaryReader, action: Action, settings: RecipeBookSettings) : this(action, reader.readList(BinaryReader::readKey),
-        if (action == Action.INIT) reader.readList(BinaryReader::readKey) else emptyList(), settings)
+    private constructor(reader: BinaryReader, action: Action, settings: RecipeBookSettings) : this(
+        action = action,
+        recipes = reader.readList(BinaryReader::readKey),
+        toHighlight = if (action == Action.INIT) reader.readList(BinaryReader::readKey) else emptyList(),
+        settings = settings
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeEnum(action)

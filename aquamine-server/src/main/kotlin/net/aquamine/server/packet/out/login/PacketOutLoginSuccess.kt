@@ -14,9 +14,17 @@ import java.util.UUID
  * it because they told us it in login start.
  */
 @JvmRecord
-data class PacketOutLoginSuccess(val uuid: UUID, val username: String, val properties: List<ProfileProperty>) : Packet {
+data class PacketOutLoginSuccess(
+    val uuid: UUID,
+    val username: String,
+    val properties: List<ProfileProperty>
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readUUID(), reader.readString(), reader.readProfileProperties())
+    constructor(reader: BinaryReader) : this(
+        uuid = reader.readUUID(),
+        username = reader.readString(),
+        properties = reader.readProfileProperties()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeUUID(uuid)

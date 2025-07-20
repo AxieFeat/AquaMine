@@ -7,9 +7,15 @@ import net.aquamine.server.packet.Packet
 import net.aquamine.server.registry.AquaRegistries
 
 @JvmRecord
-data class PacketOutSetCooldown(val item: AquaItemType, val cooldownTicks: Int) : Packet {
+data class PacketOutSetCooldown(
+    val item: AquaItemType,
+    val cooldownTicks: Int
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readById(AquaRegistries.ITEM)!!, reader.readVarInt())
+    constructor(reader: BinaryReader) : this(
+        item = reader.readById(AquaRegistries.ITEM)!!,
+        cooldownTicks = reader.readVarInt()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeId(AquaRegistries.ITEM, item)

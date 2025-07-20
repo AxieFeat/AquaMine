@@ -5,11 +5,20 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
 
 @JvmRecord
-data class PacketOutGameEvent(val event: Byte, val value: Float) : Packet {
+data class PacketOutGameEvent(
+    val event: Byte,
+    val value: Float
+) : Packet {
 
-    constructor(event: Byte) : this(event, 0F)
+    constructor(event: Byte) : this(
+        event = event,
+        value = 0F
+    )
 
-    constructor(reader: BinaryReader) : this(reader.readByte(), reader.readFloat())
+    constructor(reader: BinaryReader) : this(
+        event = reader.readByte(),
+        value = reader.readFloat()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeByte(event)

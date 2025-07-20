@@ -7,9 +7,15 @@ import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.packet.Packet
 
 @JvmRecord
-data class PacketOutDisplayObjective(val slot: Int, val name: String) : Packet {
+data class PacketOutDisplayObjective(
+    val slot: Int,
+    val name: String
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readByte().toInt(), reader.readString())
+    constructor(reader: BinaryReader) : this(
+        slot = reader.readByte().toInt(),
+        name = reader.readString()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeByte(slot.toByte())

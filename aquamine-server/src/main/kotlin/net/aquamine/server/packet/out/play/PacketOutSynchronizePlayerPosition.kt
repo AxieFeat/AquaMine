@@ -19,8 +19,16 @@ data class PacketOutSynchronizePlayerPosition(
     val shouldDismount: Boolean = false
 ) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readDouble(), reader.readDouble(), reader.readDouble(), reader.readFloat(), reader.readFloat(),
-        RelativeArgument.unpack(reader.readByte().toInt()), reader.readVarInt(), reader.readBoolean())
+    constructor(reader: BinaryReader) : this(
+        x = reader.readDouble(),
+        y = reader.readDouble(),
+        z = reader.readDouble(),
+        yaw = reader.readFloat(),
+        pitch = reader.readFloat(),
+        relativeArguments = RelativeArgument.unpack(reader.readByte().toInt()),
+        teleportId = reader.readVarInt(),
+        shouldDismount = reader.readBoolean()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeDouble(x)

@@ -18,13 +18,13 @@ data class LightPacketData(
 ) : Writable {
 
     constructor(reader: BinaryReader) : this(
-        reader.readBoolean(),
-        reader.readBitSet(),
-        reader.readBitSet(),
-        reader.readBitSet(),
-        reader.readBitSet(),
-        reader.readList { it.readByteArray() },
-        reader.readList { it.readByteArray() }
+        trustEdges = reader.readBoolean(),
+        skyMask = reader.readBitSet(),
+        blockMask = reader.readBitSet(),
+        emptySkyMask = reader.readBitSet(),
+        emptyBlockMask = reader.readBitSet(),
+        skyLights = reader.readList { it.readByteArray() },
+        blockLights = reader.readList { it.readByteArray() }
     )
 
     override fun write(writer: BinaryWriter) {

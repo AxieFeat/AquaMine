@@ -8,9 +8,19 @@ import net.aquamine.server.packet.out.play.data.LightPacketData
 import net.aquamine.server.world.chunk.AquaChunk
 
 @JvmRecord
-data class PacketOutChunkDataAndLight(val x: Int, val z: Int, val chunkData: ChunkPacketData, val lightData: LightPacketData) : Packet {
+data class PacketOutChunkDataAndLight(
+    val x: Int,
+    val z: Int,
+    val chunkData: ChunkPacketData,
+    val lightData: LightPacketData
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readInt(), reader.readInt(), ChunkPacketData(reader), LightPacketData(reader))
+    constructor(reader: BinaryReader) : this(
+        x = reader.readInt(),
+        z = reader.readInt(),
+        chunkData = ChunkPacketData(reader),
+        lightData =  LightPacketData(reader)
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeInt(x)

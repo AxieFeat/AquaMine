@@ -7,9 +7,15 @@ import net.aquamine.server.network.handlers.PlayPacketHandler
 import net.aquamine.server.packet.InboundPacket
 
 @JvmRecord
-data class PacketInSetCreativeModeSlot(val slot: Short, val clickedItem: AquaItemStack) : InboundPacket<PlayPacketHandler> {
+data class PacketInSetCreativeModeSlot(
+    val slot: Short,
+    val clickedItem: AquaItemStack
+) : InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readShort(), reader.readItem())
+    constructor(reader: BinaryReader) : this(
+        slot = reader.readShort(),
+        clickedItem = reader.readItem()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeShort(slot)

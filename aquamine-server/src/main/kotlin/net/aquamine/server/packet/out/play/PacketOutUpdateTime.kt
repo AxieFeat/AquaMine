@@ -7,9 +7,15 @@ import net.aquamine.server.world.data.WorldData
 import net.aquamine.server.world.rule.GameRuleKeys
 
 @JvmRecord
-data class PacketOutUpdateTime(val time: Long, val dayTime: Long) : Packet {
+data class PacketOutUpdateTime(
+    val time: Long,
+    val dayTime: Long
+) : Packet {
 
-    constructor(reader: BinaryReader) : this(reader.readLong(), reader.readLong())
+    constructor(reader: BinaryReader) : this(
+        time = reader.readLong(),
+        dayTime = reader.readLong()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeLong(time)

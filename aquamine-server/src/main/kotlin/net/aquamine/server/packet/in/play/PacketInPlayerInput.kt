@@ -6,9 +6,17 @@ import net.aquamine.server.network.handlers.PlayPacketHandler
 import net.aquamine.server.packet.InboundPacket
 
 @JvmRecord
-data class PacketInPlayerInput(val sideways: Float, val forward: Float, val flags: Byte) : InboundPacket<PlayPacketHandler> {
+data class PacketInPlayerInput(
+    val sideways: Float,
+    val forward: Float,
+    val flags: Byte
+) : InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readFloat(), reader.readFloat(), reader.readByte())
+    constructor(reader: BinaryReader) : this(
+        sideways = reader.readFloat(),
+        forward = reader.readFloat(),
+        flags = reader.readByte()
+    )
 
     fun isJumping(): Boolean = flags.toInt() and 1 > 0
 

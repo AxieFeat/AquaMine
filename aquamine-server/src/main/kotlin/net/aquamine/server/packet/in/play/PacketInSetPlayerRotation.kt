@@ -13,7 +13,11 @@ data class PacketInSetPlayerRotation(
     override val onGround: Boolean
 ) : MovementPacket, InboundPacket<PlayPacketHandler> {
 
-    constructor(reader: BinaryReader) : this(reader.readFloat(), reader.readFloat(), reader.readBoolean())
+    constructor(reader: BinaryReader) : this(
+        yaw = reader.readFloat(),
+        pitch = reader.readFloat(),
+        onGround = reader.readBoolean()
+    )
 
     override fun write(writer: BinaryWriter) {
         writer.writeFloat(yaw)
