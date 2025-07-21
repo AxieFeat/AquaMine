@@ -17,6 +17,7 @@ import net.aquamine.api.item.ItemAttributeModifier
 import net.aquamine.api.item.ItemStack
 import net.aquamine.api.item.data.FireworkEffect
 import net.aquamine.api.item.meta.ItemMeta
+import net.aquamine.api.potion.PotionEffect
 import net.aquamine.api.registry.DynamicRegistryReference
 import net.aquamine.api.registry.RegistryReference
 import net.aquamine.api.resource.ResourceKey
@@ -52,6 +53,7 @@ import net.aquamine.server.item.data.AquaItemAttributeModifier
 import net.aquamine.server.item.AquaItemStack
 import net.aquamine.server.item.data.AquaFireworkEffect
 import net.aquamine.server.item.meta.AquaItemMeta
+import net.aquamine.server.potion.AquaPotionEffect
 import net.aquamine.server.registry.AquaDynamicRegistryReference
 import net.aquamine.server.registry.AquaRegistryReference
 import net.aquamine.server.resource.AquaResourceKey
@@ -121,5 +123,6 @@ object AquaFactoryProvider : FactoryProvider {
         register<EventListener.Factory>(AquaEventListener.Factory)
         register<BlockChangeFlags.Factory>(AquaBlockChangeFlags.Factory)
         register<Scoreboard.Factory>(AquaScoreboard.Factory)
+        register<PotionEffect.Factory>(AquaPotionEffect.Factory)
     }
 }

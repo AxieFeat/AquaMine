@@ -13,8 +13,6 @@ class AquaClassSourceLookup(
 
     init {
         server.pluginManager.plugins.forEach {
-            println(it.description.id)
-
             it.instance?.javaClass?.classLoader?.let { classLoader ->
                 classLoaderToPlugins[classLoader] = it.description.id
             }
@@ -23,9 +21,7 @@ class AquaClassSourceLookup(
 
     override fun identify(loader: ClassLoader): String? {
         if (loader is PluginClassLoader) {
-            return this.classLoaderToPlugins[loader].also {
-                println("Checked for $it")
-            }
+            return this.classLoaderToPlugins[loader]
         }
         return null
     }

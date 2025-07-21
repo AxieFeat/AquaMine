@@ -9,13 +9,13 @@ import net.aquamine.api.tags.BiomeTags
 import net.aquamine.api.tags.BlockTags
 import net.aquamine.api.tags.EntityTypeTags
 import net.aquamine.api.tags.FluidTags
+import net.aquamine.api.tags.GameEventTags
 import net.aquamine.api.tags.ItemTags
 import net.aquamine.server.command.BrigadierExceptions
 import net.aquamine.server.command.argument.ArgumentSerializers
 import net.aquamine.server.entity.EntityFactory
 import net.aquamine.server.item.ItemManager
 import net.aquamine.server.registry.AquaRegistries
-import net.aquamine.server.tags.GameEventTags
 import net.aquamine.server.util.AquaFactoryProvider
 import net.aquamine.server.util.Reflection
 import net.aquamine.server.locale.MinecraftTranslationManager

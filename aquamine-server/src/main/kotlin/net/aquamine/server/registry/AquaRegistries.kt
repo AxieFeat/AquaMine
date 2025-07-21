@@ -11,6 +11,7 @@ import net.aquamine.api.entity.EntityCategory
 import net.aquamine.api.entity.attribute.AttributeType
 import net.aquamine.api.entity.hanging.PaintingVariant
 import net.aquamine.api.inventory.InventoryType
+import net.aquamine.api.potion.PotionType
 import net.aquamine.api.registry.DefaultedRegistry
 import net.aquamine.api.registry.Registry
 import net.aquamine.api.registry.RegistryHolder
@@ -19,6 +20,7 @@ import net.aquamine.api.resource.ResourceKeys
 import net.aquamine.api.scoreboard.criteria.KeyedCriterion
 import net.aquamine.api.statistic.StatisticType
 import net.aquamine.api.world.damage.type.DamageType
+import net.aquamine.api.world.gameevent.GameEvent
 import net.aquamine.server.effect.sound.SoundLoader
 import net.aquamine.server.entity.AquaEntityType
 import net.aquamine.server.entity.AquaEntityTypes
@@ -29,6 +31,7 @@ import net.aquamine.server.item.ItemLoader
 import net.aquamine.server.item.AquaItemType
 import net.aquamine.server.item.data.Instrument
 import net.aquamine.server.item.data.Instruments
+import net.aquamine.server.potion.PotionTypeLoader
 import net.aquamine.server.registry.loader.RegistryLoader
 import net.aquamine.server.registry.loader.RegistryLoaders
 import net.aquamine.server.resource.AquaResourceKey
@@ -40,8 +43,7 @@ import net.aquamine.server.world.block.BlockLoader
 import net.aquamine.server.world.block.AquaBlock
 import net.aquamine.server.world.fluid.AquaFluid
 import net.aquamine.server.world.fluid.AquaFluids
-import net.aquamine.server.world.gameevent.GameEvent
-import net.aquamine.server.world.gameevent.GameEvents
+import net.aquamine.server.world.gameevent.GameEventLoader
 import java.util.function.Supplier
 
 /**
@@ -61,7 +63,7 @@ object AquaRegistries {
      */
 
     @JvmField
-    val GAME_EVENT: AquaDefaultedRegistry<GameEvent> = defaultedIntrusive(AquaResourceKeys.GAME_EVENT, "step") { GameEvents }
+    val GAME_EVENT: AquaRegistry<GameEvent> = simple(ResourceKeys.GAME_EVENT, dataLoader(::GameEventLoader))
     @JvmField
     val SOUND_EVENT: AquaRegistry<SoundEvent> = simple(ResourceKeys.SOUND_EVENT, dataLoader(::SoundLoader))
     @JvmField
@@ -99,6 +101,7 @@ object AquaRegistries {
     val BANNER_PATTERN: AquaRegistry<BannerPatternType> = simple(ResourceKeys.BANNER_PATTERN, loader(RegistryLoaders.bannerPatternType()))
     @JvmField
     val INSTRUMENT: AquaRegistry<Instrument> = simple(AquaResourceKeys.INSTRUMENTS) { Instruments }
+    val POTION_TYPE: AquaRegistry<PotionType> = simple(ResourceKeys.POTION_TYPE, dataLoader(::PotionTypeLoader))
 
     /*
      * Custom built-in registries

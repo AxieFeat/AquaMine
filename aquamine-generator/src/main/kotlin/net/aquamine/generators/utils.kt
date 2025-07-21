@@ -53,3 +53,4 @@ fun String.performReplacements(type: String, name: String): String =
         .replace("import kotlin.Suppress\n", "")
         .replace("import kotlin.jvm.JvmField\n", "")
         .replace("import kotlin.jvm.JvmStatic\n", "")
+        .replace("public ", "")

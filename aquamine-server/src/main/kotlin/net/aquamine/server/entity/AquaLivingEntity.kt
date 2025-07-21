@@ -7,6 +7,8 @@ import net.aquamine.api.entity.LivingEntity
 import net.aquamine.api.entity.attribute.Attribute
 import net.aquamine.api.entity.attribute.AttributeType
 import net.aquamine.api.fluid.Fluid
+import net.aquamine.api.potion.PotionEffect
+import net.aquamine.api.potion.PotionType
 import net.aquamine.api.util.Vec3i
 import net.aquamine.api.world.Difficulty
 import net.aquamine.server.entity.attribute.AttributeMap
@@ -89,6 +91,9 @@ abstract class AquaLivingEntity(world: AquaWorld) : AquaEntity(world), LivingEnt
         get() = data.get(MetadataKeys.LivingEntity.BED_LOCATION)
         set(value) = data.set(MetadataKeys.LivingEntity.BED_LOCATION, value)
 
+    override val activePotionEffects: List<PotionEffect>
+        get() = TODO("Not yet implemented")
+
     init {
         data.set(MetadataKeys.LivingEntity.HEALTH, maxHealth)
     }
@@ -169,6 +174,18 @@ abstract class AquaLivingEntity(world: AquaWorld) : AquaEntity(world), LivingEnt
     override fun showToViewer(viewer: AquaPlayer) {
         super.showToViewer(viewer)
         viewer.connection.send(PacketOutUpdateAttributes.create(id, attributes.syncable()))
+    }
+
+    override fun addPotionEffect(potionEffect: PotionEffect) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getPotionEffect(type: PotionType): PotionEffect? {
+        TODO("Not yet implemented")
+    }
+
+    override fun removePotionEffect(type: PotionType) {
+        TODO("Not yet implemented")
     }
 
     companion object {

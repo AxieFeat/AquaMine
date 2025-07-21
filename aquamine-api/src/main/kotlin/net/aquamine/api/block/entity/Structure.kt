@@ -6,7 +6,7 @@ import net.aquamine.api.util.Vec3i
  * A structure block.
  */
 @Suppress("INAPPLICABLE_JVM_NAME")
-interface StructureBlock : BlockEntity {
+interface Structure : BlockEntity {
 
     /**
      * The position of the structure.

@@ -7,29 +7,29 @@ import net.kyori.adventure.key.Key
 /**
  * This file is auto-generated. Do not edit this manually!
  */
-public object BannerPatternTags {
+object BannerPatternTags {
 
     // @formatter:off
     @JvmField
-    public val NO_ITEM_REQUIRED: TagKey<BannerPatternType> = get("no_item_required")
+    val NO_ITEM_REQUIRED: TagKey<BannerPatternType> = get("no_item_required")
 
     @JvmField
-    public val PATTERN_ITEM_FLOWER: TagKey<BannerPatternType> = get("pattern_item/flower")
+    val PATTERN_ITEM_FLOWER: TagKey<BannerPatternType> = get("pattern_item/flower")
 
     @JvmField
-    public val PATTERN_ITEM_CREEPER: TagKey<BannerPatternType> = get("pattern_item/creeper")
+    val PATTERN_ITEM_CREEPER: TagKey<BannerPatternType> = get("pattern_item/creeper")
 
     @JvmField
-    public val PATTERN_ITEM_SKULL: TagKey<BannerPatternType> = get("pattern_item/skull")
+    val PATTERN_ITEM_SKULL: TagKey<BannerPatternType> = get("pattern_item/skull")
 
     @JvmField
-    public val PATTERN_ITEM_MOJANG: TagKey<BannerPatternType> = get("pattern_item/mojang")
+    val PATTERN_ITEM_MOJANG: TagKey<BannerPatternType> = get("pattern_item/mojang")
 
     @JvmField
-    public val PATTERN_ITEM_GLOBE: TagKey<BannerPatternType> = get("pattern_item/globe")
+    val PATTERN_ITEM_GLOBE: TagKey<BannerPatternType> = get("pattern_item/globe")
 
     @JvmField
-    public val PATTERN_ITEM_PIGLIN: TagKey<BannerPatternType> = get("pattern_item/piglin")
+    val PATTERN_ITEM_PIGLIN: TagKey<BannerPatternType> = get("pattern_item/piglin")
 
 
     // @formatter:on

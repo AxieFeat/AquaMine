@@ -9,12 +9,12 @@ import kotlin.io.path.exists
 import kotlin.io.path.writeText
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-open class StandardGenerator(private val output: Path) {
+open class StandardGenerator(val output: Path) {
 
     protected open fun <S, T> collectFields(catalogueType: Class<S>, type: Class<T>): Sequence<CollectedField<T>> =
         catalogueType.collectFields(type)
 
-    fun <S, T> run(
+    open fun <S, T> run(
         catalogueType: Class<S>,
         type: Class<T>,
         name: ClassName,
@@ -34,6 +34,10 @@ open class StandardGenerator(private val output: Path) {
 
     inline fun <reified S, reified T> run(registry: Registry<T>, name: String, returnType: String, registryName: String) {
         run(S::class.java, T::class.java, className(name), className(returnType), registryName) { registry.getKey(it.value)!! }
+    }
+
+    inline fun <reified S, reified T, reified M> run(crossinline modifier: T.() -> M, registry: Registry<M>, name: String, returnType: String, registryName: String) {
+        run(S::class.java, T::class.java, className(name), className(returnType), registryName) { registry.getKey(modifier.invoke(it.value))!! }
     }
 
     companion object {

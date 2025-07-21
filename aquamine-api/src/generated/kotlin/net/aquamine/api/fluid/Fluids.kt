@@ -9,19 +9,19 @@ import net.kyori.adventure.key.Key
  * This file is auto-generated. Do not edit this manually!
  */
 @Catalogue(Fluid::class)
-public object Fluids {
+object Fluids {
 
     // @formatter:off
     @JvmField
-    public val EMPTY: RegistryReference<Fluid> = of("empty")
+    val EMPTY: RegistryReference<Fluid> = of("empty")
     @JvmField
-    public val FLOWING_WATER: RegistryReference<Fluid> = of("flowing_water")
+    val FLOWING_WATER: RegistryReference<Fluid> = of("flowing_water")
     @JvmField
-    public val WATER: RegistryReference<Fluid> = of("water")
+    val WATER: RegistryReference<Fluid> = of("water")
     @JvmField
-    public val FLOWING_LAVA: RegistryReference<Fluid> = of("flowing_lava")
+    val FLOWING_LAVA: RegistryReference<Fluid> = of("flowing_lava")
     @JvmField
-    public val LAVA: RegistryReference<Fluid> = of("lava")
+    val LAVA: RegistryReference<Fluid> = of("lava")
 
     // @formatter:on
     @JvmStatic

@@ -13,25 +13,25 @@ import net.aquamine.api.block.entity.Bell
 import net.aquamine.api.block.entity.BlockEntity
 import net.aquamine.api.block.entity.BlockEntityType
 import net.aquamine.api.block.entity.Campfire
-import net.aquamine.api.block.entity.CommandBlock
+import net.aquamine.api.block.entity.Command
 import net.aquamine.api.block.entity.Comparator
 import net.aquamine.api.block.entity.Conduit
 import net.aquamine.api.block.entity.DaylightDetector
 import net.aquamine.api.block.entity.EnchantmentTable
-import net.aquamine.api.block.entity.EndGateway
-import net.aquamine.api.block.entity.EndPortal
+import net.aquamine.api.block.entity.TheEndGateway
+import net.aquamine.api.block.entity.TheEndPortal
 import net.aquamine.api.block.entity.EnderChest
 import net.aquamine.api.block.entity.Jigsaw
 import net.aquamine.api.block.entity.Jukebox
 import net.aquamine.api.block.entity.Lectern
-import net.aquamine.api.block.entity.MobSpawner
-import net.aquamine.api.block.entity.MovingPiston
+import net.aquamine.api.block.entity.Spawner
+import net.aquamine.api.block.entity.PistonMoving
 import net.aquamine.api.block.entity.SculkCatalyst
 import net.aquamine.api.block.entity.SculkSensor
 import net.aquamine.api.block.entity.SculkShrieker
 import net.aquamine.api.block.entity.Sign
 import net.aquamine.api.block.entity.Skull
-import net.aquamine.api.block.entity.StructureBlock
+import net.aquamine.api.block.entity.Structure
 import net.aquamine.api.block.entity.banner.BannerPatternType
 import net.aquamine.api.block.entity.container.Barrel
 import net.aquamine.api.block.entity.container.BlastFurnace
@@ -48,6 +48,7 @@ import net.aquamine.api.effect.particle.ParticleType
 import net.aquamine.api.entity.EntityCategory
 import net.aquamine.api.entity.hanging.PaintingVariant
 import net.aquamine.api.inventory.InventoryType
+import net.aquamine.api.potion.PotionType
 import net.aquamine.api.scoreboard.ObjectiveRenderType
 import net.aquamine.api.scoreboard.criteria.KeyedCriterion
 import net.aquamine.api.statistic.StatisticFormatter
@@ -141,11 +142,11 @@ object RegistryLoaders {
             AquaBlocks.BIRCH_WALL_SIGN, AquaBlocks.ACACIA_WALL_SIGN, AquaBlocks.JUNGLE_WALL_SIGN, AquaBlocks.DARK_OAK_WALL_SIGN,
             AquaBlocks.CRIMSON_SIGN, AquaBlocks.CRIMSON_WALL_SIGN, AquaBlocks.WARPED_SIGN, AquaBlocks.WARPED_WALL_SIGN,
             AquaBlocks.MANGROVE_SIGN, AquaBlocks.MANGROVE_WALL_SIGN)
-        add<MobSpawner>("mob_spawner", AquaBlocks.SPAWNER)
-        add<MovingPiston>("piston", AquaBlocks.MOVING_PISTON)
+        add<Spawner>("mob_spawner", AquaBlocks.SPAWNER)
+        add<PistonMoving>("piston", AquaBlocks.MOVING_PISTON)
         add<BrewingStand>("brewing_stand", AquaBlocks.BREWING_STAND)
         add<EnchantmentTable>("enchanting_table", AquaBlocks.ENCHANTING_TABLE)
-        add<EndPortal>("end_portal", AquaBlocks.END_PORTAL)
+        add<TheEndPortal>("end_portal", AquaBlocks.END_PORTAL)
         add<Beacon>("beacon", AquaBlocks.BEACON)
         add<Skull>("skull", AquaBlocks.SKELETON_SKULL, AquaBlocks.SKELETON_WALL_SKULL, AquaBlocks.CREEPER_HEAD,
             AquaBlocks.CREEPER_WALL_HEAD, AquaBlocks.DRAGON_HEAD, AquaBlocks.DRAGON_WALL_HEAD, AquaBlocks.ZOMBIE_HEAD,
@@ -163,9 +164,9 @@ object RegistryLoaders {
             AquaBlocks.GRAY_WALL_BANNER, AquaBlocks.LIGHT_GRAY_WALL_BANNER, AquaBlocks.CYAN_WALL_BANNER, AquaBlocks.PURPLE_WALL_BANNER,
             AquaBlocks.BLUE_WALL_BANNER, AquaBlocks.BROWN_WALL_BANNER, AquaBlocks.GREEN_WALL_BANNER, AquaBlocks.RED_WALL_BANNER,
             AquaBlocks.BLACK_WALL_BANNER)
-        add<StructureBlock>("structure_block", AquaBlocks.STRUCTURE_BLOCK)
-        add<EndGateway>("end_gateway", AquaBlocks.END_GATEWAY)
-        add<CommandBlock>("command_block", AquaBlocks.COMMAND_BLOCK, AquaBlocks.CHAIN_COMMAND_BLOCK, AquaBlocks.REPEATING_COMMAND_BLOCK)
+        add<Structure>("structure_block", AquaBlocks.STRUCTURE_BLOCK)
+        add<TheEndGateway>("end_gateway", AquaBlocks.END_GATEWAY)
+        add<Command>("command_block", AquaBlocks.COMMAND_BLOCK, AquaBlocks.CHAIN_COMMAND_BLOCK, AquaBlocks.REPEATING_COMMAND_BLOCK)
         add<ShulkerBox>("shulker_box", AquaBlocks.SHULKER_BOX, AquaBlocks.BLACK_SHULKER_BOX, AquaBlocks.BLUE_SHULKER_BOX,
             AquaBlocks.BROWN_SHULKER_BOX, AquaBlocks.CYAN_SHULKER_BOX, AquaBlocks.GRAY_SHULKER_BOX, AquaBlocks.GREEN_SHULKER_BOX,
             AquaBlocks.LIGHT_BLUE_SHULKER_BOX, AquaBlocks.LIGHT_GRAY_SHULKER_BOX, AquaBlocks.LIME_SHULKER_BOX,
@@ -514,6 +515,11 @@ object RegistryLoaders {
         add(Key.key("killed")) { AquaStatisticType(it, AquaRegistries.ENTITY_TYPE) }
         add(Key.key("killed_by")) { AquaStatisticType(it, AquaRegistries.ENTITY_TYPE) }
         add(Key.key("custom")) { AquaStatisticType(it, AquaRegistries.CUSTOM_STATISTIC) }
+    }
+
+    @JvmStatic
+    fun potionType(): RegistryLoaderProvider<PotionType> = loader {
+//        add(Key.key("speed")) {  }
     }
 
     /**

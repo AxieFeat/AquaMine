@@ -7,14 +7,14 @@ import net.kyori.adventure.key.Key
 /**
  * This file is auto-generated. Do not edit this manually!
  */
-public object FluidTags {
+object FluidTags {
 
     // @formatter:off
     @JvmField
-    public val WATER: TagKey<Fluid> = get("water")
+    val WATER: TagKey<Fluid> = get("water")
 
     @JvmField
-    public val LAVA: TagKey<Fluid> = get("lava")
+    val LAVA: TagKey<Fluid> = get("lava")
 
 
     // @formatter:on

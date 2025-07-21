@@ -1,5 +1,6 @@
 {
   "id": "tab",
   "description": "Simple plugin for tab",
+  "version": "1.0",
   "main": "net.aquamine.tab.TabPlugin"
 }

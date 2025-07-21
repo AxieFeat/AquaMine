@@ -7,7 +7,6 @@ import me.lucko.spark.common.command.sender.CommandSender
 import me.lucko.spark.common.monitor.ping.PlayerPingProvider
 import me.lucko.spark.common.platform.PlatformInfo
 import me.lucko.spark.common.sampler.ThreadDumper
-import me.lucko.spark.common.sampler.ThreadDumper.GameThread
 import me.lucko.spark.common.sampler.source.ClassSourceLookup
 import me.lucko.spark.common.sampler.source.SourceMetadata
 import me.lucko.spark.common.tick.TickHook
@@ -20,12 +19,11 @@ import net.aquamine.api.event.Listener
 import net.aquamine.api.event.server.ServerStartEvent
 import net.aquamine.api.event.server.ServerStopEvent
 import net.aquamine.api.plugin.annotation.DataFolder
-import net.aquamine.api.scheduling.TaskTime
+import org.apache.logging.log4j.Logger
 import java.nio.file.Path
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 import java.util.logging.Level
-import java.util.logging.Logger
 import java.util.stream.Stream
 
 class SparkPlugin @Inject constructor(
@@ -78,11 +76,23 @@ class SparkPlugin @Inject constructor(
     override fun getPlatformInfo(): PlatformInfo = platformInfo
 
     override fun log(level: Level, msg: String) {
-        logger.log(level, msg)
+        if (level.intValue() >= 1000) { // severe
+            logger.error(msg);
+        } else if (level.intValue() >= 900) { // warning
+            logger.warn(msg);
+        } else {
+            logger.info(msg);
+        }
     }
 
     override fun log(level: Level, msg: String, throwable: Throwable) {
-        logger.log(level, msg, throwable)
+        if (level.intValue() >= 1000) { // severe
+            logger.error(msg, throwable);
+        } else if (level.intValue() >= 900) { // warning
+            logger.warn(msg, throwable);
+        } else {
+            logger.info(msg, throwable);
+        }
     }
 
     override fun createClassSourceLookup(): ClassSourceLookup {

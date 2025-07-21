@@ -15,11 +15,13 @@ import net.aquamine.api.entity.hanging.PaintingVariant
 import net.aquamine.api.fluid.Fluid
 import net.aquamine.api.inventory.InventoryType
 import net.aquamine.api.item.ItemType
+import net.aquamine.api.potion.PotionType
 import net.aquamine.api.resource.ResourceKey
 import net.aquamine.api.resource.ResourceKeys
 import net.aquamine.api.scoreboard.criteria.KeyedCriterion
 import net.aquamine.api.statistic.StatisticType
 import net.aquamine.api.world.damage.type.DamageType
+import net.aquamine.api.world.gameevent.GameEvent
 
 /**
  * Holder of all the built-in registries.
@@ -30,6 +32,8 @@ object Registries {
     /**
      * All built-in vanilla registries.
      */
+    @JvmField
+    val GAME_EVENT: Registry<GameEvent> = builtin(ResourceKeys.GAME_EVENT)
     @JvmField
     val SOUND_EVENT: Registry<SoundEvent> = builtin(ResourceKeys.SOUND_EVENT)
     @JvmField
@@ -56,6 +60,8 @@ object Registries {
     val STATISTIC_TYPE: Registry<StatisticType<*>> = builtin(ResourceKeys.STATISTIC_TYPE)
     @JvmField
     val BANNER_PATTERN: Registry<BannerPatternType> = builtin(ResourceKeys.BANNER_PATTERN)
+    @JvmField
+    val POTION_TYPE: Registry<PotionType> = builtin(ResourceKeys.POTION_TYPE)
 
     /**
      * Custom built-in registries.

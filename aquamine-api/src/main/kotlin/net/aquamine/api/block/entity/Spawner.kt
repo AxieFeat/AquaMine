@@ -1,9 +1,9 @@
-package net.aquamine.api.world
+package net.aquamine.api.block.entity
 
 /**
- * An object that can spawn entities.
+ * A mob spawner.
  */
-interface Spawner {
+interface Spawner : BlockEntity {
 
     /**
      * The amount of time, in ticks, until the next entity is spawned.
@@ -38,4 +38,5 @@ interface Spawner {
      * spawner to attempt to spawn entities.
      */
     var requiredPlayerRange: Double
+
 }

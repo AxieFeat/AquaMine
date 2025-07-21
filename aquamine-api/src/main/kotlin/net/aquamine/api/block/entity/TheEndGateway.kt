@@ -5,7 +5,7 @@ import net.aquamine.api.util.Vec3i
 /**
  * An end gateway.
  */
-interface EndGateway : BlockEntity {
+interface TheEndGateway : BlockEntity {
 
     /**
      * The position that a player will be teleported to when they enter this

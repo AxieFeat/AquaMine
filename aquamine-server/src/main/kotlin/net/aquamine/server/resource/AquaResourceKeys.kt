@@ -14,15 +14,12 @@ import net.aquamine.server.registry.WritableRegistry
 import net.aquamine.server.util.provider.IntProviderType
 import net.aquamine.server.world.block.AquaBlock
 import net.aquamine.server.world.dimension.AquaDimensionType
-import net.aquamine.server.world.gameevent.GameEvent
 import net.aquamine.server.world.fluid.AquaFluid
 
 object AquaResourceKeys {
 
     @JvmField
     val PARENT: ResourceKey<out Registry<WritableRegistry<*>>> = minecraft("root")
-    @JvmField
-    val GAME_EVENT: ResourceKey<out Registry<GameEvent>> = minecraft("game_event")
     @JvmField
     val FLUID: ResourceKey<out Registry<AquaFluid>> = minecraft("fluid")
     @JvmField

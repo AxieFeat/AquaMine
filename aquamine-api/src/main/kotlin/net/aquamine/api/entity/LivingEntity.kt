@@ -1,6 +1,8 @@
 package net.aquamine.api.entity
 
 import net.aquamine.api.entity.attribute.AttributeHolder
+import net.aquamine.api.potion.PotionEffect
+import net.aquamine.api.potion.PotionType
 import net.aquamine.api.util.Vec3i
 
 /**
@@ -80,4 +82,43 @@ interface LivingEntity : Entity, AttributeHolder {
      * If this value is null, this entity is not currently sleeping.
      */
     var sleepingPosition: Vec3i?
+
+    /**
+     * All currently active potion effects of this entity.
+     */
+    val activePotionEffects: List<PotionEffect>
+
+    /**
+     * Adds potion effect to this entity. If this entity already has effect with type [PotionEffect.type] it will be
+     * overwritten.
+     *
+     * @param potionEffect Potion effect to add.
+     */
+    fun addPotionEffect(potionEffect: PotionEffect)
+
+    /**
+     * Get the current potion effect of entity by type.
+     *
+     * @param type Type of potion.
+     *
+     * @return Instance of [PotionEffect] or null, if not found.
+     */
+    fun getPotionEffect(type: PotionType): PotionEffect?
+
+    /**
+     * Checks is entity has some potion type.
+     *
+     * @param type Type to check.
+     *
+     * @return `true` if entity has this effect, otherwise `false`.
+     */
+    fun hasPotionEffect(type: PotionType): Boolean = getPotionEffect(type) != null
+
+    /**
+     * Removes specific potion type for this entity.
+     *
+     * @param type Type to remove.
+     */
+    fun removePotionEffect(type: PotionType)
+
 }

@@ -46,11 +46,10 @@ class TagManager(private val registryAccess: RegistryAccess) : PreparableReloadL
             AquaResourceKeys.BLOCK, "tags/blocks",
             AquaResourceKeys.ENTITY_TYPE, "tags/entity_types",
             AquaResourceKeys.FLUID, "tags/fluids",
-            AquaResourceKeys.GAME_EVENT, "tags/game_events",
             AquaResourceKeys.ITEM, "tags/items"
         )
 
         @JvmStatic
-        fun getTagDirectory(key: ResourceKey<out Registry<*>>): String = CUSTOM_REGISTRY_DIRECTORIES.get(key) ?: "tags/${key.location.value()}"
+        fun getTagDirectory(key: ResourceKey<out Registry<*>>): String = CUSTOM_REGISTRY_DIRECTORIES[key] ?: "tags/${key.location.value()}"
     }
 }

@@ -72,12 +72,12 @@ class AquaPlayerInventory(override val owner: AquaPlayer) : AquaInventory(0, TYP
 
     fun setItem(index: Int, item: AquaItemStack) {
         when (index) {
-            0 -> crafting[CRAFTING_SLOT] = item
-            in 1..CRAFTING_GRID_SIZE -> crafting[index - 1] = item
-            in CRAFTING_SIZE until HOTBAR_SIZE -> armor[index - CRAFTING_SIZE] = item
-            in HOTBAR_SIZE until INVENTORY_SIZE -> items[index] = item
-            in INVENTORY_SIZE until OFFHAND_SLOT -> items[index - INVENTORY_SIZE] = item
-            OFFHAND_SLOT -> offHand = item
+            0 -> crafting[CRAFTING_SLOT] = item // Crafting result
+            in 1..CRAFTING_GRID_SIZE -> crafting[index - 1] = item // Crafting grid
+            in CRAFTING_SIZE..< HOTBAR_SIZE -> armor[index - CRAFTING_SIZE] = item // Armor slots
+            in HOTBAR_SIZE..< INVENTORY_SIZE -> items[index] = item // All other slots (Without offhand, hotbar, armor, crafting grid, crafting result)
+            in INVENTORY_SIZE..< OFFHAND_SLOT -> items[index - INVENTORY_SIZE] = item // Hotbar
+            OFFHAND_SLOT -> offHand = item // Offhand
         }
         owner.connection.send(PacketOutSetContainerSlot(id.toByte(), incrementStateId(), index.toShort(), item))
     }
@@ -150,7 +150,7 @@ class AquaPlayerInventory(override val owner: AquaPlayer) : AquaInventory(0, TYP
         const val SIZE: Int = 46
         private const val MAIN_SIZE = 27
         private const val HOTBAR_SIZE = 9
-        private const val INVENTORY_SIZE = MAIN_SIZE + HOTBAR_SIZE
+        private const val INVENTORY_SIZE = MAIN_SIZE + HOTBAR_SIZE // 36
         private const val CRAFTING_SIZE = 5
         private const val CRAFTING_GRID_SIZE = 4
         private const val CRAFTING_SLOT = 4

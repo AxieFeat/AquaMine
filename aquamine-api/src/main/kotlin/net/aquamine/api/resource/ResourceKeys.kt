@@ -15,6 +15,7 @@ import net.aquamine.api.entity.hanging.PaintingVariant
 import net.aquamine.api.fluid.Fluid
 import net.aquamine.api.inventory.InventoryType
 import net.aquamine.api.item.ItemType
+import net.aquamine.api.potion.PotionType
 import net.aquamine.api.registry.Registry
 import net.aquamine.api.registry.RegistryRoots
 import net.aquamine.api.scoreboard.criteria.KeyedCriterion
@@ -23,6 +24,7 @@ import net.aquamine.api.world.World
 import net.aquamine.api.world.biome.Biome
 import net.aquamine.api.world.dimension.DimensionType
 import net.aquamine.api.world.damage.type.DamageType
+import net.aquamine.api.world.gameevent.GameEvent
 
 /**
  * All the built-in registry keys for various registries.
@@ -33,6 +35,8 @@ object ResourceKeys {
     /**
      * Built-in vanilla registries.
      */
+    @JvmField
+    val GAME_EVENT: ResourceKey<out Registry<GameEvent>> = minecraft("game_event")
     @JvmField
     val SOUND_EVENT: ResourceKey<out Registry<SoundEvent>> = minecraft("sound_event")
     @JvmField
@@ -65,6 +69,8 @@ object ResourceKeys {
     val BANNER_PATTERN: ResourceKey<out Registry<BannerPatternType>> = minecraft("banner_pattern")
     @JvmField
     val PAINTING_VARIANT: ResourceKey<out Registry<PaintingVariant>> = minecraft("painting_variant")
+    @JvmField
+    val POTION_TYPE: ResourceKey<out Registry<PotionType>> = minecraft("potion_type")
 
     /**
      * Custom built-in registries.

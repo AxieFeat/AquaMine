@@ -14,9 +14,9 @@ import com.squareup.kotlinpoet.jvm.jvmField
 import com.squareup.kotlinpoet.jvm.jvmStatic
 
 const val PACKAGE: String = "net.aquamine.api"
-private const val REGISTRY_PACKAGE = "$PACKAGE.registry"
-private val catalogueClassName = ClassName("net.aquamine.annotations", "Catalogue")
-private val registryReference = ClassName(REGISTRY_PACKAGE, "RegistryReference")
+const val REGISTRY_PACKAGE = "$PACKAGE.registry"
+val catalogueClassName = ClassName("net.aquamine.annotations", "Catalogue")
+val registryReference = ClassName(REGISTRY_PACKAGE, "RegistryReference")
 
 fun TypeSpec.Builder.catalogue(parameterClassName: String): TypeSpec.Builder =
     addAnnotation(AnnotationSpec.builder(catalogueClassName).addMember("$parameterClassName::class").build())

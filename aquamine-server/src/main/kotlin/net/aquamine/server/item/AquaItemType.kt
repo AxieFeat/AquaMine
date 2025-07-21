@@ -11,7 +11,6 @@ import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.util.Keys
 import net.aquamine.server.world.block.AquaBlock
 
-@Suppress("LeakingThis") // The 'leak' doesn't need any of the data that wouldn't be initialized, it's just used as a key, so it's fine.
 open class AquaItemType(
     override val rarity: ItemRarity,
     override val maximumStackSize: Int,

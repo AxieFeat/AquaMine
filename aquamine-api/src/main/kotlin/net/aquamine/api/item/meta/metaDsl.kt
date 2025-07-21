@@ -129,6 +129,19 @@ inline fun leatherArmorMeta(builder: LeatherArmorMeta.Builder.() -> Unit): Leath
 inline fun playerHeadMeta(builder: PlayerHeadMeta.Builder.() -> Unit): PlayerHeadMeta = PlayerHeadMeta.builder().apply(builder).build()
 
 /**
+ * Creates new potion effect metadata from the result of applying the given
+ * [builder] function.
+ *
+ * @param builder The builder.
+ *
+ * @return New potion effect metadata.
+ */
+@MetaDsl
+@JvmSynthetic
+@Contract("_ -> new", pure = true)
+inline fun potionMeta(builder: PotionMeta.Builder.() -> Unit): PotionMeta = PotionMeta.builder().apply(builder).build()
+
+/**
  * Creates new writable book metadata from the result of applying the given
  * [builder] function.
  *

@@ -5,7 +5,7 @@ import net.kyori.adventure.text.Component
 /**
  * A command block.
  */
-interface CommandBlock : BlockEntity {
+interface Command : BlockEntity {
 
     /**
      * The command that this command block will run.
