@@ -155,7 +155,7 @@ object AquaProperties {
     @JvmField
     val DELAY: IntProperty = IntProperty("delay", 1, 4)
     @JvmField
-    val STABILITY_DISTANCE: IntProperty = IntProperty("distance", 1, 7)
+    val STABILITY_DISTANCE: IntProperty = IntProperty("distance", 0, 7)
     @JvmField
     val EGGS: IntProperty = IntProperty("eggs", 1, 4)
     @JvmField
@@ -181,7 +181,7 @@ object AquaProperties {
     @JvmField
     val ROTATION_16: IntProperty = IntProperty("rotation", 0, 15)
     @JvmField
-    val DISTANCE: IntProperty = IntProperty("distance", 0, 7)
+    val DISTANCE: IntProperty = IntProperty("distance", 1, 7)
     @JvmField
     val STAGE: IntProperty = IntProperty("stage", 0, 1)
 
@@ -240,7 +240,15 @@ object AquaProperties {
     @JvmField
     val NOTEBLOCK_INSTRUMENT: EnumProperty<NoteBlockInstrument> = EnumProperty.create("instrument")
     @JvmField
-    val RAIL_SHAPE_STRAIGHT: EnumProperty<RailShape> = EnumProperty.create("shape")
+    val RAIL_SHAPE_STRAIGHT: EnumProperty<RailShape> = EnumProperty.create(
+        "shape",
+        RailShape.NORTH_SOUTH,
+        RailShape.EAST_WEST,
+        RailShape.ASCENDING_NORTH,
+        RailShape.ASCENDING_SOUTH,
+        RailShape.ASCENDING_EAST,
+        RailShape.ASCENDING_WEST
+    )
     @JvmField
     val STAIRS_SHAPE: EnumProperty<StairShape> = EnumProperty.create("shape")
     @JvmField

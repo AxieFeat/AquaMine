@@ -1,7 +1,6 @@
 package net.aquamine.server.network
 
 import net.aquamine.server.AquaServer
-import net.aquamine.server.commands.KickCommand
 import net.aquamine.server.commands.aqua.AquaColors
 import net.aquamine.server.network.buffer.BinaryBuffer
 import net.aquamine.server.network.handlers.HandshakePacketHandler
@@ -10,7 +9,6 @@ import net.aquamine.server.network.handlers.TickablePacketHandler
 import net.aquamine.server.network.interceptor.PacketInterceptorRegistry
 import net.aquamine.server.network.socket.NetworkWorker
 import net.aquamine.server.packet.*
-import net.aquamine.server.packet.`in`.play.PacketInClickContainerButton
 import net.aquamine.server.packet.out.login.PacketOutSetCompression
 import net.aquamine.server.packet.out.play.PacketOutDisconnect
 import net.aquamine.server.util.ObjectPool
