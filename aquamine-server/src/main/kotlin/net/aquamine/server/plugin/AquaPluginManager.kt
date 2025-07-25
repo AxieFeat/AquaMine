@@ -2,6 +2,7 @@ package net.aquamine.server.plugin
 
 import net.aquamine.api.event.Event
 import net.aquamine.api.event.EventNode
+import net.aquamine.api.plugin.PluginClassLoader
 import net.aquamine.api.plugin.PluginContainer
 import net.aquamine.api.plugin.PluginManager
 import net.aquamine.server.event.AquaGlobalEventNode

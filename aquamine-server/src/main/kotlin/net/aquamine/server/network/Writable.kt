@@ -3,7 +3,7 @@ package net.aquamine.server.network
 import net.aquamine.server.network.buffer.BinaryWriter
 
 /**
- * Something that can write its data to a Netty ByteBuf.
+ * Something that can write its data to a nio ByteBuffer.
  */
 fun interface Writable {
 

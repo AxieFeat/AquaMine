@@ -64,7 +64,7 @@ class ArrayVoxelShape(
             simplified = Shapes.joinUnoptimized(simplified, Shapes.box(minX, minY, minZ, maxX, maxY, maxZ), BooleanOperator.OR)
         }
         if (simplified !is ArrayVoxelShape) return simplified
-        val casted = simplified as ArrayVoxelShape
+        val casted = simplified
         if (casted.boundingBoxesRepresentation.size == 1) return BoundingBoxVoxelShape(casted.boundingBoxesRepresentation[0]).optimize()
         return simplified
     }

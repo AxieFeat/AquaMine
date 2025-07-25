@@ -2,8 +2,7 @@ package net.aquamine.spark
 
 import me.lucko.spark.common.sampler.source.ClassSourceLookup.ByClassLoader
 import net.aquamine.api.Server
-import net.aquamine.server.plugin.PluginClassLoader
-import kotlin.let
+import net.aquamine.api.plugin.PluginClassLoader
 
 class AquaClassSourceLookup(
     server: Server,

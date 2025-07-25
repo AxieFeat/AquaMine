@@ -1,6 +1,7 @@
 {
   "id": "spark",
-  "description": "Implementation of Spark",
+  "name": "Spark",
+  "description": "Implementation of Spark for AquaMine",
   "version": "1.0",
   "main": "net.aquamine.spark.SparkPlugin"
 }

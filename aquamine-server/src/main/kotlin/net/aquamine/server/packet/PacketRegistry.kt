@@ -145,6 +145,7 @@ object PacketRegistry {
         registerOutbound<PacketOutSynchronizePlayerPosition>(0x38)
         registerOutbound<PacketOutUpdateRecipeBook>(0x39)
         registerOutbound<PacketOutRemoveEntities>(0x3A)
+        registerOutbound<PacketOutEntityRemovePotionEffect>(0x3B)
         registerOutbound<PacketOutResourcePack>(0x3C)
         registerOutbound<PacketOutSetHeadRotation>(0x3E)
         registerOutbound<PacketOutSetActionBarText>(0x42)
@@ -173,6 +174,7 @@ object PacketRegistry {
         registerOutbound<PacketOutTeleportEntity>(0x64)
         registerOutbound<PacketOutUpdateAttributes>(0x66)
         registerOutbound<PacketOutUpdateEnabledFeatures>(0x67)
+        registerOutbound<PacketOutEntityPotionEffect>(0x68)
         registerOutbound<PacketOutUpdateRecipes>(0x69)
         registerOutbound<PacketOutUpdateTags>(0x6A)
     }

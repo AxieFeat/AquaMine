@@ -94,7 +94,9 @@ data class AquaBiomeEffects(
                 EnumCodecs.GRASS_COLOR_MODIFIER.fieldOf("grass_color_modifier").getting { it.grassColorModifier },
                 ColorUtil.CODEC.optionalFieldOf("foliage_color").getting { Optional.ofNullable(it.foliageColor) },
                 ColorUtil.CODEC.optionalFieldOf("grass_color").getting { Optional.ofNullable(it.grassColor) },
-                AquaAmbientParticleSettings.CODEC.optionalFieldOf("particle").getting { Optional.ofNullable(it.ambientParticleSettings) },
+
+                // TODO Fix particle settings serialization. It not works with Via*
+                AquaAmbientParticleSettings.CODEC.optionalFieldOf("particle").getting { Optional.ofNullable(null) },
                 AquaSoundEvent.DIRECT_CODEC.optionalFieldOf("ambient_sound").getting { Optional.ofNullable(it.ambientLoopSound) },
                 AquaAmbientMoodSettings.CODEC.optionalFieldOf("mood_sound").getting { Optional.ofNullable(it.ambientMoodSettings) },
                 AquaAmbientAdditionsSettings.CODEC.optionalFieldOf("additions_sound").getting { Optional.ofNullable(it.ambientAdditionsSettings) },

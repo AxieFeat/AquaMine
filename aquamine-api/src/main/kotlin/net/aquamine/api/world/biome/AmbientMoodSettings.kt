@@ -29,7 +29,7 @@ interface AmbientMoodSettings {
      * The cubic range of possible positions to play the sound.
      *
      * The player is at the center of the cubic range, and the edge length is
-     * `2 * blockSearchExtent + 1` (source: [The Official Minecraft Wiki](https://minecraft.fandom.com/wiki/Biome/JSON_format)).
+     * `2 * blockSearchExtent + 1` (source: [The Official Minecraft Wiki](https://minecraft.wiki/w/Biome_definition)).
      */
     val blockSearchExtent: Int
 

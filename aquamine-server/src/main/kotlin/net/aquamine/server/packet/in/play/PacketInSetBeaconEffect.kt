@@ -1,16 +1,16 @@
 package net.aquamine.server.packet.`in`.play
 
-import net.aquamine.api.potion.PotionType
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.network.handlers.PlayPacketHandler
 import net.aquamine.server.packet.InboundPacket
+import net.aquamine.server.potion.AquaPotionType
 import net.aquamine.server.registry.AquaRegistries
 
 @JvmRecord
 data class PacketInSetBeaconEffect(
-    val primaryEffect: PotionType?,
-    val secondaryEffect: PotionType?,
+    val primaryEffect: AquaPotionType?,
+    val secondaryEffect: AquaPotionType?,
 ) : InboundPacket<PlayPacketHandler> {
 
     constructor(reader: BinaryReader) : this(

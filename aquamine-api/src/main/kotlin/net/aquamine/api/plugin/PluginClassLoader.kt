@@ -1,4 +1,4 @@
-package net.aquamine.server.plugin
+package net.aquamine.api.plugin
 
 import java.net.URL
 import java.net.URLClassLoader

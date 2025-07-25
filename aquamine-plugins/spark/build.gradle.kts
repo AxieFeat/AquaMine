@@ -9,7 +9,10 @@ repositories {
 }
 
 dependencies {
-    compileOnly(projects.aquamineServer)
+    compileOnly(projects.aquamineApi)
+    compileOnly(libs.log4j.api)
+    compileOnly(libs.gson)
+    compileOnly(libs.configurate.hocon)
 
     implementation("me.lucko:bytesocks-java-client:1.0-SNAPSHOT")
     implementation("me.lucko:spark-common:1.10.134-SNAPSHOT") {

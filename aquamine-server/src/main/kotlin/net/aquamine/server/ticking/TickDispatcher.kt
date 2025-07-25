@@ -144,7 +144,7 @@ class TickDispatcher<P : Any>(private val provider: TickThreadProvider<P>, threa
     private fun findThread(partition: P): TickThread {
         val threadId = provider.findThread(partition)
         val index = abs(threadId) % threads.size
-        return threads.get(index)
+        return threads[index]
     }
 
     private fun loadPartition(partition: P) {

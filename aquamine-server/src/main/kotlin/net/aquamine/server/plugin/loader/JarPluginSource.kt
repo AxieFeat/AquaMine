@@ -11,7 +11,7 @@ import net.aquamine.api.plugin.PluginDescription
 import net.aquamine.server.plugin.AquaPluginContainer
 import net.aquamine.server.plugin.AquaPluginDependency
 import net.aquamine.server.plugin.AquaPluginDescription
-import net.aquamine.server.plugin.PluginClassLoader
+import net.aquamine.api.plugin.PluginClassLoader
 import net.aquamine.server.plugin.module.PluginModule
 import net.aquamine.server.util.NoSpread
 import net.aquamine.processor.SerializedPluginDescription

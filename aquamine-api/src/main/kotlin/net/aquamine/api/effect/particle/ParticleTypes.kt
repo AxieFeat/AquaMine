@@ -8,7 +8,7 @@ import net.aquamine.api.registry.RegistryReference
 /**
  * All the built-in vanilla particle types.
  *
- * See [here](https://minecraft.fandom.com/wiki/Particles) for more information
+ * See [here](https://minecraft.wiki/w/Particles_(Java_Edition)) for more information
  * on all of these types.
  */
 @Catalogue(ParticleType::class)

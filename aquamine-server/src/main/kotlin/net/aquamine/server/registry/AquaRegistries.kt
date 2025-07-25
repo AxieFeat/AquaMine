@@ -31,6 +31,7 @@ import net.aquamine.server.item.ItemLoader
 import net.aquamine.server.item.AquaItemType
 import net.aquamine.server.item.data.Instrument
 import net.aquamine.server.item.data.Instruments
+import net.aquamine.server.potion.AquaPotionType
 import net.aquamine.server.potion.PotionTypeLoader
 import net.aquamine.server.registry.loader.RegistryLoader
 import net.aquamine.server.registry.loader.RegistryLoaders
@@ -101,7 +102,8 @@ object AquaRegistries {
     val BANNER_PATTERN: AquaRegistry<BannerPatternType> = simple(ResourceKeys.BANNER_PATTERN, loader(RegistryLoaders.bannerPatternType()))
     @JvmField
     val INSTRUMENT: AquaRegistry<Instrument> = simple(AquaResourceKeys.INSTRUMENTS) { Instruments }
-    val POTION_TYPE: AquaRegistry<PotionType> = simple(ResourceKeys.POTION_TYPE, dataLoader(::PotionTypeLoader))
+    @JvmField
+    val POTION_TYPE: AquaRegistry<AquaPotionType> = simple(AquaResourceKeys.POTION_TYPE, dataLoader(::PotionTypeLoader))
 
     /*
      * Custom built-in registries

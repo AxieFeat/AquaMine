@@ -8,6 +8,7 @@ import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer
 import net.aquamine.api.auth.GameProfile
 import net.aquamine.api.auth.ProfileProperty
+import net.aquamine.api.potion.PotionEffect
 import net.aquamine.api.util.Direction
 import net.aquamine.api.util.Rotation
 import net.aquamine.api.util.Vec3d
@@ -30,6 +31,8 @@ import xyz.axie.nbt.io.TagCompression
 import xyz.axie.nbt.io.TagIO
 import net.aquamine.serialization.Decoder
 import net.aquamine.serialization.nbt.NbtOps
+import net.aquamine.server.potion.AquaPotionEffect
+import net.aquamine.server.potion.downcast
 import java.io.InputStream
 import java.nio.ByteBuffer
 import java.security.PublicKey
@@ -149,6 +152,15 @@ class BinaryReader(private val buffer: ByteBuffer) {
         val cursorZ = readFloat().toDouble()
         val isInside = readBoolean()
         return BlockHitResult(Vec3d(position.x + cursorX, position.y + cursorY, position.z + cursorZ), direction, position, isInside)
+    }
+
+    fun readPotion(): AquaPotionEffect {
+        return AquaPotionEffect(
+            AquaRegistries.POTION_TYPE.get(readVarInt() - 1)!!,
+            readByte().toInt(),
+            readVarInt(),
+            readByte()
+        )
     }
 
     inline fun <T> readNullable(reader: (BinaryReader) -> T): T? {

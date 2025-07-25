@@ -1,8 +1,63 @@
 {
+  "minecraft:speed": {
+    "translationKey": "effect.minecraft.speed",
+    "category": "BENEFICIAL",
+    "color": 8171462
+  },
+  "minecraft:slowness": {
+    "translationKey": "effect.minecraft.slowness",
+    "category": "HARMFUL",
+    "color": 5926017
+  },
+  "minecraft:haste": {
+    "translationKey": "effect.minecraft.haste",
+    "category": "BENEFICIAL",
+    "color": 14270531
+  },
+  "minecraft:mining_fatigue": {
+    "translationKey": "effect.minecraft.mining_fatigue",
+    "category": "HARMFUL",
+    "color": 4866583
+  },
+  "minecraft:strength": {
+    "translationKey": "effect.minecraft.strength",
+    "category": "BENEFICIAL",
+    "color": 9643043
+  },
   "minecraft:instant_health": {
     "translationKey": "effect.minecraft.instant_health",
     "category": "BENEFICIAL",
     "color": 16262179
+  },
+  "minecraft:instant_damage": {
+    "translationKey": "effect.minecraft.instant_damage",
+    "category": "HARMFUL",
+    "color": 4393481
+  },
+  "minecraft:jump_boost": {
+    "translationKey": "effect.minecraft.jump_boost",
+    "category": "BENEFICIAL",
+    "color": 2293580
+  },
+  "minecraft:nausea": {
+    "translationKey": "effect.minecraft.nausea",
+    "category": "HARMFUL",
+    "color": 5578058
+  },
+  "minecraft:regeneration": {
+    "translationKey": "effect.minecraft.regeneration",
+    "category": "BENEFICIAL",
+    "color": 13458603
+  },
+  "minecraft:resistance": {
+    "translationKey": "effect.minecraft.resistance",
+    "category": "BENEFICIAL",
+    "color": 10044730
+  },
+  "minecraft:fire_resistance": {
+    "translationKey": "effect.minecraft.fire_resistance",
+    "category": "BENEFICIAL",
+    "color": 14981690
   },
   "minecraft:water_breathing": {
     "translationKey": "effect.minecraft.water_breathing",
@@ -14,154 +69,99 @@
     "category": "BENEFICIAL",
     "color": 8356754
   },
-  "minecraft:resistance": {
-    "translationKey": "effect.minecraft.resistance",
-    "category": "BENEFICIAL",
-    "color": 10044730
-  },
-  "minecraft:unluck": {
-    "translationKey": "effect.minecraft.unluck",
-    "category": "HARMFUL",
-    "color": 12624973
-  },
   "minecraft:blindness": {
     "translationKey": "effect.minecraft.blindness",
     "category": "HARMFUL",
     "color": 2039587
   },
-  "minecraft:haste": {
-    "translationKey": "effect.minecraft.haste",
+  "minecraft:night_vision": {
+    "translationKey": "effect.minecraft.night_vision",
     "category": "BENEFICIAL",
-    "color": 14270531
-  },
-  "minecraft:poison": {
-    "translationKey": "effect.minecraft.poison",
-    "category": "HARMFUL",
-    "color": 5149489
-  },
-  "minecraft:slowness": {
-    "translationKey": "effect.minecraft.slowness",
-    "category": "HARMFUL",
-    "color": 5926017
+    "color": 2039713
   },
   "minecraft:hunger": {
     "translationKey": "effect.minecraft.hunger",
     "category": "HARMFUL",
     "color": 5797459
   },
-  "minecraft:slow_falling": {
-    "translationKey": "effect.minecraft.slow_falling",
-    "category": "BENEFICIAL",
-    "color": 16773073
-  },
-  "minecraft:fire_resistance": {
-    "translationKey": "effect.minecraft.fire_resistance",
-    "category": "BENEFICIAL",
-    "color": 14981690
-  },
-  "minecraft:saturation": {
-    "translationKey": "effect.minecraft.saturation",
-    "category": "BENEFICIAL",
-    "color": 16262179
-  },
-  "minecraft:jump_boost": {
-    "translationKey": "effect.minecraft.jump_boost",
-    "category": "BENEFICIAL",
-    "color": 2293580
-  },
-  "minecraft:mining_fatigue": {
-    "translationKey": "effect.minecraft.mining_fatigue",
-    "category": "HARMFUL",
-    "color": 4866583
-  },
-  "minecraft:dolphins_grace": {
-    "translationKey": "effect.minecraft.dolphins_grace",
-    "category": "BENEFICIAL",
-    "color": 8954814
-  },
-  "minecraft:health_boost": {
-    "translationKey": "effect.minecraft.health_boost",
-    "category": "BENEFICIAL",
-    "color": 16284963
-  },
-  "minecraft:regeneration": {
-    "translationKey": "effect.minecraft.regeneration",
-    "category": "BENEFICIAL",
-    "color": 13458603
-  },
-  "minecraft:conduit_power": {
-    "translationKey": "effect.minecraft.conduit_power",
-    "category": "BENEFICIAL",
-    "color": 1950417
-  },
-  "minecraft:speed": {
-    "translationKey": "effect.minecraft.speed",
-    "category": "BENEFICIAL",
-    "color": 8171462
-  },
-  "minecraft:luck": {
-    "translationKey": "effect.minecraft.luck",
-    "category": "BENEFICIAL",
-    "color": 3381504
-  },
-  "minecraft:bad_omen": {
-    "translationKey": "effect.minecraft.bad_omen",
-    "category": "NEUTRAL",
-    "color": 745784
-  },
-  "minecraft:strength": {
-    "translationKey": "effect.minecraft.strength",
-    "category": "BENEFICIAL",
-    "color": 9643043
-  },
-  "minecraft:darkness": {
-    "translationKey": "effect.minecraft.darkness",
-    "category": "HARMFUL",
-    "color": 2696993
-  },
-  "minecraft:hero_of_the_village": {
-    "translationKey": "effect.minecraft.hero_of_the_village",
-    "category": "BENEFICIAL",
-    "color": 4521796
-  },
-  "minecraft:levitation": {
-    "translationKey": "effect.minecraft.levitation",
-    "category": "HARMFUL",
-    "color": 13565951
-  },
-  "minecraft:instant_damage": {
-    "translationKey": "effect.minecraft.instant_damage",
-    "category": "HARMFUL",
-    "color": 4393481
-  },
   "minecraft:weakness": {
     "translationKey": "effect.minecraft.weakness",
     "category": "HARMFUL",
     "color": 4738376
   },
-  "minecraft:nausea": {
-    "translationKey": "effect.minecraft.nausea",
+  "minecraft:poison": {
+    "translationKey": "effect.minecraft.poison",
     "category": "HARMFUL",
-    "color": 5578058
+    "color": 5149489
   },
   "minecraft:wither": {
     "translationKey": "effect.minecraft.wither",
     "category": "HARMFUL",
     "color": 3484199
   },
+  "minecraft:health_boost": {
+    "translationKey": "effect.minecraft.health_boost",
+    "category": "BENEFICIAL",
+    "color": 16284963
+  },
   "minecraft:absorption": {
     "translationKey": "effect.minecraft.absorption",
     "category": "BENEFICIAL",
     "color": 2445989
+  },
+  "minecraft:saturation": {
+    "translationKey": "effect.minecraft.saturation",
+    "category": "BENEFICIAL",
+    "color": 16262179
   },
   "minecraft:glowing": {
     "translationKey": "effect.minecraft.glowing",
     "category": "NEUTRAL",
     "color": 9740385
   },
-  "minecraft:night_vision": {
-    "translationKey": "effect.minecraft.night_vision",
+  "minecraft:levitation": {
+    "translationKey": "effect.minecraft.levitation",
+    "category": "HARMFUL",
+    "color": 13565951
+  },
+  "minecraft:luck": {
+    "translationKey": "effect.minecraft.luck",
     "category": "BENEFICIAL",
-    "color": 2039713
+    "color": 3381504
+  },
+  "minecraft:unluck": {
+    "translationKey": "effect.minecraft.unluck",
+    "category": "HARMFUL",
+    "color": 12624973
+  },
+  "minecraft:slow_falling": {
+    "translationKey": "effect.minecraft.slow_falling",
+    "category": "BENEFICIAL",
+    "color": 16773073
+  },
+  "minecraft:conduit_power": {
+    "translationKey": "effect.minecraft.conduit_power",
+    "category": "BENEFICIAL",
+    "color": 1950417
+  },
+  "minecraft:dolphins_grace": {
+    "translationKey": "effect.minecraft.dolphins_grace",
+    "category": "BENEFICIAL",
+    "color": 8954814
+  },
+  "minecraft:bad_omen": {
+    "translationKey": "effect.minecraft.bad_omen",
+    "category": "NEUTRAL",
+    "color": 745784
+  },
+  "minecraft:hero_of_the_village": {
+    "translationKey": "effect.minecraft.hero_of_the_village",
+    "category": "BENEFICIAL",
+    "color": 4521796
+  },
+  "minecraft:darkness": {
+    "translationKey": "effect.minecraft.darkness",
+    "category": "HARMFUL",
+    "color": 2696993
   }
 }

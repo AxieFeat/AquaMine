@@ -1,6 +1,7 @@
 package net.aquamine.server.server
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException
+import net.aquamine.api.potion.PotionTypes
 import org.apache.logging.log4j.LogManager
 import org.jetbrains.annotations.VisibleForTesting
 import net.aquamine.api.registry.Registries
@@ -11,6 +12,8 @@ import net.aquamine.api.tags.EntityTypeTags
 import net.aquamine.api.tags.FluidTags
 import net.aquamine.api.tags.GameEventTags
 import net.aquamine.api.tags.ItemTags
+import net.aquamine.api.world.gameevent.GameEvents
+import net.aquamine.api.world.rule.GameRules
 import net.aquamine.server.command.BrigadierExceptions
 import net.aquamine.server.command.argument.ArgumentSerializers
 import net.aquamine.server.entity.EntityFactory
@@ -76,10 +79,13 @@ object Bootstrap {
         BlockTags
         EntityTypeTags
         FluidTags
+        GameEvents
         GameEventTags
         ItemTags
         BannerPatternTags
         BiomeTags
+        PotionTypes
+        GameRules
     }
 
     // Preload some other things that would otherwise load on first player join or some other time

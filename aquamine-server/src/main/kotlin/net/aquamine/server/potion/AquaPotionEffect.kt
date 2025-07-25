@@ -6,83 +6,95 @@ import net.aquamine.api.potion.PotionTypes
 
 @JvmRecord
 data class AquaPotionEffect(
-    override val type: PotionType,
+    override val type: AquaPotionType,
     override val amplifier: Int,
     override val duration: Int,
-    override val ambient: Boolean,
-    override val particles: Boolean,
-    override val icon: Boolean
+    val flags: Byte
 ) : PotionEffect {
 
-    override fun withType(type: PotionType): PotionEffect {
-        return AquaPotionEffect(type, amplifier, duration, ambient, particles, icon)
+    override val ambient: Boolean
+        get() = (flags.toInt() and AMBIENT_FLAG.toInt()) == AMBIENT_FLAG.toInt()
+    override val particles: Boolean
+        get() = (flags.toInt() and PARTICLES_FLAG.toInt()) == PARTICLES_FLAG.toInt()
+    override val icon: Boolean
+        get() = (flags.toInt() and ICON_FLAG.toInt()) == ICON_FLAG.toInt()
+
+    override fun withType(type: PotionType): AquaPotionEffect {
+        if(this.type == type) return this
+        return AquaPotionEffect(type.downcast(), amplifier, duration, flags)
     }
 
-    override fun withAmplifier(amplifier: Int): PotionEffect {
-        return AquaPotionEffect(type, amplifier, duration, ambient, particles, icon)
+    override fun withAmplifier(amplifier: Int): AquaPotionEffect {
+        if(this.amplifier == amplifier) return this
+        return AquaPotionEffect(type, amplifier, duration, flags)
     }
 
-    override fun withDuration(duration: Int): PotionEffect {
-        return AquaPotionEffect(type, amplifier, duration, ambient, particles, icon)
+    override fun withDuration(duration: Int): AquaPotionEffect {
+        if(this.duration == duration) return this
+        return AquaPotionEffect(type, amplifier, duration, flags)
     }
 
-    override fun withAmbient(ambient: Boolean): PotionEffect {
-        return AquaPotionEffect(type, amplifier, duration, ambient, particles, icon)
+    override fun withAmbient(ambient: Boolean): AquaPotionEffect {
+        if(this.ambient == ambient) return this
+        return AquaPotionEffect(type, amplifier, duration, flags)
     }
 
-    override fun withParticles(particles: Boolean): PotionEffect {
-        return AquaPotionEffect(type, amplifier, duration, ambient, particles, icon)
+    override fun withParticles(particles: Boolean): AquaPotionEffect {
+        if(this.particles == particles) return this
+        return AquaPotionEffect(type, amplifier, duration, flags)
     }
 
-    override fun withIcon(icon: Boolean): PotionEffect {
-        return AquaPotionEffect(type, amplifier, duration, ambient, particles, icon)
+    override fun withIcon(icon: Boolean): AquaPotionEffect {
+        if(this.icon == icon) return this
+
+        return AquaPotionEffect(type, amplifier, duration, flags)
     }
 
+    // TODO: ambient, particles and icon functions
     class Builder : PotionEffect.Builder {
 
-        private var type: PotionType = PotionTypes.MOVEMENT_SPEED.get()
+        private var type: AquaPotionType = PotionTypes.MOVEMENT_SPEED.get().downcast()
         private var amplifier: Int = 1
         private var duration: Int = 1
-        private var ambient: Boolean = false
-        private var particles: Boolean = true
-        private var icon: Boolean = true
+        private var flags: Byte = 0
 
-        override fun type(type: PotionType): PotionEffect.Builder {
-            this.type = type
-            return this
-        }
+        override fun type(type: PotionType): Builder = apply { this.type = type.downcast() }
 
-        override fun amplifier(amplifier: Int): PotionEffect.Builder {
-            this.amplifier = amplifier
-            return this
-        }
+        override fun amplifier(amplifier: Int): Builder = apply { this.amplifier = amplifier }
 
-        override fun duration(duration: Int): PotionEffect.Builder {
-            this.duration = duration
-            return this
-        }
+        override fun duration(duration: Int): Builder = apply { this.duration = duration }
 
-        override fun ambient(ambient: Boolean): PotionEffect.Builder {
-            this.ambient = ambient
-            return this
-        }
+        override fun ambient(ambient: Boolean): Builder = apply {}
 
-        override fun particles(particles: Boolean): PotionEffect.Builder {
-            this.particles = particles
-            return this
-        }
+        override fun particles(particles: Boolean): Builder = apply {}
 
-        override fun icon(icon: Boolean): PotionEffect.Builder {
-            this.icon = icon
-            return this
-        }
+        override fun icon(icon: Boolean): Builder = apply {}
 
-        override fun build(): PotionEffect = AquaPotionEffect(type, amplifier, duration, ambient, particles, icon)
+        override fun build(): AquaPotionEffect = AquaPotionEffect(type, amplifier, duration, flags)
     }
 
     object Factory : PotionEffect.Factory {
 
         override fun builder(): PotionEffect.Builder = Builder()
+    }
+
+    companion object {
+
+        /**
+         * A flag indicating that this Potion is ambient (it came from a beacon).
+         */
+        const val AMBIENT_FLAG: Byte = 0x01
+
+        /**
+         * A flag indicating that this Potion has particles.
+         */
+        const val PARTICLES_FLAG: Byte = 0x02
+
+        /**
+         * A flag indicating that this Potion has an icon.
+         */
+        const val ICON_FLAG: Byte = 0x04
+
     }
 
 }

@@ -66,7 +66,7 @@ private class AquaCLI : CliktCommand(
 
         // Run the bootstrap
         Bootstrap.preload()
-//        Bootstrap.validate()
+        Bootstrap.validate()
 
         val config = AquaConfig.load(configFile)
         if (configOnly) {

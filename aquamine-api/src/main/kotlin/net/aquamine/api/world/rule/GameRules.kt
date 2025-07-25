@@ -218,7 +218,7 @@ object GameRules {
      * This is a boolean game rule, with a default value of `false`.
      */
     @JvmField
-    val KEEP_INVENTORY: GameRule<Boolean> = GameRule.of("keep_inventory")
+    val KEEP_INVENTORY: GameRule<Boolean> = GameRule.of("keepInventory")
 
     /**
      * Whether new sources of lava are allowed to form.
@@ -234,7 +234,7 @@ object GameRules {
      * This is a boolean game rule, with a default value of `true`.
      */
     @JvmField
-    val LOG_ADMIN_COMMANDS: GameRule<Boolean> = GameRule.of("log_admin_commands")
+    val LOG_ADMIN_COMMANDS: GameRule<Boolean> = GameRule.of("logAdminCommands")
 
     /**
      * The total number of chain commands that can run during a single tick.
@@ -242,7 +242,7 @@ object GameRules {
      * This is a numerical game rule, with a default value of `65536`.
      */
     @JvmField
-    val MAX_COMMAND_CHAIN_LENGTH: GameRule<Int> = GameRule.of("max_command_chain_length")
+    val MAX_COMMAND_CHAIN_LENGTH: GameRule<Int> = GameRule.of("maxCommandChainLength")
 
     /**
      * The maximum number of other pushable entities a mob or player can push,
@@ -260,7 +260,7 @@ object GameRules {
      * This is a numerical game rule, with a default value of `24`.
      */
     @JvmField
-    val MAX_ENTITY_CRAMMING: GameRule<Int> = GameRule.of("max_entity_cramming")
+    val MAX_ENTITY_CRAMMING: GameRule<Int> = GameRule.of("maxEntityCramming")
 
     /**
      * If false, blocks will always drop from explosions. If true, whether a
@@ -280,7 +280,7 @@ object GameRules {
      * This is a boolean game rule, with a default value of `true`.
      */
     @JvmField
-    val MOB_GRIEFING: GameRule<Boolean> = GameRule.of("mob_griefing")
+    val MOB_GRIEFING: GameRule<Boolean> = GameRule.of("mobGriefing")
 
     /**
      * Whether [Player]s can regenerate health naturally if their hunger is
@@ -290,7 +290,7 @@ object GameRules {
      * This is a boolean game rule, with a default value of `true`.
      */
     @JvmField
-    val NATURAL_REGENERATION: GameRule<Boolean> = GameRule.of("natural_regeneration")
+    val NATURAL_REGENERATION: GameRule<Boolean> = GameRule.of("naturalRegeneration")
 
     /**
      * The percentage of players that must be sleeping to skip the night.
@@ -309,7 +309,7 @@ object GameRules {
      * This is a numerical game rule, with a default value of `3`.
      */
     @JvmField
-    val RANDOM_TICK_SPEED: GameRule<Int> = GameRule.of("random_tick_speed")
+    val RANDOM_TICK_SPEED: GameRule<Int> = GameRule.of("randomTickSpeed")
 
     /**
      * Whether the debug screen shows all or reduced information.
@@ -317,7 +317,7 @@ object GameRules {
      * This is a boolean game rule, with a default value of `false`.
      */
     @JvmField
-    val REDUCED_DEBUG_INFO: GameRule<Boolean> = GameRule.of("reduced_debug_info")
+    val REDUCED_DEBUG_INFO: GameRule<Boolean> = GameRule.of("reducedDebugInfo")
 
     /**
      * Whether the feedback from commands executed by a [Player] should show up
@@ -330,7 +330,7 @@ object GameRules {
      * This is a boolean game rule, with a default value of `true`.
      */
     @JvmField
-    val SEND_COMMAND_FEEDBACK: GameRule<Boolean> = GameRule.of("send_command_feedback")
+    val SEND_COMMAND_FEEDBACK: GameRule<Boolean> = GameRule.of("sendCommandFeedback")
 
     /**
      * Whether a message appears in chat when a [Player] dies.
@@ -338,7 +338,7 @@ object GameRules {
      * This is a boolean game rule, with a default value of `true`.
      */
     @JvmField
-    val SHOW_DEATH_MESSAGES: GameRule<Boolean> = GameRule.of("show_death_messages")
+    val SHOW_DEATH_MESSAGES: GameRule<Boolean> = GameRule.of("showDeathMessages")
 
     /**
      * The number of blocks outward from the world spawn coordinates that a
@@ -348,7 +348,7 @@ object GameRules {
      * This is a numerical game rule, with a default value of `10`.
      */
     @JvmField
-    val SPAWN_RADIUS: GameRule<Int> = GameRule.of("spawn_radius")
+    val SPAWN_RADIUS: GameRule<Int> = GameRule.of("spawnRadius")
 
     /**
      * Whether players in
@@ -358,7 +358,7 @@ object GameRules {
      * This is a boolean game rule, with a default value of `true`.
      */
     @JvmField
-    val SPECTATORS_GENERATE_CHUNKS: GameRule<Boolean> = GameRule.of("spectators_generate_chunks")
+    val SPECTATORS_GENERATE_CHUNKS: GameRule<Boolean> = GameRule.of("spectatorsGenerateChunks")
 
     /**
      * If false, blocks will always drop from explosions. If true, whether a
@@ -379,7 +379,7 @@ object GameRules {
      * This is a boolean game rule, with a default value of `false`.
      */
     @JvmField
-    val UNIVERSAL_ANGER: GameRule<Boolean> = GameRule.of("universal_anger")
+    val UNIVERSAL_ANGER: GameRule<Boolean> = GameRule.of("universalAnger")
 
     /**
      * Whether new sources of water are allowed to form.

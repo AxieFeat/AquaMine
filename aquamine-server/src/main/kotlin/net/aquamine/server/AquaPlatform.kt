@@ -3,7 +3,6 @@ package net.aquamine.server
 import net.aquamine.api.Platform
 import java.util.Properties
 
-// TODO: Check on update
 object AquaPlatform : Platform {
 
     private val versions = Properties().apply { load(ClassLoader.getSystemResourceAsStream("META-INF/versions.properties")) }

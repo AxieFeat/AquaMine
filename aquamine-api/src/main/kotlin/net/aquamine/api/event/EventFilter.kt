@@ -71,7 +71,7 @@ interface EventFilter<E : Event, H> {
          * all event types.
          */
         @JvmField
-        val ALL: EventFilter<Event, *> = create<Event, Any>(Event::class.java, null, null)
+        val ALL: EventFilter<Event, *> = create<Event, Any>(Event::class.java)
 
         /**
          * Creates a new event filter for the given [eventType] and
@@ -91,7 +91,8 @@ interface EventFilter<E : Event, H> {
          * @return The event filter.
          */
         @JvmStatic
-        fun <E : Event, H> create(eventType: Class<E>, handlerType: Class<H>?, handlerGetter: Function<E, H>?): EventFilter<E, H> {
+        @JvmOverloads
+        fun <E : Event, H> create(eventType: Class<E>, handlerType: Class<H>? = null, handlerGetter: Function<E, H>? = null): EventFilter<E, H> {
             return object : EventFilter<E, H> {
                 override val eventType: Class<E>
                     get() = eventType

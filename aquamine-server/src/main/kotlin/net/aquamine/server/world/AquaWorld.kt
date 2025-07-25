@@ -123,7 +123,7 @@ class AquaWorld(
         scheduler.buildTask { PacketGrouping.sendGroupedPacket(players, PacketOutUpdateTime.create(data)) { it.world === this } }
             .delay(TaskTime.seconds(1))
             .period(TaskTime.seconds(1))
-            .executionType(ExecutionType.SYNCHRONOUS)
+            .sync()
             .schedule()
     }
 

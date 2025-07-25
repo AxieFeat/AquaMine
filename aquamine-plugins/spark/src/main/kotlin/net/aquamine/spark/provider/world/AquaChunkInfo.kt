@@ -1,4 +1,4 @@
-package net.aquamine.spark
+package net.aquamine.spark.provider.world
 
 import me.lucko.spark.common.platform.world.AbstractChunkInfo
 import me.lucko.spark.common.platform.world.CountMap
@@ -14,10 +14,12 @@ class AquaChunkInfo(
         chunk.entities
             .map { it.type }
             .distinct()
-            .associateWith { type ->
-                AtomicInteger(chunk.entities.count { it.type == type })
-            }
-    )
+            .associateWith { AtomicInteger() }
+    ).also {
+        chunk.entities.forEach { entity ->
+            it.increment(entity.type)
+        }
+    }
 
     override fun getEntityCounts(): CountMap<EntityType<*>> {
         return entityCounts

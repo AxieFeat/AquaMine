@@ -7,6 +7,7 @@ import net.aquamine.api.world.Difficulty
 import net.aquamine.api.world.GameMode
 import org.spongepowered.configurate.objectmapping.ConfigSerializable
 import org.spongepowered.configurate.objectmapping.meta.Comment
+import org.spongepowered.configurate.objectmapping.meta.Matches
 import org.spongepowered.configurate.objectmapping.meta.Setting
 
 @ConfigSerializable

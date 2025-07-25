@@ -1,4 +1,4 @@
-package net.aquamine.spark
+package net.aquamine.spark.provider
 
 import me.lucko.spark.common.monitor.ping.PlayerPingProvider
 import net.aquamine.api.Server
@@ -8,11 +8,7 @@ class AquaPlayerPingProvider(
 ) : PlayerPingProvider {
 
     override fun poll(): Map<String, Int> {
-        return buildMap {
-            server.players.forEach {
-                put(it.name, it.ping)
-            }
-        }
+        return server.players.associateWith { it.ping }.mapKeys { it.key.name }
     }
 
 }

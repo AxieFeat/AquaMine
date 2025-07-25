@@ -23,11 +23,11 @@ import xyz.axie.nbt.io.TagCompression
 import xyz.axie.nbt.io.TagIO
 import net.aquamine.serialization.Encoder
 import net.aquamine.serialization.nbt.NbtOps
+import net.aquamine.server.potion.AquaPotionEffect
 import java.io.OutputStream
 import java.nio.ByteBuffer
 import java.security.PublicKey
 import java.time.Instant
-import java.util.Arrays
 import java.util.BitSet
 import java.util.EnumSet
 import java.util.UUID
@@ -238,6 +238,13 @@ class BinaryWriter(private val buffer: ByteBuffer) {
         writeBoolean(hitResult.isInside)
     }
 
+    fun writePotion(potion: AquaPotionEffect) {
+        writeVarInt(AquaRegistries.POTION_TYPE.getId(potion.type) + 1)
+        writeByte(potion.amplifier.toByte())
+        writeVarInt(potion.duration)
+        writeByte(potion.flags)
+    }
+
     inline fun <T> writeNullable(value: T?, writer: (BinaryWriter, T) -> Unit) {
         writeBoolean(value != null)
         if (value != null) writer(this, value)
@@ -272,7 +279,7 @@ class BinaryWriter(private val buffer: ByteBuffer) {
 
     fun writeFixedBitSet(set: BitSet, fixedBits: Int) {
         if (set.length() > fixedBits) error("Bit set $set has different length than expected bits $fixedBits!")
-        writeBytes(Arrays.copyOf(set.toByteArray(), Maths.positiveCeilDivide(fixedBits, 8)))
+        writeBytes(set.toByteArray().copyOf(Maths.positiveCeilDivide(fixedBits, 8)))
     }
 
     fun <T> writeId(registry: IntBiMap<T>, value: T) {

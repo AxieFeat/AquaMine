@@ -1,7 +1,6 @@
 package net.aquamine.server
 
 import net.aquamine.api.event.GlobalEventNode
-import net.aquamine.api.scheduling.ExecutionType
 import net.aquamine.api.scheduling.TaskTime
 import net.aquamine.api.world.World
 import net.aquamine.server.auth.GameProfileCache
@@ -58,7 +57,7 @@ class AquaServer(override val config: AquaConfig, val profileCache: GameProfileC
     override val userManager: AquaUserManager = AquaUserManager(this, initContext.playerDataSerializer)
     private val random = RandomSource.create()
 
-    private val tickDispatcher = TickDispatcher<AquaChunk>(TickThreadProvider.counter(), 1)
+    private val tickDispatcher = TickDispatcher<AquaChunk>(TickThreadProvider.counter(), 4)
     @Volatile
     private var running = true
 
@@ -146,13 +145,13 @@ class AquaServer(override val config: AquaConfig, val profileCache: GameProfileC
             scheduler.buildTask(task)
                 .delay(TaskTime.ticks(config.world.autosaveInterval))
                 .period(TaskTime.ticks(config.world.autosaveInterval))
-                .executionType(ExecutionType.SYNCHRONOUS)
+                .sync()
                 .schedule()
         }
         scheduler.buildTask { profileCache.saveIfNeeded() }
             .delay(TaskTime.ticks(SAVE_PROFILE_CACHE_INTERVAL))
             .period(TaskTime.ticks(SAVE_PROFILE_CACHE_INTERVAL))
-            .executionType(ExecutionType.SYNCHRONOUS)
+            .sync()
             .schedule()
     }
 

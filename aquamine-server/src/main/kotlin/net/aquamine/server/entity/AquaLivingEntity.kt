@@ -11,22 +11,22 @@ import net.aquamine.api.potion.PotionEffect
 import net.aquamine.api.potion.PotionType
 import net.aquamine.api.util.Vec3i
 import net.aquamine.api.world.Difficulty
-import net.aquamine.server.entity.attribute.AttributeMap
-import net.aquamine.server.entity.attribute.AttributeSupplier
-import net.aquamine.server.entity.attribute.DefaultAttributes
-import net.aquamine.server.entity.attribute.AquaAttribute
-import net.aquamine.server.entity.attribute.AquaAttributeType
-import net.aquamine.server.entity.attribute.AquaAttributeTypes
-import net.aquamine.server.entity.attribute.downcast
 import net.aquamine.server.entity.ai.memory.Brain
+import net.aquamine.server.entity.attribute.*
+import net.aquamine.server.entity.components.AquaEquipable
 import net.aquamine.server.entity.metadata.MetadataKeys
 import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.entity.serializer.EntitySerializer
 import net.aquamine.server.entity.serializer.LivingEntitySerializer
-import net.aquamine.server.item.AquaItemStack
-import net.aquamine.server.entity.components.AquaEquipable
 import net.aquamine.server.entity.util.EquipmentSlots
+import net.aquamine.server.item.AquaItemStack
+import net.aquamine.server.packet.out.play.PacketOutEntityPotionEffect
+import net.aquamine.server.packet.out.play.PacketOutEntityRemovePotionEffect
 import net.aquamine.server.packet.out.play.PacketOutUpdateAttributes
+import net.aquamine.server.potion.AquaPotionEffect
+import net.aquamine.server.potion.TimedPotionEffect
+import net.aquamine.server.potion.downcast
+import net.aquamine.server.ticking.TickSchedulerThread
 import net.aquamine.server.world.AquaWorld
 
 @Suppress("LeakingThis")
@@ -91,13 +91,20 @@ abstract class AquaLivingEntity(world: AquaWorld) : AquaEntity(world), LivingEnt
         get() = data.get(MetadataKeys.LivingEntity.BED_LOCATION)
         set(value) = data.set(MetadataKeys.LivingEntity.BED_LOCATION, value)
 
-    override val activePotionEffects: List<PotionEffect>
-        get() = TODO("Not yet implemented")
+    private val aquaActivePotionEffects = mutableListOf<TimedPotionEffect>()
+
+    override val activePotionEffects: List<AquaPotionEffect>
+        get() = aquaActivePotionEffects.map { it.potion }
 
     init {
         data.set(MetadataKeys.LivingEntity.HEALTH, maxHealth)
     }
 
+    override fun tick(time: Long) {
+        super.tick(time)
+
+        tickEffects(time)
+    }
     override fun defineData() {
         super.defineData()
         data.define(MetadataKeys.LivingEntity.FLAGS, 0)
@@ -176,16 +183,29 @@ abstract class AquaLivingEntity(world: AquaWorld) : AquaEntity(world), LivingEnt
         viewer.connection.send(PacketOutUpdateAttributes.create(id, attributes.syncable()))
     }
 
-    override fun addPotionEffect(potionEffect: PotionEffect) {
-        TODO("Not yet implemented")
+    open fun tickEffects(time: Long) {
+        aquaActivePotionEffects.removeIf {
+            val potionTime: Long = it.potion.duration * TickSchedulerThread.MILLIS_PER_TICK
+
+            if (time >= it.startingTime + potionTime) {
+                sendPacketToViewersAndSelf(PacketOutEntityRemovePotionEffect(id, it.potion.type))
+                return@removeIf true
+            }
+            false
+        }
     }
 
-    override fun getPotionEffect(type: PotionType): PotionEffect? {
-        TODO("Not yet implemented")
+    override fun addPotionEffect(potionEffect: PotionEffect) {
+        aquaActivePotionEffects.add(TimedPotionEffect(potionEffect.downcast()))
+        sendPacketToViewersAndSelf(PacketOutEntityPotionEffect(id, potionEffect.downcast(), null))
     }
+
+    override fun getPotionEffect(type: PotionType): AquaPotionEffect? = aquaActivePotionEffects.find { it.potion.type == type }?.potion
 
     override fun removePotionEffect(type: PotionType) {
-        TODO("Not yet implemented")
+        if(aquaActivePotionEffects.removeIf { it.potion.type == type }) {
+            sendPacketToViewersAndSelf(PacketOutEntityRemovePotionEffect(id, type.downcast()))
+        }
     }
 
     companion object {

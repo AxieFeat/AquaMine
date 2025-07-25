@@ -33,7 +33,7 @@ data class AquaAmbientAdditionsSettings(override val sound: SoundEvent, override
         val CODEC: Codec<AmbientAdditionsSettings> = RecordCodecBuilder.create { instance ->
             instance.group(
                 AquaSoundEvent.DIRECT_CODEC.fieldOf("sound").getting { it.sound },
-                Codec.DOUBLE.fieldOf("probability").getting { it.probability }
+                Codec.DOUBLE.fieldOf("tick_chance").getting { it.probability }
             ).apply(instance, ::AquaAmbientAdditionsSettings)
         }
     }

@@ -50,7 +50,6 @@ import java.util.UUID
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.math.abs
 
-@Suppress("LeakingThis")
 abstract class AquaEntity(final override var world: AquaWorld) : BaseEntity, SerializableEntity, AquaSender, Tickable {
 
     override val serializer: EntitySerializer<out AquaEntity>

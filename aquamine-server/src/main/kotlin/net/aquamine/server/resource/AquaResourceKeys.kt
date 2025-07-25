@@ -1,15 +1,18 @@
 package net.aquamine.server.resource
 
+import net.aquamine.api.potion.PotionType
 import net.kyori.adventure.key.Key
 import net.aquamine.api.registry.Registry
 import net.aquamine.api.registry.RegistryRoots
 import net.aquamine.api.resource.ResourceKey
+import net.aquamine.api.resource.ResourceKeys
 import net.aquamine.api.world.World
 import net.aquamine.server.entity.AquaEntityType
 import net.aquamine.server.entity.ai.memory.MemoryKey
 import net.aquamine.server.item.data.Instrument
 import net.aquamine.server.item.AquaItemType
 import net.aquamine.server.network.chat.RichChatType
+import net.aquamine.server.potion.AquaPotionType
 import net.aquamine.server.registry.WritableRegistry
 import net.aquamine.server.util.provider.IntProviderType
 import net.aquamine.server.world.block.AquaBlock
@@ -40,6 +43,8 @@ object AquaResourceKeys {
     val WORLD: ResourceKey<out Registry<World>> = minecraft("dimension")
     @JvmField
     val DIMENSION_TYPE: ResourceKey<out Registry<AquaDimensionType>> = minecraft("dimension_type")
+    @JvmField
+    val POTION_TYPE: ResourceKey<out Registry<AquaPotionType>> = minecraft("potion_type")
 
     @JvmStatic
     private fun <T> minecraft(key: String): ResourceKey<out Registry<T>> = AquaResourceKey.of(RegistryRoots.MINECRAFT, Key.key(key))

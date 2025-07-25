@@ -19,7 +19,9 @@ object PotionTypeGenerator : Generator<MobEffects>() {
 
         val mobEffectRegistry = BuiltInRegistries.MOB_EFFECT
 
-        mobEffectRegistry.keySet().forEach { resource ->
+        mobEffectRegistry.keySet().sortedBy {
+            mobEffectRegistry.getId(mobEffectRegistry.get(it))
+        }.forEach { resource ->
             val minecraftPotion = mobEffectRegistry.get(resource)!!
 
             val potion = JsonObject()

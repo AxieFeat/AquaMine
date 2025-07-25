@@ -2,7 +2,9 @@ package net.aquamine.server.util.serialization
 
 import net.kyori.adventure.key.Key
 import net.aquamine.api.effect.particle.ParticleType
+import net.aquamine.api.effect.particle.data.ParticleData
 import net.aquamine.api.resource.ResourceKey
+import net.aquamine.api.util.Color
 import net.aquamine.api.world.World
 import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.resource.AquaResourceKey

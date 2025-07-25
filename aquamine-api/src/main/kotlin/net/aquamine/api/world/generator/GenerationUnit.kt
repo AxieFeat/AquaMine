@@ -1,69 +1,54 @@
 package net.aquamine.api.world.generator
 
-import net.aquamine.api.block.BlockContainer
+import net.aquamine.api.util.BoundingBox
 import net.aquamine.api.util.Vec3i
 import java.util.function.Consumer
 
 /**
  * Represents an area that can be generated.
  *
- * The size is guaranteed to be a multiple of 16 (section).
+ * In default area is all the world.
  */
 interface GenerationUnit {
 
     /**
      * This unit's modifier, used to place blocks and biomes within this unit.
-     *
-     * @return The modifier.
      */
-    fun modifier(): UnitModifier
+    val modifier: UnitModifier
 
     /**
-     * The size of this unit in blocks.
+     * This AABB allows you to specify an area that can be modified using [modifier].
+     * The coordinate values here must be multiples of 16.
      *
-     * Guaranteed to be a multiple of 16.
-     *
-     * @return The size of this unit.
+     * By default, if this is the root [GenerationUnit] the area will be all the world,
+     * i.e., coordinates from (`-30.000.000`, `-64`, `-30.000.000`) to (`30.000.000`, `319`, `30.000.000`).
      */
-    fun size(): Vec3i
+    val area: BoundingBox
 
     /**
-     * The absolute start (min x, y, z) of this unit.
+     * Creates a fork of this unit with new area.
      *
-     * @return The absolute start.
+     * @param box Box of new area.
+     *
+     * @return The fork.
      */
-    fun absoluteStart(): Vec3i
+    fun fork(box: BoundingBox): GenerationUnit
 
     /**
-     * The absolute end (max x, y, z) of this unit.
-     *
-     * @return The absolute end.
-     */
-    fun absoluteEnd(): Vec3i
-
-    /**
-     * Creates a fork of this unit, which will be applied to the instance whenever possible.
+     * Creates a fork of this unit with new area.
      *
      * @param start The start of the fork.
      * @param end The end of the fork.
      *
      * @return The fork.
      */
-    fun fork(start: Vec3i, end: Vec3i): GenerationUnit
+    fun fork(start: Vec3i, end: Vec3i): GenerationUnit = fork(BoundingBox(start, end))
 
     /**
-     * Creates a fork of this unit depending on the blocks placed within the consumer.
+     * Automatically creates a GenerationUnit based on coordinates that have been modified using [UnitModifier].
      *
      * @param consumer The consumer.
      */
-    fun fork(consumer: Consumer<BlockContainer>)
+    fun fork(consumer: Consumer<UnitModifier>)
 
-    /**
-     * Divides this unit into the smallest independent units.
-     *
-     * @return An immutable list of independent units.
-     */
-    fun subdivide(): List<GenerationUnit> {
-        return listOf(this)
-    }
 }

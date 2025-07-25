@@ -76,6 +76,20 @@ interface Task {
         fun executionType(type: ExecutionType): Builder
 
         /**
+         * Sets the execution type to [ExecutionType.ASYNCHRONOUS] for the task.
+         *
+         * @return This builder.
+         */
+        fun async(): Builder = executionType(ExecutionType.ASYNCHRONOUS)
+
+        /**
+         * Sets the execution type to [ExecutionType.SYNCHRONOUS] for the task.
+         *
+         * @return This builder.
+         */
+        fun sync(): Builder = executionType(ExecutionType.SYNCHRONOUS)
+
+        /**
          * Sets the initial execution delay for the task.
          *
          * This defines how long after the task's initial scheduling it will

@@ -1,11 +1,11 @@
 package net.aquamine.server.packet.`in`.play
 
+import net.aquamine.api.advancements.AdvancementAction
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.network.handlers.PlayPacketHandler
 import net.aquamine.server.packet.InboundPacket
 
-// TODO Add advancements into server api
 @JvmRecord
 data class PacketInAdvancementTab(
     val action: AdvancementAction,
@@ -25,9 +25,4 @@ data class PacketInAdvancementTab(
     override fun handle(handler: PlayPacketHandler) {
         handler.handleAdvancementTab(this)
     }
-
-    enum class AdvancementAction {
-        OPENED_TAB, CLOSED_SCREEN
-    }
-
 }

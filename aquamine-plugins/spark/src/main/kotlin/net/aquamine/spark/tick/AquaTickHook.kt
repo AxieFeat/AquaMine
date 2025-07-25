@@ -1,4 +1,4 @@
-package net.aquamine.spark
+package net.aquamine.spark.tick
 
 import me.lucko.spark.common.tick.AbstractTickHook
 import net.aquamine.api.Server
@@ -13,7 +13,7 @@ class AquaTickHook(
 
     override fun start() {
         this.task = server.scheduler
-            .buildTask { onTick() }
+            .buildTask(::onTick)
             .delay(TaskTime.ticks(1))
             .period(TaskTime.ticks(1))
             .schedule()

@@ -115,7 +115,7 @@ object GameRuleKeys {
     fun types(): Map<Key<*>, Type<*>> = GAME_RULE_TYPES
 
     @JvmStatic
-    fun getKey(id: String): Key<*> = KEYS_BY_NAME.get(id) ?: error("Cannot find game rule $id!")
+    fun getKey(id: String): Key<*> = KEYS_BY_NAME[id] ?: error("Cannot find game rule $id!")
 
     @JvmStatic
     fun visitTypes(visitor: TypeVisitor) {
@@ -133,7 +133,7 @@ object GameRuleKeys {
     @JvmStatic
     private fun <T : Value<T>> register(id: String, category: Category, type: Type<T>): Key<T> {
         val key = Key<T>(id, category)
-        KEYS_BY_NAME.put(id, key)
+        KEYS_BY_NAME[id] = key
         check(GAME_RULE_TYPES.put(key, type) == null) { "Duplicate game rule registration for $id!" }
         return key
     }
@@ -141,6 +141,6 @@ object GameRuleKeys {
     object Factory : GameRule.Factory {
 
         @Suppress("UNCHECKED_CAST")
-        override fun <V> of(name: String): GameRule<V> = KEYS_BY_NAME.get(name) as GameRule<V>
+        override fun <V> of(name: String): GameRule<V> = KEYS_BY_NAME[name] as GameRule<V>
     }
 }

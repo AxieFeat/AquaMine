@@ -31,7 +31,8 @@ interface PotionEffect {
     val duration: Int
 
     /**
-     * Is potion effect should produce more, translucent, particles?
+     * Is the effect spawned from a beacon?
+     * Ambient effects use a different icon in the HUD (blue border rather than gray).
      */
     val ambient: Boolean
 
