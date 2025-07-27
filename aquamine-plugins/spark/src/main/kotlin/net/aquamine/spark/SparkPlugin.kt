@@ -1,7 +1,6 @@
 package net.aquamine.spark
 
 import com.google.inject.Inject
-import com.google.inject.name.Named
 import me.lucko.spark.common.SparkPlatform
 import me.lucko.spark.common.SparkPlugin
 import me.lucko.spark.common.command.sender.CommandSender
@@ -20,7 +19,6 @@ import net.aquamine.api.command.CommandMeta
 import net.aquamine.api.event.Listener
 import net.aquamine.api.event.server.ServerStartEvent
 import net.aquamine.api.event.server.ServerStopEvent
-import net.aquamine.api.plugin.PluginContainer
 import net.aquamine.api.plugin.PluginDescription
 import net.aquamine.api.plugin.annotation.DataFolder
 import net.aquamine.spark.provider.AquaPlayerPingProvider
@@ -53,7 +51,7 @@ class SparkPlugin @Inject constructor(
 
         server.commandManager.register(
             SparkCommand(platform),
-            CommandMeta.builder("spark").build()
+            CommandMeta.builder(description.id).build()
         )
 
         this.platform.enable()

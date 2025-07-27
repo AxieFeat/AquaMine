@@ -4,11 +4,12 @@ package net.aquamine.api.util
  * Represents a three-dimensional
  * [Cardinal direction](https://en.wikipedia.org/wiki/Cardinal_direction).
  *
- * @property oppositeIndex The index of the opposite direction.
+ * @param oppositeIndex The index of the opposite direction.
  * @property axis The axis of this direction.
  * @property axisDirection The direction of the axis of this direction.
  * @property normal The normal of this direction.
  */
+@Suppress("UndocumentedPublicProperty")
 enum class Direction(
     private val oppositeIndex: Int,
     val axis: Axis,

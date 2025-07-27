@@ -13,6 +13,7 @@ import net.aquamine.api.registry.RegistryReference
  * @property item The mushroom item this mooshroom variant represents.
  * @property block The mushroom block this mooshroom variant represents.
  */
+@Suppress("UndocumentedPublicProperty")
 enum class MooshroomVariant(val item: RegistryReference<ItemType>, val block: RegistryReference<Block>) {
 
     BROWN(ItemTypes.BROWN_MUSHROOM, Blocks.BROWN_MUSHROOM_BLOCK),

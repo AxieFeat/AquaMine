@@ -3,6 +3,7 @@ package net.aquamine.api.entity.aquatic
 /**
  * A variant of a tropical fish.
  */
+@Suppress("UndocumentedPublicProperty")
 enum class TropicalFishVariant {
 
     KOB,

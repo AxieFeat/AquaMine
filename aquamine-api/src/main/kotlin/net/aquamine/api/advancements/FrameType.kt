@@ -15,7 +15,7 @@ enum class FrameType {
      * A square with a outward rounded edge on the top and bottom as the frame.
      */
     GOAL,
-    
+
     /**
      * A spike in all 8 directions as the frame.
      */

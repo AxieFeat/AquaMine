@@ -10,6 +10,7 @@ package net.aquamine.api.block.meta
  * the part connected to the ground, a middle, the section between the base
  * and the top, and the tip, the section at the top that ends the stalagmite.
  */
+@Suppress("UndocumentedPublicProperty")
 enum class DripstoneThickness {
 
     TIP_MERGE,

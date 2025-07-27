@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Contract
  * A potion effect, that can be applied to [net.aquamine.api.entity.LivingEntity].
  */
 @ImmutableType
-interface PotionEffect {
+interface PotionEffect : Buildable<PotionEffect, PotionEffect.Builder> {
 
     /**
      * Potion type of this effect.
@@ -250,7 +250,7 @@ interface PotionEffect {
         /**
          * Sets the icon status of [PotionEffect] being built.
          *
-         * @param particles The icon status.
+         * @param icon The icon status.
          *
          * @return This builder.
          */

@@ -44,4 +44,5 @@ inline fun advancement(key: Key, builder: Advancement.Builder.() -> Unit): Advan
 @AdvancementDsl
 @JvmSynthetic
 @Contract("_, _ -> new", pure = true)
-inline fun advancement(key: Key, root: Advancement, builder: Advancement.Builder.() -> Unit): Advancement = Advancement.builder().key(key).root(root).apply(builder).build()
+inline fun advancement(key: Key, root: Advancement, builder: Advancement.Builder.() -> Unit): Advancement =
+    Advancement.builder().key(key).root(root).apply(builder).build()

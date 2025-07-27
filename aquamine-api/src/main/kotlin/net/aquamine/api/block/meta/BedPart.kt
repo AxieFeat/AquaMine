@@ -8,6 +8,7 @@ package net.aquamine.api.block.meta
  * head is when the player lays down in the bed. The foot is the other end,
  * where the player's feet are when laying down.
  */
+@Suppress("UndocumentedPublicProperty")
 enum class BedPart {
 
     HEAD,

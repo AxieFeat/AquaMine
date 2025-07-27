@@ -5,6 +5,7 @@ package net.aquamine.api.entity
  *
  * @property type The type of equipment that this slot is for.
  */
+@Suppress("UndocumentedPublicProperty")
 enum class EquipmentSlot(val type: Type) {
 
     MAIN_HAND(Type.HAND),

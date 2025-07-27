@@ -8,6 +8,7 @@ import net.kyori.adventure.text.format.NamedTextColor
  *
  * @property color The colour the lore text will appear.
  */
+@Suppress("UndocumentedPublicProperty")
 enum class ItemRarity(val color: NamedTextColor) {
 
     COMMON(NamedTextColor.WHITE),

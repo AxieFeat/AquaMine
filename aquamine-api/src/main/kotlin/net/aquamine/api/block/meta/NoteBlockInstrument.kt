@@ -11,6 +11,7 @@ import net.aquamine.api.registry.RegistryReference
  * @param sound The corresponding sound event that will be played when note blocks with this instrument are interacted with.
  * @param type The type of instrument this instrument is.
  */
+@Suppress("UndocumentedPublicProperty")
 enum class NoteBlockInstrument(
     val sound: RegistryReference<SoundEvent>,
     val type: Type

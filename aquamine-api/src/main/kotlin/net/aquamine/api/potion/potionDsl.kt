@@ -28,4 +28,5 @@ inline fun potionEffect(builder: PotionEffect.Builder.() -> Unit): PotionEffect 
 @PotionDsl
 @JvmSynthetic
 @Contract("_, _ -> new", pure = true)
-inline fun potionEffect(type: PotionType, builder: PotionEffect.Builder.() -> Unit): PotionEffect = PotionEffect.builder().type(type).apply(builder).build()
+inline fun potionEffect(type: PotionType, builder: PotionEffect.Builder.() -> Unit): PotionEffect =
+    PotionEffect.builder().type(type).apply(builder).build()

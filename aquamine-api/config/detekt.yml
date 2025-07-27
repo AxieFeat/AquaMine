@@ -4,6 +4,7 @@ comments:
     active: true
     excludes: ["**/test/**"]
     ignoreAnnotated: ["ApiStatus.Internal"]
+    ignoreDefaultCompanionObject: true
   UndocumentedPublicFunction:
     active: true
     excludes: ["**/test/**"]

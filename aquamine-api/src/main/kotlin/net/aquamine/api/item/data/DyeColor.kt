@@ -11,7 +11,7 @@ import net.kyori.adventure.text.format.TextColor
  * @param fireworkColor The firework color of the dye color.
  * @param textColor The text colour of the dye colour.
  */
-@Suppress("MagicNumber")
+@Suppress("MagicNumber", "UndocumentedPublicProperty")
 enum class DyeColor(val color: Color, val fireworkColor: Color, val textColor: TextColor) {
 
     WHITE(Color(0xFFFFFF), Color(0xF0F0F0), NamedTextColor.WHITE),

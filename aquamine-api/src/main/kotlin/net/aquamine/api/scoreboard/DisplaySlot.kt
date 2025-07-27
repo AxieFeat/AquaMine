@@ -8,6 +8,7 @@ import net.kyori.adventure.text.format.NamedTextColor
  * @param teamColor The team color associated with this slot, or null if this
  * slot is not associated with a team color.
  */
+@Suppress("UndocumentedPublicProperty")
 enum class DisplaySlot(val teamColor: NamedTextColor?) {
 
     LIST(null),

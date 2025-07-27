@@ -1,5 +1,8 @@
 package net.aquamine.api.world.generator
 
+/**
+ * Represents world generator.
+ */
 fun interface Generator {
 
     /**

@@ -3,6 +3,7 @@ package net.aquamine.api.entity.animal.type
 /**
  * A variant of an axolotl.
  */
+@Suppress("UndocumentedPublicProperty")
 enum class AxolotlVariant {
 
     LUCY,

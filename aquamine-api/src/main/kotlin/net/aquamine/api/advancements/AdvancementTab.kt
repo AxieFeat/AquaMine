@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Contract
 /**
  * Represents some tab with advancement in the advancement menu.
  */
-interface AdvancementTab {
+interface AdvancementTab : Buildable<AdvancementTab, AdvancementTab.Builder> {
 
     /**
      * Path to advancements background on a minecraft client.
@@ -24,6 +24,9 @@ interface AdvancementTab {
      */
     var advancements: Advancement
 
+    /**
+     * For building new [AdvancementTab]s.
+     */
     @AdvancementDsl
     interface Builder : Buildable.Builder<AdvancementTab> {
 
@@ -41,7 +44,7 @@ interface AdvancementTab {
         /**
          * Sets the advancements of the [AdvancementTab] being built.
          *
-         * @param background The advancements of the advancement tab.
+         * @param advancements The advancements of the advancement tab.
          *
          * @return This builder.
          */

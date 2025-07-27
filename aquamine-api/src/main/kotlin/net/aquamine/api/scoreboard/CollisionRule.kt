@@ -3,6 +3,7 @@ package net.aquamine.api.scoreboard
 /**
  * A rule for collision between members of a team.
  */
+@Suppress("UndocumentedPublicProperty")
 enum class CollisionRule {
 
     ALWAYS,

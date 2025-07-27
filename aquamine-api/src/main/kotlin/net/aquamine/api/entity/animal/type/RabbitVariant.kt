@@ -3,6 +3,7 @@ package net.aquamine.api.entity.animal.type
 /**
  * A variant of rabbit.
  */
+@Suppress("UndocumentedPublicProperty")
 enum class RabbitVariant {
 
     BROWN,

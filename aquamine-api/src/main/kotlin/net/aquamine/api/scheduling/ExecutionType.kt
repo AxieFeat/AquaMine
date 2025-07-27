@@ -8,6 +8,7 @@ package net.aquamine.api.scheduling
  * asynchronously. If you are unsure, don't set the type when building a task,
  * and the implementation will decide which to use.
  */
+@Suppress("UndocumentedPublicProperty")
 enum class ExecutionType {
 
     SYNCHRONOUS,

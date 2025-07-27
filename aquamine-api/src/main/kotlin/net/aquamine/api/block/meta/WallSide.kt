@@ -5,6 +5,7 @@ package net.aquamine.api.block.meta
  * wall or block on one of its faces.
  */
 // TODO: Find out what low and tall are
+@Suppress("UndocumentedPublicProperty")
 enum class WallSide {
 
     /**

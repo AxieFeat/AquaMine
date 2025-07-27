@@ -50,13 +50,24 @@ data class AquaPotionEffect(
         return AquaPotionEffect(type, amplifier, duration, flags)
     }
 
+    override fun toBuilder(): PotionEffect.Builder {
+        return Builder(this)
+    }
+
     // TODO: ambient, particles and icon functions
-    class Builder : PotionEffect.Builder {
+    class Builder() : PotionEffect.Builder {
 
         private var type: AquaPotionType = PotionTypes.MOVEMENT_SPEED.get().downcast()
         private var amplifier: Int = 1
         private var duration: Int = 1
         private var flags: Byte = 0
+
+        constructor(potionEffect: AquaPotionEffect) : this() {
+            type = potionEffect.type
+            amplifier = potionEffect.amplifier
+            duration = potionEffect.duration
+            flags = potionEffect.flags
+        }
 
         override fun type(type: PotionType): Builder = apply { this.type = type.downcast() }
 

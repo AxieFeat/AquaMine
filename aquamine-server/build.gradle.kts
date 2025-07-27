@@ -3,7 +3,7 @@ import org.gradle.kotlin.dsl.withType
 
 plugins {
     id("io.gitlab.arturbosch.detekt")
-    id("com.github.johnrengelman.shadow")
+    id("com.gradleup.shadow")
 }
 
 dependencies {
@@ -23,11 +23,7 @@ dependencies {
     api(libs.reflections)
     api(libs.clikt)
 
-    api(libs.configurate.core)
-    api(libs.configurate.extraKotlin)
-    api(libs.configurate.gson)
-    api(libs.configurate.hocon)
-    api(libs.configurate.yaml)
+    api(libs.bundles.configurate)
 
     api(libs.kotlinx.coroutines)
     api(libs.kotlinx.collections)
@@ -35,15 +31,9 @@ dependencies {
     api(libs.log4j.api)
     api(libs.log4j.core)
 
-    api(libs.serialization)
-    api(libs.serialization.gson)
-    api(libs.serialization.nbt)
+    api(libs.bundles.serialization)
 
-    api(libs.adventure.serializer.gson)
-    api(libs.adventure.serializer.plain)
-    api(libs.adventure.serializer.legacy)
-    api(libs.adventure.serializer.configurate)
-    api(libs.adventure.minimessage)
+    api(libs.bundles.adventure)
 }
 
 tasks.withType<ShadowJar> {

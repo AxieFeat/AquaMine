@@ -12,7 +12,7 @@ kotlinGuice = "3.0.0"
 kotlinpoet = "2.2.0"
 ksp = "2.1.21-2.0.1"
 detekt = "1.23.8"
-shadow = "8.1.1"
+shadow = "9.0.0-rc2"
 serialization = "1.0"
 fastutil = "8.5.15"
 log4j = "2.24.3"
@@ -80,4 +80,30 @@ serialization-nbt = { group = "com.github.AxieFeat.serialization", name = "seria
 plugin-kotlin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 plugin-detekt = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
 plugin-ksp = { group = "com.google.devtools.ksp", name = "symbol-processing-gradle-plugin", version.ref = "ksp" }
-plugin-shadow = { group = "com.github.johnrengelman.shadow", name = "com.github.johnrengelman.shadow.gradle.plugin", version.ref = "shadow" }
+plugin-shadow = { group = "com.gradleup.shadow", name = "com.gradleup.shadow.gradle.plugin", version.ref = "shadow" }
+
+[bundles]
+
+adventure = [
+    "adventure-api",
+    "adventure-extraKotlin",
+    "adventure-minimessage",
+    "adventure-serializer-gson",
+    "adventure-serializer-legacy",
+    "adventure-serializer-plain",
+    "adventure-serializer-configurate"
+]
+
+configurate = [
+    "configurate-core",
+    "configurate-gson",
+    "configurate-hocon",
+    "configurate-yaml",
+    "configurate-extraKotlin"
+]
+
+serialization = [
+    "serialization",
+    "serialization-gson",
+    "serialization-nbt"
+]

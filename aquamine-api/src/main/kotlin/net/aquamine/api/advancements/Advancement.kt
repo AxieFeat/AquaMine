@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Contract
 /**
  * Represents an advancement located in an [AdvancementTab].
  */
-interface Advancement : Keyed {
+interface Advancement : Buildable<Advancement, Advancement.Builder>, Keyed {
 
     /**
      * Root advancement. If not exist return current instance.
@@ -61,6 +61,9 @@ interface Advancement : Keyed {
      */
     var hidden: Boolean
 
+    /**
+     * For building new [Advancement]s.
+     */
     @AdvancementDsl
     interface Builder : Buildable.Builder<Advancement> {
 
@@ -84,7 +87,7 @@ interface Advancement : Keyed {
          */
         @AdvancementDsl
         @Contract("_ -> this", mutates = "this")
-        fun root(advancement: Advancement): Builder
+        fun root(root: Advancement): Builder
 
         /**
          * Sets the title of the [Advancement] being built.
@@ -139,7 +142,7 @@ interface Advancement : Keyed {
          */
         @AdvancementDsl
         @Contract("_ -> this", mutates = "this")
-        fun x(x: Float): Builder
+        fun setX(x: Float): Builder
 
         /**
          * Sets the y position of the [Advancement] being built.
@@ -150,7 +153,7 @@ interface Advancement : Keyed {
          */
         @AdvancementDsl
         @Contract("_ -> this", mutates = "this")
-        fun y(x: Float): Builder
+        fun setY(y: Float): Builder
 
         /**
          * Sets the x and y position of the [Advancement] being built.
@@ -162,7 +165,7 @@ interface Advancement : Keyed {
          */
         @AdvancementDsl
         @Contract("_ -> this", mutates = "this")
-        fun xy(x: Float, y: Float): Builder = x(x).also { y(y) }
+        fun xy(x: Float, y: Float): Builder = setX(x).also { setY(y) }
 
         /**
          * Sets the toast status of [Advancement] being built.
@@ -178,7 +181,7 @@ interface Advancement : Keyed {
         /**
          * Sets the hidden status of [Advancement] being built.
          *
-         * @param toast The hidden status.
+         * @param hidden The hidden status.
          *
          * @return This builder.
          */
@@ -235,5 +238,4 @@ interface Advancement : Keyed {
             return AquaMine.factory<Factory>().builder().key(key).root(root)
         }
     }
-
 }

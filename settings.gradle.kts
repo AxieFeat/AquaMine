@@ -4,10 +4,7 @@ rootProject.name = "AquaMine"
 
 dependencyResolutionManagement {
     repositories {
-        mavenLocal()
         mavenCentral()
-        maven("https://oss.sonatype.org/content/groups/public/")
-        maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
         maven("https://jitpack.io")
         maven("https://libraries.minecraft.net")
     }
@@ -22,8 +19,8 @@ pluginManagement {
     includeBuild("build-logic")
 
     repositories {
-        maven("https://repo.spongepowered.org/repository/maven-public/")
         gradlePluginPortal()
+        maven("https://repo.spongepowered.org/repository/maven-public/")
     }
 }
 
@@ -37,7 +34,6 @@ project("annotations")
 project("annotation-processor")
 project("plugin-annotation-processor")
 project("generator")
-project("demo")
 
 project("plugins")
 

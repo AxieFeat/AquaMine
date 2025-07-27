@@ -5,8 +5,10 @@ plugins {
 allprojects {
     apply(plugin = "aquamine.common")
 
-    group = "net.aquamine"
-    version = "1.0"
-    description = "Minecraft server implementation based on KryptonMC (AquaMine)"
-
+    group = rootProject.findProperty("group") ?: throw IllegalStateException("Project group not specified")
+    version = rootProject.findProperty("version") ?: throw IllegalStateException("Project version not specified")
+    description = rootProject.findProperty("description") as? String ?: run {
+        logger.warn("Project description not found, fallback to empty string.")
+        return@run ""
+    }
 }

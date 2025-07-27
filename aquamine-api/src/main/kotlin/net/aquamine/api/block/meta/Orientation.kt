@@ -9,6 +9,7 @@ import net.aquamine.api.util.Direction
  * @property top The top part of the direction.
  * @property front The front part of the direction.
  */
+@Suppress("UndocumentedPublicProperty")
 enum class Orientation(val top: Direction, val front: Direction) {
 
     UP_NORTH(Direction.UP, Direction.NORTH),

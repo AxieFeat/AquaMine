@@ -13,6 +13,7 @@ package net.aquamine.api.block.meta
  * * Corner, which will change the Minecart's orientation by 90 degrees,
  *   either clockwise or anticlockwise, depending on the direction change.
  */
+@Suppress("UndocumentedPublicProperty")
 enum class RailShape {
 
     NORTH_SOUTH,

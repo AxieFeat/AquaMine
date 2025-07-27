@@ -5,6 +5,7 @@ package net.aquamine.api.block.meta
  * currently in.
  */
 // TODO: Find out about sculk sensor phases
+@Suppress("UndocumentedPublicProperty")
 enum class SculkSensorPhase {
 
     INACTIVE,

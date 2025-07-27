@@ -4,27 +4,15 @@ plugins {
     `maven-publish`
 }
 
+val java = rootProject.findProperty("javaVersion").toString().toIntOrNull()
+    ?: throw IllegalStateException("Java version not specified")
+
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion.set(JavaLanguageVersion.of(java))
     }
 }
 
 kotlin {
-    jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
-    }
-}
-
-publishing {
-    publications {
-        // TODO
-        create<MavenPublication>("maven") {
-            groupId = "net.aquamine"
-            artifactId = project.name
-            version = "1.0"
-
-            from(components["kotlin"])
-        }
-    }
+    jvmToolchain(java)
 }

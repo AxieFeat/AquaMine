@@ -3,6 +3,7 @@ package net.aquamine.api.entity.animal.type
 /**
  * A variant of a cat.
  */
+@Suppress("UndocumentedPublicProperty")
 enum class CatVariant {
 
     TABBY,

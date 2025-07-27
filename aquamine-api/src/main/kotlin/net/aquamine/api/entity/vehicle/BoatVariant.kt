@@ -9,6 +9,7 @@ import net.aquamine.api.registry.RegistryReference
  *
  * @property planks The type of planks the boat is made out of.
  */
+@Suppress("UndocumentedPublicProperty")
 enum class BoatVariant(val planks: RegistryReference<Block>) {
 
     OAK(Blocks.OAK_PLANKS),

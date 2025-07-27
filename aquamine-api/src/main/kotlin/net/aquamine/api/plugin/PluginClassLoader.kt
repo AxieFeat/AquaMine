@@ -13,8 +13,18 @@ class PluginClassLoader(vararg urls: URL) : URLClassLoader(urls) {
 
     constructor(path: Path) : this(path.toUri().toURL())
 
+    /**
+     * Adds current instance to an array of all loaders.
+     *
+     * @return Current instance of [PluginClassLoader].
+     */
     fun addToLoaders(): PluginClassLoader = apply { loaders.add(this) }
 
+    /**
+     * Add some path to classloader.
+     *
+     * @param path Path to add.
+     */
     fun addPath(path: Path) {
         addURL(path.toUri().toURL())
     }
@@ -26,6 +36,7 @@ class PluginClassLoader(vararg urls: URL) : URLClassLoader(urls) {
 
     override fun loadClass(name: String, resolve: Boolean): Class<*> = loadClass0(name, resolve, true)
 
+    @Suppress("LabeledExpression")
     private fun loadClass0(name: String, resolve: Boolean, checkOther: Boolean): Class<*> {
         try {
             return super.loadClass(name, resolve)

@@ -3,7 +3,27 @@ package net.aquamine.api.state
 import net.aquamine.api.block.Blocks
 import net.aquamine.annotations.Catalogue
 import net.aquamine.api.AquaMine
-import net.aquamine.api.block.meta.*
+import net.aquamine.api.block.meta.AttachFace
+import net.aquamine.api.block.meta.BambooLeaves
+import net.aquamine.api.block.meta.BedPart
+import net.aquamine.api.block.meta.BellAttachment
+import net.aquamine.api.block.meta.ChestType
+import net.aquamine.api.block.meta.ComparatorMode
+import net.aquamine.api.block.meta.DoorHingeSide
+import net.aquamine.api.block.meta.DoubleBlockHalf
+import net.aquamine.api.block.meta.DripstoneThickness
+import net.aquamine.api.block.meta.Half
+import net.aquamine.api.block.meta.NoteBlockInstrument
+import net.aquamine.api.block.meta.Orientation
+import net.aquamine.api.block.meta.PistonType
+import net.aquamine.api.block.meta.RailShape
+import net.aquamine.api.block.meta.RedstoneSide
+import net.aquamine.api.block.meta.SculkSensorPhase
+import net.aquamine.api.block.meta.SlabType
+import net.aquamine.api.block.meta.StairShape
+import net.aquamine.api.block.meta.StructureMode
+import net.aquamine.api.block.meta.Tilt
+import net.aquamine.api.block.meta.WallSide
 import net.aquamine.api.util.Direction
 
 /**

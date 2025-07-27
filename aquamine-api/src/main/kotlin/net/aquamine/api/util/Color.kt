@@ -11,7 +11,14 @@ import kotlin.math.floor
  * @property green The green component.
  * @property blue The blue component.
  */
+@Suppress("MagicNumber")
 data class Color(val red: Int, val green: Int, val blue: Int) : RGBLike {
+
+    init {
+        require(!(red < 0 || red > 255)) { "Red component must be between 0 and 255!" }
+        require(!(green < 0 || green > 255)) { "Green component must be between 0 and 255!" }
+        require(!(blue < 0 || blue > 255)) { "Blue component must be between 0 and 255!" }
+    }
 
     /**
      * Creates a new color from the given encoded RGB value.
@@ -67,12 +74,19 @@ data class Color(val red: Int, val green: Int, val blue: Int) : RGBLike {
         return Color(this.red, this.green, blue)
     }
 
-    init {
-        require(!(red < 0 || red > 255)) { "Red component must be between 0 and 255!" }
-        require(!(green < 0 || green > 255)) { "Green component must be between 0 and 255!" }
-        require(!(blue < 0 || blue > 255)) { "Blue component must be between 0 and 255!" }
+    override fun red(): Int {
+        return red
     }
 
+    override fun green(): Int {
+        return green
+    }
+
+    override fun blue(): Int {
+        return blue
+    }
+
+    @Suppress("UndocumentedPublicProperty")
     companion object {
         val BLACK: Color = Color(0, 0, 0)
         val WHITE: Color = Color(255, 255, 255)
@@ -127,17 +141,5 @@ data class Color(val red: Int, val green: Int, val blue: Int) : RGBLike {
         fun fromHsv(hsv: HSVLike): Color {
             return fromHsv(hsv.h(), hsv.s(), hsv.v())
         }
-    }
-
-    override fun red(): Int {
-        return red
-    }
-
-    override fun green(): Int {
-        return green
-    }
-
-    override fun blue(): Int {
-        return blue
     }
 }

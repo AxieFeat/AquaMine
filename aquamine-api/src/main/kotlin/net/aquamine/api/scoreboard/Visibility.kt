@@ -3,6 +3,7 @@ package net.aquamine.api.scoreboard
 /**
  * A visibility for a team option, such as for name tag visibility.
  */
+@Suppress("UndocumentedPublicProperty")
 enum class Visibility {
 
     ALWAYS,
