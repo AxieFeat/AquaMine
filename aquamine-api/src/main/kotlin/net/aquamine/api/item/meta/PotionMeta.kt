@@ -9,13 +9,13 @@ import org.jetbrains.annotations.Contract
  */
 // TODO Add some fields for potion meta
 @ImmutableType
-interface PotionMeta : BookMeta<PotionMeta.Builder, PotionMeta> {
+interface PotionMeta : ScopedItemMeta<PotionMeta.Builder, PotionMeta> {
 
     /**
      * A builder for building potion effect metadata.
      */
     @MetaDsl
-    interface Builder : BookMeta.Builder<Builder, PotionMeta>
+    interface Builder : ItemMetaBuilder<Builder, PotionMeta>
 
     companion object {
 
