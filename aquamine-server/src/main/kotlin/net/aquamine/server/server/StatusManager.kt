@@ -6,7 +6,7 @@ import net.aquamine.server.util.math.Maths
 import net.aquamine.server.util.random.RandomSource
 import kotlin.math.min
 
-class StatusManager(private val playerManager: PlayerManager, motd: Component, maxPlayers: Int) {
+class StatusManager(private val playerManager: PlayerManager, val motd: Component, val maxPlayers: Int) {
 
     private val random = RandomSource.create()
     private val status = ServerStatus(motd, ServerStatus.Players(maxPlayers, playerManager.players().size), null)
@@ -15,6 +15,8 @@ class StatusManager(private val playerManager: PlayerManager, motd: Component, m
     private var lastStatus = 0L
 
     fun status(): ServerStatus = status
+
+    fun status(online: Int): ServerStatus = ServerStatus(motd, ServerStatus.Players(maxPlayers, online), null)
 
     fun tick(time: Long) {
         if (statusInvalidated && time - statusInvalidatedTime > WAIT_AFTER_INVALID_STATUS_TIME || time - lastStatus >= UPDATE_STATUS_INTERVAL) {

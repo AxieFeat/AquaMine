@@ -14,6 +14,7 @@ import net.aquamine.server.event.AquaGlobalEventNode
 import net.aquamine.server.event.server.AquaServerStartEvent
 import net.aquamine.server.event.server.AquaServerStopEvent
 import net.aquamine.server.network.PacketFraming
+import net.aquamine.server.network.socket.MultiNetworkServer
 import net.aquamine.server.network.socket.NetworkServer
 import net.aquamine.server.packet.PacketRegistry
 import net.aquamine.server.plugin.AquaPluginManager
@@ -43,7 +44,7 @@ import kotlin.math.max
 
 class AquaServer(override val config: AquaConfig, val profileCache: GameProfileCache, initContext: InitContext) : BaseServer {
 
-    private val networkServer = NetworkServer(this)
+    private val networkServer = MultiNetworkServer(this)
     override val playerManager: PlayerManager = PlayerManager(this, initContext.playerDataSerializer, initContext.statisticsSerializer)
     val statusManager: StatusManager = StatusManager(playerManager, config.status.motd, config.status.maxPlayers)
 
@@ -121,7 +122,10 @@ class AquaServer(override val config: AquaConfig, val profileCache: GameProfileC
         // Try binding to the port and start accepting connections
         LOGGER.debug("Starting Network Server...")
         try {
-            networkServer.initialize(bindAddress)
+            networkServer.initialize(
+                bindAddress,
+                InetSocketAddress(InetAddress.getByName(config.server.ip), 25566)
+            )
         } catch (exception: IOException) {
             LOGGER.error("FAILED TO BIND TO PORT ${config.server.port}!", exception)
             return false

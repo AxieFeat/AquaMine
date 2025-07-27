@@ -7,6 +7,7 @@ import net.aquamine.server.network.handlers.HandshakePacketHandler
 import net.aquamine.server.network.handlers.PacketHandler
 import net.aquamine.server.network.handlers.TickablePacketHandler
 import net.aquamine.server.network.interceptor.PacketInterceptorRegistry
+import net.aquamine.server.network.socket.NetworkServer
 import net.aquamine.server.network.socket.NetworkWorker
 import net.aquamine.server.packet.CachedPacket
 import net.aquamine.server.packet.FramedPacket
@@ -136,7 +137,7 @@ class NioConnection(
     private fun processPacket(packetId: Int, buffer: ByteBuffer): InboundPacket<*>? {
         val packet = getInboundPacket(packetId, buffer) ?: return null
         try {
-            handleCap(packet, handler)
+            handleCap(worker.networkServer, packet, handler)
         } catch (_: ClassCastException) {
             // We could possibly throw and catch a different exception, however it's cleaner in the client code if we just try to do a generic
             // cast to the handler type and catch that if it fails.
@@ -347,9 +348,10 @@ class NioConnection(
         private val INVALID_PACKET = Component.translatable("multiplayer.disconnect.invalid_packet")
 
         @JvmStatic
-        private fun <H : PacketHandler> handleCap(packet: InboundPacket<H>, handler: PacketHandler) {
+        private fun <H : PacketHandler> handleCap(server: NetworkServer, packet: InboundPacket<H>, handler: PacketHandler) {
             @Suppress("UNCHECKED_CAST")
             packet.handle(handler as H)
+            packet.handle(handler, server)
         }
 
         @JvmStatic

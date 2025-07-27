@@ -19,11 +19,11 @@ import java.util.concurrent.atomic.AtomicInteger
 
 class NetworkWorker(
     private val server: AquaServer,
-    private val networkServer: NetworkServer
+    val networkServer: NetworkServer
 ) : Thread("AquaMine Network Worker ${COUNTER.getAndIncrement()}") {
 
     val selector: Selector = Selector.open()
-    private val connections = ConcurrentHashMap<SocketChannel, NioConnection>()
+    val connections = ConcurrentHashMap<SocketChannel, NioConnection>()
     private val queue = MpscUnboundedXaddArrayQueue<Runnable>(1024)
 
     override fun run() {

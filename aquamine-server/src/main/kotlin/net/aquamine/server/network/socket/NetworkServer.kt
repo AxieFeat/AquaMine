@@ -12,6 +12,7 @@ import java.nio.channels.SelectionKey
 import java.nio.channels.Selector
 import java.nio.channels.ServerSocketChannel
 import java.nio.file.Files
+import java.util.concurrent.atomic.AtomicInteger
 
 class NetworkServer(private val server: AquaServer) {
 
@@ -26,6 +27,9 @@ class NetworkServer(private val server: AquaServer) {
     private var socketAddress: SocketAddress? = null
     private var address: String? = null
     private var port = 0
+
+    val connectionsCount: Int
+        get() = workers.sumOf { it.connections.size }
 
     fun initialize(address: SocketAddress) {
         val family = when (address) {
@@ -71,7 +75,7 @@ class NetworkServer(private val server: AquaServer) {
                     LOGGER.error("Error while selecting!", exception)
                 }
             }
-        }, "AquaMine Network Boss").start()
+        }, "AquaMine Network Boss ${COUNTER.getAndIncrement()}").start()
     }
 
     fun isOpen(): Boolean = !stopped
@@ -97,12 +101,14 @@ class NetworkServer(private val server: AquaServer) {
     companion object {
 
         private val LOGGER = LogManager.getLogger()
-        private val WORKER_COUNT = Integer.getInteger("aquamine.network.workers", Runtime.getRuntime().availableProcessors())
+        private val WORKER_COUNT = Integer.getInteger("aquamine.network.workers", 4)
         @JvmField
         val MAX_PACKET_SIZE: Int = Integer.getInteger("aquamine.network.max-packet-size", 2_097_152) // Max that can be written in a 3-byte var int
         @JvmField
         val SOCKET_SEND_BUFFER_SIZE: Int = Integer.getInteger("aquamine.network.send-buffer-size", 262_143)
         @JvmField
         val SOCKET_RECEIVE_BUFFER_SIZE: Int = Integer.getInteger("aquamine.network.receive-buffer-size", 32_767)
+
+        private val COUNTER = AtomicInteger()
     }
 }

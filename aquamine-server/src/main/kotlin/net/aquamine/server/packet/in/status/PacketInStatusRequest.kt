@@ -2,6 +2,7 @@ package net.aquamine.server.packet.`in`.status
 
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.network.handlers.StatusPacketHandler
+import net.aquamine.server.network.socket.NetworkServer
 import net.aquamine.server.packet.InboundPacket
 
 /**
@@ -14,6 +15,10 @@ object PacketInStatusRequest : InboundPacket<StatusPacketHandler> {
     }
 
     override fun handle(handler: StatusPacketHandler) {
-        handler.handleStatusRequest()
+
+    }
+
+    override fun handle(handler: StatusPacketHandler, server: NetworkServer) {
+        handler.handleStatusRequest(server)
     }
 }

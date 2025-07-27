@@ -6,6 +6,7 @@ import net.aquamine.server.packet.`in`.status.PacketInPingRequest
 import net.aquamine.server.packet.out.status.PacketOutPingResponse
 import net.aquamine.server.packet.out.status.PacketOutStatusResponse
 import net.aquamine.server.network.NioConnection
+import net.aquamine.server.network.socket.NetworkServer
 import net.aquamine.server.packet.out.login.PacketOutLoginDisconnect
 
 /**
@@ -22,13 +23,13 @@ class StatusPacketHandler(private val server: AquaServer, private val connection
 
     private var requestedStatus = false
 
-    fun handleStatusRequest() {
+    fun handleStatusRequest(networkServer: NetworkServer) {
         if (requestedStatus) {
             disconnect()
             return
         }
         requestedStatus = true
-        connection.send(PacketOutStatusResponse.create(server.statusManager.status()))
+        connection.send(PacketOutStatusResponse.create(server.statusManager.status(networkServer.connectionsCount - 1)))
     }
 
     fun handlePing(packet: PacketInPingRequest) {
