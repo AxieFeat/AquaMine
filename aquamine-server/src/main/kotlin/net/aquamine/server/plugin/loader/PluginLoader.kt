@@ -10,9 +10,6 @@ import net.aquamine.server.AquaServer
 import net.aquamine.server.plugin.AquaPluginManager
 import net.aquamine.server.plugin.PluginDependencies
 import net.aquamine.server.plugin.module.GlobalModule
-import net.aquamine.server.plugin.server.ClasspathModuleDiscoverer
-import net.aquamine.server.plugin.server.ServerModules
-import net.aquamine.server.plugin.server.ServerPluginSource
 import java.nio.file.Files
 import java.nio.file.Path
 
@@ -84,7 +81,6 @@ class PluginLoader(private val pluginManager: AquaPluginManager, private val sou
         @JvmStatic
         fun createDefault(server: AquaServer): PluginLoader {
             val sources = ArrayList<PluginSource>()
-            createModulesSource(ServerModules.createDefault(server.config.modules.enabled), Path.of("modules"))?.let { sources.add(it) }
             createPluginsSource(Path.of("plugins"))?.let { sources.add(it) }
             return PluginLoader(server.pluginManager, sources)
         }
@@ -104,23 +100,6 @@ class PluginLoader(private val pluginManager: AquaPluginManager, private val sou
                 return null
             }
             return JarPluginSource(path)
-        }
-
-        @JvmStatic
-        private fun createModulesSource(modules: ServerModules, path: Path): ServerPluginSource? {
-            if (!Files.exists(path)) {
-                try {
-                    Files.createDirectory(path)
-                } catch (exception: Exception) {
-                    LOGGER.warn("Failed to create the modules directory! Modules will not be loaded!", exception)
-                    return null
-                }
-            }
-            if (!Files.isDirectory(path)) {
-                LOGGER.warn("Modules path $path is not a directory! Modules will not be loaded!")
-                return null
-            }
-            return ServerPluginSource(ClasspathModuleDiscoverer.createDefault(), path, modules)
         }
     }
 }

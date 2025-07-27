@@ -96,5 +96,4 @@ data class AquaPotionEffect(
         const val ICON_FLAG: Byte = 0x04
 
     }
-
 }

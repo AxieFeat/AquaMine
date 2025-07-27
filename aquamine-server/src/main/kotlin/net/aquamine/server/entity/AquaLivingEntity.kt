@@ -12,7 +12,13 @@ import net.aquamine.api.potion.PotionType
 import net.aquamine.api.util.Vec3i
 import net.aquamine.api.world.Difficulty
 import net.aquamine.server.entity.ai.memory.Brain
-import net.aquamine.server.entity.attribute.*
+import net.aquamine.server.entity.attribute.AquaAttribute
+import net.aquamine.server.entity.attribute.AquaAttributeType
+import net.aquamine.server.entity.attribute.AquaAttributeTypes
+import net.aquamine.server.entity.attribute.AttributeMap
+import net.aquamine.server.entity.attribute.AttributeSupplier
+import net.aquamine.server.entity.attribute.DefaultAttributes
+import net.aquamine.server.entity.attribute.downcast
 import net.aquamine.server.entity.components.AquaEquipable
 import net.aquamine.server.entity.metadata.MetadataKeys
 import net.aquamine.server.entity.player.AquaPlayer
@@ -29,7 +35,6 @@ import net.aquamine.server.potion.downcast
 import net.aquamine.server.ticking.TickSchedulerThread
 import net.aquamine.server.world.AquaWorld
 
-@Suppress("LeakingThis")
 abstract class AquaLivingEntity(world: AquaWorld) : AquaEntity(world), LivingEntity, AquaEquipable {
 
     abstract override val type: AquaEntityType<AquaLivingEntity>
@@ -48,14 +53,13 @@ abstract class AquaLivingEntity(world: AquaWorld) : AquaEntity(world), LivingEnt
     open val brain: Brain = Brain()
     private var headYaw = position.yaw
 
-    @Suppress("MemberVisibilityCanBePrivate")
     var lastHurtByMob: AquaLivingEntity? = null
         set(value) {
             field = value
             lastHurtByMobTime = tickCount
         }
     private var lastHurtByMobTime = 0
-    @Suppress("MemberVisibilityCanBePrivate")
+
     var lastHurtByPlayer: AquaPlayer? = null
         set(value) {
             field = value

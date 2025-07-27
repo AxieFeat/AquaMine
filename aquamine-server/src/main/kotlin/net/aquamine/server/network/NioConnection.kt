@@ -8,7 +8,13 @@ import net.aquamine.server.network.handlers.PacketHandler
 import net.aquamine.server.network.handlers.TickablePacketHandler
 import net.aquamine.server.network.interceptor.PacketInterceptorRegistry
 import net.aquamine.server.network.socket.NetworkWorker
-import net.aquamine.server.packet.*
+import net.aquamine.server.packet.CachedPacket
+import net.aquamine.server.packet.FramedPacket
+import net.aquamine.server.packet.GenericPacket
+import net.aquamine.server.packet.InboundPacket
+import net.aquamine.server.packet.Packet
+import net.aquamine.server.packet.PacketRegistry
+import net.aquamine.server.packet.PacketState
 import net.aquamine.server.packet.out.login.PacketOutSetCompression
 import net.aquamine.server.packet.out.play.PacketOutDisconnect
 import net.aquamine.server.util.ObjectPool
@@ -137,7 +143,8 @@ class NioConnection(
             LOGGER.error("Received invalid packet from ${connectAddress()}!")
             disconnect(INVALID_PACKET)
         } catch (throwable: Throwable) {
-            throwable.printStackTrace()
+            LOGGER.error("Error while handle connection", throwable)
+            val white = TextColor.fromHexString("#f2fff4")
             // TODO remake 'crash report'
             send(PacketOutDisconnect(
                 Component.text("AquaMine", AquaColors.LIGHTER_PURPLE)
@@ -151,11 +158,11 @@ class NioConnection(
                         Component.text("Don't panic!", TextColor.fromHexString("#34eb6e"))
                             .appendNewline()
                             .appendNewline(),
-                        Component.text("We just couldn't handle your connection,", TextColor.fromHexString("#f2fff4"))
+                        Component.text("We just couldn't handle your connection,", white)
                             .appendNewline(),
-                        Component.text("please ", TextColor.fromHexString("#f2fff4"))
+                        Component.text("please ", white)
                             .append(Component.text("send this report to support", AquaColors.VIVID_SKY_BLUE))
-                            .append(Component.text(":", TextColor.fromHexString("#f2fff4")))
+                            .append(Component.text(":", white))
                             .appendNewline()
                             .appendNewline()
                             .appendNewline()
@@ -167,7 +174,7 @@ class NioConnection(
                         Component.text("${throwable::class.java.packageName}.", NamedTextColor.GRAY),
                         Component.text("${throwable::class.simpleName}", TextColor.fromHexString("#eb9f34")),
                         Component.text(": ", NamedTextColor.GRAY),
-                        Component.text("${throwable.message}", TextColor.fromHexString("#f2fff4")).appendNewline(),
+                        Component.text("${throwable.message}", white).appendNewline(),
                         Component.text("at ${
                             run {
                                 val element = throwable.stackTrace.first()
@@ -179,7 +186,7 @@ class NioConnection(
                     .appendNewline()
                     .appendNewline()
                     .append(
-                        Component.text("Discord: ", TextColor.fromHexString("#f2fff4"))
+                        Component.text("Discord: ", white)
                             .append(Component.text("discord.aquamine.net", TextColor.fromHexString("#346eeb")))
                     )
             ))

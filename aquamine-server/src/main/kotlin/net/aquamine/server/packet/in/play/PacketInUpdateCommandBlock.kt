@@ -35,5 +35,4 @@ data class PacketInUpdateCommandBlock(
     enum class Mode {
         SEQUENCE, AUTO, REDSTONE
     }
-
 }

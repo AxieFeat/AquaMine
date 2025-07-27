@@ -5,7 +5,6 @@ import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
 import net.aquamine.api.ServerConfig
 import net.aquamine.server.config.category.AdvancedCategory
-import net.aquamine.server.config.category.ModulesCategory
 import net.aquamine.server.config.category.ProxyCategory
 import net.aquamine.server.config.category.ServerCategory
 import net.aquamine.server.config.category.StatusCategory
@@ -35,9 +34,7 @@ data class AquaConfig(
     @Comment("Advanced settings. Don't touch these unless you know what you're doing.")
     val advanced: AdvancedCategory = AdvancedCategory(),
     @Comment("Proxy IP forwarding settings.")
-    val proxy: ProxyCategory = ProxyCategory(),
-    @Comment("Module settings.")
-    val modules: ModulesCategory = ModulesCategory()
+    val proxy: ProxyCategory = ProxyCategory()
 ) : ServerConfig {
 
     override val isOnline: Boolean

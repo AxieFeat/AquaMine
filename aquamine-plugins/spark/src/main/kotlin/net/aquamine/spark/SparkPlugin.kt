@@ -1,6 +1,7 @@
 package net.aquamine.spark
 
 import com.google.inject.Inject
+import com.google.inject.name.Named
 import me.lucko.spark.common.SparkPlatform
 import me.lucko.spark.common.SparkPlugin
 import me.lucko.spark.common.command.sender.CommandSender
@@ -19,6 +20,8 @@ import net.aquamine.api.command.CommandMeta
 import net.aquamine.api.event.Listener
 import net.aquamine.api.event.server.ServerStartEvent
 import net.aquamine.api.event.server.ServerStopEvent
+import net.aquamine.api.plugin.PluginContainer
+import net.aquamine.api.plugin.PluginDescription
 import net.aquamine.api.plugin.annotation.DataFolder
 import net.aquamine.spark.provider.AquaPlayerPingProvider
 import net.aquamine.spark.provider.AquaServerConfigProvider
@@ -35,6 +38,7 @@ class SparkPlugin @Inject constructor(
     val logger: Logger,
     @DataFolder
     val dataFolder: Path,
+    val description: PluginDescription
 ) : SparkPlugin {
 
     private val platformInfo = AquaPlatformInfo(server)
@@ -60,11 +64,11 @@ class SparkPlugin @Inject constructor(
         this.platform.disable()
     }
 
-    override fun getVersion(): String = "1.0"
+    override fun getVersion(): String = description.version
 
     override fun getPluginDirectory(): Path = dataFolder
 
-    override fun getCommandName(): String = "spark"
+    override fun getCommandName(): String = description.id
 
     override fun getCommandSenders(): Stream<out CommandSender> {
         return server.players.map { AquaCommandSender(it) }.stream()

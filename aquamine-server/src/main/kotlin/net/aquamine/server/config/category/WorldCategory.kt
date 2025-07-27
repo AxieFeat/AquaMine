@@ -1,13 +1,12 @@
 package net.aquamine.server.config.category
 
+import net.aquamine.api.world.Difficulty
+import net.aquamine.api.world.GameMode
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.format.TextDecoration
-import net.aquamine.api.world.Difficulty
-import net.aquamine.api.world.GameMode
 import org.spongepowered.configurate.objectmapping.ConfigSerializable
 import org.spongepowered.configurate.objectmapping.meta.Comment
-import org.spongepowered.configurate.objectmapping.meta.Matches
 import org.spongepowered.configurate.objectmapping.meta.Setting
 
 @ConfigSerializable

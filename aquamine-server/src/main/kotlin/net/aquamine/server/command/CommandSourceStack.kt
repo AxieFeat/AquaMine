@@ -60,7 +60,7 @@ class CommandSourceStack private constructor(
 
     override fun asPlayer(): Player? = getPlayer()
 
-    fun hasPermission(permission: AquaPermission): Boolean = true
+    fun hasPermission(permission: AquaPermission): Boolean = sender.hasPermission(permission.node)
 
     fun shouldFilterMessageTo(target: AquaPlayer): Boolean {
         val player = getPlayer()

@@ -1,16 +1,13 @@
 package net.aquamine.server.resource
 
-import net.aquamine.api.potion.PotionType
-import net.kyori.adventure.key.Key
 import net.aquamine.api.registry.Registry
 import net.aquamine.api.registry.RegistryRoots
 import net.aquamine.api.resource.ResourceKey
-import net.aquamine.api.resource.ResourceKeys
 import net.aquamine.api.world.World
 import net.aquamine.server.entity.AquaEntityType
 import net.aquamine.server.entity.ai.memory.MemoryKey
-import net.aquamine.server.item.data.Instrument
 import net.aquamine.server.item.AquaItemType
+import net.aquamine.server.item.data.Instrument
 import net.aquamine.server.network.chat.RichChatType
 import net.aquamine.server.potion.AquaPotionType
 import net.aquamine.server.registry.WritableRegistry
@@ -18,6 +15,7 @@ import net.aquamine.server.util.provider.IntProviderType
 import net.aquamine.server.world.block.AquaBlock
 import net.aquamine.server.world.dimension.AquaDimensionType
 import net.aquamine.server.world.fluid.AquaFluid
+import net.kyori.adventure.key.Key
 
 object AquaResourceKeys {
 

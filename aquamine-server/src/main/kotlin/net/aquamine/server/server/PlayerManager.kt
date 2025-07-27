@@ -17,7 +17,27 @@ import net.aquamine.server.network.chat.OutgoingChatMessage
 import net.aquamine.server.network.chat.PlayerChatMessage
 import net.aquamine.server.network.chat.RichChatType
 import net.aquamine.server.packet.Packet
-import net.aquamine.server.packet.out.play.*
+import net.aquamine.server.packet.out.play.GameEventTypes
+import net.aquamine.server.packet.out.play.PacketOutAbilities
+import net.aquamine.server.packet.out.play.PacketOutChangeDifficulty
+import net.aquamine.server.packet.out.play.PacketOutDisconnect
+import net.aquamine.server.packet.out.play.PacketOutEntityEvent
+import net.aquamine.server.packet.out.play.PacketOutGameEvent
+import net.aquamine.server.packet.out.play.PacketOutInitializeWorldBorder
+import net.aquamine.server.packet.out.play.PacketOutLogin
+import net.aquamine.server.packet.out.play.PacketOutPlayerInfoUpdate
+import net.aquamine.server.packet.out.play.PacketOutPluginMessage
+import net.aquamine.server.packet.out.play.PacketOutResourcePack
+import net.aquamine.server.packet.out.play.PacketOutSetContainerContent
+import net.aquamine.server.packet.out.play.PacketOutSetDefaultSpawnPosition
+import net.aquamine.server.packet.out.play.PacketOutSetHeldItem
+import net.aquamine.server.packet.out.play.PacketOutSynchronizePlayerPosition
+import net.aquamine.server.packet.out.play.PacketOutSystemChat
+import net.aquamine.server.packet.out.play.PacketOutUpdateEnabledFeatures
+import net.aquamine.server.packet.out.play.PacketOutUpdateRecipeBook
+import net.aquamine.server.packet.out.play.PacketOutUpdateRecipes
+import net.aquamine.server.packet.out.play.PacketOutUpdateTags
+import net.aquamine.server.packet.out.play.PacketOutUpdateTime
 import net.aquamine.server.registry.AquaDynamicRegistries
 import net.aquamine.server.registry.network.RegistrySerialization
 import net.aquamine.server.tags.TagSerializer
@@ -67,25 +87,27 @@ class PlayerManager(
         // Join the game
         val reducedDebugInfo = world.gameRules().getBoolean(GameRuleKeys.REDUCED_DEBUG_INFO)
         val doImmediateRespawn = world.gameRules().getBoolean(GameRuleKeys.DO_IMMEDIATE_RESPAWN)
-        player.connection.send(PacketOutLogin(
-            player.id,
-            world.data.isHardcore,
-            player.gameModeSystem.gameMode(),
-            player.gameModeSystem.previousGameMode(),
-            server.worldManager.worlds.keys,
-            RegistrySerialization.networkedRegistries(world.registryHolder),
-            AquaDynamicRegistries.DIMENSION_TYPE.getResourceKey(world.dimensionType)!!,
-            world.dimension,
-            BiomeManager.obfuscateSeed(world.seed),
-            server.config.status.maxPlayers,
-            server.config.world.viewDistance,
-            server.config.world.simulationDistance,
-            reducedDebugInfo,
-            !doImmediateRespawn,
-            false,
-            false,
-            null
-        ))
+        player.connection.send(
+            PacketOutLogin(
+                player.id,
+                world.data.isHardcore,
+                player.gameModeSystem.gameMode(),
+                player.gameModeSystem.previousGameMode(),
+                server.worldManager.worlds.keys,
+                RegistrySerialization.networkedRegistries(world.registryHolder),
+                AquaDynamicRegistries.DIMENSION_TYPE.getResourceKey(world.dimensionType)!!,
+                world.dimension,
+                BiomeManager.obfuscateSeed(world.seed),
+                server.config.status.maxPlayers,
+                server.config.world.viewDistance,
+                server.config.world.simulationDistance,
+                reducedDebugInfo,
+                !doImmediateRespawn,
+                false,
+                false,
+                null
+            )
+        )
         player.connection.send(PacketOutUpdateEnabledFeatures(setOf(Key.key("vanilla"))))
         player.connection.send(PacketOutPluginMessage(BRAND_KEY, BRAND_MESSAGE))
         player.connection.send(PacketOutChangeDifficulty.from(world.difficulty))
@@ -95,10 +117,22 @@ class PlayerManager(
         player.connection.send(PacketOutSetHeldItem(player.inventory.heldSlot))
         player.connection.send(PacketOutUpdateRecipes)
         player.connection.send(PacketOutUpdateTags(TagSerializer.serializeTagsToNetwork(world.registryHolder)))
-        player.connection.send(PacketOutEntityEvent(player.id, if (reducedDebugInfo) ENABLE_REDUCED_DEBUG_SCREEN else DISABLE_REDUCED_DEBUG_SCREEN))
+        player.connection.send(
+            PacketOutEntityEvent(
+                player.id,
+                if (reducedDebugInfo) ENABLE_REDUCED_DEBUG_SCREEN else DISABLE_REDUCED_DEBUG_SCREEN
+            )
+        )
         sendCommands(player)
         player.statisticsTracker.invalidate()
-        player.connection.send(PacketOutUpdateRecipeBook(PacketOutUpdateRecipeBook.Action.INIT, emptyList(), emptyList(), RecipeBookSettings()))
+        player.connection.send(
+            PacketOutUpdateRecipeBook(
+                PacketOutUpdateRecipeBook.Action.INIT,
+                emptyList(),
+                emptyList(),
+                RecipeBookSettings()
+            )
+        )
         world.scoreboard.addViewer(player)
         server.statusManager.invalidateStatus()
 
@@ -129,7 +163,14 @@ class PlayerManager(
         sendWorldInfo(world, player)
         if (server.config.server.resourcePack.uri.isNotEmpty()) {
             val resourcePack = server.config.server.resourcePack
-            player.connection.send(PacketOutResourcePack(resourcePack.uri, resourcePack.hash, resourcePack.forced, resourcePack.prompt))
+            player.connection.send(
+                PacketOutResourcePack(
+                    resourcePack.uri,
+                    resourcePack.hash,
+                    resourcePack.forced,
+                    resourcePack.prompt
+                )
+            )
         }
 
         // Send inventory data
@@ -255,6 +296,7 @@ class PlayerManager(
         private val BRAND_KEY = Key.key("brand")
         private const val BRAND = "AquaMine"
         // The word "AquaMine" encoded in to UTF-8 and then prefixed with the length, which in this case is 8.
+        @Suppress("SpreadOperator")
         private val BRAND_MESSAGE = byteArrayOf(BRAND.length.toByte(), *BRAND.toByteArray())
         private val CHAT_FILTERED_FULL = Component.translatable("chat.filtered_full")
 

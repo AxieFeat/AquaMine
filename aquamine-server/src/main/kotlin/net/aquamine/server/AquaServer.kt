@@ -156,11 +156,11 @@ class AquaServer(override val config: AquaConfig, val profileCache: GameProfileC
     }
 
     private fun loadPlugins() {
-        LOGGER.info("Loading modules and plugins...")
+        LOGGER.info("Loading plugins...")
         try {
             PluginLoader.createDefault(this).loadPlugins(this)
         } catch (exception: Exception) {
-            LOGGER.error("Failed to load plugins and modules!", exception)
+            LOGGER.error("Failed to load plugins!", exception)
         }
 
         // Register all of the plugin instances as event listeners, so that plugins can listen for events such as

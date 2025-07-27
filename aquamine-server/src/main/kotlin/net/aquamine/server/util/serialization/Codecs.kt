@@ -1,16 +1,8 @@
 package net.aquamine.server.util.serialization
 
-import net.kyori.adventure.key.Key
 import net.aquamine.api.effect.particle.ParticleType
-import net.aquamine.api.effect.particle.data.ParticleData
 import net.aquamine.api.resource.ResourceKey
-import net.aquamine.api.util.Color
 import net.aquamine.api.world.World
-import net.aquamine.server.registry.AquaRegistries
-import net.aquamine.server.resource.AquaResourceKey
-import net.aquamine.server.resource.AquaResourceKeys
-import net.aquamine.server.util.Keys
-import net.aquamine.server.util.successOrError
 import net.aquamine.serialization.Codec
 import net.aquamine.serialization.DataOps
 import net.aquamine.serialization.DataResult
@@ -18,10 +10,14 @@ import net.aquamine.serialization.Decoder
 import net.aquamine.serialization.MapCodec
 import net.aquamine.serialization.MapLike
 import net.aquamine.serialization.RecordBuilder
+import net.aquamine.server.registry.AquaRegistries
+import net.aquamine.server.resource.AquaResourceKey
+import net.aquamine.server.resource.AquaResourceKeys
+import net.aquamine.server.util.Keys
+import net.aquamine.server.util.successOrError
 import net.aquamine.util.Pair
-import java.util.Arrays
-import java.util.BitSet
-import java.util.Optional
+import net.kyori.adventure.key.Key
+import java.util.*
 import java.util.function.Function
 import java.util.regex.Pattern
 import java.util.regex.PatternSyntaxException

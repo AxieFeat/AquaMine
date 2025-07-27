@@ -39,8 +39,59 @@ import net.aquamine.server.network.chat.ChatUtil
 import net.aquamine.server.network.chat.RemoteChatSession
 import net.aquamine.server.network.chat.SignableCommand
 import net.aquamine.server.network.chat.SignedMessageChain
-import net.aquamine.server.packet.`in`.play.*
-import net.aquamine.server.packet.out.play.*
+import net.aquamine.server.packet.`in`.play.PacketInAbilities
+import net.aquamine.server.packet.`in`.play.PacketInAdvancementTab
+import net.aquamine.server.packet.`in`.play.PacketInChat
+import net.aquamine.server.packet.`in`.play.PacketInChatAck
+import net.aquamine.server.packet.`in`.play.PacketInChatCommand
+import net.aquamine.server.packet.`in`.play.PacketInChatSessionUpdate
+import net.aquamine.server.packet.`in`.play.PacketInClickContainer
+import net.aquamine.server.packet.`in`.play.PacketInClickContainerButton
+import net.aquamine.server.packet.`in`.play.PacketInClientCommand
+import net.aquamine.server.packet.`in`.play.PacketInClientInformation
+import net.aquamine.server.packet.`in`.play.PacketInCloseContainer
+import net.aquamine.server.packet.`in`.play.PacketInCommandSuggestionsRequest
+import net.aquamine.server.packet.`in`.play.PacketInCraftRecipeRequest
+import net.aquamine.server.packet.`in`.play.PacketInEditBook
+import net.aquamine.server.packet.`in`.play.PacketInGenerateStructure
+import net.aquamine.server.packet.`in`.play.PacketInInteract
+import net.aquamine.server.packet.`in`.play.PacketInKeepAlive
+import net.aquamine.server.packet.`in`.play.PacketInNameItem
+import net.aquamine.server.packet.`in`.play.PacketInPickItem
+import net.aquamine.server.packet.`in`.play.PacketInPingResponse
+import net.aquamine.server.packet.`in`.play.PacketInPlayerAction
+import net.aquamine.server.packet.`in`.play.PacketInPlayerCommand
+import net.aquamine.server.packet.`in`.play.PacketInPlayerInput
+import net.aquamine.server.packet.`in`.play.PacketInPluginMessage
+import net.aquamine.server.packet.`in`.play.PacketInQueryBlockTag
+import net.aquamine.server.packet.`in`.play.PacketInQueryEntityTag
+import net.aquamine.server.packet.`in`.play.PacketInResourcePack
+import net.aquamine.server.packet.`in`.play.PacketInSelectTrade
+import net.aquamine.server.packet.`in`.play.PacketInSetBeaconEffect
+import net.aquamine.server.packet.`in`.play.PacketInSetCreativeModeSlot
+import net.aquamine.server.packet.`in`.play.PacketInSetDisplayedRecipe
+import net.aquamine.server.packet.`in`.play.PacketInSetHeldItem
+import net.aquamine.server.packet.`in`.play.PacketInSetPlayerPosition
+import net.aquamine.server.packet.`in`.play.PacketInSetPlayerPositionAndRotation
+import net.aquamine.server.packet.`in`.play.PacketInSetPlayerRotation
+import net.aquamine.server.packet.`in`.play.PacketInSetRecipeBookState
+import net.aquamine.server.packet.`in`.play.PacketInSpectate
+import net.aquamine.server.packet.`in`.play.PacketInSteerBoat
+import net.aquamine.server.packet.`in`.play.PacketInSwingArm
+import net.aquamine.server.packet.`in`.play.PacketInUpdateCommandBlock
+import net.aquamine.server.packet.`in`.play.PacketInUpdateCommandBlockMinecart
+import net.aquamine.server.packet.`in`.play.PacketInUpdateSign
+import net.aquamine.server.packet.`in`.play.PacketInUpdateStructureBlock
+import net.aquamine.server.packet.`in`.play.PacketInUseItem
+import net.aquamine.server.packet.`in`.play.PacketInUseItemOn
+import net.aquamine.server.packet.`in`.play.PacketInVehicleMove
+import net.aquamine.server.packet.out.play.EntityAnimations
+import net.aquamine.server.packet.out.play.PacketOutAnimation
+import net.aquamine.server.packet.out.play.PacketOutCommandSuggestionsResponse
+import net.aquamine.server.packet.out.play.PacketOutDisconnect
+import net.aquamine.server.packet.out.play.PacketOutKeepAlive
+import net.aquamine.server.packet.out.play.PacketOutPlayerInfoUpdate
+import net.aquamine.server.packet.out.play.PacketOutTagQueryResponse
 import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.util.crypto.SignatureValidator
 import net.aquamine.server.world.block.AquaBlocks
@@ -62,6 +113,7 @@ import net.aquamine.server.packet.`in`.play.PacketInPlayerCommand.Action as Enti
  *
  * This handles all supported inbound packets in the play state.
  */
+@Suppress("unused", "EmptyFunctionBlock")
 class PlayPacketHandler(
     private val server: AquaServer,
     private val connection: NioConnection,
@@ -240,7 +292,9 @@ class PlayPacketHandler(
         if (pendingKeepAlive && packet.id == keepAliveChallenge) {
             connection.updateLatency(lastKeepAlive)
             pendingKeepAlive = false
-            PacketGrouping.sendGroupedPacket(server, PacketOutPlayerInfoUpdate(PacketOutPlayerInfoUpdate.Action.UPDATE_LATENCY, player))
+            PacketGrouping.sendGroupedPacket(server,
+                PacketOutPlayerInfoUpdate(PacketOutPlayerInfoUpdate.Action.UPDATE_LATENCY, player)
+            )
             return
         }
         disconnect(DisconnectMessages.TIMEOUT)

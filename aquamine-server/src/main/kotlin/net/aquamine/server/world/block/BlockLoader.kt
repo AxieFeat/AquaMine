@@ -1,16 +1,15 @@
 package net.aquamine.server.world.block
 
 import com.google.gson.JsonObject
-import net.kyori.adventure.key.Key
 import net.aquamine.api.block.BlockSoundGroup
 import net.aquamine.server.registry.AquaRegistry
-import net.aquamine.server.state.property.AquaProperty
 import net.aquamine.server.state.property.AquaPropertyFactory
 import net.aquamine.server.util.AquaDataLoader
 import net.aquamine.server.world.block.data.BlockSoundGroups
 import net.aquamine.server.world.block.handlers.DefaultBlockHandler
 import net.aquamine.server.world.material.Material
 import net.aquamine.server.world.material.Materials
+import net.kyori.adventure.key.Key
 import java.lang.reflect.Modifier
 
 class BlockLoader(registry: AquaRegistry<AquaBlock>) : AquaDataLoader<AquaBlock>("blocks", registry) {

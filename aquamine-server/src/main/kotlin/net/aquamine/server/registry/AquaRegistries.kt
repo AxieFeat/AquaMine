@@ -1,8 +1,6 @@
 package net.aquamine.server.registry
 
 import com.google.common.collect.Collections2
-import net.kyori.adventure.key.Key
-import org.apache.logging.log4j.LogManager
 import net.aquamine.api.block.entity.BlockEntityType
 import net.aquamine.api.block.entity.banner.BannerPatternType
 import net.aquamine.api.effect.particle.ParticleType
@@ -11,7 +9,6 @@ import net.aquamine.api.entity.EntityCategory
 import net.aquamine.api.entity.attribute.AttributeType
 import net.aquamine.api.entity.hanging.PaintingVariant
 import net.aquamine.api.inventory.InventoryType
-import net.aquamine.api.potion.PotionType
 import net.aquamine.api.registry.DefaultedRegistry
 import net.aquamine.api.registry.Registry
 import net.aquamine.api.registry.RegistryHolder
@@ -27,8 +24,8 @@ import net.aquamine.server.entity.AquaEntityTypes
 import net.aquamine.server.entity.ai.memory.MemoryKey
 import net.aquamine.server.entity.ai.memory.MemoryKeys
 import net.aquamine.server.entity.attribute.AquaAttributeTypes
-import net.aquamine.server.item.ItemLoader
 import net.aquamine.server.item.AquaItemType
+import net.aquamine.server.item.ItemLoader
 import net.aquamine.server.item.data.Instrument
 import net.aquamine.server.item.data.Instruments
 import net.aquamine.server.potion.AquaPotionType
@@ -40,11 +37,13 @@ import net.aquamine.server.resource.AquaResourceKeys
 import net.aquamine.server.util.AquaDataLoader
 import net.aquamine.server.util.provider.IntProviderType
 import net.aquamine.server.util.provider.IntProviderTypes
-import net.aquamine.server.world.block.BlockLoader
 import net.aquamine.server.world.block.AquaBlock
+import net.aquamine.server.world.block.BlockLoader
 import net.aquamine.server.world.fluid.AquaFluid
 import net.aquamine.server.world.fluid.AquaFluids
 import net.aquamine.server.world.gameevent.GameEventLoader
+import net.kyori.adventure.key.Key
+import org.apache.logging.log4j.LogManager
 import java.util.function.Supplier
 
 /**

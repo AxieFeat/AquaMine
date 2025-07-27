@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Contract
 interface Advancement : Keyed {
 
     /**
-     * Root advancement in [AdvancementTab].
+     * Root advancement. If not exist return current instance.
      */
     var root: Advancement
 

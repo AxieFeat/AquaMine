@@ -21,5 +21,4 @@ data class PacketInChatAck(
     override fun handle(handler: PlayPacketHandler) {
         handler.handleChatAck(this)
     }
-
 }

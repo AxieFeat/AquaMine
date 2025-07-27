@@ -65,5 +65,4 @@ data class PacketInUpdateStructureBlock(
     enum class Mode {
         SAVE, LOAD, CORNER, DATA
     }
-
 }

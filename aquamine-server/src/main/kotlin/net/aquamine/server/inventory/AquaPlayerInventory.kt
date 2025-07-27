@@ -75,7 +75,10 @@ class AquaPlayerInventory(override val owner: AquaPlayer) : AquaInventory(0, TYP
             0 -> crafting[CRAFTING_SLOT] = item // Crafting result
             in 1..CRAFTING_GRID_SIZE -> crafting[index - 1] = item // Crafting grid
             in CRAFTING_SIZE..< HOTBAR_SIZE -> armor[index - CRAFTING_SIZE] = item // Armor slots
-            in HOTBAR_SIZE..< INVENTORY_SIZE -> items[index] = item // All other slots (Without offhand, hotbar, armor, crafting grid, crafting result)
+
+            // All other slots (Without offhand, hotbar, armor, crafting grid, crafting result)
+            in HOTBAR_SIZE..< INVENTORY_SIZE -> items[index] = item
+
             in INVENTORY_SIZE..< OFFHAND_SLOT -> items[index - INVENTORY_SIZE] = item // Hotbar
             OFFHAND_SLOT -> offHand = item // Offhand
         }
