@@ -19,8 +19,9 @@ import java.util.concurrent.atomic.AtomicInteger
 
 class NetworkWorker(
     private val server: AquaServer,
-    val networkServer: NetworkServer
-) : Thread("AquaMine Network Worker ${COUNTER.getAndIncrement()}") {
+    val networkServer: NetworkServer,
+    val number: Int = COUNTER.getAndIncrement()
+) : Thread("AquaMine Network Worker $number") {
 
     val selector: Selector = Selector.open()
     val connections = ConcurrentHashMap<SocketChannel, NioConnection>()

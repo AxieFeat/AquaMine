@@ -40,6 +40,7 @@ import net.aquamine.server.command.registrar.BrigadierCommandRegistrar
 import net.aquamine.server.command.registrar.RawCommandRegistrar
 import net.aquamine.server.command.registrar.SimpleCommandRegistrar
 import net.aquamine.server.commands.aqua.AquaCommand
+import net.aquamine.server.commands.debug.PlayerInfoCommand
 import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.event.player.AquaPlayerUpdateCommandsEvent
 import net.aquamine.server.packet.out.play.PacketOutCommands
@@ -154,6 +155,7 @@ class AquaCommandManager : CommandManager {
         GiveCommand.register(dispatcher)
         ClearCommand.register(dispatcher)
         AquaCommand.register(dispatcher)
+        PlayerInfoCommand.register(dispatcher)
     }
 
     fun parse(sender: Source, input: String): ParseResults<Source> = lock.read { dispatcher.parse(input, sender) }

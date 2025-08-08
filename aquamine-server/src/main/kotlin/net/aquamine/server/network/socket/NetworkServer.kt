@@ -14,7 +14,10 @@ import java.nio.channels.ServerSocketChannel
 import java.nio.file.Files
 import java.util.concurrent.atomic.AtomicInteger
 
-class NetworkServer(private val server: AquaServer) {
+class NetworkServer(
+    private val server: AquaServer,
+    val number: Int = COUNTER.getAndIncrement()
+) {
 
     @Volatile
     private var stopped = false
@@ -25,8 +28,8 @@ class NetworkServer(private val server: AquaServer) {
 
     private var serverSocket: ServerSocketChannel? = null
     private var socketAddress: SocketAddress? = null
-    private var address: String? = null
-    private var port = 0
+    var address: String? = null
+    var port = 0
 
     val connectionsCount: Int
         get() = workers.sumOf { it.connections.size }
@@ -75,7 +78,7 @@ class NetworkServer(private val server: AquaServer) {
                     LOGGER.error("Error while selecting!", exception)
                 }
             }
-        }, "AquaMine Network Boss ${COUNTER.getAndIncrement()}").start()
+        }, "AquaMine Network Boss $number").start()
     }
 
     fun isOpen(): Boolean = !stopped

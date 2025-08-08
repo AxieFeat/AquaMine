@@ -38,7 +38,7 @@ import kotlin.math.min
 
 class NioConnection(
     private val server: AquaServer,
-    private val worker: NetworkWorker,
+    val worker: NetworkWorker,
     private val channel: SocketChannel,
     private var address: SocketAddress
 ) : NetworkConnection {
@@ -121,6 +121,7 @@ class NioConnection(
                 try {
                     packet = processPacket(id, payload)
                 } catch (exception: Exception) {
+                    println(this.channel.localAddress)
                     LOGGER.error("Failed to process packet with ID $id!", exception)
                 } finally {
                     if (payload.position() != payload.limit()) {
