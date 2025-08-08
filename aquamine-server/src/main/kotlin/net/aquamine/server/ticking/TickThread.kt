@@ -21,7 +21,7 @@ class TickThread(number: Int) : Thread("AquaMine Ticker $number") {
             } catch (exception: Exception) {
                 LOGGER.error("Error while ticking!", exception)
             }
-            latch!!.countDown()
+            latch?.countDown()
             LockSupport.park(this)
         }
     }

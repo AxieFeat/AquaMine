@@ -73,11 +73,11 @@ class TickDispatcher<P : Any>(private val provider: TickThreadProvider<P>, threa
      * the threads. This method implements this behaviour, checking the thread
      * that a partition should be allocated to, and updating it if needed.
      *
-     * @param nanoTimeout the time, in nanoseconds, until the refresh should
+     * @param millisTimeout the time, in milliseconds, until the refresh should
      * stop, which will prevent it from running for too long
      */
-    fun refreshThreads(nanoTimeout: Long) {
-        val currentTime = System.nanoTime()
+    fun refreshThreads(millisTimeout: Long) {
+        val currentTime = System.currentTimeMillis()
         var counter = partitionUpdateQueue.size
 
         while (true) {
@@ -93,7 +93,7 @@ class TickDispatcher<P : Any>(private val provider: TickThreadProvider<P>, threa
             }
 
             partitionUpdateQueue.addLast(partition)
-            if (--counter <= 0 || System.nanoTime() - currentTime >= nanoTimeout) break
+            if (--counter <= 0 || System.currentTimeMillis() - currentTime >= millisTimeout) break
         }
     }
 
