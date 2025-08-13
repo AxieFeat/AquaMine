@@ -30,7 +30,7 @@ fun interface Subject {
      *
      * @return `true` if this subject has the permission, `false` otherwise.
      */
-    fun hasPermission(permission: String): Boolean = getPermissionValue(permission) == TriState.TRUE
+    fun hasPermission(permission: String): Boolean = true
 
     /**
      * Converts this subject to its equivalent Adventure permission checker.

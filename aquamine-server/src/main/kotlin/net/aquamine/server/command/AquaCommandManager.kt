@@ -44,6 +44,7 @@ import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.event.player.AquaPlayerUpdateCommandsEvent
 import net.aquamine.server.packet.out.play.PacketOutCommands
 import net.aquamine.server.util.downcastApiType
+import net.kyori.adventure.text.format.TextColor
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.locks.ReentrantReadWriteLock
 import javax.annotation.concurrent.GuardedBy

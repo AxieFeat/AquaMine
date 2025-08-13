@@ -41,7 +41,7 @@ import java.util.*
 import kotlin.math.abs
 import kotlin.math.max
 
-class AquaServer(override val config: AquaConfig, val profileCache: GameProfileCache, initContext: InitContext) : BaseServer {
+open class AquaServer(override val config: AquaConfig, val profileCache: GameProfileCache, initContext: InitContext) : BaseServer {
 
     private val networkServer = NetworkServer(this)
     override val playerManager: PlayerManager = PlayerManager(this, initContext.playerDataSerializer, initContext.statisticsSerializer)

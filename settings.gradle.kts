@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.credentials
+
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "AquaMine"
@@ -7,6 +9,12 @@ dependencyResolutionManagement {
         mavenCentral()
         maven("https://jitpack.io")
         maven("https://libraries.minecraft.net")
+        maven("https://maven.pkg.github.com/AxieFeat/Arc") {
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
     }
     versionCatalogs {
         create("global") {
@@ -34,6 +42,7 @@ project("annotations")
 project("annotation-processor")
 project("plugin-annotation-processor")
 project("generator")
+project("client")
 
 project("plugins")
 

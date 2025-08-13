@@ -68,6 +68,7 @@ import net.aquamine.server.util.InteractionResult
 import net.aquamine.server.world.AquaWorld
 import net.aquamine.server.world.block.state.AquaBlockState
 import net.aquamine.server.world.scoreboard.AquaScoreboard
+import net.kyori.adventure.text.TranslatableComponent
 import xyz.axie.nbt.CompoundTag
 import java.net.SocketAddress
 import java.time.Instant
