@@ -135,5 +135,4 @@ class AquaServerConfigProvider : ServerConfigProvider(FILES, HIDDEN_PATHS) {
             "world.spawn-protection-message"
         )
     }
-
 }

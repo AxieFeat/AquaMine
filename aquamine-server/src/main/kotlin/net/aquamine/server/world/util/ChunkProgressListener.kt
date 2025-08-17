@@ -12,6 +12,7 @@ class ChunkProgressListener(radius: Int) {
     private var count = 0
     private var startTime = 0L
     private var nextTickTime = Long.MAX_VALUE
+    private var previousProgress = -1
 
     private fun calculateProgress(): Int = Maths.floor(count.toFloat() * FRACTION_TO_PERCENTAGE / area.toFloat())
 
@@ -27,12 +28,18 @@ class ChunkProgressListener(radius: Int) {
 
     fun updateStatus() {
         ++count
+
         val progress = calculateProgress()
+
         if (System.currentTimeMillis() > nextTickTime) {
             nextTickTime += MILLISECONDS_PER_TICK
-            val progressText = Component.text(Maths.clamp(progress, 0, 100))
-            val message = MinecraftTranslationManager.render(Component.translatable("menu.preparingSpawn", progressText))
-            LOGGER.info(PlainTextComponentSerializer.plainText().serialize(message))
+            if(progress != previousProgress) {
+                val progressText = Component.text(Maths.clamp(progress, 0, 100))
+
+                val message = MinecraftTranslationManager.render(Component.translatable("menu.preparingSpawn", progressText))
+                LOGGER.info(PlainTextComponentSerializer.plainText().serialize(message))
+            }
+            previousProgress = progress
         }
     }
 

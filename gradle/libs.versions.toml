@@ -6,7 +6,7 @@ kotlin = "2.1.21"
 
 annotations = "26.0.2"
 brigadier = "1.0"
-adventure = "4.21.0"
+adventure = "4.13.0"
 guice = "7.0.0"
 kotlinGuice = "3.0.0"
 kotlinpoet = "2.2.0"

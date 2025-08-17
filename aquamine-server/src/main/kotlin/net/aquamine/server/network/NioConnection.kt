@@ -146,6 +146,13 @@ class NioConnection(
             LOGGER.error("Error while handle connection", throwable)
             val white = TextColor.fromHexString("#f2fff4")
             // TODO remake 'crash report'
+            fun Component.append(vararg components: Component): Component {
+                var component = this
+                components.forEach {
+                    component = component.append(it)
+                }
+                return component
+            }
             send(PacketOutDisconnect(
                 Component.text("AquaMine", AquaColors.LIGHTER_PURPLE)
                     .append(Component.text(" | ", NamedTextColor.GRAY))

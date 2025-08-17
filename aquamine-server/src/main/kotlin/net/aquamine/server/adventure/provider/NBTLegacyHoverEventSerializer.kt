@@ -5,10 +5,10 @@ import net.kyori.adventure.key.Key
 import net.kyori.adventure.nbt.api.BinaryTagHolder
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.event.HoverEvent
-import net.kyori.adventure.text.serializer.json.LegacyHoverEventSerializer
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import net.kyori.adventure.util.Codec
 import net.aquamine.server.util.nbt.SNBTParser
+import net.kyori.adventure.text.serializer.gson.LegacyHoverEventSerializer
 import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.ImmutableCompoundTag
 import java.io.IOException
@@ -37,7 +37,7 @@ object NBTLegacyHoverEventSerializer : LegacyHoverEventSerializer {
             val nbt = SNBT_CODEC.decode(PlainTextComponentSerializer.plainText().serialize(input))
             val tag = nbt.getCompound(ITEM_TAG)
             val holder = if (!tag.isEmpty()) BinaryTagHolder.encode(tag, SNBT_CODEC) else null
-            HoverEvent.ShowItem.showItem(Key.key(nbt.getString(ITEM_TYPE)), nbt.getByte(ITEM_COUNT).toInt(), holder)
+            HoverEvent.ShowItem.of(Key.key(nbt.getString(ITEM_TYPE)), nbt.getByte(ITEM_COUNT).toInt(), holder)
         } catch (exception: CommandSyntaxException) {
             throw IOException(exception)
         }
@@ -47,7 +47,7 @@ object NBTLegacyHoverEventSerializer : LegacyHoverEventSerializer {
         return try {
             val nbt = SNBT_CODEC.decode(PlainTextComponentSerializer.plainText().serialize(input))
             val name = decoder.decode(nbt.getString(ENTITY_NAME))
-            HoverEvent.ShowEntity.showEntity(Key.key(nbt.getString(ENTITY_TYPE)), UUID.fromString(nbt.getString(ENTITY_ID)), name)
+            HoverEvent.ShowEntity.of(Key.key(nbt.getString(ENTITY_TYPE)), UUID.fromString(nbt.getString(ENTITY_ID)), name)
         } catch (exception: CommandSyntaxException) {
             throw IOException(exception)
         }

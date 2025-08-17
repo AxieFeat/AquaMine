@@ -59,7 +59,7 @@ data class AquaItemStack(override val type: AquaItemType, override val amount: I
     override fun toBuilder(): Builder = Builder(this)
 
     override fun asHoverEvent(op: UnaryOperator<HoverEvent.ShowItem>): HoverEvent<HoverEvent.ShowItem> =
-        HoverEvent.showItem(op.apply(HoverEvent.ShowItem.showItem(type.key(), amount, BinaryTagHolder.binaryTagHolder(meta.data.asString()))))
+        HoverEvent.showItem(op.apply(HoverEvent.ShowItem.of(type.key(), amount, BinaryTagHolder.binaryTagHolder(meta.data.asString()))))
 
     class Builder() : ItemStack.Builder {
 

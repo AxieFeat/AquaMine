@@ -3,7 +3,6 @@ package net.aquamine.spark
 import com.google.inject.Inject
 import me.lucko.spark.common.SparkPlatform
 import me.lucko.spark.common.SparkPlugin
-import me.lucko.spark.common.command.sender.CommandSender
 import me.lucko.spark.common.monitor.ping.PlayerPingProvider
 import me.lucko.spark.common.platform.PlatformInfo
 import me.lucko.spark.common.platform.serverconfig.ServerConfigProvider
@@ -68,7 +67,7 @@ class SparkPlugin @Inject constructor(
 
     override fun getCommandName(): String = description.id
 
-    override fun getCommandSenders(): Stream<out CommandSender> {
+    override fun getCommandSenders(): Stream<AquaCommandSender> {
         return server.players.map { AquaCommandSender(it) }.stream()
     }
 
