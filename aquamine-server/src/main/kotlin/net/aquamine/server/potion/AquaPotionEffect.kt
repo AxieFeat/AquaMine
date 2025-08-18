@@ -6,6 +6,9 @@ import net.aquamine.api.potion.PotionTypes
 import net.aquamine.server.registry.AquaRegistries
 import xyz.axie.nbt.CompoundTag
 import xyz.axie.nbt.compound
+import kotlin.experimental.and
+import kotlin.experimental.inv
+import kotlin.experimental.or
 
 @JvmRecord
 data class AquaPotionEffect(
@@ -39,31 +42,30 @@ data class AquaPotionEffect(
 
     override fun withAmbient(ambient: Boolean): AquaPotionEffect {
         if(this.ambient == ambient) return this
-        return AquaPotionEffect(type, amplifier, duration, flags)
+        return AquaPotionEffect(type, amplifier, duration, setFlag(flags, AMBIENT_FLAG, ambient))
     }
 
     override fun withParticles(particles: Boolean): AquaPotionEffect {
         if(this.particles == particles) return this
-        return AquaPotionEffect(type, amplifier, duration, flags)
+        return AquaPotionEffect(type, amplifier, duration, setFlag(flags, PARTICLES_FLAG, particles))
     }
 
     override fun withIcon(icon: Boolean): AquaPotionEffect {
         if(this.icon == icon) return this
 
-        return AquaPotionEffect(type, amplifier, duration, flags)
+        return AquaPotionEffect(type, amplifier, duration, setFlag(flags, ICON_FLAG, icon))
     }
 
     override fun toBuilder(): PotionEffect.Builder {
         return Builder(this)
     }
 
-    // TODO: Implement ambient, particles and icon functions
     class Builder() : PotionEffect.Builder {
 
         private var type: AquaPotionType = PotionTypes.MOVEMENT_SPEED.get().downcast()
         private var amplifier: Byte = 1
         private var duration: Int = 1
-        private var flags: Byte = 0
+        private var flags: Byte = 6 // This is default potion flags. Icon: true, particles: true, ambient: false
 
         constructor(potionEffect: AquaPotionEffect) : this() {
             type = potionEffect.type
@@ -78,11 +80,11 @@ data class AquaPotionEffect(
 
         override fun duration(duration: Int): Builder = apply { this.duration = duration }
 
-        override fun ambient(ambient: Boolean): Builder = apply {}
+        override fun ambient(ambient: Boolean): Builder = apply { flags = setFlag(flags, AMBIENT_FLAG, ambient) }
 
-        override fun particles(particles: Boolean): Builder = apply {}
+        override fun particles(particles: Boolean): Builder = apply { flags = setFlag(flags, PARTICLES_FLAG, particles) }
 
-        override fun icon(icon: Boolean): Builder = apply {}
+        override fun icon(icon: Boolean): Builder = apply { flags = setFlag(flags, ICON_FLAG,icon) }
 
         override fun build(): AquaPotionEffect = AquaPotionEffect(type, amplifier, duration, flags)
     }
@@ -108,6 +110,9 @@ data class AquaPotionEffect(
          * A flag indicating that this Potion has an icon.
          */
         const val ICON_FLAG: Byte = 0x04
+
+        private fun setFlag(currentFlags: Byte, flag: Byte, status: Boolean): Byte =
+            if (status) currentFlags or flag else currentFlags and flag.inv()
 
         private const val ID_TAG = "Id"
         private const val AMPLIFIER_TAG = "Amplifier"

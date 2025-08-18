@@ -240,7 +240,7 @@ class BinaryWriter(private val buffer: ByteBuffer) {
 
     fun writePotion(potion: AquaPotionEffect) {
         writeVarInt(AquaRegistries.POTION_TYPE.getId(potion.type) + 1)
-        writeByte(potion.amplifier.toByte())
+        writeByte((potion.amplifier - 1).toByte())
         writeVarInt(potion.duration)
         writeByte(potion.flags)
     }

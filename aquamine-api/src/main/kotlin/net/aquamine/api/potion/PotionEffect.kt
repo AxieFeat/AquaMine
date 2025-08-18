@@ -42,7 +42,7 @@ interface PotionEffect : Buildable<PotionEffect, PotionEffect.Builder> {
     val particles: Boolean
 
     /**
-     * Is this potion effect should have icon?
+     * Is this potion effect should have icon in the HUD?
      */
     val icon: Boolean
 
