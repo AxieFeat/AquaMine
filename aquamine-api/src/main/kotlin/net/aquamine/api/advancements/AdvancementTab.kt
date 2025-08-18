@@ -51,7 +51,6 @@ interface AdvancementTab : Buildable<AdvancementTab, AdvancementTab.Builder> {
         @AdvancementDsl
         @Contract("_ -> this", mutates = "this")
         fun advancements(advancements: Advancement): Builder
-
     }
 
     @ApiStatus.Internal
@@ -75,5 +74,4 @@ interface AdvancementTab : Buildable<AdvancementTab, AdvancementTab.Builder> {
             return AquaMine.factory<Factory>().builder()
         }
     }
-
 }

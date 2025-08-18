@@ -57,7 +57,7 @@ data class AquaPotionEffect(
         return Builder(this)
     }
 
-    // TODO: ambient, particles and icon functions
+    // TODO: Implement ambient, particles and icon functions
     class Builder() : PotionEffect.Builder {
 
         private var type: AquaPotionType = PotionTypes.MOVEMENT_SPEED.get().downcast()

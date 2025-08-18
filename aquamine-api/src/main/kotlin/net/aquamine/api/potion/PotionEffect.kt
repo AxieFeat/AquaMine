@@ -78,7 +78,7 @@ interface PotionEffect : Buildable<PotionEffect, PotionEffect.Builder> {
      * @return The resulting potion effect.
      */
     @Contract("_ -> new", pure = true)
-    fun growAmplifier(amplifier: Byte): PotionEffect = withAmplifier((amplifier + 1).toByte())
+    fun growAmplifier(amplifier: Byte): PotionEffect = withAmplifier((this.amplifier + amplifier).toByte())
 
     /**
      * Shrinks the amplifier of this potion effect by the given [amplifier] and returns
@@ -92,7 +92,7 @@ interface PotionEffect : Buildable<PotionEffect, PotionEffect.Builder> {
      * @return The resulting potion effect.
      */
     @Contract("_ -> new", pure = true)
-    fun shrinkAmplifier(amplifier: Byte): PotionEffect = withAmplifier((amplifier - 1).toByte())
+    fun shrinkAmplifier(amplifier: Byte): PotionEffect = withAmplifier((this.amplifier - amplifier).toByte())
 
     /**
      * Creates a new potion effect with the given [duration].
@@ -116,7 +116,7 @@ interface PotionEffect : Buildable<PotionEffect, PotionEffect.Builder> {
      * @return The resulting potion effect.
      */
     @Contract("_ -> new", pure = true)
-    fun growDuration(duration: Int): PotionEffect = withDuration(duration + 1)
+    fun growDuration(duration: Int): PotionEffect = withDuration(this.duration + duration)
 
     /**
      * Shrinks the duration of this potion effect by the given [duration] and returns
@@ -130,7 +130,7 @@ interface PotionEffect : Buildable<PotionEffect, PotionEffect.Builder> {
      * @return The resulting potion effect.
      */
     @Contract("_ -> new", pure = true)
-    fun shrinkDuration(duration: Int): PotionEffect = withDuration(duration - 1)
+    fun shrinkDuration(duration: Int): PotionEffect = withDuration(this.duration - duration)
 
     /**
      * Creates a new potion effect with the given [ambient] status.
