@@ -46,7 +46,7 @@ class AquaBannerMeta(data: CompoundTag) : AbstractItemMeta<AquaBannerMeta>(data)
         override fun build(): AquaBannerMeta = AquaBannerMeta(buildData().build())
 
         override fun buildData(): CompoundTag.Builder = super.buildData().apply {
-            if (patterns.isNotEmpty()) list(PATTERNS_TAG) { patterns.forEach(AquaBannerPattern::save) }
+            if (patterns.isNotEmpty()) list(PATTERNS_TAG) { patterns.forEach { add(AquaBannerPattern.save(it)) } }
         }
     }
 

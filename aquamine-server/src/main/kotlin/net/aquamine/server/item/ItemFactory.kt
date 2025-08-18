@@ -11,6 +11,7 @@ import net.aquamine.api.item.meta.FireworkStarMeta
 import net.aquamine.api.item.meta.ItemMetaBuilder
 import net.aquamine.api.item.meta.LeatherArmorMeta
 import net.aquamine.api.item.meta.PlayerHeadMeta
+import net.aquamine.api.item.meta.PotionMeta
 import net.aquamine.api.item.meta.WritableBookMeta
 import net.aquamine.api.item.meta.WrittenBookMeta
 import net.aquamine.server.item.meta.AbstractItemMeta
@@ -23,6 +24,7 @@ import net.aquamine.server.item.meta.AquaFireworkStarMeta
 import net.aquamine.server.item.meta.AquaItemMeta
 import net.aquamine.server.item.meta.AquaLeatherArmorMeta
 import net.aquamine.server.item.meta.AquaPlayerHeadMeta
+import net.aquamine.server.item.meta.AquaPotionMeta
 import net.aquamine.server.item.meta.AquaWritableBookMeta
 import net.aquamine.server.item.meta.AquaWrittenBookMeta
 import xyz.axie.nbt.CompoundTag
@@ -60,7 +62,9 @@ object ItemFactory {
         ItemTypes.BROWN_BANNER.get() to Function { AquaBannerMeta(it) },
         ItemTypes.GREEN_BANNER.get() to Function { AquaBannerMeta(it) },
         ItemTypes.RED_BANNER.get() to Function { AquaBannerMeta(it) },
-        ItemTypes.BLACK_BANNER.get() to Function { AquaBannerMeta(it) }
+        ItemTypes.BLACK_BANNER.get() to Function { AquaBannerMeta(it) },
+        ItemTypes.POTION.get() to Function { AquaPotionMeta(it) },
+        ItemTypes.SPLASH_POTION.get() to Function { AquaPotionMeta(it) }
     )
     private val BUILDERS_BY_TYPE: Map<Class<out ItemMetaBuilder.Provider<*>>, Supplier<ItemMetaBuilder<*, *>>> = mapOf(
         BannerMeta::class.java to Supplier { AquaBannerMeta.Builder() },
@@ -72,13 +76,14 @@ object ItemFactory {
         LeatherArmorMeta::class.java to Supplier { AquaLeatherArmorMeta.Builder() },
         PlayerHeadMeta::class.java to Supplier { AquaPlayerHeadMeta.Builder() },
         WritableBookMeta::class.java to Supplier { AquaWritableBookMeta.Builder() },
-        WrittenBookMeta::class.java to Supplier { AquaWrittenBookMeta.Builder() }
+        WrittenBookMeta::class.java to Supplier { AquaWrittenBookMeta.Builder() },
+        PotionMeta::class.java to Supplier { AquaPotionMeta.Builder() }
     )
 
     @JvmStatic
-    fun create(type: ItemType, data: CompoundTag): AbstractItemMeta<*> = META_BY_TYPE.get(type)?.apply(data) ?: AquaItemMeta(data)
+    fun create(type: ItemType, data: CompoundTag): AbstractItemMeta<*> = META_BY_TYPE[type]?.apply(data) ?: AquaItemMeta(data)
 
     @JvmStatic
     @Suppress("UNCHECKED_CAST")
-    fun <B : ItemMetaBuilder<B, P>, P : ItemMetaBuilder.Provider<B>> builder(type: Class<P>): B = BUILDERS_BY_TYPE.get(type)?.get() as B
+    fun <B : ItemMetaBuilder<B, P>, P : ItemMetaBuilder.Provider<B>> builder(type: Class<P>): B = BUILDERS_BY_TYPE[type]?.get() as B
 }

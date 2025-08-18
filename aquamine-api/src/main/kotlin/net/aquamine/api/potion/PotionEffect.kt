@@ -23,7 +23,7 @@ interface PotionEffect : Buildable<PotionEffect, PotionEffect.Builder> {
      * The amplifier of this effect.
      * A higher amplifier means the potion effect happens more often over its duration and in some cases has more effect on its target.
      */
-    val amplifier: Int
+    val amplifier: Byte
 
     /**
      * The duration (in ticks) that this effect will run for when applied to a [net.aquamine.api.entity.LivingEntity].
@@ -64,7 +64,7 @@ interface PotionEffect : Buildable<PotionEffect, PotionEffect.Builder> {
      * @return A new potion effect.
      */
     @Contract("_ -> new", pure = true)
-    fun withAmplifier(amplifier: Int): PotionEffect
+    fun withAmplifier(amplifier: Byte): PotionEffect
 
     /**
      * Grows the amplifier of this potion effect by the given [amplifier] and returns
@@ -78,7 +78,7 @@ interface PotionEffect : Buildable<PotionEffect, PotionEffect.Builder> {
      * @return The resulting potion effect.
      */
     @Contract("_ -> new", pure = true)
-    fun growAmplifier(amplifier: Int): PotionEffect = withAmplifier(amplifier + 1)
+    fun growAmplifier(amplifier: Byte): PotionEffect = withAmplifier((amplifier + 1).toByte())
 
     /**
      * Shrinks the amplifier of this potion effect by the given [amplifier] and returns
@@ -92,7 +92,7 @@ interface PotionEffect : Buildable<PotionEffect, PotionEffect.Builder> {
      * @return The resulting potion effect.
      */
     @Contract("_ -> new", pure = true)
-    fun shrinkAmplifier(amplifier: Int): PotionEffect = withAmplifier(amplifier - 1)
+    fun shrinkAmplifier(amplifier: Byte): PotionEffect = withAmplifier((amplifier - 1).toByte())
 
     /**
      * Creates a new potion effect with the given [duration].
@@ -212,7 +212,7 @@ interface PotionEffect : Buildable<PotionEffect, PotionEffect.Builder> {
          */
         @PotionDsl
         @Contract("_ -> this", mutates = "this")
-        fun amplifier(amplifier: Int): Builder
+        fun amplifier(amplifier: Byte): Builder
 
         /**
          * Sets the duration of [PotionEffect] being built.
@@ -298,7 +298,7 @@ interface PotionEffect : Buildable<PotionEffect, PotionEffect.Builder> {
          */
         @JvmStatic
         @Contract("_, _, _ -> new", pure = true)
-        fun of(type: PotionType, amplifier: Int, duration: Int): PotionEffect {
+        fun of(type: PotionType, amplifier: Byte, duration: Int): PotionEffect {
             return AquaMine.factory<Factory>().builder()
                 .type(type)
                 .amplifier(amplifier)

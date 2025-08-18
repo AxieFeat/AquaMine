@@ -6,7 +6,6 @@ import net.aquamine.server.AquaPlatform
 import net.aquamine.server.command.CommandSourceStack
 import net.aquamine.server.commands.runs
 import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.event.ClickEvent
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.format.TextDecoration
 import java.util.stream.Stream

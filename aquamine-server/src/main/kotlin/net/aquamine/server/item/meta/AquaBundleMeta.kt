@@ -44,7 +44,7 @@ class AquaBundleMeta(data: CompoundTag) : AbstractItemMeta<AquaBundleMeta>(data)
         override fun build(): BundleMeta = AquaBundleMeta(buildData().build())
 
         override fun buildData(): CompoundTag.Builder = super.buildData().apply {
-            if (items.isNotEmpty()) list(ITEMS_TAG) { items.forEach { it.downcast().save() } }
+            if (items.isNotEmpty()) list(ITEMS_TAG) { items.forEach { add(it.downcast().save()) } }
         }
     }
 

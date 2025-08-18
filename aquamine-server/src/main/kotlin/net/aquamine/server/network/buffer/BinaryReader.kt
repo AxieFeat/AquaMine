@@ -153,7 +153,7 @@ class BinaryReader(private val buffer: ByteBuffer) {
     fun readPotion(): AquaPotionEffect {
         return AquaPotionEffect(
             AquaRegistries.POTION_TYPE.get(readVarInt() - 1)!!,
-            readByte().toInt(),
+            readByte(),
             readVarInt(),
             readByte()
         )
