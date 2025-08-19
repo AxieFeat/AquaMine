@@ -59,6 +59,15 @@ object AquaRegistries {
     val PARENT: AquaRegistry<out AquaRegistry<*>> = WRITABLE_PARENT
 
     /*
+     * Custom built-in registries
+     */
+
+    @JvmField
+    val CRITERIA: AquaRegistry<KeyedCriterion> = simple(ResourceKeys.CRITERIA, loader(RegistryLoaders.criterion()))
+    @JvmField
+    val DAMAGE_TYPES: AquaRegistry<DamageType> = simple(ResourceKeys.DAMAGE_TYPES, loader(RegistryLoaders.damageType()))
+
+    /*
      * Built-in vanilla-derived registries
      */
 
@@ -103,15 +112,6 @@ object AquaRegistries {
     val INSTRUMENT: AquaRegistry<Instrument> = simple(AquaResourceKeys.INSTRUMENTS) { Instruments }
     @JvmField
     val POTION_TYPE: AquaRegistry<AquaPotionType> = simple(AquaResourceKeys.POTION_TYPE, loader(RegistryLoaders.potionType()))
-
-    /*
-     * Custom built-in registries
-     */
-
-    @JvmField
-    val CRITERIA: AquaRegistry<KeyedCriterion> = simple(ResourceKeys.CRITERIA, loader(RegistryLoaders.criterion()))
-    @JvmField
-    val DAMAGE_TYPES: AquaRegistry<DamageType> = simple(ResourceKeys.DAMAGE_TYPES, loader(RegistryLoaders.damageType()))
 
     /*
      * Registry constructor functions

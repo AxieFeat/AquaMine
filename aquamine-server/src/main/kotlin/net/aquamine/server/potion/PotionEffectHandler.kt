@@ -5,14 +5,11 @@ import net.aquamine.server.entity.AquaLivingEntity
 /**
  * A general handler for a type of potion.
  */
-class PotionEffectHandler {
-
-    var applyHandler: HandlerSupplier? = null
-        private set
-    var tickHandler: TickHandlerSupplier? = null
-        private set
+class PotionEffectHandler(
+    var applyHandler: HandlerSupplier? = null,
+    var tickHandler: TickHandlerSupplier? = null,
     var endHandler: HandlerSupplier? = null
-        private set
+) {
 
     /**
      * Calls on applying potion effect to entity.

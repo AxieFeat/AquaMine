@@ -121,4 +121,9 @@ interface LivingEntity : Entity, AttributeHolder {
      */
     fun removePotionEffect(type: PotionType)
 
+    /**
+     * Remove all potion effects for this entity.
+     */
+    fun clearPotionEffects()
+
 }

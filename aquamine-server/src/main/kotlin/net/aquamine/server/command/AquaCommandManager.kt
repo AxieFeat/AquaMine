@@ -39,6 +39,7 @@ import net.aquamine.server.commands.TitleCommand
 import net.aquamine.server.command.registrar.BrigadierCommandRegistrar
 import net.aquamine.server.command.registrar.RawCommandRegistrar
 import net.aquamine.server.command.registrar.SimpleCommandRegistrar
+import net.aquamine.server.commands.EffectCommand
 import net.aquamine.server.commands.aqua.AquaCommand
 import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.event.player.AquaPlayerUpdateCommandsEvent
@@ -153,6 +154,7 @@ class AquaCommandManager : CommandManager {
         KickCommand.register(dispatcher)
         GiveCommand.register(dispatcher)
         ClearCommand.register(dispatcher)
+        EffectCommand.register(dispatcher)
         AquaCommand.register(dispatcher)
     }
 

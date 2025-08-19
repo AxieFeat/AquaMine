@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager
 import net.aquamine.server.entity.AquaLivingEntity
 import net.aquamine.server.entity.Pose
 import net.aquamine.server.entity.metadata.MetadataKeys
+import net.aquamine.server.potion.AquaPotionEffect
 import net.aquamine.server.util.nbt.getBlockPos
 import net.aquamine.server.util.nbt.hasBlockPos
 import net.aquamine.server.util.nbt.hasNumber
@@ -25,6 +26,7 @@ object LivingEntitySerializer : EntitySerializer<AquaLivingEntity> {
     private const val HURT_TIME_TAG = "HurtTime"
     private const val TEAM_TAG = "Team"
     private const val SLEEPING_PREFIX = "Sleeping"
+    private const val ACTIVE_EFFECTS_TAG = "ActiveEffects"
 
     override fun load(entity: AquaLivingEntity, data: CompoundTag) {
         BaseEntitySerializer.load(entity, data)
@@ -55,6 +57,10 @@ object LivingEntitySerializer : EntitySerializer<AquaLivingEntity> {
             entity.sleepingPosition = data.getBlockPos(SLEEPING_PREFIX)
             entity.pose = Pose.SLEEPING
         }
+
+        // Potion effects
+        if(data.contains(ACTIVE_EFFECTS_TAG))
+            data.getList(ACTIVE_EFFECTS_TAG, CompoundTag.ID).map { AquaPotionEffect.load(it as CompoundTag) }.forEach(entity::addPotionEffect)
     }
 
     override fun save(entity: AquaLivingEntity): CompoundTag.Builder = BaseEntitySerializer.save(entity).apply {
@@ -67,5 +73,11 @@ object LivingEntitySerializer : EntitySerializer<AquaLivingEntity> {
         putInt(HURT_BY_TAG, entity.lastHurtTimestamp)
         putShort(HURT_TIME_TAG, entity.hurtTime.toShort())
         entity.sleepingPosition?.let { putBlockPosParts(it, SLEEPING_PREFIX) }
+        val activePotionEffects = entity.aquaActivePotionEffects.map { it.potion.withDuration(it.ticksToEnd) }
+        if(activePotionEffects.isNotEmpty()) {
+            putList(ACTIVE_EFFECTS_TAG) { list ->
+                activePotionEffects.map(AquaPotionEffect::save).forEach { list.add(it) }
+            }
+        }
     }
 }

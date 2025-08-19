@@ -22,7 +22,7 @@ object MessageCommand {
                 argument(MESSAGE, StringArgumentType.string()) {
                     runs {
                         // TODO: Update when new chat changes are implemented
-                        val player = EntityArgumentType.getPlayers(it, PLAYER).get(0)
+                        val player = EntityArgumentType.getPlayers(it, PLAYER)[0]
                         val message = Component.text(it.getArgument(MESSAGE, String::class.java))
                         it.source.sendSystemMessage(Component.translatable("commands.message.display.outgoing", player.displayName, message))
                         player.sendSystemMessage(Component.translatable("commands.message.display.incoming", it.source.displayName, message))

@@ -10,15 +10,15 @@ object AquaCommand {
     @JvmStatic
     fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
         dispatcher.register(literalCommand("aquamine") {
-            registerSubCommand(this, PluginsCommand)
-            registerSubCommand(this, InfoCommand)
+            registerSubCommand(PluginsCommand)
+            registerSubCommand(InfoCommand)
         })
     }
 
     @JvmStatic
-    private fun registerSubCommand(context: LiteralArgumentBuilder<CommandSourceStack>, command: AquaSubCommand) {
+    private fun LiteralArgumentBuilder<CommandSourceStack>.registerSubCommand(command: AquaSubCommand) {
         val node = command.register().build()
-        context.then(node)
-        command.aliases().forEach { context.then(LiteralArgumentBuilder.literal<CommandSourceStack>(it).redirect(node)) }
+        this.then(node)
+        command.aliases().forEach { this.then(LiteralArgumentBuilder.literal<CommandSourceStack>(it).redirect(node)) }
     }
 }

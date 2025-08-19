@@ -30,9 +30,9 @@ import net.aquamine.server.packet.out.play.PacketOutEntityPotionEffect
 import net.aquamine.server.packet.out.play.PacketOutEntityRemovePotionEffect
 import net.aquamine.server.packet.out.play.PacketOutUpdateAttributes
 import net.aquamine.server.potion.AquaPotionEffect
+import net.aquamine.server.potion.AquaPotionType
 import net.aquamine.server.potion.TimedPotionEffect
 import net.aquamine.server.potion.downcast
-import net.aquamine.server.ticking.TickSchedulerThread
 import net.aquamine.server.world.AquaWorld
 
 abstract class AquaLivingEntity(world: AquaWorld) : AquaEntity(world), LivingEntity, AquaEquipable {
@@ -95,7 +95,7 @@ abstract class AquaLivingEntity(world: AquaWorld) : AquaEntity(world), LivingEnt
         get() = data.get(MetadataKeys.LivingEntity.BED_LOCATION)
         set(value) = data.set(MetadataKeys.LivingEntity.BED_LOCATION, value)
 
-    private val aquaActivePotionEffects = mutableListOf<TimedPotionEffect>()
+    val aquaActivePotionEffects = mutableListOf<TimedPotionEffect>()
 
     override val activePotionEffects: List<AquaPotionEffect>
         get() = aquaActivePotionEffects.map { it.potion }
@@ -192,6 +192,7 @@ abstract class AquaLivingEntity(world: AquaWorld) : AquaEntity(world), LivingEnt
             it.ticksToEnd--
 
             if (it.ticksToEnd <= 0) {
+                // TODO Maybe move calling endHandler and sending remove packet to other function?
                 it.potion.type.handler.endHandler?.apply(this, it.potion)
                 sendPacketToViewersAndSelf(PacketOutEntityRemovePotionEffect(id, it.potion.type))
                 return@removeIf true
@@ -202,18 +203,56 @@ abstract class AquaLivingEntity(world: AquaWorld) : AquaEntity(world), LivingEnt
     }
 
     override fun addPotionEffect(potionEffect: PotionEffect) {
+        val effect = addPotionEffectSilent(potionEffect)
+
+        effect.type.handler.applyHandler?.apply(this, effect)
+    }
+
+    /**
+     * Adds effect to entity without calling handler function.
+     *
+     * @return Downcast [AquaPotionEffect].
+     */
+    fun addPotionEffectSilent(potionEffect: PotionEffect): AquaPotionEffect {
         val effect = potionEffect.downcast()
 
         aquaActivePotionEffects.add(TimedPotionEffect(effect))
-        effect.type.handler.applyHandler?.apply(this, effect)
-        sendPacketToViewersAndSelf(PacketOutEntityPotionEffect(id, potionEffect.downcast(), null))
+        sendPacketToViewersAndSelf(PacketOutEntityPotionEffect(id, effect, null))
+
+        return effect
     }
 
     override fun getPotionEffect(type: PotionType): AquaPotionEffect? = aquaActivePotionEffects.find { it.potion.type == type }?.potion
 
     override fun removePotionEffect(type: PotionType) {
-        if(aquaActivePotionEffects.removeIf { it.potion.type == type }) {
-            sendPacketToViewersAndSelf(PacketOutEntityRemovePotionEffect(id, type.downcast()))
+        removePotionEffectSilent(type).also { it?.type?.handler?.endHandler?.apply(this, it) }
+    }
+
+    /**
+     * Removes effect from entity without calling handler function.
+     *
+     * @return Downcast [AquaPotionEffect] that was removed, or null if nothing was changed.
+     */
+    fun removePotionEffectSilent(type: PotionType): AquaPotionEffect? {
+        var removedEffect: AquaPotionEffect? = null
+
+        aquaActivePotionEffects.removeIf {
+            if(it.potion.type == type) {
+                sendPacketToViewersAndSelf(PacketOutEntityRemovePotionEffect(id, type.downcast()))
+                removedEffect = it.potion
+                return@removeIf true
+            }
+            false
+        }
+
+        return removedEffect
+    }
+
+    override fun clearPotionEffects() {
+        aquaActivePotionEffects.removeIf {
+            it.potion.type.handler.endHandler?.apply(this, it.potion)
+            sendPacketToViewersAndSelf(PacketOutEntityRemovePotionEffect(id, it.potion.type))
+            true
         }
     }
 

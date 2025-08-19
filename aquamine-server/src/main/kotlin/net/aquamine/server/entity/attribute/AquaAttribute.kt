@@ -59,7 +59,7 @@ class AquaAttribute(override val type: AquaAttributeType, private val onDirty: C
 
     override fun removeModifier(modifier: AttributeModifier) {
         modifiersByOperation.remove(modifier.operation, modifier)
-        modifiersById.put(modifier.uuid, modifier)
+        modifiersById.remove(modifier.uuid, modifier)
         permanentModifiers.remove(modifier)
         markDirty()
     }

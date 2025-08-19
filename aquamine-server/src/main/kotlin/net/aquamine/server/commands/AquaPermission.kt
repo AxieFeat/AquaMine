@@ -29,5 +29,6 @@ enum class AquaPermission(val node: String) {
     USE_GAME_MASTER_BLOCKS("aquamine.feature.game-master-blocks"),
     ENTITY_QUERY("aquamine.data.query.entity"),
     BYPASS_SPAWN_PROTECTION("aquamine.bypass-spawn-protection"),
-    BROADCAST_ADMIN("aquamine.broadcast_admin");
+    BROADCAST_ADMIN("aquamine.broadcast_admin"),
+    EFFECT("aquamine.effect");
 }

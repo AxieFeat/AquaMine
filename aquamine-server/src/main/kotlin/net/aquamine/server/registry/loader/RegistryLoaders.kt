@@ -1,62 +1,19 @@
 package net.aquamine.server.registry.loader
 
-import com.google.common.collect.ImmutableListMultimap
 import com.google.common.collect.ImmutableSet
-import com.google.common.collect.ImmutableSetMultimap
-import com.google.common.collect.Multimap
-import net.kyori.adventure.key.Key
-import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.format.NamedTextColor
 import net.aquamine.api.block.Block
-import net.aquamine.api.block.entity.Banner
-import net.aquamine.api.block.entity.Beacon
-import net.aquamine.api.block.entity.Bed
-import net.aquamine.api.block.entity.Beehive
-import net.aquamine.api.block.entity.Bell
-import net.aquamine.api.block.entity.BlockEntity
-import net.aquamine.api.block.entity.BlockEntityType
-import net.aquamine.api.block.entity.Campfire
-import net.aquamine.api.block.entity.Command
-import net.aquamine.api.block.entity.Comparator
-import net.aquamine.api.block.entity.Conduit
-import net.aquamine.api.block.entity.DaylightDetector
-import net.aquamine.api.block.entity.EnchantmentTable
-import net.aquamine.api.block.entity.TheEndGateway
-import net.aquamine.api.block.entity.TheEndPortal
-import net.aquamine.api.block.entity.EnderChest
-import net.aquamine.api.block.entity.Jigsaw
-import net.aquamine.api.block.entity.Jukebox
-import net.aquamine.api.block.entity.Lectern
-import net.aquamine.api.block.entity.Spawner
-import net.aquamine.api.block.entity.PistonMoving
-import net.aquamine.api.block.entity.SculkCatalyst
-import net.aquamine.api.block.entity.SculkSensor
-import net.aquamine.api.block.entity.SculkShrieker
-import net.aquamine.api.block.entity.Sign
-import net.aquamine.api.block.entity.Skull
-import net.aquamine.api.block.entity.Structure
+import net.aquamine.api.block.entity.*
 import net.aquamine.api.block.entity.banner.BannerPatternType
-import net.aquamine.api.block.entity.container.Barrel
-import net.aquamine.api.block.entity.container.BlastFurnace
-import net.aquamine.api.block.entity.container.BrewingStand
-import net.aquamine.api.block.entity.container.Chest
-import net.aquamine.api.block.entity.container.Dispenser
-import net.aquamine.api.block.entity.container.Dropper
-import net.aquamine.api.block.entity.container.Furnace
-import net.aquamine.api.block.entity.container.Hopper
-import net.aquamine.api.block.entity.container.ShulkerBox
-import net.aquamine.api.block.entity.container.Smoker
-import net.aquamine.api.block.entity.container.TrappedChest
+import net.aquamine.api.block.entity.container.*
 import net.aquamine.api.effect.particle.ParticleType
+import net.aquamine.api.effect.sound.SoundEvents
 import net.aquamine.api.entity.EntityCategory
-import net.aquamine.api.entity.attribute.Attribute
 import net.aquamine.api.entity.attribute.AttributeModifier
 import net.aquamine.api.entity.attribute.AttributeType
 import net.aquamine.api.entity.attribute.AttributeTypes
+import net.aquamine.api.entity.attribute.BasicModifierOperation
 import net.aquamine.api.entity.hanging.PaintingVariant
-import net.aquamine.api.entity.player.Player
 import net.aquamine.api.inventory.InventoryType
-import net.aquamine.api.potion.PotionType
 import net.aquamine.api.potion.PotionTypeCategory
 import net.aquamine.api.scoreboard.ObjectiveRenderType
 import net.aquamine.api.scoreboard.criteria.KeyedCriterion
@@ -64,31 +21,34 @@ import net.aquamine.api.statistic.StatisticFormatter
 import net.aquamine.api.statistic.StatisticType
 import net.aquamine.api.statistic.StatisticTypes
 import net.aquamine.api.util.Color
+import net.aquamine.api.world.damage.DamageSource
 import net.aquamine.api.world.damage.type.DamageType
+import net.aquamine.api.world.damage.type.DamageTypes
 import net.aquamine.server.adventure.AquaAdventure
-import net.aquamine.server.effect.particle.AquaBlockParticleType
-import net.aquamine.server.effect.particle.AquaColorParticleType
-import net.aquamine.server.effect.particle.AquaDirectionalParticleType
-import net.aquamine.server.effect.particle.AquaDustParticleType
-import net.aquamine.server.effect.particle.AquaDustTransitionParticleType
-import net.aquamine.server.effect.particle.AquaItemParticleType
-import net.aquamine.server.effect.particle.AquaNoteParticleType
-import net.aquamine.server.effect.particle.AquaSimpleParticleType
-import net.aquamine.server.effect.particle.AquaVibrationParticleType
+import net.aquamine.server.effect.particle.*
 import net.aquamine.server.entity.AquaEntityCategory
 import net.aquamine.server.entity.attribute.AttributeMap
+import net.aquamine.server.entity.attribute.downcast
 import net.aquamine.server.entity.hanging.AquaPaintingVariant
+import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.inventory.AquaInventoryType
 import net.aquamine.server.potion.AquaPotionType
+import net.aquamine.server.potion.PotionAttributeTemplate
 import net.aquamine.server.potion.PotionEffectHandler
 import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.statistic.AquaStatisticType
 import net.aquamine.server.world.block.AquaBlocks
 import net.aquamine.server.world.block.entity.AquaBlockEntityType
 import net.aquamine.server.world.block.entity.banner.AquaBannerPatternType
+import net.aquamine.server.world.damage.AquaDamageSource
 import net.aquamine.server.world.damage.type.AquaDamageType
 import net.aquamine.server.world.scoreboard.AquaKeyedCriterion
+import net.kyori.adventure.key.Key
+import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.format.NamedTextColor
 import java.util.function.Supplier
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * Contains all the built-in registry loaders for AquaMine.
@@ -532,48 +492,167 @@ object RegistryLoaders {
 
     @JvmStatic
     fun potionType(): RegistryLoaderProvider<AquaPotionType> = loader {
-        // TODO Write handlers for all potion types.
+        val magicDamageSource = AquaDamageSource(DamageTypes.MAGIC.get())
 
-        put("speed", PotionTypeCategory.BENEFICIAL, 8171462) {
+        put("speed", PotionTypeCategory.BENEFICIAL, 8171462) { key ->
+            val template = PotionAttributeTemplate(key, 0.2, BasicModifierOperation.MULTIPLY_TOTAL)
+            val attribute = AttributeTypes.MOVEMENT_SPEED.get()
+
+            onApply { entity, effect -> entity.attributes.modify(attribute, template.create(effect.amplifier)) }
+            onEnd { entity, effect -> entity.attributes.reset(attribute, template) }
+        }
+        put("slowness", PotionTypeCategory.HARMFUL, 5926017) { key ->
+            val template = PotionAttributeTemplate(key, -0.15, BasicModifierOperation.MULTIPLY_TOTAL)
+            val attribute = AttributeTypes.MOVEMENT_SPEED.get()
+
+            onApply { entity, effect -> entity.attributes.modify(attribute, template.create(effect.amplifier)) }
+            onEnd { entity, effect -> entity.attributes.reset(attribute, template) }
+        }
+        put("haste", PotionTypeCategory.BENEFICIAL, 14270531) { key ->
+            val template = PotionAttributeTemplate(key, 0.1, BasicModifierOperation.MULTIPLY_TOTAL)
+            val attribute = AttributeTypes.ATTACK_SPEED.get()
+
+            onApply { entity, effect -> entity.attributes.modify(attribute, template.create(effect.amplifier)) }
+            onEnd { entity, effect -> entity.attributes.reset(attribute, template) }
+        }
+        put("mining_fatigue", PotionTypeCategory.HARMFUL, 4866583) { key ->
+            val template = PotionAttributeTemplate(key, -0.1, BasicModifierOperation.MULTIPLY_TOTAL)
+            val attribute = AttributeTypes.ATTACK_SPEED.get()
+
+            onApply { entity, effect -> entity.attributes.modify(attribute, template.create(effect.amplifier)) }
+            onEnd { entity, effect -> entity.attributes.reset(attribute, template) }
+        }
+        put("strength", PotionTypeCategory.BENEFICIAL, 9643043) { key ->
+            val template = PotionAttributeTemplate(key, 3.0, BasicModifierOperation.ADDITION)
+            val attribute = AttributeTypes.ATTACK_DAMAGE.get()
+
+            onApply { entity, effect -> entity.attributes.modify(attribute, template.create(effect.amplifier)) }
+            onEnd { entity, effect -> entity.attributes.reset(attribute, template) }
+        }
+        put("instant_health", PotionTypeCategory.BENEFICIAL, 16262179) { key ->
             onApply { entity, effect ->
-
-            }
-            onEnd { entity, effect ->
-
+                // TODO Inversion for zombie and etc.
+                entity.health += max(4 shl effect.amplifier.toInt(), 0).toFloat()
             }
         }
-        put("slowness", PotionTypeCategory.HARMFUL, 5926017)
-        put("haste", PotionTypeCategory.BENEFICIAL, 14270531)
-        put("mining_fatigue", PotionTypeCategory.HARMFUL, 4866583)
-        put("strength", PotionTypeCategory.BENEFICIAL, 9643043)
-        put("instant_health", PotionTypeCategory.BENEFICIAL, 16262179)
-        put("instant_damage", PotionTypeCategory.HARMFUL, 4393481)
-        put("jump_boost", PotionTypeCategory.BENEFICIAL, 2293580)
+        put("instant_damage", PotionTypeCategory.HARMFUL, 4393481) { key ->
+            onApply { entity, effect ->
+                // TODO Inversion for zombie and etc.
+                entity.damage(magicDamageSource, (6 shl effect.amplifier.toInt()).toFloat())
+            }
+        }
+        put("jump_boost", PotionTypeCategory.BENEFICIAL, 2293580) { key ->
+            // TODO Safe fall distance attribute here?
+        }
         put("nausea", PotionTypeCategory.HARMFUL, 5578058)
-        put("regeneration", PotionTypeCategory.BENEFICIAL, 13458603)
+        put("regeneration", PotionTypeCategory.BENEFICIAL, 13458603) { key ->
+            fun shouldApplyEffectTick(duration: Int, amplifier: Byte): Boolean {
+                val interval = 50 ushr amplifier.toInt()
+                return interval <= 0 || duration % interval == 0
+            }
+
+            onTick { entity, effect, ticksToEnd ->
+                if(shouldApplyEffectTick(ticksToEnd, effect.amplifier) && entity.health < entity.maxHealth) {
+                    entity.health += 1
+                }
+            }
+        }
+
+        // TODO Not forget implement checking for this effects in damage calculation:
         put("resistance", PotionTypeCategory.BENEFICIAL, 10044730)
         put("fire_resistance", PotionTypeCategory.BENEFICIAL, 14981690)
+
+        // TODO Not forget implement checking for this effect in water logic
         put("water_breathing", PotionTypeCategory.BENEFICIAL, 3035801)
-        put("invisibility", PotionTypeCategory.BENEFICIAL, 8356754)
-        put("blindness", PotionTypeCategory.HARMFUL, 2039587)
-        put("night_vision", PotionTypeCategory.BENEFICIAL, 2039713)
-        put("hunger", PotionTypeCategory.HARMFUL, 5797459)
-        put("weakness", PotionTypeCategory.HARMFUL, 4738376)
-        put("poison", PotionTypeCategory.HARMFUL, 5149489)
-        put("wither", PotionTypeCategory.HARMFUL, 3484199)
-        put("health_boost", PotionTypeCategory.BENEFICIAL, 16284963)
-        put("absorption", PotionTypeCategory.BENEFICIAL, 2445989)
-        put("saturation", PotionTypeCategory.BENEFICIAL, 16262179)
-        put("glowing", PotionTypeCategory.NEUTRAL, 9740385)
-        put("levitation", PotionTypeCategory.HARMFUL, 13565951)
-        put("luck", PotionTypeCategory.BENEFICIAL, 3381504)
-        put("unluck", PotionTypeCategory.HARMFUL, 12624973)
-        put("slow_falling", PotionTypeCategory.BENEFICIAL, 16773073)
-        put("conduit_power", PotionTypeCategory.BENEFICIAL, 1950417)
-        put("dolphins_grace", PotionTypeCategory.BENEFICIAL, 8954814)
-        put("bad_omen", PotionTypeCategory.NEUTRAL, 745784)
-        put("hero_of_the_village", PotionTypeCategory.BENEFICIAL, 4521796)
-        put("darkness", PotionTypeCategory.HARMFUL, 2696993)
+
+        put("invisibility", PotionTypeCategory.BENEFICIAL, 8356754) // Clientside effect
+        put("blindness", PotionTypeCategory.HARMFUL, 2039587) // Clientside effect
+        put("night_vision", PotionTypeCategory.BENEFICIAL, 2039713) // Clientside effect
+
+        put("hunger", PotionTypeCategory.HARMFUL, 5797459) { key ->
+            onTick { entity, effect, ticksToEnd ->
+                // Only player has food level.
+                if(entity !is AquaPlayer) return@onTick
+
+                entity.foodExhaustionLevel = min(entity.hungerSystem.exhaustionLevel + (0.005f * effect.amplifier), 40f)
+            }
+        }
+        put("weakness", PotionTypeCategory.HARMFUL, 4738376) { key ->
+            val template = PotionAttributeTemplate(key, -4.0, BasicModifierOperation.ADDITION)
+            val attribute = AttributeTypes.ATTACK_DAMAGE.get()
+
+            onApply { entity, effect -> entity.attributes.modify(attribute, template.create(effect.amplifier)) }
+            onEnd { entity, effect -> entity.attributes.reset(attribute, template) }
+        }
+        put("poison", PotionTypeCategory.HARMFUL, 5149489) { key ->
+            fun shouldApplyEffectTick(duration: Int, amplifier: Byte): Boolean {
+                val interval = 25 ushr amplifier.toInt()
+                return interval <= 0 || duration % interval == 0
+            }
+
+            onTick { entity, effect, ticksToEnd ->
+                if(shouldApplyEffectTick(ticksToEnd, effect.amplifier) && entity.health > 1) {
+                    entity.damage(magicDamageSource, 1f)
+                }
+            }
+        }
+        put("wither", PotionTypeCategory.HARMFUL, 3484199) { key ->
+            val witherDamageSource = AquaDamageSource(DamageTypes.WITHER.get())
+
+            fun shouldApplyEffectTick(duration: Int, amplifier: Byte): Boolean {
+                val interval = 40 ushr amplifier.toInt()
+                return interval <= 0 || duration % interval == 0
+            }
+
+            onTick { entity, effect, ticksToEnd ->
+                if(shouldApplyEffectTick(ticksToEnd, effect.amplifier)) {
+                    entity.damage(witherDamageSource, 1f)
+                }
+            }
+        }
+        put("health_boost", PotionTypeCategory.BENEFICIAL, 16284963) { key ->
+            val template = PotionAttributeTemplate(key, 4.0, BasicModifierOperation.ADDITION)
+            val attribute = AttributeTypes.MAX_HEALTH.get()
+
+            onApply { entity, effect -> entity.attributes.modify(attribute, template.create(effect.amplifier)) }
+            onEnd { entity, effect -> entity.attributes.reset(attribute, template) }
+        }
+        put("absorption", PotionTypeCategory.BENEFICIAL, 2445989) { key ->
+            // TODO How it works in vanilla?
+        }
+        put("saturation", PotionTypeCategory.BENEFICIAL, 16262179) { key ->
+            onApply { entity, effect ->
+                // Only player has food level.
+                if(entity !is AquaPlayer) return@onApply
+
+                entity.foodLevel += effect.amplifier
+            }
+        }
+        put("glowing", PotionTypeCategory.NEUTRAL, 9740385) { key ->
+            onApply { entity, effect -> entity.isGlowing = true }
+            onEnd { entity, effect -> entity.isGlowing = false }
+        }
+        put("levitation", PotionTypeCategory.HARMFUL, 13565951) // Clientside effect
+        put("luck", PotionTypeCategory.BENEFICIAL, 3381504) { key ->
+            val template = PotionAttributeTemplate(key, 1.0, BasicModifierOperation.ADDITION)
+            val attribute = AttributeTypes.LUCK.get()
+
+            onApply { entity, effect -> entity.attributes.modify(attribute, template.create(effect.amplifier)) }
+            onEnd { entity, effect -> entity.attributes.reset(attribute, template) }
+        }
+        put("unluck", PotionTypeCategory.HARMFUL, 12624973) { key ->
+            val template = PotionAttributeTemplate(key, -1.0, BasicModifierOperation.ADDITION)
+            val attribute = AttributeTypes.LUCK.get()
+
+            onApply { entity, effect -> entity.attributes.modify(attribute, template.create(effect.amplifier)) }
+            onEnd { entity, effect -> entity.attributes.reset(attribute, template) }
+        }
+        put("slow_falling", PotionTypeCategory.BENEFICIAL, 16773073) // Clientside effect
+        put("conduit_power", PotionTypeCategory.BENEFICIAL, 1950417) // TODO Handle this effect in water system
+        put("dolphins_grace", PotionTypeCategory.BENEFICIAL, 8954814) // Clientside effect
+        put("bad_omen", PotionTypeCategory.NEUTRAL, 745784) // TODO Handle this effect when villages are implemented
+        put("hero_of_the_village", PotionTypeCategory.BENEFICIAL, 4521796) // TODO Handle this effect when villagers are implemented
+        put("darkness", PotionTypeCategory.HARMFUL, 2696993) // Clientside effect
     }
 
     /**
@@ -590,21 +669,21 @@ private inline fun RegistryLoader<DamageType>.put(key: String, translationKey: S
     add(Key.key(key)) { AquaDamageType.Builder(it, translationKey).apply(builder).build() }
 }
 
-private inline fun RegistryLoader<AquaPotionType>.put(key: String, category: PotionTypeCategory, color: Int, handler: PotionEffectHandler.() -> Unit = {}) {
+private inline fun RegistryLoader<AquaPotionType>.put(key: String, category: PotionTypeCategory, color: Int, handler: PotionEffectHandler.(key: String) -> Unit = {}) {
     add(Key.key(key)) {
-        AquaPotionType(it, "effect.minecraft.$key", category, Color(color), PotionEffectHandler().apply(handler))
+        AquaPotionType(it, "effect.minecraft.$key", category, Color(color), PotionEffectHandler().also { handler(it, key) })
     }
 }
 
-private inline fun AttributeMap.modify(attribute: AttributeType, operation: AttributeModifier, value: Double) {
-    this.addModifiers(
-        ImmutableSetMultimap.of(
-
-        )
-    )
+private inline fun AttributeMap.modify(attribute: AttributeType, modifier: AttributeModifier) {
+    val attribute = this.getAttribute(attribute.downcast())
+    attribute?.removeModifier(modifier.uuid)
+    attribute?.addModifier(modifier)
 }
 
-private inline fun AttributeMap.reset(attribute: AttributeType) {}
+private inline fun AttributeMap.reset(attribute: AttributeType, template: PotionAttributeTemplate) {
+    this.getAttribute(attribute.downcast())?.removeModifier(template.uuid)
+}
 
 private fun RegistryLoader<Key>.add(name: String, formatter: StatisticFormatter) {
     add(Key.key(name)) {

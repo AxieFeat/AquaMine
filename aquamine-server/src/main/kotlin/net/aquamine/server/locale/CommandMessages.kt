@@ -13,6 +13,7 @@ import net.aquamine.api.world.Difficulty
 import net.aquamine.api.world.GameMode
 import net.aquamine.server.adventure.Components
 import net.aquamine.server.command.CommandSourceStack
+import net.aquamine.server.potion.AquaPotionType
 
 object CommandMessages {
 
@@ -91,6 +92,19 @@ object CommandMessages {
     val WHITELIST_DISABLED: Component = translatable("commands.whitelist.disabled")
     @JvmField
     val WHITELIST_NONE: Component = translatable("commands.whitelist.none")
+
+    @JvmField
+    val EFFECT_GIVE_SINGLE: Args2<AquaPotionType, GameProfile> = Args2 { a, b -> translatable("commands.effect.give.success.single", a.key().asString(), text(b.name)) }
+    @JvmField
+    val EFFECT_GIVE_MULTIPLE: Args2<AquaPotionType, Int> = Args2 { a, b -> translatable("commands.effect.give.success.multiple", a.key().asString(), text(b)) }
+    @JvmField
+    val EFFECT_CLEAR_EVERYTHING_SINGLE: Args1<GameProfile> = Args1 { translatable("commands.effect.clear.everything.success.single", text(it.name)) }
+    @JvmField
+    val EFFECT_CLEAR_EVERYTHING_MULTIPLE: Args1<Int> = Args1 { translatable("commands.effect.clear.everything.success.multiple", text(it)) }
+    @JvmField
+    val EFFECT_CLEAR_SPECIFIC_SINGLE: Args2<AquaPotionType, GameProfile> = Args2 { a, b -> translatable("commands.effect.clear.specific.success.single", a.key().asString(), text(b.name)) }
+    @JvmField
+    val EFFECT_CLEAR_SPECIFIC_MULTIPLE: Args2<AquaPotionType, Int> = Args2 { a, b -> translatable("commands.effect.clear.specific.success.multiple", a.key().asString(), text(b)) }
 
     fun interface Args1<A> {
 

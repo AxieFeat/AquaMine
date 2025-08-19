@@ -15,6 +15,7 @@ import net.aquamine.server.command.argument.serializer.StringArgumentSerializer
 import net.aquamine.server.command.arguments.GameProfileArgument
 import net.aquamine.server.command.arguments.NBTArgument
 import net.aquamine.server.command.arguments.NBTCompoundArgument
+import net.aquamine.server.command.arguments.PotionEffectArgumentType
 import net.aquamine.server.command.arguments.SummonEntityArgument
 import net.aquamine.server.command.arguments.VectorArgument
 import net.aquamine.server.command.arguments.item.ItemStackArgumentType
@@ -51,6 +52,7 @@ object ArgumentSerializers {
         singleton(19, "nbt_compound_tag", NBTCompoundArgument)
         singleton(20, "nbt_tag", NBTArgument)
         singleton(40, "entity_summon", SummonEntityArgument)
+        singleton(50, "potion_effect", PotionEffectArgumentType)
     }
 
     @JvmStatic
