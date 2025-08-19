@@ -1,6 +1,9 @@
 package net.aquamine.server.registry.loader
 
+import com.google.common.collect.ImmutableListMultimap
 import com.google.common.collect.ImmutableSet
+import com.google.common.collect.ImmutableSetMultimap
+import com.google.common.collect.Multimap
 import net.kyori.adventure.key.Key
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
@@ -46,14 +49,21 @@ import net.aquamine.api.block.entity.container.Smoker
 import net.aquamine.api.block.entity.container.TrappedChest
 import net.aquamine.api.effect.particle.ParticleType
 import net.aquamine.api.entity.EntityCategory
+import net.aquamine.api.entity.attribute.Attribute
+import net.aquamine.api.entity.attribute.AttributeModifier
+import net.aquamine.api.entity.attribute.AttributeType
+import net.aquamine.api.entity.attribute.AttributeTypes
 import net.aquamine.api.entity.hanging.PaintingVariant
+import net.aquamine.api.entity.player.Player
 import net.aquamine.api.inventory.InventoryType
 import net.aquamine.api.potion.PotionType
+import net.aquamine.api.potion.PotionTypeCategory
 import net.aquamine.api.scoreboard.ObjectiveRenderType
 import net.aquamine.api.scoreboard.criteria.KeyedCriterion
 import net.aquamine.api.statistic.StatisticFormatter
 import net.aquamine.api.statistic.StatisticType
 import net.aquamine.api.statistic.StatisticTypes
+import net.aquamine.api.util.Color
 import net.aquamine.api.world.damage.type.DamageType
 import net.aquamine.server.adventure.AquaAdventure
 import net.aquamine.server.effect.particle.AquaBlockParticleType
@@ -66,8 +76,11 @@ import net.aquamine.server.effect.particle.AquaNoteParticleType
 import net.aquamine.server.effect.particle.AquaSimpleParticleType
 import net.aquamine.server.effect.particle.AquaVibrationParticleType
 import net.aquamine.server.entity.AquaEntityCategory
+import net.aquamine.server.entity.attribute.AttributeMap
 import net.aquamine.server.entity.hanging.AquaPaintingVariant
 import net.aquamine.server.inventory.AquaInventoryType
+import net.aquamine.server.potion.AquaPotionType
+import net.aquamine.server.potion.PotionEffectHandler
 import net.aquamine.server.registry.AquaRegistries
 import net.aquamine.server.statistic.AquaStatisticType
 import net.aquamine.server.world.block.AquaBlocks
@@ -518,8 +531,49 @@ object RegistryLoaders {
     }
 
     @JvmStatic
-    fun potionType(): RegistryLoaderProvider<PotionType> = loader {
-//        add(Key.key("speed")) {  }
+    fun potionType(): RegistryLoaderProvider<AquaPotionType> = loader {
+        // TODO Write handlers for all potion types.
+
+        put("speed", PotionTypeCategory.BENEFICIAL, 8171462) {
+            onApply { entity, effect ->
+
+            }
+            onEnd { entity, effect ->
+
+            }
+        }
+        put("slowness", PotionTypeCategory.HARMFUL, 5926017)
+        put("haste", PotionTypeCategory.BENEFICIAL, 14270531)
+        put("mining_fatigue", PotionTypeCategory.HARMFUL, 4866583)
+        put("strength", PotionTypeCategory.BENEFICIAL, 9643043)
+        put("instant_health", PotionTypeCategory.BENEFICIAL, 16262179)
+        put("instant_damage", PotionTypeCategory.HARMFUL, 4393481)
+        put("jump_boost", PotionTypeCategory.BENEFICIAL, 2293580)
+        put("nausea", PotionTypeCategory.HARMFUL, 5578058)
+        put("regeneration", PotionTypeCategory.BENEFICIAL, 13458603)
+        put("resistance", PotionTypeCategory.BENEFICIAL, 10044730)
+        put("fire_resistance", PotionTypeCategory.BENEFICIAL, 14981690)
+        put("water_breathing", PotionTypeCategory.BENEFICIAL, 3035801)
+        put("invisibility", PotionTypeCategory.BENEFICIAL, 8356754)
+        put("blindness", PotionTypeCategory.HARMFUL, 2039587)
+        put("night_vision", PotionTypeCategory.BENEFICIAL, 2039713)
+        put("hunger", PotionTypeCategory.HARMFUL, 5797459)
+        put("weakness", PotionTypeCategory.HARMFUL, 4738376)
+        put("poison", PotionTypeCategory.HARMFUL, 5149489)
+        put("wither", PotionTypeCategory.HARMFUL, 3484199)
+        put("health_boost", PotionTypeCategory.BENEFICIAL, 16284963)
+        put("absorption", PotionTypeCategory.BENEFICIAL, 2445989)
+        put("saturation", PotionTypeCategory.BENEFICIAL, 16262179)
+        put("glowing", PotionTypeCategory.NEUTRAL, 9740385)
+        put("levitation", PotionTypeCategory.HARMFUL, 13565951)
+        put("luck", PotionTypeCategory.BENEFICIAL, 3381504)
+        put("unluck", PotionTypeCategory.HARMFUL, 12624973)
+        put("slow_falling", PotionTypeCategory.BENEFICIAL, 16773073)
+        put("conduit_power", PotionTypeCategory.BENEFICIAL, 1950417)
+        put("dolphins_grace", PotionTypeCategory.BENEFICIAL, 8954814)
+        put("bad_omen", PotionTypeCategory.NEUTRAL, 745784)
+        put("hero_of_the_village", PotionTypeCategory.BENEFICIAL, 4521796)
+        put("darkness", PotionTypeCategory.HARMFUL, 2696993)
     }
 
     /**
@@ -535,6 +589,22 @@ private typealias RegistryLoaderProvider<T> = Supplier<RegistryLoader<T>>
 private inline fun RegistryLoader<DamageType>.put(key: String, translationKey: String, builder: AquaDamageType.Builder.() -> Unit = {}) {
     add(Key.key(key)) { AquaDamageType.Builder(it, translationKey).apply(builder).build() }
 }
+
+private inline fun RegistryLoader<AquaPotionType>.put(key: String, category: PotionTypeCategory, color: Int, handler: PotionEffectHandler.() -> Unit = {}) {
+    add(Key.key(key)) {
+        AquaPotionType(it, "effect.minecraft.$key", category, Color(color), PotionEffectHandler().apply(handler))
+    }
+}
+
+private inline fun AttributeMap.modify(attribute: AttributeType, operation: AttributeModifier, value: Double) {
+    this.addModifiers(
+        ImmutableSetMultimap.of(
+
+        )
+    )
+}
+
+private inline fun AttributeMap.reset(attribute: AttributeType) {}
 
 private fun RegistryLoader<Key>.add(name: String, formatter: StatisticFormatter) {
     add(Key.key(name)) {

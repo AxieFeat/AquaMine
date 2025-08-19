@@ -6,7 +6,7 @@ import net.aquamine.api.scheduling.Task
 import net.aquamine.api.scheduling.TaskTime
 
 class AquaTickHook(
-    val server: Server,
+    val server: Server
 ) : AbstractTickHook() {
 
     private var task: Task? = null
@@ -14,7 +14,6 @@ class AquaTickHook(
     override fun start() {
         this.task = server.scheduler
             .buildTask(::onTick)
-            .delay(TaskTime.ticks(1))
             .period(TaskTime.ticks(1))
             .schedule()
     }
@@ -22,5 +21,4 @@ class AquaTickHook(
     override fun close() {
         task?.cancel()
     }
-
 }

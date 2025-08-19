@@ -8,7 +8,7 @@ import net.aquamine.api.event.EventNode.Companion.forType
 import net.aquamine.api.event.server.TickEndEvent
 
 class AquaTickReporter(
-    val server: Server,
+    val server: Server
 ) : AbstractTickReporter() {
 
     private val node: EventNode<TickEndEvent> = forType(
@@ -16,7 +16,7 @@ class AquaTickReporter(
         EventFilter.create<TickEndEvent, Any>(TickEndEvent::class.java)
     ).also {
         it.registerListener(TickEndEvent::class.java) { event ->
-            onTick(event.tickDurationNanos / 1000000.0)
+            onTick(event.tickDuration / 1000000.0)
         }
     }
 

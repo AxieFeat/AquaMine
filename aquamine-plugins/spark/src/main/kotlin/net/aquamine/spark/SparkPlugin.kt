@@ -4,6 +4,7 @@ import com.google.inject.Inject
 import me.lucko.spark.common.SparkPlatform
 import me.lucko.spark.common.SparkPlugin
 import me.lucko.spark.common.monitor.ping.PlayerPingProvider
+import me.lucko.spark.common.monitor.tick.TickStatistics
 import me.lucko.spark.common.platform.PlatformInfo
 import me.lucko.spark.common.platform.serverconfig.ServerConfigProvider
 import me.lucko.spark.common.platform.world.WorldInfoProvider
@@ -97,37 +98,21 @@ class SparkPlugin @Inject constructor(
         }
     }
 
-    override fun createClassSourceLookup(): ClassSourceLookup {
-        return AquaClassSourceLookup(server)
-    }
+    override fun createClassSourceLookup() = AquaClassSourceLookup(server)
 
-    override fun createPlayerPingProvider(): PlayerPingProvider {
-        return AquaPlayerPingProvider(server)
-    }
+    override fun createPlayerPingProvider() = AquaPlayerPingProvider(server)
 
-    override fun createTickHook(): TickHook {
-        return AquaTickHook(server)
-    }
+    override fun createTickHook() = AquaTickHook(server)
 
-    override fun createTickReporter(): TickReporter {
-        return AquaTickReporter(server)
-    }
+    override fun createTickReporter() = AquaTickReporter(server)
 
-    override fun createWorldInfoProvider(): WorldInfoProvider {
-        return AquaWorldInfoProvider(server)
-    }
+    override fun createWorldInfoProvider() = AquaWorldInfoProvider(server)
 
-    override fun createServerConfigProvider(): ServerConfigProvider {
-        return AquaServerConfigProvider()
-    }
+    override fun createServerConfigProvider() = AquaServerConfigProvider()
 
-    override fun createClassFinder(): ClassFinder {
-        return AquaClassFinder()
-    }
+    override fun createClassFinder() = AquaClassFinder()
 
-    override fun getDefaultThreadDumper(): ThreadDumper {
-        return threadDumper
-    }
+    override fun getDefaultThreadDumper() = threadDumper
 
     override fun getKnownSources(): Collection<SourceMetadata> {
         return server.pluginManager.plugins.map {

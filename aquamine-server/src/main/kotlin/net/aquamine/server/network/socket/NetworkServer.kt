@@ -2,6 +2,7 @@ package net.aquamine.server.network.socket
 
 import org.apache.logging.log4j.LogManager
 import net.aquamine.server.AquaServer
+import net.aquamine.server.ticking.AquaThread
 import net.aquamine.server.util.ImmutableLists
 import java.io.IOException
 import java.net.InetSocketAddress
@@ -54,7 +55,7 @@ class NetworkServer(private val server: AquaServer) {
 
     fun start() {
         workers.forEach { it.start() }
-        Thread({
+        AquaThread({
             while (!stopped) {
                 try {
                     selector.select { key ->
@@ -71,7 +72,7 @@ class NetworkServer(private val server: AquaServer) {
                     LOGGER.error("Error while selecting!", exception)
                 }
             }
-        }, "AquaMine Network Boss").start()
+        }, "Network Boss").start()
     }
 
     fun isOpen(): Boolean = !stopped

@@ -239,8 +239,8 @@ class BinaryWriter(private val buffer: ByteBuffer) {
     }
 
     fun writePotion(potion: AquaPotionEffect) {
-        writeVarInt(AquaRegistries.POTION_TYPE.getId(potion.type) + 1)
-        writeByte((potion.amplifier - 1).toByte())
+        writeVarInt(AquaRegistries.POTION_TYPE.getId(potion.type) + 1) // Potion type ID's in protocol start at 1, but registry indexes from 0
+        writeByte((potion.amplifier - 1).toByte()) // Amplifier levels in protocol start at 0, internal values start at 1
         writeVarInt(potion.duration)
         writeByte(potion.flags)
     }

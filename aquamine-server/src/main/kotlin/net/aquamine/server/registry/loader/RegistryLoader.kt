@@ -10,7 +10,7 @@ import net.kyori.adventure.key.Key
  */
 class RegistryLoader<T> {
 
-    private val mappings = HashMap<Key, T>()
+    private val mappings = LinkedHashMap<Key, T>()
 
     /**
      * This method exists to avoid having to store a separate Key object for each value to reuse it between the key in the

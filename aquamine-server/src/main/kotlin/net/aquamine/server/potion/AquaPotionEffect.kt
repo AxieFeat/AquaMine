@@ -15,15 +15,15 @@ data class AquaPotionEffect(
     override val type: AquaPotionType,
     override val amplifier: Byte,
     override val duration: Int,
-    val flags: Byte,
+    val flags: Byte
 ) : PotionEffect {
 
     override val ambient: Boolean
-        get() = (flags.toInt() and AMBIENT_FLAG.toInt()) == AMBIENT_FLAG.toInt()
+        get() = flags and AMBIENT_FLAG == AMBIENT_FLAG
     override val particles: Boolean
-        get() = (flags.toInt() and PARTICLES_FLAG.toInt()) == PARTICLES_FLAG.toInt()
+        get() = flags and PARTICLES_FLAG == PARTICLES_FLAG
     override val icon: Boolean
-        get() = (flags.toInt() and ICON_FLAG.toInt()) == ICON_FLAG.toInt()
+        get() = flags and ICON_FLAG == ICON_FLAG
 
     override fun withType(type: PotionType): AquaPotionEffect {
         if(this.type == type) return this
@@ -56,22 +56,20 @@ data class AquaPotionEffect(
         return AquaPotionEffect(type, amplifier, duration, setFlag(flags, ICON_FLAG, icon))
     }
 
-    override fun toBuilder(): PotionEffect.Builder {
-        return Builder(this)
-    }
+    override fun toBuilder(): PotionEffect.Builder = Builder(this)
 
     class Builder() : PotionEffect.Builder {
 
         private var type: AquaPotionType = PotionTypes.MOVEMENT_SPEED.get().downcast()
         private var amplifier: Byte = 1
         private var duration: Int = 1
-        private var flags: Byte = 6 // This is default potion flags. Icon: true, particles: true, ambient: false
+        private var flags: Byte = DEFAULT_FLAGS
 
         constructor(potionEffect: AquaPotionEffect) : this() {
-            type = potionEffect.type
-            amplifier = potionEffect.amplifier
-            duration = potionEffect.duration
-            flags = potionEffect.flags
+            this.type = potionEffect.type
+            this.amplifier = potionEffect.amplifier
+            this.duration = potionEffect.duration
+            this.flags = potionEffect.flags
         }
 
         override fun type(type: PotionType): Builder = apply { this.type = type.downcast() }
@@ -80,11 +78,11 @@ data class AquaPotionEffect(
 
         override fun duration(duration: Int): Builder = apply { this.duration = duration }
 
-        override fun ambient(ambient: Boolean): Builder = apply { flags = setFlag(flags, AMBIENT_FLAG, ambient) }
+        override fun ambient(ambient: Boolean): Builder = apply { this.flags = setFlag(flags, AMBIENT_FLAG, ambient) }
 
-        override fun particles(particles: Boolean): Builder = apply { flags = setFlag(flags, PARTICLES_FLAG, particles) }
+        override fun particles(particles: Boolean): Builder = apply { this.flags = setFlag(flags, PARTICLES_FLAG, particles) }
 
-        override fun icon(icon: Boolean): Builder = apply { flags = setFlag(flags, ICON_FLAG,icon) }
+        override fun icon(icon: Boolean): Builder = apply { this.flags = setFlag(flags, ICON_FLAG,icon) }
 
         override fun build(): AquaPotionEffect = AquaPotionEffect(type, amplifier, duration, flags)
     }
@@ -111,8 +109,14 @@ data class AquaPotionEffect(
          */
         const val ICON_FLAG: Byte = 0x04
 
-        private fun setFlag(currentFlags: Byte, flag: Byte, status: Boolean): Byte =
-            if (status) currentFlags or flag else currentFlags and flag.inv()
+        /**
+         * This is default potion flags.
+         * Icon: `true`, particles: `true`, ambient: `false`
+         */
+        val DEFAULT_FLAGS: Byte = (PARTICLES_FLAG or ICON_FLAG)
+
+        private fun setFlag(current: Byte, mask: Byte, enabled: Boolean) =
+            if (enabled) current or mask else current and mask.inv()
 
         private const val ID_TAG = "Id"
         private const val AMPLIFIER_TAG = "Amplifier"
@@ -123,8 +127,8 @@ data class AquaPotionEffect(
 
         @JvmStatic
         fun load(data: CompoundTag): AquaPotionEffect {
-            val type = AquaRegistries.POTION_TYPE.get(data.getByte(ID_TAG).toInt() - 1)!!
-            val amplifier = (data.getByte(AMPLIFIER_TAG) + 1).toByte()
+            val type = AquaRegistries.POTION_TYPE.get(data.getByte(ID_TAG).toInt() - 1)!! // Potion type ID's in NBT start at 1, but registry indexes from 0
+            val amplifier = (data.getByte(AMPLIFIER_TAG) + 1).toByte() // Amplifier levels in NBT start at 0, internal values start at 1
             val duration = data.getInt(DURATION_TAG)
             val ambient = data.getBoolean(AMBIENT_TAG)
             val particles = data.getBoolean(PARTICLES_TAG)
@@ -142,8 +146,8 @@ data class AquaPotionEffect(
 
         @JvmStatic
         fun save(effect: PotionEffect): CompoundTag = compound {
-            putByte(ID_TAG, (AquaRegistries.POTION_TYPE.getId(effect.type.downcast()) + 1).toByte())
-            putByte(AMPLIFIER_TAG, (effect.amplifier - 1).toByte())
+            putByte(ID_TAG, (AquaRegistries.POTION_TYPE.getId(effect.type.downcast()) + 1).toByte()) // Potion type ID's in NBT start at 1, but registry indexes from 0
+            putByte(AMPLIFIER_TAG, (effect.amplifier - 1).toByte()) // Amplifier levels in NBT start at 0, internal values start at 1
             putInt(DURATION_TAG, effect.duration)
             putBoolean(AMBIENT_TAG, effect.ambient)
             putBoolean(PARTICLES_TAG, effect.particles)

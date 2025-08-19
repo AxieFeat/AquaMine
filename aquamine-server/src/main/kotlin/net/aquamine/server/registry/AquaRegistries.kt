@@ -9,6 +9,7 @@ import net.aquamine.api.entity.EntityCategory
 import net.aquamine.api.entity.attribute.AttributeType
 import net.aquamine.api.entity.hanging.PaintingVariant
 import net.aquamine.api.inventory.InventoryType
+import net.aquamine.api.potion.PotionType
 import net.aquamine.api.registry.DefaultedRegistry
 import net.aquamine.api.registry.Registry
 import net.aquamine.api.registry.RegistryHolder
@@ -29,7 +30,6 @@ import net.aquamine.server.item.ItemLoader
 import net.aquamine.server.item.data.Instrument
 import net.aquamine.server.item.data.Instruments
 import net.aquamine.server.potion.AquaPotionType
-import net.aquamine.server.potion.PotionTypeLoader
 import net.aquamine.server.registry.loader.RegistryLoader
 import net.aquamine.server.registry.loader.RegistryLoaders
 import net.aquamine.server.resource.AquaResourceKey
@@ -102,7 +102,7 @@ object AquaRegistries {
     @JvmField
     val INSTRUMENT: AquaRegistry<Instrument> = simple(AquaResourceKeys.INSTRUMENTS) { Instruments }
     @JvmField
-    val POTION_TYPE: AquaRegistry<AquaPotionType> = simple(AquaResourceKeys.POTION_TYPE, dataLoader(::PotionTypeLoader))
+    val POTION_TYPE: AquaRegistry<AquaPotionType> = simple(AquaResourceKeys.POTION_TYPE, loader(RegistryLoaders.potionType()))
 
     /*
      * Custom built-in registries

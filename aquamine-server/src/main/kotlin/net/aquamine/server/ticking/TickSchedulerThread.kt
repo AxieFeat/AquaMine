@@ -1,17 +1,19 @@
 package net.aquamine.server.ticking
 
-import org.apache.logging.log4j.LogManager
 import net.aquamine.server.AquaServer
 import net.aquamine.server.event.server.AquaTickEndEvent
 import net.aquamine.server.event.server.AquaTickStartEvent
+import org.apache.logging.log4j.LogManager
 import java.util.concurrent.locks.LockSupport
 
-class TickSchedulerThread(private val server: AquaServer) : Thread("AquaMine Tick Scheduler") {
+class TickSchedulerThread(private val server: AquaServer) : AquaThread("Tick Scheduler", MAX_PRIORITY) {
 
     @Volatile
     private var tickCount = 0
 
     override fun run() {
+        var nextTickTime = System.nanoTime()
+
         while (server.isRunning()) {
             val startTime = System.nanoTime()
             val startTimeMillis = System.currentTimeMillis()
@@ -24,19 +26,20 @@ class TickSchedulerThread(private val server: AquaServer) : Thread("AquaMine Tic
             }
 
             val endTime = System.nanoTime()
-            val endTimeMillis = System.currentTimeMillis()
-
             val tickDuration = endTime - startTime
-            val tickDurationMillis = endTimeMillis - startTimeMillis
-
-            server.eventNode.fire(AquaTickEndEvent(tickCount, tickDuration, tickDurationMillis, endTime))
-
+            server.eventNode.fire(AquaTickEndEvent(tickCount, tickDuration, endTime))
             tickCount++
 
-            val waitTime = NANOS_PER_TICK - tickDuration
-            LockSupport.parkNanos(waitTime)
+            nextTickTime += NANOS_PER_TICK
+            val waitNanos = nextTickTime - System.nanoTime()
+            if (waitNanos > 0) {
+                LockSupport.parkNanos(waitNanos)
+            } else {
+                nextTickTime = System.nanoTime()
+            }
         }
     }
+
 
     companion object {
         private val LOGGER = LogManager.getLogger()

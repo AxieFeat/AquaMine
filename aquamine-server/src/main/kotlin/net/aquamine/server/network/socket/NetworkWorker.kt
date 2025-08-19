@@ -7,6 +7,7 @@ import org.jctools.queues.MpscUnboundedXaddArrayQueue
 import net.aquamine.server.AquaServer
 import net.aquamine.server.network.NioConnection
 import net.aquamine.server.network.buffer.BinaryBuffer
+import net.aquamine.server.ticking.AquaThread
 import net.aquamine.server.ticking.TickSchedulerThread
 import net.aquamine.server.util.ObjectPool
 import java.io.IOException
@@ -20,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger
 class NetworkWorker(
     private val server: AquaServer,
     private val networkServer: NetworkServer
-) : Thread("AquaMine Network Worker ${COUNTER.getAndIncrement()}") {
+) : AquaThread("Network Worker ${COUNTER.getAndIncrement()}") {
 
     val selector: Selector = Selector.open()
     private val connections = ConcurrentHashMap<SocketChannel, NioConnection>()

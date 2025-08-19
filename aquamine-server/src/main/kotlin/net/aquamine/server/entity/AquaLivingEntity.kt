@@ -189,18 +189,23 @@ abstract class AquaLivingEntity(world: AquaWorld) : AquaEntity(world), LivingEnt
 
     open fun tickEffects(time: Long) {
         aquaActivePotionEffects.removeIf {
-            val potionTime: Long = it.potion.duration * TickSchedulerThread.MILLIS_PER_TICK
+            it.ticksToEnd--
 
-            if (time >= it.startingTime + potionTime) {
+            if (it.ticksToEnd <= 0) {
+                it.potion.type.handler.endHandler?.apply(this, it.potion)
                 sendPacketToViewersAndSelf(PacketOutEntityRemovePotionEffect(id, it.potion.type))
                 return@removeIf true
             }
+            it.potion.type.handler.tickHandler?.apply(this, it.potion, it.ticksToEnd)
             false
         }
     }
 
     override fun addPotionEffect(potionEffect: PotionEffect) {
-        aquaActivePotionEffects.add(TimedPotionEffect(potionEffect.downcast()))
+        val effect = potionEffect.downcast()
+
+        aquaActivePotionEffects.add(TimedPotionEffect(effect))
+        effect.type.handler.applyHandler?.apply(this, effect)
         sendPacketToViewersAndSelf(PacketOutEntityPotionEffect(id, potionEffect.downcast(), null))
     }
 
