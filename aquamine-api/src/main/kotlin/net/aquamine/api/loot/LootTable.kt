@@ -1,7 +1,6 @@
 package net.aquamine.api.loot
 
 import net.aquamine.api.item.ItemStack
-import kotlin.random.Random
 
 /**
  * Represents generable loot table.
@@ -11,11 +10,10 @@ interface LootTable {
     /**
      * Generate new items from this table.
      *
-     * @param random Random for items.
+     * @param seed Seed of random for generating.
      * @param context Context for loot table.
      *
      * @return Collection of generated [ItemStack]'s.
      */
-    fun generate(random: Random, context: LootContext): Collection<ItemStack>
-
+    fun generate(seed: Long, context: LootContext): Collection<ItemStack>
 }

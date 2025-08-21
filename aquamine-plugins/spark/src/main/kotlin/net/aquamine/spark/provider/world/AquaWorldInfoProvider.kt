@@ -79,5 +79,4 @@ class AquaWorldInfoProvider(
     override fun mustCallSync(): Boolean {
         return false
     }
-
 }

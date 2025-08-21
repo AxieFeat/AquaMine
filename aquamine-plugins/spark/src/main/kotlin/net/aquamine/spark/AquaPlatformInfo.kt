@@ -16,5 +16,4 @@ class AquaPlatformInfo(
     override fun getMinecraftVersion(): String = server.platform.minecraftVersion
 
     override fun getType(): PlatformInfo.Type = PlatformInfo.Type.SERVER
-
 }

@@ -10,5 +10,4 @@ class AquaPlayerPingProvider(
     override fun poll(): Map<String, Int> {
         return server.players.associateWith { it.ping }.mapKeys { it.key.name }
     }
-
 }

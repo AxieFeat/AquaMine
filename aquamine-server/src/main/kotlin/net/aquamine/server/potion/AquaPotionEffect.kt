@@ -115,9 +115,6 @@ data class AquaPotionEffect(
          */
         val DEFAULT_FLAGS: Byte = (PARTICLES_FLAG or ICON_FLAG)
 
-        private fun setFlag(current: Byte, mask: Byte, enabled: Boolean) =
-            if (enabled) current or mask else current and mask.inv()
-
         private const val ID_TAG = "Id"
         private const val AMPLIFIER_TAG = "Amplifier"
         private const val DURATION_TAG = "Duration"
@@ -125,10 +122,15 @@ data class AquaPotionEffect(
         private const val PARTICLES_TAG = "ShowParticles"
         private const val ICON_TAG = "ShowIcon"
 
+        private fun setFlag(current: Byte, mask: Byte, enabled: Boolean) =
+            if (enabled) current or mask else current and mask.inv()
+
         @JvmStatic
         fun load(data: CompoundTag): AquaPotionEffect {
-            val type = AquaRegistries.POTION_TYPE.get(data.getByte(ID_TAG).toInt() - 1)!! // Potion type ID's in NBT start at 1, but registry indexes from 0
-            val amplifier = (data.getByte(AMPLIFIER_TAG) + 1).toByte() // Amplifier levels in NBT start at 0, internal values start at 1
+            // Potion type ID's in NBT start at 1, but registry indexes from 0
+            val type = AquaRegistries.POTION_TYPE.get(data.getByte(ID_TAG).toInt() - 1)!!
+            // Amplifier levels in NBT start at 0, internal values start at 1
+            val amplifier = (data.getByte(AMPLIFIER_TAG) + 1).toByte()
             val duration = data.getInt(DURATION_TAG)
             val ambient = data.getBoolean(AMBIENT_TAG)
             val particles = data.getBoolean(PARTICLES_TAG)
@@ -146,8 +148,10 @@ data class AquaPotionEffect(
 
         @JvmStatic
         fun save(effect: PotionEffect): CompoundTag = compound {
-            putByte(ID_TAG, (AquaRegistries.POTION_TYPE.getId(effect.type.downcast()) + 1).toByte()) // Potion type ID's in NBT start at 1, but registry indexes from 0
-            putByte(AMPLIFIER_TAG, (effect.amplifier - 1).toByte()) // Amplifier levels in NBT start at 0, internal values start at 1
+            // Potion type ID's in NBT start at 1, but registry indexes from 0
+            putByte(ID_TAG, (AquaRegistries.POTION_TYPE.getId(effect.type.downcast()) + 1).toByte())
+            // Amplifier levels in NBT start at 0, internal values start at 1
+            putByte(AMPLIFIER_TAG, (effect.amplifier - 1).toByte())
             putInt(DURATION_TAG, effect.duration)
             putBoolean(AMBIENT_TAG, effect.ambient)
             putBoolean(PARTICLES_TAG, effect.particles)

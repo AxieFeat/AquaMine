@@ -3,7 +3,6 @@ package net.aquamine.server.potion
 import net.aquamine.api.potion.PotionType
 import net.aquamine.api.potion.PotionTypeCategory
 import net.aquamine.api.util.Color
-import net.aquamine.server.potion.PotionEffectHandler
 import net.kyori.adventure.key.Key
 
 @JvmRecord
@@ -17,5 +16,4 @@ data class AquaPotionType(
 
     override fun key(): Key = key
     override fun translationKey(): String = translationKey
-
 }

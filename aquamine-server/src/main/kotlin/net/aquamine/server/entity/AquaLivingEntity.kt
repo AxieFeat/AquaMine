@@ -30,7 +30,6 @@ import net.aquamine.server.packet.out.play.PacketOutEntityPotionEffect
 import net.aquamine.server.packet.out.play.PacketOutEntityRemovePotionEffect
 import net.aquamine.server.packet.out.play.PacketOutUpdateAttributes
 import net.aquamine.server.potion.AquaPotionEffect
-import net.aquamine.server.potion.AquaPotionType
 import net.aquamine.server.potion.TimedPotionEffect
 import net.aquamine.server.potion.downcast
 import net.aquamine.server.world.AquaWorld

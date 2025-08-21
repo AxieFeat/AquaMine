@@ -1,6 +1,6 @@
 package net.aquamine.server.packet.`in`.play
 
-import net.aquamine.api.advancements.AdvancementAction
+import net.aquamine.api.advancement.AdvancementAction
 import net.aquamine.server.network.buffer.BinaryReader
 import net.aquamine.server.network.buffer.BinaryWriter
 import net.aquamine.server.network.handlers.PlayPacketHandler

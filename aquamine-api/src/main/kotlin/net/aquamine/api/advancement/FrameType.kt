@@ -1,4 +1,4 @@
-package net.aquamine.api.advancements
+package net.aquamine.api.advancement
 
 /**
  * Describes the frame around the Advancement.

@@ -7,5 +7,4 @@ class AquaClassFinder : ClassFinder {
     override fun findClass(clazz: String): Class<*>? {
         return Class.forName(clazz)
     }
-
 }

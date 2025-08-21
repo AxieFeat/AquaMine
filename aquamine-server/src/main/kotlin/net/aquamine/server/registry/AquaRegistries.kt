@@ -9,7 +9,6 @@ import net.aquamine.api.entity.EntityCategory
 import net.aquamine.api.entity.attribute.AttributeType
 import net.aquamine.api.entity.hanging.PaintingVariant
 import net.aquamine.api.inventory.InventoryType
-import net.aquamine.api.potion.PotionType
 import net.aquamine.api.registry.DefaultedRegistry
 import net.aquamine.api.registry.Registry
 import net.aquamine.api.registry.RegistryHolder

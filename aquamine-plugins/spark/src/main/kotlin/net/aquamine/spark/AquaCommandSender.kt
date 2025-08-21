@@ -17,5 +17,4 @@ class AquaCommandSender(
     override fun sendMessage(msg: Component) = sender.sendMessage(msg)
 
     override fun hasPermission(permission: String): Boolean = true
-
 }

@@ -94,17 +94,27 @@ object CommandMessages {
     val WHITELIST_NONE: Component = translatable("commands.whitelist.none")
 
     @JvmField
-    val EFFECT_GIVE_SINGLE: Args2<AquaPotionType, GameProfile> = Args2 { a, b -> translatable("commands.effect.give.success.single", a.key().asString(), text(b.name)) }
+    val EFFECT_GIVE_SINGLE: Args2<AquaPotionType, GameProfile> = Args2 { a, b ->
+        translatable("commands.effect.give.success.single", a.key().asString(), text(b.name))
+    }
     @JvmField
-    val EFFECT_GIVE_MULTIPLE: Args2<AquaPotionType, Int> = Args2 { a, b -> translatable("commands.effect.give.success.multiple", a.key().asString(), text(b)) }
+    val EFFECT_GIVE_MULTIPLE: Args2<AquaPotionType, Int> = Args2 { a, b ->
+        translatable("commands.effect.give.success.multiple", a.key().asString(), text(b))
+    }
     @JvmField
     val EFFECT_CLEAR_EVERYTHING_SINGLE: Args1<GameProfile> = Args1 { translatable("commands.effect.clear.everything.success.single", text(it.name)) }
     @JvmField
-    val EFFECT_CLEAR_EVERYTHING_MULTIPLE: Args1<Int> = Args1 { translatable("commands.effect.clear.everything.success.multiple", text(it)) }
+    val EFFECT_CLEAR_EVERYTHING_MULTIPLE: Args1<Int> = Args1 {
+        translatable("commands.effect.clear.everything.success.multiple", text(it))
+    }
     @JvmField
-    val EFFECT_CLEAR_SPECIFIC_SINGLE: Args2<AquaPotionType, GameProfile> = Args2 { a, b -> translatable("commands.effect.clear.specific.success.single", a.key().asString(), text(b.name)) }
+    val EFFECT_CLEAR_SPECIFIC_SINGLE: Args2<AquaPotionType, GameProfile> = Args2 { a, b ->
+        translatable("commands.effect.clear.specific.success.single", a.key().asString(), text(b.name))
+    }
     @JvmField
-    val EFFECT_CLEAR_SPECIFIC_MULTIPLE: Args2<AquaPotionType, Int> = Args2 { a, b -> translatable("commands.effect.clear.specific.success.multiple", a.key().asString(), text(b)) }
+    val EFFECT_CLEAR_SPECIFIC_MULTIPLE: Args2<AquaPotionType, Int> = Args2 { a, b ->
+        translatable("commands.effect.clear.specific.success.multiple", a.key().asString(), text(b))
+    }
 
     fun interface Args1<A> {
 

@@ -15,5 +15,4 @@ class SparkCommand(
     override fun suggest(sender: Sender, args: Array<String>): List<String> {
         return this.platform.tabCompleteCommand(AquaCommandSender(sender), args)
     }
-
 }

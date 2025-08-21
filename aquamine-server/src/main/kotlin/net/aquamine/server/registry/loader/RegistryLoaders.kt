@@ -2,11 +2,46 @@ package net.aquamine.server.registry.loader
 
 import com.google.common.collect.ImmutableSet
 import net.aquamine.api.block.Block
-import net.aquamine.api.block.entity.*
+import net.aquamine.api.block.entity.Banner
+import net.aquamine.api.block.entity.Beacon
+import net.aquamine.api.block.entity.Bed
+import net.aquamine.api.block.entity.Beehive
+import net.aquamine.api.block.entity.Bell
+import net.aquamine.api.block.entity.BlockEntity
+import net.aquamine.api.block.entity.BlockEntityType
+import net.aquamine.api.block.entity.Campfire
+import net.aquamine.api.block.entity.Command
+import net.aquamine.api.block.entity.Comparator
+import net.aquamine.api.block.entity.Conduit
+import net.aquamine.api.block.entity.DaylightDetector
+import net.aquamine.api.block.entity.EnchantmentTable
+import net.aquamine.api.block.entity.EnderChest
+import net.aquamine.api.block.entity.Jigsaw
+import net.aquamine.api.block.entity.Jukebox
+import net.aquamine.api.block.entity.Lectern
+import net.aquamine.api.block.entity.PistonMoving
+import net.aquamine.api.block.entity.SculkCatalyst
+import net.aquamine.api.block.entity.SculkSensor
+import net.aquamine.api.block.entity.SculkShrieker
+import net.aquamine.api.block.entity.Sign
+import net.aquamine.api.block.entity.Skull
+import net.aquamine.api.block.entity.Spawner
+import net.aquamine.api.block.entity.Structure
+import net.aquamine.api.block.entity.TheEndGateway
+import net.aquamine.api.block.entity.TheEndPortal
 import net.aquamine.api.block.entity.banner.BannerPatternType
-import net.aquamine.api.block.entity.container.*
+import net.aquamine.api.block.entity.container.Barrel
+import net.aquamine.api.block.entity.container.BlastFurnace
+import net.aquamine.api.block.entity.container.BrewingStand
+import net.aquamine.api.block.entity.container.Chest
+import net.aquamine.api.block.entity.container.Dispenser
+import net.aquamine.api.block.entity.container.Dropper
+import net.aquamine.api.block.entity.container.Furnace
+import net.aquamine.api.block.entity.container.Hopper
+import net.aquamine.api.block.entity.container.ShulkerBox
+import net.aquamine.api.block.entity.container.Smoker
+import net.aquamine.api.block.entity.container.TrappedChest
 import net.aquamine.api.effect.particle.ParticleType
-import net.aquamine.api.effect.sound.SoundEvents
 import net.aquamine.api.entity.EntityCategory
 import net.aquamine.api.entity.attribute.AttributeModifier
 import net.aquamine.api.entity.attribute.AttributeType
@@ -21,11 +56,18 @@ import net.aquamine.api.statistic.StatisticFormatter
 import net.aquamine.api.statistic.StatisticType
 import net.aquamine.api.statistic.StatisticTypes
 import net.aquamine.api.util.Color
-import net.aquamine.api.world.damage.DamageSource
 import net.aquamine.api.world.damage.type.DamageType
 import net.aquamine.api.world.damage.type.DamageTypes
 import net.aquamine.server.adventure.AquaAdventure
-import net.aquamine.server.effect.particle.*
+import net.aquamine.server.effect.particle.AquaBlockParticleType
+import net.aquamine.server.effect.particle.AquaColorParticleType
+import net.aquamine.server.effect.particle.AquaDirectionalParticleType
+import net.aquamine.server.effect.particle.AquaDustParticleType
+import net.aquamine.server.effect.particle.AquaDustTransitionParticleType
+import net.aquamine.server.effect.particle.AquaItemParticleType
+import net.aquamine.server.effect.particle.AquaNoteParticleType
+import net.aquamine.server.effect.particle.AquaSimpleParticleType
+import net.aquamine.server.effect.particle.AquaVibrationParticleType
 import net.aquamine.server.entity.AquaEntityCategory
 import net.aquamine.server.entity.attribute.AttributeMap
 import net.aquamine.server.entity.attribute.downcast
@@ -490,6 +532,7 @@ object RegistryLoaders {
         add(Key.key("custom")) { AquaStatisticType(it, AquaRegistries.CUSTOM_STATISTIC) }
     }
 
+    @Suppress("LongMethod")
     @JvmStatic
     fun potionType(): RegistryLoaderProvider<AquaPotionType> = loader {
         val magicDamageSource = AquaDamageSource(DamageTypes.MAGIC.get())
@@ -669,9 +712,20 @@ private inline fun RegistryLoader<DamageType>.put(key: String, translationKey: S
     add(Key.key(key)) { AquaDamageType.Builder(it, translationKey).apply(builder).build() }
 }
 
-private inline fun RegistryLoader<AquaPotionType>.put(key: String, category: PotionTypeCategory, color: Int, handler: PotionEffectHandler.(key: String) -> Unit = {}) {
+private inline fun RegistryLoader<AquaPotionType>.put(
+    key: String,
+    category: PotionTypeCategory,
+    color: Int,
+    handler: PotionEffectHandler.(key: String) -> Unit = {}
+) {
     add(Key.key(key)) {
-        AquaPotionType(it, "effect.minecraft.$key", category, Color(color), PotionEffectHandler().also { handler(it, key) })
+        AquaPotionType(
+            it,
+            "effect.minecraft.$key",
+            category,
+            Color(color),
+            PotionEffectHandler().also { handler(it, key) }
+        )
     }
 }
 

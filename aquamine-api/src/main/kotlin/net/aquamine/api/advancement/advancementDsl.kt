@@ -1,4 +1,4 @@
-package net.aquamine.api.advancements
+package net.aquamine.api.advancement
 
 import net.aquamine.annotations.dsl.AdvancementDsl
 import net.kyori.adventure.key.Key

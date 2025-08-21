@@ -1,19 +1,12 @@
 package net.aquamine.spark
 
 import com.google.inject.Inject
+import me.lucko.spark.api.SparkProvider
 import me.lucko.spark.common.SparkPlatform
 import me.lucko.spark.common.SparkPlugin
-import me.lucko.spark.common.monitor.ping.PlayerPingProvider
-import me.lucko.spark.common.monitor.tick.TickStatistics
 import me.lucko.spark.common.platform.PlatformInfo
-import me.lucko.spark.common.platform.serverconfig.ServerConfigProvider
-import me.lucko.spark.common.platform.world.WorldInfoProvider
 import me.lucko.spark.common.sampler.ThreadDumper
-import me.lucko.spark.common.sampler.source.ClassSourceLookup
 import me.lucko.spark.common.sampler.source.SourceMetadata
-import me.lucko.spark.common.tick.TickHook
-import me.lucko.spark.common.tick.TickReporter
-import me.lucko.spark.common.util.classfinder.ClassFinder
 import net.aquamine.api.Server
 import net.aquamine.api.command.CommandMeta
 import net.aquamine.api.event.Listener
@@ -21,9 +14,13 @@ import net.aquamine.api.event.server.ServerStartEvent
 import net.aquamine.api.event.server.ServerStopEvent
 import net.aquamine.api.plugin.PluginDescription
 import net.aquamine.api.plugin.annotation.DataFolder
+import net.aquamine.spark.debug.BarCommand
 import net.aquamine.spark.provider.AquaPlayerPingProvider
 import net.aquamine.spark.provider.AquaServerConfigProvider
 import net.aquamine.spark.provider.world.AquaWorldInfoProvider
+import net.aquamine.spark.task.CpuBarTask
+import net.aquamine.spark.task.RamBarTask
+import net.aquamine.spark.task.TpsBarTask
 import net.aquamine.spark.tick.AquaTickHook
 import net.aquamine.spark.tick.AquaTickReporter
 import org.apache.logging.log4j.Logger
@@ -45,6 +42,10 @@ class SparkPlugin @Inject constructor(
 
     private val threadDumper = ThreadDumper.Regex(setOf("^AquaMine.*"))
 
+    private val tpsBarTask by lazy { TpsBarTask(server, SparkProvider.get()) }
+    private val cpuBarTask by lazy { CpuBarTask(server, SparkProvider.get()) }
+    private val ramBarTask by lazy { RamBarTask(server) }
+
     @Listener
     fun onStart(event: ServerStartEvent) {
         this.platform = SparkPlatform(this)
@@ -55,11 +56,37 @@ class SparkPlugin @Inject constructor(
         )
 
         this.platform.enable()
+
+        tpsBarTask.start()
+        cpuBarTask.start()
+        ramBarTask.start()
+
+        server.commandManager.register(
+            BarCommand(tpsBarTask),
+            CommandMeta.builder("tpsbar").build()
+        )
+        server.commandManager.register(
+            BarCommand(cpuBarTask),
+            CommandMeta.builder("cpubar").build()
+        )
+        server.commandManager.register(
+            BarCommand(ramBarTask),
+            CommandMeta.builder("rambar").build()
+        )
     }
 
     @Listener
     fun onStop(event: ServerStopEvent) {
+        server.commandManager.unregister(description.id)
         this.platform.disable()
+
+        server.commandManager.unregister("tpsbar")
+        server.commandManager.unregister("cpubar")
+        server.commandManager.unregister("rambar")
+
+        tpsBarTask.stop()
+        cpuBarTask.stop()
+        ramBarTask.stop()
     }
 
     override fun getVersion(): String = description.version
@@ -126,5 +153,4 @@ class SparkPlugin @Inject constructor(
             )
         }
     }
-
 }

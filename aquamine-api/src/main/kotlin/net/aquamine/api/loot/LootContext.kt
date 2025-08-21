@@ -14,5 +14,4 @@ interface LootContext {
      * Modifier from enchantment.
      */
     val lootingModifier: Int
-
 }
