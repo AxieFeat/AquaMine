@@ -30,5 +30,6 @@ enum class AquaPermission(val node: String) {
     ENTITY_QUERY("aquamine.data.query.entity"),
     BYPASS_SPAWN_PROTECTION("aquamine.bypass-spawn-protection"),
     BROADCAST_ADMIN("aquamine.broadcast_admin"),
-    EFFECT("aquamine.effect");
+    EFFECT("aquamine.effect"),
+    WEATHER("aquamine.weather"),;
 }

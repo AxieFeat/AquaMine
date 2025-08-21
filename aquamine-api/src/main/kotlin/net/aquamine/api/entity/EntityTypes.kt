@@ -121,7 +121,7 @@ object EntityTypes {
     @JvmField val ITEM_FRAME: RegistryReference<EntityType<Entity>> = get("item_frame")
     @JvmField val FIREBALL: RegistryReference<EntityType<LargeFireball>> = get("fireball")
     @JvmField val LEASH_KNOT: RegistryReference<EntityType<Entity>> = get("leash_knot")
-    @JvmField val LIGHTNING_BOLT: RegistryReference<EntityType<Entity>> = get("lightning_bolt")
+    @JvmField val LIGHTNING_BOLT: RegistryReference<EntityType<LightningBolt>> = get("lightning_bolt")
     @JvmField val LLAMA: RegistryReference<EntityType<Entity>> = get("llama")
     @JvmField val LLAMA_SPIT: RegistryReference<EntityType<LlamaSpit>> = get("llama_spit")
     @JvmField val MAGMA_CUBE: RegistryReference<EntityType<Entity>> = get("magma_cube")

@@ -140,7 +140,8 @@ object EntityFactory {
         entry(EntityTypes.TURTLE, ::AquaTurtle),
         entry(EntityTypes.WITHER_SKULL, ::AquaWitherSkull),
         entry(EntityTypes.WOLF, ::AquaWolf),
-        entry(EntityTypes.ZOMBIE, ::AquaZombie)
+        entry(EntityTypes.ZOMBIE, ::AquaZombie),
+        entry(EntityTypes.LIGHTNING_BOLT, ::AquaLightningBolt)
     )
 
     /**
@@ -149,7 +150,7 @@ object EntityFactory {
      * data set to the default values on initialisation.
      */
     @JvmStatic
-    fun create(type: EntityType<Entity>, world: AquaWorld): AquaEntity? = TYPE_MAP.get(type)?.apply(world)
+    fun create(type: EntityType<Entity>, world: AquaWorld): AquaEntity? = TYPE_MAP[type]?.apply(world)
 
     /**
      * This is used to create an entity from an NBT tag.

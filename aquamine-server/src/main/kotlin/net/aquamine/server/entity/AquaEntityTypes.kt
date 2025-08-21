@@ -334,7 +334,7 @@ object AquaEntityTypes {
         updateInterval(Int.MAX_VALUE)
     }
     @JvmField
-    val LIGHTNING_BOLT: AquaEntityType<AquaEntity> = register("lightning_bolt", EntityCategories.MISC) {
+    val LIGHTNING_BOLT: AquaEntityType<AquaLightningBolt> = register("lightning_bolt", EntityCategories.MISC) {
         size(0F, 0F)
         clientTrackingRange(16)
         updateInterval(Int.MAX_VALUE)

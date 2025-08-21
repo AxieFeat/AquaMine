@@ -359,12 +359,14 @@ class AquaWorld(
                 data.isThundering = thundering
                 data.isRaining = isRaining
             }
-            oldThunderLevel = thunderLevel
+            val oldThunderLevel = thunderLevel
             thunderLevel = if (data.isThundering) thunderLevel + 0.01F else thunderLevel - 0.01F
             thunderLevel = Maths.clamp(thunderLevel, 0F, 1F)
-            oldRainLevel = rainLevel
+            this.oldThunderLevel = oldThunderLevel
+            val oldRainLevel = rainLevel
             rainLevel = if (data.isRaining) rainLevel + 0.01F else rainLevel - 0.01F
             rainLevel = Maths.clamp(rainLevel, 0F, 1F)
+            this.oldRainLevel = oldRainLevel
         }
 
         if (oldRainLevel != rainLevel) {

@@ -116,6 +116,13 @@ object CommandMessages {
         translatable("commands.effect.clear.specific.success.multiple", a.key().asString(), text(b))
     }
 
+    @JvmField
+    val WEATHER_CLEAR: Component = translatable("commands.weather.set.clear")
+    @JvmField
+    val WEATHER_RAIN: Component = translatable("commands.weather.set.rain")
+    @JvmField
+    val WEATHER_THUNDER: Component = translatable("commands.weather.set.thunder")
+
     fun interface Args1<A> {
 
         fun build(a: A): Component
