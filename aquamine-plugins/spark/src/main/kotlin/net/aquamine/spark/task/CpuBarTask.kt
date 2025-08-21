@@ -43,10 +43,10 @@ class CpuBarTask(
     override fun createBossBar(): BossBar =
         BossBar.bossBar(Component.empty(), 0.0f, barGoodColor, overlay)
 
-    override fun updateBossBar(bossbar: BossBar, player: Player) {
-        bossbar.progress(bossBarProgress)
-        bossbar.color(bossBarColor)
-        bossbar.name(
+    override fun updateBossBar(bossBar: BossBar, player: Player) {
+        bossBar.progress(bossBarProgress)
+        bossBar.color(bossBarColor)
+        bossBar.name(
             miniMessage.deserialize(
                 title,
                 Placeholder.component("process", color(FillMode.PROCESS, process)),

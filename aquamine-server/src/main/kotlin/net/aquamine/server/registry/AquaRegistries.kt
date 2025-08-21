@@ -29,6 +29,7 @@ import net.aquamine.server.item.ItemLoader
 import net.aquamine.server.item.data.Instrument
 import net.aquamine.server.item.data.Instruments
 import net.aquamine.server.potion.AquaPotionType
+import net.aquamine.server.potion.AquaPotionTypes
 import net.aquamine.server.registry.loader.RegistryLoader
 import net.aquamine.server.registry.loader.RegistryLoaders
 import net.aquamine.server.resource.AquaResourceKey
@@ -110,7 +111,7 @@ object AquaRegistries {
     @JvmField
     val INSTRUMENT: AquaRegistry<Instrument> = simple(AquaResourceKeys.INSTRUMENTS) { Instruments }
     @JvmField
-    val POTION_TYPE: AquaRegistry<AquaPotionType> = simple(AquaResourceKeys.POTION_TYPE, loader(RegistryLoaders.potionType()))
+    val POTION_TYPE: AquaRegistry<AquaPotionType> = simple(AquaResourceKeys.POTION_TYPE) { AquaPotionTypes }
 
     /*
      * Registry constructor functions

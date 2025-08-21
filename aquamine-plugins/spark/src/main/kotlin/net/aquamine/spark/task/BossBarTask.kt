@@ -15,7 +15,8 @@ abstract class BossBarTask(
     private var task: Task? = null
 
     abstract fun createBossBar(): BossBar
-    abstract fun updateBossBar(bossbar: BossBar, player: Player)
+
+    abstract fun updateBossBar(bossBar: BossBar, player: Player)
 
     override fun run() {
         val iter = bossBars.entries.iterator()

@@ -7,9 +7,9 @@ class AquaPlatformInfo(
     val server: Server
 ) : PlatformInfo {
 
-    override fun getName(): String = "AquaMine"
+    override fun getName(): String = server.platform.name
 
-    override fun getBrand(): String = "AquaMine"
+    override fun getBrand(): String = server.platform.name
 
     override fun getVersion(): String = server.platform.version
 
