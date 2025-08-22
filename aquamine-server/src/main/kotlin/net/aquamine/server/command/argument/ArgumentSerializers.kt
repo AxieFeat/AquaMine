@@ -12,6 +12,7 @@ import net.aquamine.server.command.argument.serializer.IntegerArgumentSerializer
 import net.aquamine.server.command.argument.serializer.LongArgumentSerializer
 import net.aquamine.server.command.argument.serializer.SingletonArgumentSerializer
 import net.aquamine.server.command.argument.serializer.StringArgumentSerializer
+import net.aquamine.server.command.arguments.GameModeArgument
 import net.aquamine.server.command.arguments.GameProfileArgument
 import net.aquamine.server.command.arguments.NBTArgument
 import net.aquamine.server.command.arguments.NBTCompoundArgument
@@ -51,6 +52,7 @@ object ArgumentSerializers {
         singleton(19, "nbt_compound_tag", NBTCompoundArgument)
         singleton(20, "nbt_tag", NBTArgument)
         singleton(34, "entity_summon", SummonEntityArgument)
+        singleton(39, "gamemode", GameModeArgument)
         singleton(40, "time", TimeArgument)
     }
 

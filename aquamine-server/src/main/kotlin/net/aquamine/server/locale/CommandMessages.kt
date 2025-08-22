@@ -13,6 +13,7 @@ import net.aquamine.api.world.Difficulty
 import net.aquamine.api.world.GameMode
 import net.aquamine.server.adventure.Components
 import net.aquamine.server.command.CommandSourceStack
+import net.aquamine.server.locale.CommandMessages.Args1
 import net.aquamine.server.potion.AquaPotionType
 
 object CommandMessages {
@@ -122,6 +123,11 @@ object CommandMessages {
     val WEATHER_RAIN: Component = translatable("commands.weather.set.rain")
     @JvmField
     val WEATHER_THUNDER: Component = translatable("commands.weather.set.thunder")
+
+    @JvmField
+    val TIME_SET: Args1<Int> = Args1 { translatable("commands.time.set", text(it)) }
+    @JvmField
+    val TIME_QUERY: Args1<Int> = Args1 { translatable("commands.time.query", text(it)) }
 
     fun interface Args1<A> {
 

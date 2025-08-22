@@ -39,6 +39,7 @@ import net.aquamine.server.commands.TitleCommand
 import net.aquamine.server.command.registrar.BrigadierCommandRegistrar
 import net.aquamine.server.command.registrar.RawCommandRegistrar
 import net.aquamine.server.command.registrar.SimpleCommandRegistrar
+import net.aquamine.server.commands.TimeCommand
 import net.aquamine.server.commands.WeatherCommand
 import net.aquamine.server.commands.aqua.AquaCommand
 import net.aquamine.server.entity.player.AquaPlayer
@@ -155,6 +156,7 @@ class AquaCommandManager : CommandManager {
         GiveCommand.register(dispatcher)
         ClearCommand.register(dispatcher)
         WeatherCommand.register(dispatcher)
+        TimeCommand.register(dispatcher)
         AquaCommand.register(dispatcher)
     }
 

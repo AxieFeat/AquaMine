@@ -1,15 +1,12 @@
 package net.aquamine.server.commands
 
 import com.mojang.brigadier.CommandDispatcher
-import com.mojang.brigadier.arguments.StringArgumentType
-import com.mojang.brigadier.context.CommandContext
-import com.mojang.brigadier.exceptions.DynamicCommandExceptionType
 import net.kyori.adventure.text.Component
 import net.aquamine.api.command.argument
 import net.aquamine.api.command.literalCommand
 import net.aquamine.api.world.GameMode
-import net.aquamine.server.adventure.AquaAdventure
 import net.aquamine.server.command.CommandSourceStack
+import net.aquamine.server.command.arguments.GameModeArgument
 import net.aquamine.server.command.arguments.entities.EntityArgumentType
 import net.aquamine.server.entity.player.AquaPlayer
 import net.aquamine.server.locale.CommandMessages
@@ -18,9 +15,7 @@ import net.aquamine.server.world.rule.GameRuleKeys
 
 object GameModeCommand {
 
-    private val ERROR_INVALID_GAME_MODE = DynamicCommandExceptionType { AquaAdventure.asMessage(Component.text("Invalid game mode $it!")) }
-
-    private const val GAME_MODE = "gameMode"
+    private const val GAME_MODE = "gamemode"
     private const val TARGETS = "targets"
 
     @JvmStatic
@@ -35,23 +30,18 @@ object GameModeCommand {
             })
         }
 
-        command.argument(GAME_MODE, StringArgumentType.string()) {
-            runs { setMode(it.source, listOf(it.source.getPlayerOrError()), getGameMode(it)) }
+        command.argument(GAME_MODE, GameModeArgument) {
+            runs { setMode(it.source, listOf(it.source.getPlayerOrError()), GameModeArgument.get(it, GAME_MODE)) }
             argument(TARGETS, EntityArgumentType.players()) {
-                runs { setMode(it.source, EntityArgumentType.getPlayers(it, TARGETS), getGameMode(it)) }
+                runs {
+                    setMode(it.source,
+                        EntityArgumentType.getPlayers(it, TARGETS),
+                        GameModeArgument.get(it, GAME_MODE)
+                    )
+                }
             }
         }
         dispatcher.register(command)
-    }
-
-    @JvmStatic
-    private fun getGameMode(context: CommandContext<CommandSourceStack>): GameMode {
-        val argument = context.getArgument(GAME_MODE, String::class.java)
-        return try {
-            GameModes.fromId(argument.toInt()) ?: throw ERROR_INVALID_GAME_MODE.create(argument)
-        } catch (_: NumberFormatException) {
-            throw ERROR_INVALID_GAME_MODE.create(argument)
-        }
     }
 
     @JvmStatic
