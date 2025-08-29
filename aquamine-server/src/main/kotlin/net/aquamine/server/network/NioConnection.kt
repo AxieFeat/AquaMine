@@ -95,7 +95,7 @@ class NioConnection(
     }
 
     fun updateLatency(lastKeepAlive: Long) {
-        latency = (latency * 3 + (System.currentTimeMillis() - lastKeepAlive).toInt()) / 3
+        latency = (System.currentTimeMillis() - lastKeepAlive).toInt()
     }
 
     fun processPackets(readBuffer: BinaryBuffer) {
