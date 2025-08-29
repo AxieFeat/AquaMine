@@ -154,7 +154,7 @@ class TickDispatcher<P : Any>(private val provider: TickThreadProvider<P>, threa
         val context = DispatchContext(thread)
         thread.entries().add(context)
 
-        partitions.put(partition, context)
+        partitions[partition] = context
         partitionUpdateQueue.add(partition)
         if (partition is Tickable) updateElement(partition, partition)
     }

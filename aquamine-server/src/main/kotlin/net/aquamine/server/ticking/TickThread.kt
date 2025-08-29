@@ -9,19 +9,39 @@ class TickThread(number: Int) : AquaThread("Ticker $number") {
     @Volatile
     private var stopped = false
 
+    @Volatile
     private var latch: CountDownLatch? = null
+    @Volatile
     private var tickTime = 0L
     private val entries = ArrayList<TickDispatcher.DispatchContext>()
 
     override fun run() {
-        LockSupport.park(this)
+        awaitWork()
         while (!stopped) {
+            val currentLatch = latch
+
+            if (currentLatch == null) {
+                awaitWork()
+                continue
+            }
+
             try {
                 tick()
             } catch (exception: Exception) {
                 LOGGER.error("Error while ticking!", exception)
             }
-            latch?.countDown()
+
+            currentLatch.countDown()
+            latch = null
+
+            awaitWork()
+        }
+    }
+
+    private fun awaitWork() {
+        while (!stopped && latch == null) {
+            interrupted()
+
             LockSupport.park(this)
         }
     }
@@ -46,14 +66,13 @@ class TickThread(number: Int) : AquaThread("Ticker $number") {
 
     fun startTick(latch: CountDownLatch, tickTime: Long) {
         if (entries.isEmpty()) {
-            // Nothing to tick
             latch.countDown()
             return
         }
 
-        this.latch = latch
         this.tickTime = tickTime
-        stopped = false
+        this.latch = latch
+
         LockSupport.unpark(this)
     }
 
