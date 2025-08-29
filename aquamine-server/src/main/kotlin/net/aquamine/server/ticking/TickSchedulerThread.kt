@@ -31,15 +31,36 @@ class TickSchedulerThread(private val server: AquaServer) : AquaThread("Tick Sch
             tickCount++
 
             nextTickTime += NANOS_PER_TICK
-            val waitNanos = nextTickTime - System.nanoTime()
-            if (waitNanos > 0) {
-                LockSupport.parkNanos(waitNanos)
+            val initialWaitNanos = nextTickTime - System.nanoTime()
+            if (initialWaitNanos > 0) {
+                waitFor(nextTickTime, initialWaitNanos)
             } else {
                 nextTickTime = System.nanoTime()
             }
         }
     }
 
+    private fun waitFor(nextTickTime: Long, waitNanos: Long) {
+        interrupted()
+
+        if (waitNanos >= 2 * NANOS_PER_MILLI) {
+            val sleepMillis = (waitNanos / NANOS_PER_MILLI) - 1L
+            try {
+                sleep(sleepMillis)
+            } catch (ignore: InterruptedException) {
+                interrupt()
+            }
+        }
+
+        while (true) {
+            val remaining = nextTickTime - System.nanoTime()
+            if (remaining <= 0L) break
+            val parkChunk = minOf(remaining, 1L * NANOS_PER_MILLI)
+            LockSupport.parkNanos(parkChunk)
+
+            interrupted()
+        }
+    }
 
     companion object {
         private val LOGGER = LogManager.getLogger()

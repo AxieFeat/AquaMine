@@ -27,7 +27,7 @@ object TeleportCommand {
                     val player = it.source.getPlayerOrError()
                     val targets = EntityArgumentType.getPlayers(it, PLAYERS)
                     if (targets.size == 1) {
-                        val target = targets.get(0)
+                        val target = targets[0]
                         player.teleport(target.position)
                         CommandMessages.TELEPORT_SINGLE.sendSuccess(it.source, it.source.displayName, target.displayName, true)
                     }
@@ -35,7 +35,7 @@ object TeleportCommand {
                 argument(TARGET, EntityArgumentType.players()) {
                     runs { context ->
                         val players = EntityArgumentType.getPlayers(context, PLAYERS)
-                        val target = EntityArgumentType.getPlayers(context, TARGET).get(0)
+                        val target = EntityArgumentType.getPlayers(context, TARGET)[0]
                         players.forEach { it.teleport(target.position) }
                         CommandMessages.TELEPORT_ENTITY_MULTIPLE.sendSuccess(context.source, players.size, target.displayName, true)
                     }
