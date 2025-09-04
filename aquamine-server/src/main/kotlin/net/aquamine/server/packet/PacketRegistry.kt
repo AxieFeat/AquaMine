@@ -177,60 +177,105 @@ object PacketRegistry {
         // 0x05 Cookie Request (login)
 
         // Configuration
+        // 0x00 Cookie request
+        // 0x01 Plugin messsage
+        // 0x02 Disconnect
+        // 0x03 Finish configuration
+        // 0x04 Keep alive
+        // 0x05 Ping
+        // 0x06 Reset chat
+        // 0x07 Registry data
+        // 0x08 Remove resource pack
+        // 0x09 Add resource pack
+        // 0x0A Store cookie
+        // 0x0B Transfer
+        // 0x0C Feature flags
+        // 0x0D Update tags
+        // 0x0E Known packs
+        // 0x0F Custom report details
+        // 0x10 Server links
+        // 0x11 Clear dialog
+        // 0x12 Show dialog
 
-
+        // 0x00 Client information
+        // 0x01 Cookie response
+        // 0x02 Plugin message
+        // 0x03 Finish configuration
+        // 0x04 Keep alive
+        // 0x05 Ping
+        // 0x06 Resource pack response
+        // 0x07 Known packs
+        // 0x08 Custom click action
 
         // Play
         registerInbound(PacketState.PLAY, 0x00) { PacketInConfirmTeleportation(it) }
         registerInbound(PacketState.PLAY, 0x01) { PacketInQueryBlockTag(it) }
-        // 0x02 difficulty packet
-        registerInbound(PacketState.PLAY, 0x03) { PacketInChatAck(it) }
-        registerInbound(PacketState.PLAY, 0x04) { PacketInChatCommand(it) }
-        registerInbound(PacketState.PLAY, 0x05) { PacketInChat(it) }
-        registerInbound(PacketState.PLAY, 0x06) { PacketInClientCommand(it) }
-        registerInbound(PacketState.PLAY, 0x07) { PacketInClientInformation(it) }
-        registerInbound(PacketState.PLAY, 0x08) { PacketInCommandSuggestionsRequest(it) }
-        registerInbound(PacketState.PLAY, 0x09) { PacketInClickContainerButton(it) }
-        registerInbound(PacketState.PLAY, 0x0A) { PacketInClickContainer(it) }
-        registerInbound(PacketState.PLAY, 0x0B) { PacketInCloseContainer(it) }
-        registerInbound(PacketState.PLAY, 0x0C) { PacketInPluginMessage(it) }
-        registerInbound(PacketState.PLAY, 0x0D) { PacketInEditBook(it) }
-        registerInbound(PacketState.PLAY, 0x0E) { PacketInQueryEntityTag(it) }
-        registerInbound(PacketState.PLAY, 0x0F) { PacketInInteract(it) }
-        registerInbound(PacketState.PLAY, 0x10) { PacketInGenerateStructure(it) }
-        registerInbound(PacketState.PLAY, 0x11) { PacketInKeepAlive(it) }
-        // 0x12 not used by server
-        registerInbound(PacketState.PLAY, 0x13) { PacketInSetPlayerPosition(it) }
-        registerInbound(PacketState.PLAY, 0x14) { PacketInSetPlayerPositionAndRotation(it) }
-        registerInbound(PacketState.PLAY, 0x15) { PacketInSetPlayerRotation(it) }
-        registerInbound(PacketState.PLAY, 0x16) { PacketInSetPlayerOnGround(it) }
-        registerInbound(PacketState.PLAY, 0x17) { PacketInVehicleMove(it) }
-        registerInbound(PacketState.PLAY, 0x18) { PacketInSteerBoat(it) }
-        registerInbound(PacketState.PLAY, 0x19) { PacketInPickItem(it) }
-        registerInbound(PacketState.PLAY, 0x1A) { PacketInCraftRecipeRequest(it) }
-        registerInbound(PacketState.PLAY, 0x1B) { PacketInAbilities(it) }
-        registerInbound(PacketState.PLAY, 0x1C) { PacketInPlayerAction(it) }
-        registerInbound(PacketState.PLAY, 0x1D) { PacketInPlayerCommand(it) }
-        registerInbound(PacketState.PLAY, 0x1E) { PacketInPlayerInput(it) }
-        registerInbound(PacketState.PLAY, 0x1F) { PacketInPingResponse(it) }
+        // 0x02 Bundle item selected
+        // 0x03 Change difficulty
+        // 0x04 Change game mode
+        registerInbound(PacketState.PLAY, 0x05) { PacketInChatAck(it) }
+        registerInbound(PacketState.PLAY, 0x06) { PacketInChatCommand(it) }
+        registerInbound(PacketState.PLAY, 0x07) { PacketInChat(it) }
+        // 0x08 Chat message
         registerInbound(PacketState.PLAY, 0x20) { PacketInChatSessionUpdate(it) }
-        registerInbound(PacketState.PLAY, 0x21) { PacketInSetRecipeBookState(it) }
-        registerInbound(PacketState.PLAY, 0x22) { PacketInSetDisplayedRecipe(it) }
-        registerInbound(PacketState.PLAY, 0x23) { PacketInNameItem(it) }
-        registerInbound(PacketState.PLAY, 0x24) { PacketInResourcePack(it) }
-        registerInbound(PacketState.PLAY, 0x25) { PacketInAdvancementTab(it) }
-        registerInbound(PacketState.PLAY, 0x26) { PacketInSelectTrade(it) }
-        registerInbound(PacketState.PLAY, 0x27) { PacketInSetBeaconEffect(it) }
-        registerInbound(PacketState.PLAY, 0x28) { PacketInSetHeldItem(it) }
-        registerInbound(PacketState.PLAY, 0x29) { PacketInUpdateCommandBlock(it) }
-        registerInbound(PacketState.PLAY, 0x2A) { PacketInUpdateCommandBlockMinecart(it) }
-        registerInbound(PacketState.PLAY, 0x2B) { PacketInSetCreativeModeSlot(it) }
-        registerInbound(PacketState.PLAY, 0x2D) { PacketInUpdateStructureBlock(it) }
-        registerInbound(PacketState.PLAY, 0x2E) { PacketInUpdateSign(it) }
-        registerInbound(PacketState.PLAY, 0x2F) { PacketInSwingArm(it) }
-        registerInbound(PacketState.PLAY, 0x30) { PacketInSpectate(it) }
-        registerInbound(PacketState.PLAY, 0x31) { PacketInUseItemOn(it) }
-        registerInbound(PacketState.PLAY, 0x32) { PacketInUseItem(it) }
+        // 0x0A Chunk batch received
+        // 0x0B Client status
+        // 0x0C Client tick end
+        registerInbound(PacketState.PLAY, 0x0D) { PacketInClientInformation(it) }
+        registerInbound(PacketState.PLAY, 0x0E) { PacketInCommandSuggestionsRequest(it) }
+        // 0x0F Acknowledge configuration
+        registerInbound(PacketState.PLAY, 0x10) { PacketInClickContainerButton(it) }
+        registerInbound(PacketState.PLAY, 0x11) { PacketInClickContainer(it) }
+        registerInbound(PacketState.PLAY, 0x12) { PacketInCloseContainer(it) }
+        // 0x13 Change container slot state
+        // 0x14 Cookie response
+        registerInbound(PacketState.PLAY, 0x15) { PacketInPluginMessage(it) }
+        // 0x16 Debug sample subscription
+        registerInbound(PacketState.PLAY, 0x17) { PacketInEditBook(it) }
+        registerInbound(PacketState.PLAY, 0x18) { PacketInQueryEntityTag(it) }
+        registerInbound(PacketState.PLAY, 0x19) { PacketInInteract(it) }
+        registerInbound(PacketState.PLAY, 0x1A) { PacketInGenerateStructure(it) }
+        registerInbound(PacketState.PLAY, 0x1B) { PacketInKeepAlive(it) }
+        // 0x1C Lock difficulty
+        registerInbound(PacketState.PLAY, 0x1D) { PacketInSetPlayerPosition(it) }
+        registerInbound(PacketState.PLAY, 0x1E) { PacketInSetPlayerPositionAndRotation(it) }
+        registerInbound(PacketState.PLAY, 0x1F) { PacketInSetPlayerRotation(it) }
+        // 0x20 Set player movement flags
+        registerInbound(PacketState.PLAY, 0x21) { PacketInVehicleMove(it) }
+        registerInbound(PacketState.PLAY, 0x22) { PacketInSteerBoat(it) }
+        // 0x23 Pick item from block
+        // 0x24 Pick item from entity
+        // 0x25 Pick request
+        registerInbound(PacketState.PLAY, 0x26) { PacketInCraftRecipeRequest(it) }
+        registerInbound(PacketState.PLAY, 0x27) { PacketInAbilities(it) }
+        registerInbound(PacketState.PLAY, 0x28) { PacketInPlayerAction(it) }
+        registerInbound(PacketState.PLAY, 0x29) { PacketInPlayerCommand(it) }
+        registerInbound(PacketState.PLAY, 0x2A) { PacketInPlayerInput(it) }
+        // 0x2B Player loaded
+        registerInbound(PacketState.PLAY, 0x2C) { PacketInPingResponse(it) }
+        registerInbound(PacketState.PLAY, 0x2D) { PacketInSetRecipeBookState(it) }
+        registerInbound(PacketState.PLAY, 0x2E) { PacketInSetDisplayedRecipe(it) }
+        registerInbound(PacketState.PLAY, 0x2F) { PacketInNameItem(it) }
+        registerInbound(PacketState.PLAY, 0x30) { PacketInResourcePack(it) }
+        registerInbound(PacketState.PLAY, 0x31) { PacketInAdvancementTab(it) }
+        registerInbound(PacketState.PLAY, 0x32) { PacketInSelectTrade(it) }
+        registerInbound(PacketState.PLAY, 0x33) { PacketInSetBeaconEffect(it) }
+        registerInbound(PacketState.PLAY, 0x34) { PacketInSetHeldItem(it) }
+        registerInbound(PacketState.PLAY, 0x35) { PacketInUpdateCommandBlock(it) }
+        registerInbound(PacketState.PLAY, 0x36) { PacketInUpdateCommandBlockMinecart(it) }
+        registerInbound(PacketState.PLAY, 0x37) { PacketInSetCreativeModeSlot(it) }
+        // 0x38 Program jigsaw block
+        registerInbound(PacketState.PLAY, 0x39) { PacketInUpdateStructureBlock(it) }
+        // 0x3A Set test block
+        registerInbound(PacketState.PLAY, 0x3B) { PacketInUpdateSign(it) }
+        registerInbound(PacketState.PLAY, 0x3C) { PacketInSwingArm(it) }
+        // 0x3D Teleport to entity
+        // 0x3E Test instance block action
+        registerInbound(PacketState.PLAY, 0x3F) { PacketInUseItemOn(it) }
+        registerInbound(PacketState.PLAY, 0x40) { PacketInUseItem(it) }
+        // 0x41 Custom click action
+
+
 
         // 0x00 Bundle delimiter
         registerOutbound<PacketOutSpawnEntity>(0x01)
