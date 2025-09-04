@@ -27,7 +27,7 @@ object AquaPotionTypes {
         val attribute = AttributeTypes.MOVEMENT_SPEED.get()
 
         onApply { entity, effect -> entity.attributes.modify(attribute, template.create(effect.amplifier)) }
-        onEnd { entity, effect -> entity.attributes.reset(attribute, template) }
+        onEnd { entity, _ -> entity.attributes.reset(attribute, template) }
     }
     @JvmField
     val MOVEMENT_SLOWDOWN: AquaPotionType = register("slowness", PotionTypeCategory.HARMFUL, 5926017) { key ->
@@ -35,7 +35,7 @@ object AquaPotionTypes {
         val attribute = AttributeTypes.MOVEMENT_SPEED.get()
 
         onApply { entity, effect -> entity.attributes.modify(attribute, template.create(effect.amplifier)) }
-        onEnd { entity, effect -> entity.attributes.reset(attribute, template) }
+        onEnd { entity, _ -> entity.attributes.reset(attribute, template) }
     }
     @JvmField
     val DIG_SPEED: AquaPotionType = register("haste", PotionTypeCategory.BENEFICIAL, 14270531) { key ->
@@ -43,7 +43,7 @@ object AquaPotionTypes {
         val attribute = AttributeTypes.ATTACK_SPEED.get()
 
         onApply { entity, effect -> entity.attributes.modify(attribute, template.create(effect.amplifier)) }
-        onEnd { entity, effect -> entity.attributes.reset(attribute, template) }
+        onEnd { entity, _ -> entity.attributes.reset(attribute, template) }
     }
     @JvmField
     val DIG_SLOWDOWN: AquaPotionType = register("mining_fatigue", PotionTypeCategory.HARMFUL, 4866583) { key ->
@@ -51,7 +51,7 @@ object AquaPotionTypes {
         val attribute = AttributeTypes.ATTACK_SPEED.get()
 
         onApply { entity, effect -> entity.attributes.modify(attribute, template.create(effect.amplifier)) }
-        onEnd { entity, effect -> entity.attributes.reset(attribute, template) }
+        onEnd { entity, _ -> entity.attributes.reset(attribute, template) }
     }
     @JvmField
     val DAMAGE_BOOST: AquaPotionType = register("strength", PotionTypeCategory.BENEFICIAL, 9643043) { key ->
@@ -59,30 +59,30 @@ object AquaPotionTypes {
         val attribute = AttributeTypes.ATTACK_DAMAGE.get()
 
         onApply { entity, effect -> entity.attributes.modify(attribute, template.create(effect.amplifier)) }
-        onEnd { entity, effect -> entity.attributes.reset(attribute, template) }
+        onEnd { entity, _ -> entity.attributes.reset(attribute, template) }
     }
     @JvmField
-    val HEAL: AquaPotionType = register("instant_health", PotionTypeCategory.BENEFICIAL, 16262179) { key ->
+    val HEAL: AquaPotionType = register("instant_health", PotionTypeCategory.BENEFICIAL, 16262179) { _ ->
         onApply { entity, effect ->
             // TODO Inversion for zombie and etc.
             entity.health += max(4 shl effect.amplifier.toInt(), 0).toFloat()
         }
     }
     @JvmField
-    val HARM: AquaPotionType = register("instant_damage", PotionTypeCategory.HARMFUL, 4393481) { key ->
+    val HARM: AquaPotionType = register("instant_damage", PotionTypeCategory.HARMFUL, 4393481) { _ ->
         onApply { entity, effect ->
             // TODO Inversion for zombie and etc.
             entity.damage(MAGIC_DAMAGE_SOURCE, (6 shl effect.amplifier.toInt()).toFloat())
         }
     }
     @JvmField
-    val JUMP: AquaPotionType = register("jump_boost", PotionTypeCategory.BENEFICIAL, 2293580) { key ->
+    val JUMP: AquaPotionType = register("jump_boost", PotionTypeCategory.BENEFICIAL, 2293580) { _ ->
         // TODO Safe fall distance attribute here?
     }
     @JvmField
     val CONFUSION: AquaPotionType = register("nausea", PotionTypeCategory.HARMFUL, 5578058)
     @JvmField
-    val REGENERATION: AquaPotionType = register("regeneration", PotionTypeCategory.BENEFICIAL, 13458603) { key ->
+    val REGENERATION: AquaPotionType = register("regeneration", PotionTypeCategory.BENEFICIAL, 13458603) { _ ->
         fun shouldApplyEffectTick(duration: Int, amplifier: Byte): Boolean {
             val interval = 50 ushr amplifier.toInt()
             return interval <= 0 || duration % interval == 0
@@ -107,8 +107,8 @@ object AquaPotionTypes {
     @JvmField
     val NIGHT_VISION: AquaPotionType = register("night_vision", PotionTypeCategory.BENEFICIAL, 2039713) // Clientside effect
     @JvmField
-    val HUNGER: AquaPotionType = register("hunger", PotionTypeCategory.HARMFUL, 5797459) { key ->
-        onTick { entity, effect, ticksToEnd ->
+    val HUNGER: AquaPotionType = register("hunger", PotionTypeCategory.HARMFUL, 5797459) { _ ->
+        onTick { entity, effect, _ ->
             // Only player has food level.
             if(entity !is AquaPlayer) return@onTick
 
@@ -121,10 +121,10 @@ object AquaPotionTypes {
         val attribute = AttributeTypes.ATTACK_DAMAGE.get()
 
         onApply { entity, effect -> entity.attributes.modify(attribute, template.create(effect.amplifier)) }
-        onEnd { entity, effect -> entity.attributes.reset(attribute, template) }
+        onEnd { entity, _ -> entity.attributes.reset(attribute, template) }
     }
     @JvmField
-    val POISON: AquaPotionType = register("poison", PotionTypeCategory.HARMFUL, 5149489) { key ->
+    val POISON: AquaPotionType = register("poison", PotionTypeCategory.HARMFUL, 5149489) { _ ->
         fun shouldApplyEffectTick(duration: Int, amplifier: Byte): Boolean {
             val interval = 25 ushr amplifier.toInt()
             return interval <= 0 || duration % interval == 0
@@ -137,7 +137,7 @@ object AquaPotionTypes {
         }
     }
     @JvmField
-    val WITHER: AquaPotionType = register("wither", PotionTypeCategory.HARMFUL, 3484199) { key ->
+    val WITHER: AquaPotionType = register("wither", PotionTypeCategory.HARMFUL, 3484199) { _ ->
         val witherDamageSource = AquaDamageSource(DamageTypes.WITHER.get())
 
         fun shouldApplyEffectTick(duration: Int, amplifier: Byte): Boolean {
@@ -157,14 +157,14 @@ object AquaPotionTypes {
         val attribute = AttributeTypes.MAX_HEALTH.get()
 
         onApply { entity, effect -> entity.attributes.modify(attribute, template.create(effect.amplifier)) }
-        onEnd { entity, effect -> entity.attributes.reset(attribute, template) }
+        onEnd { entity, _ -> entity.attributes.reset(attribute, template) }
     }
     @JvmField
-    val ABSORPTION: AquaPotionType = register("absorption", PotionTypeCategory.BENEFICIAL, 2445989) { key ->
+    val ABSORPTION: AquaPotionType = register("absorption", PotionTypeCategory.BENEFICIAL, 2445989) { _ ->
         // TODO How it works in vanilla?
     }
     @JvmField
-    val SATURATION: AquaPotionType = register("saturation", PotionTypeCategory.BENEFICIAL, 16262179) { key ->
+    val SATURATION: AquaPotionType = register("saturation", PotionTypeCategory.BENEFICIAL, 16262179) { _ ->
         onApply { entity, effect ->
             // Only player has food level.
             if(entity !is AquaPlayer) return@onApply
@@ -173,9 +173,9 @@ object AquaPotionTypes {
         }
     }
     @JvmField
-    val GLOWING: AquaPotionType = register("glowing", PotionTypeCategory.NEUTRAL, 9740385) { key ->
-        onApply { entity, effect -> entity.isGlowing = true }
-        onEnd { entity, effect -> entity.isGlowing = false }
+    val GLOWING: AquaPotionType = register("glowing", PotionTypeCategory.NEUTRAL, 9740385) { _ ->
+        onApply { entity, _ -> entity.isGlowing = true }
+        onEnd { entity, _ -> entity.isGlowing = false }
     }
     @JvmField
     val LEVITATION: AquaPotionType = register("levitation", PotionTypeCategory.HARMFUL, 13565951) // Clientside effect
@@ -185,7 +185,7 @@ object AquaPotionTypes {
         val attribute = AttributeTypes.LUCK.get()
 
         onApply { entity, effect -> entity.attributes.modify(attribute, template.create(effect.amplifier)) }
-        onEnd { entity, effect -> entity.attributes.reset(attribute, template) }
+        onEnd { entity, _ -> entity.attributes.reset(attribute, template) }
     }
     @JvmField
     val UNLUCK: AquaPotionType = register("unluck", PotionTypeCategory.HARMFUL, 12624973) { key ->
@@ -193,7 +193,7 @@ object AquaPotionTypes {
         val attribute = AttributeTypes.LUCK.get()
 
         onApply { entity, effect -> entity.attributes.modify(attribute, template.create(effect.amplifier)) }
-        onEnd { entity, effect -> entity.attributes.reset(attribute, template) }
+        onEnd { entity, _ -> entity.attributes.reset(attribute, template) }
     }
     @JvmField
     val SLOW_FALLING: AquaPotionType = register("slow_falling", PotionTypeCategory.BENEFICIAL, 16773073) // Clientside effect
