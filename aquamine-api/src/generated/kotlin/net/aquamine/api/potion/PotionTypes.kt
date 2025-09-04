@@ -13,27 +13,27 @@ object PotionTypes {
 
     // @formatter:off
     @JvmField
-    val MOVEMENT_SPEED: RegistryReference<PotionType> = of("speed")
+    val SPEED: RegistryReference<PotionType> = of("speed")
     @JvmField
-    val MOVEMENT_SLOWDOWN: RegistryReference<PotionType> = of("slowness")
+    val SLOWNESS: RegistryReference<PotionType> = of("slowness")
     @JvmField
-    val DIG_SPEED: RegistryReference<PotionType> = of("haste")
+    val HASTE: RegistryReference<PotionType> = of("haste")
     @JvmField
-    val DIG_SLOWDOWN: RegistryReference<PotionType> = of("mining_fatigue")
+    val MINING_FATIGUE: RegistryReference<PotionType> = of("mining_fatigue")
     @JvmField
-    val DAMAGE_BOOST: RegistryReference<PotionType> = of("strength")
+    val STRENGTH: RegistryReference<PotionType> = of("strength")
     @JvmField
-    val HEAL: RegistryReference<PotionType> = of("instant_health")
+    val INSTANT_HEALTH: RegistryReference<PotionType> = of("instant_health")
     @JvmField
-    val HARM: RegistryReference<PotionType> = of("instant_damage")
+    val INSTANT_DAMAGE: RegistryReference<PotionType> = of("instant_damage")
     @JvmField
-    val JUMP: RegistryReference<PotionType> = of("jump_boost")
+    val JUMP_BOOST: RegistryReference<PotionType> = of("jump_boost")
     @JvmField
-    val CONFUSION: RegistryReference<PotionType> = of("nausea")
+    val NAUSEA: RegistryReference<PotionType> = of("nausea")
     @JvmField
     val REGENERATION: RegistryReference<PotionType> = of("regeneration")
     @JvmField
-    val DAMAGE_RESISTANCE: RegistryReference<PotionType> = of("resistance")
+    val RESISTANCE: RegistryReference<PotionType> = of("resistance")
     @JvmField
     val FIRE_RESISTANCE: RegistryReference<PotionType> = of("fire_resistance")
     @JvmField
@@ -78,6 +78,18 @@ object PotionTypes {
     val HERO_OF_THE_VILLAGE: RegistryReference<PotionType> = of("hero_of_the_village")
     @JvmField
     val DARKNESS: RegistryReference<PotionType> = of("darkness")
+    @JvmField
+    val TRIAL_OMEN: RegistryReference<PotionType> = of("trial_omen")
+    @JvmField
+    val RAID_OMEN: RegistryReference<PotionType> = of("raid_omen")
+    @JvmField
+    val WIND_CHARGED: RegistryReference<PotionType> = of("wind_charged")
+    @JvmField
+    val WEAVING: RegistryReference<PotionType> = of("weaving")
+    @JvmField
+    val OOZING: RegistryReference<PotionType> = of("oozing")
+    @JvmField
+    val INFESTED: RegistryReference<PotionType> = of("infested")
 
     // @formatter:on
     @JvmStatic

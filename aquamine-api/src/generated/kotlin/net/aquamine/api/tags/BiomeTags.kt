@@ -115,6 +115,9 @@ object BiomeTags {
     val HAS_STRONGHOLD: TagKey<Biome> = get("has_structure/stronghold")
 
     @JvmField
+    val HAS_TRIAL_CHAMBERS: TagKey<Biome> = get("has_structure/trial_chambers")
+
+    @JvmField
     val HAS_SWAMP_HUT: TagKey<Biome> = get("has_structure/swamp_hut")
 
     @JvmField
@@ -131,6 +134,9 @@ object BiomeTags {
 
     @JvmField
     val HAS_VILLAGE_TAIGA: TagKey<Biome> = get("has_structure/village_taiga")
+
+    @JvmField
+    val HAS_TRAIL_RUINS: TagKey<Biome> = get("has_structure/trail_ruins")
 
     @JvmField
     val HAS_WOODLAND_MANSION: TagKey<Biome> = get("has_structure/woodland_mansion")
@@ -173,6 +179,12 @@ object BiomeTags {
     val PRODUCES_CORALS_FROM_BONEMEAL: TagKey<Biome> = get("produces_corals_from_bonemeal")
 
     @JvmField
+    val INCREASED_FIRE_BURNOUT: TagKey<Biome> = get("increased_fire_burnout")
+
+    @JvmField
+    val SNOW_GOLEM_MELTS: TagKey<Biome> = get("snow_golem_melts")
+
+    @JvmField
     val WITHOUT_ZOMBIE_SIEGES: TagKey<Biome> = get("without_zombie_sieges")
 
     @JvmField
@@ -189,8 +201,18 @@ object BiomeTags {
     val SPAWNS_WARM_VARIANT_FROGS: TagKey<Biome> = get("spawns_warm_variant_frogs")
 
     @JvmField
-    val ONLY_ALLOWS_SNOW_AND_GOLD_RABBITS: TagKey<Biome> =
-            get("only_allows_snow_and_gold_rabbits")
+    val SPAWNS_COLD_VARIANT_FARM_ANIMALS: TagKey<Biome> =
+            get("spawns_cold_variant_farm_animals")
+
+    @JvmField
+    val SPAWNS_WARM_VARIANT_FARM_ANIMALS: TagKey<Biome> =
+            get("spawns_warm_variant_farm_animals")
+
+    @JvmField
+    val SPAWNS_GOLD_RABBITS: TagKey<Biome> = get("spawns_gold_rabbits")
+
+    @JvmField
+    val SPAWNS_WHITE_RABBITS: TagKey<Biome> = get("spawns_white_rabbits")
 
     @JvmField
     val REDUCED_WATER_AMBIENT_SPAWNS: TagKey<Biome> = get("reduce_water_ambient_spawns")
@@ -208,6 +230,9 @@ object BiomeTags {
 
     @JvmField
     val ALLOWS_SURFACE_SLIME_SPAWNS: TagKey<Biome> = get("allows_surface_slime_spawns")
+
+    @JvmField
+    val SPAWNS_SNOW_FOXES: TagKey<Biome> = get("spawns_snow_foxes")
 
 
     // @formatter:on

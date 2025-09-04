@@ -49,7 +49,13 @@ object Blocks {
     @JvmField
     val ACACIA_PLANKS: RegistryReference<Block> = of("acacia_planks")
     @JvmField
+    val CHERRY_PLANKS: RegistryReference<Block> = of("cherry_planks")
+    @JvmField
     val DARK_OAK_PLANKS: RegistryReference<Block> = of("dark_oak_planks")
+    @JvmField
+    val PALE_OAK_WOOD: RegistryReference<Block> = of("pale_oak_wood")
+    @JvmField
+    val PALE_OAK_PLANKS: RegistryReference<Block> = of("pale_oak_planks")
     @JvmField
     val MANGROVE_PLANKS: RegistryReference<Block> = of("mangrove_planks")
     @JvmField
@@ -67,7 +73,11 @@ object Blocks {
     @JvmField
     val ACACIA_SAPLING: RegistryReference<Block> = of("acacia_sapling")
     @JvmField
+    val CHERRY_SAPLING: RegistryReference<Block> = of("cherry_sapling")
+    @JvmField
     val DARK_OAK_SAPLING: RegistryReference<Block> = of("dark_oak_sapling")
+    @JvmField
+    val PALE_OAK_SAPLING: RegistryReference<Block> = of("pale_oak_sapling")
     @JvmField
     val MANGROVE_PROPAGULE: RegistryReference<Block> = of("mangrove_propagule")
     @JvmField
@@ -79,9 +89,13 @@ object Blocks {
     @JvmField
     val SAND: RegistryReference<Block> = of("sand")
     @JvmField
+    val SUSPICIOUS_SAND: RegistryReference<Block> = of("suspicious_sand")
+    @JvmField
     val RED_SAND: RegistryReference<Block> = of("red_sand")
     @JvmField
     val GRAVEL: RegistryReference<Block> = of("gravel")
+    @JvmField
+    val SUSPICIOUS_GRAVEL: RegistryReference<Block> = of("suspicious_gravel")
     @JvmField
     val GOLD_ORE: RegistryReference<Block> = of("gold_ore")
     @JvmField
@@ -107,7 +121,11 @@ object Blocks {
     @JvmField
     val ACACIA_LOG: RegistryReference<Block> = of("acacia_log")
     @JvmField
+    val CHERRY_LOG: RegistryReference<Block> = of("cherry_log")
+    @JvmField
     val DARK_OAK_LOG: RegistryReference<Block> = of("dark_oak_log")
+    @JvmField
+    val PALE_OAK_LOG: RegistryReference<Block> = of("pale_oak_log")
     @JvmField
     val MANGROVE_LOG: RegistryReference<Block> = of("mangrove_log")
     @JvmField
@@ -125,7 +143,11 @@ object Blocks {
     @JvmField
     val STRIPPED_ACACIA_LOG: RegistryReference<Block> = of("stripped_acacia_log")
     @JvmField
+    val STRIPPED_CHERRY_LOG: RegistryReference<Block> = of("stripped_cherry_log")
+    @JvmField
     val STRIPPED_DARK_OAK_LOG: RegistryReference<Block> = of("stripped_dark_oak_log")
+    @JvmField
+    val STRIPPED_PALE_OAK_LOG: RegistryReference<Block> = of("stripped_pale_oak_log")
     @JvmField
     val STRIPPED_OAK_LOG: RegistryReference<Block> = of("stripped_oak_log")
     @JvmField
@@ -143,6 +165,8 @@ object Blocks {
     @JvmField
     val ACACIA_WOOD: RegistryReference<Block> = of("acacia_wood")
     @JvmField
+    val CHERRY_WOOD: RegistryReference<Block> = of("cherry_wood")
+    @JvmField
     val DARK_OAK_WOOD: RegistryReference<Block> = of("dark_oak_wood")
     @JvmField
     val MANGROVE_WOOD: RegistryReference<Block> = of("mangrove_wood")
@@ -157,7 +181,11 @@ object Blocks {
     @JvmField
     val STRIPPED_ACACIA_WOOD: RegistryReference<Block> = of("stripped_acacia_wood")
     @JvmField
+    val STRIPPED_CHERRY_WOOD: RegistryReference<Block> = of("stripped_cherry_wood")
+    @JvmField
     val STRIPPED_DARK_OAK_WOOD: RegistryReference<Block> = of("stripped_dark_oak_wood")
+    @JvmField
+    val STRIPPED_PALE_OAK_WOOD: RegistryReference<Block> = of("stripped_pale_oak_wood")
     @JvmField
     val STRIPPED_MANGROVE_WOOD: RegistryReference<Block> = of("stripped_mangrove_wood")
     @JvmField
@@ -171,7 +199,11 @@ object Blocks {
     @JvmField
     val ACACIA_LEAVES: RegistryReference<Block> = of("acacia_leaves")
     @JvmField
+    val CHERRY_LEAVES: RegistryReference<Block> = of("cherry_leaves")
+    @JvmField
     val DARK_OAK_LEAVES: RegistryReference<Block> = of("dark_oak_leaves")
+    @JvmField
+    val PALE_OAK_LEAVES: RegistryReference<Block> = of("pale_oak_leaves")
     @JvmField
     val MANGROVE_LEAVES: RegistryReference<Block> = of("mangrove_leaves")
     @JvmField
@@ -241,11 +273,17 @@ object Blocks {
     @JvmField
     val COBWEB: RegistryReference<Block> = of("cobweb")
     @JvmField
-    val GRASS: RegistryReference<Block> = of("grass")
+    val SHORT_GRASS: RegistryReference<Block> = of("short_grass")
     @JvmField
     val FERN: RegistryReference<Block> = of("fern")
     @JvmField
     val DEAD_BUSH: RegistryReference<Block> = of("dead_bush")
+    @JvmField
+    val BUSH: RegistryReference<Block> = of("bush")
+    @JvmField
+    val SHORT_DRY_GRASS: RegistryReference<Block> = of("short_dry_grass")
+    @JvmField
+    val TALL_DRY_GRASS: RegistryReference<Block> = of("tall_dry_grass")
     @JvmField
     val SEAGRASS: RegistryReference<Block> = of("seagrass")
     @JvmField
@@ -290,6 +328,8 @@ object Blocks {
     val MOVING_PISTON: RegistryReference<Block> = of("moving_piston")
     @JvmField
     val DANDELION: RegistryReference<Block> = of("dandelion")
+    @JvmField
+    val TORCHFLOWER: RegistryReference<Block> = of("torchflower")
     @JvmField
     val POPPY: RegistryReference<Block> = of("poppy")
     @JvmField
@@ -345,6 +385,8 @@ object Blocks {
     @JvmField
     val SPAWNER: RegistryReference<Block> = of("spawner")
     @JvmField
+    val CREAKING_HEART: RegistryReference<Block> = of("creaking_heart")
+    @JvmField
     val OAK_STAIRS: RegistryReference<Block> = of("oak_stairs")
     @JvmField
     val CHEST: RegistryReference<Block> = of("chest")
@@ -373,9 +415,13 @@ object Blocks {
     @JvmField
     val ACACIA_SIGN: RegistryReference<Block> = of("acacia_sign")
     @JvmField
+    val CHERRY_SIGN: RegistryReference<Block> = of("cherry_sign")
+    @JvmField
     val JUNGLE_SIGN: RegistryReference<Block> = of("jungle_sign")
     @JvmField
     val DARK_OAK_SIGN: RegistryReference<Block> = of("dark_oak_sign")
+    @JvmField
+    val PALE_OAK_SIGN: RegistryReference<Block> = of("pale_oak_sign")
     @JvmField
     val MANGROVE_SIGN: RegistryReference<Block> = of("mangrove_sign")
     @JvmField
@@ -397,9 +443,13 @@ object Blocks {
     @JvmField
     val ACACIA_WALL_SIGN: RegistryReference<Block> = of("acacia_wall_sign")
     @JvmField
+    val CHERRY_WALL_SIGN: RegistryReference<Block> = of("cherry_wall_sign")
+    @JvmField
     val JUNGLE_WALL_SIGN: RegistryReference<Block> = of("jungle_wall_sign")
     @JvmField
     val DARK_OAK_WALL_SIGN: RegistryReference<Block> = of("dark_oak_wall_sign")
+    @JvmField
+    val PALE_OAK_WALL_SIGN: RegistryReference<Block> = of("pale_oak_wall_sign")
     @JvmField
     val MANGROVE_WALL_SIGN: RegistryReference<Block> = of("mangrove_wall_sign")
     @JvmField
@@ -413,9 +463,13 @@ object Blocks {
     @JvmField
     val ACACIA_HANGING_SIGN: RegistryReference<Block> = of("acacia_hanging_sign")
     @JvmField
+    val CHERRY_HANGING_SIGN: RegistryReference<Block> = of("cherry_hanging_sign")
+    @JvmField
     val JUNGLE_HANGING_SIGN: RegistryReference<Block> = of("jungle_hanging_sign")
     @JvmField
     val DARK_OAK_HANGING_SIGN: RegistryReference<Block> = of("dark_oak_hanging_sign")
+    @JvmField
+    val PALE_OAK_HANGING_SIGN: RegistryReference<Block> = of("pale_oak_hanging_sign")
     @JvmField
     val CRIMSON_HANGING_SIGN: RegistryReference<Block> = of("crimson_hanging_sign")
     @JvmField
@@ -433,9 +487,13 @@ object Blocks {
     @JvmField
     val ACACIA_WALL_HANGING_SIGN: RegistryReference<Block> = of("acacia_wall_hanging_sign")
     @JvmField
+    val CHERRY_WALL_HANGING_SIGN: RegistryReference<Block> = of("cherry_wall_hanging_sign")
+    @JvmField
     val JUNGLE_WALL_HANGING_SIGN: RegistryReference<Block> = of("jungle_wall_hanging_sign")
     @JvmField
     val DARK_OAK_WALL_HANGING_SIGN: RegistryReference<Block> = of("dark_oak_wall_hanging_sign")
+    @JvmField
+    val PALE_OAK_WALL_HANGING_SIGN: RegistryReference<Block> = of("pale_oak_wall_hanging_sign")
     @JvmField
     val MANGROVE_WALL_HANGING_SIGN: RegistryReference<Block> = of("mangrove_wall_hanging_sign")
     @JvmField
@@ -461,7 +519,11 @@ object Blocks {
     @JvmField
     val ACACIA_PRESSURE_PLATE: RegistryReference<Block> = of("acacia_pressure_plate")
     @JvmField
+    val CHERRY_PRESSURE_PLATE: RegistryReference<Block> = of("cherry_pressure_plate")
+    @JvmField
     val DARK_OAK_PRESSURE_PLATE: RegistryReference<Block> = of("dark_oak_pressure_plate")
+    @JvmField
+    val PALE_OAK_PRESSURE_PLATE: RegistryReference<Block> = of("pale_oak_pressure_plate")
     @JvmField
     val MANGROVE_PRESSURE_PLATE: RegistryReference<Block> = of("mangrove_pressure_plate")
     @JvmField
@@ -485,6 +547,8 @@ object Blocks {
     @JvmField
     val CACTUS: RegistryReference<Block> = of("cactus")
     @JvmField
+    val CACTUS_FLOWER: RegistryReference<Block> = of("cactus_flower")
+    @JvmField
     val CLAY: RegistryReference<Block> = of("clay")
     @JvmField
     val SUGAR_CANE: RegistryReference<Block> = of("sugar_cane")
@@ -492,8 +556,6 @@ object Blocks {
     val JUKEBOX: RegistryReference<Block> = of("jukebox")
     @JvmField
     val OAK_FENCE: RegistryReference<Block> = of("oak_fence")
-    @JvmField
-    val PUMPKIN: RegistryReference<Block> = of("pumpkin")
     @JvmField
     val NETHERRACK: RegistryReference<Block> = of("netherrack")
     @JvmField
@@ -563,7 +625,11 @@ object Blocks {
     @JvmField
     val ACACIA_TRAPDOOR: RegistryReference<Block> = of("acacia_trapdoor")
     @JvmField
+    val CHERRY_TRAPDOOR: RegistryReference<Block> = of("cherry_trapdoor")
+    @JvmField
     val DARK_OAK_TRAPDOOR: RegistryReference<Block> = of("dark_oak_trapdoor")
+    @JvmField
+    val PALE_OAK_TRAPDOOR: RegistryReference<Block> = of("pale_oak_trapdoor")
     @JvmField
     val MANGROVE_TRAPDOOR: RegistryReference<Block> = of("mangrove_trapdoor")
     @JvmField
@@ -605,6 +671,8 @@ object Blocks {
     @JvmField
     val GLASS_PANE: RegistryReference<Block> = of("glass_pane")
     @JvmField
+    val PUMPKIN: RegistryReference<Block> = of("pumpkin")
+    @JvmField
     val MELON: RegistryReference<Block> = of("melon")
     @JvmField
     val ATTACHED_PUMPKIN_STEM: RegistryReference<Block> = of("attached_pumpkin_stem")
@@ -619,6 +687,8 @@ object Blocks {
     @JvmField
     val GLOW_LICHEN: RegistryReference<Block> = of("glow_lichen")
     @JvmField
+    val RESIN_CLUMP: RegistryReference<Block> = of("resin_clump")
+    @JvmField
     val OAK_FENCE_GATE: RegistryReference<Block> = of("oak_fence_gate")
     @JvmField
     val BRICK_STAIRS: RegistryReference<Block> = of("brick_stairs")
@@ -630,6 +700,18 @@ object Blocks {
     val MYCELIUM: RegistryReference<Block> = of("mycelium")
     @JvmField
     val LILY_PAD: RegistryReference<Block> = of("lily_pad")
+    @JvmField
+    val RESIN_BLOCK: RegistryReference<Block> = of("resin_block")
+    @JvmField
+    val RESIN_BRICKS: RegistryReference<Block> = of("resin_bricks")
+    @JvmField
+    val RESIN_BRICK_STAIRS: RegistryReference<Block> = of("resin_brick_stairs")
+    @JvmField
+    val RESIN_BRICK_SLAB: RegistryReference<Block> = of("resin_brick_slab")
+    @JvmField
+    val RESIN_BRICK_WALL: RegistryReference<Block> = of("resin_brick_wall")
+    @JvmField
+    val CHISELED_RESIN_BRICKS: RegistryReference<Block> = of("chiseled_resin_bricks")
     @JvmField
     val NETHER_BRICKS: RegistryReference<Block> = of("nether_bricks")
     @JvmField
@@ -693,6 +775,8 @@ object Blocks {
     @JvmField
     val FLOWER_POT: RegistryReference<Block> = of("flower_pot")
     @JvmField
+    val POTTED_TORCHFLOWER: RegistryReference<Block> = of("potted_torchflower")
+    @JvmField
     val POTTED_OAK_SAPLING: RegistryReference<Block> = of("potted_oak_sapling")
     @JvmField
     val POTTED_SPRUCE_SAPLING: RegistryReference<Block> = of("potted_spruce_sapling")
@@ -703,7 +787,11 @@ object Blocks {
     @JvmField
     val POTTED_ACACIA_SAPLING: RegistryReference<Block> = of("potted_acacia_sapling")
     @JvmField
+    val POTTED_CHERRY_SAPLING: RegistryReference<Block> = of("potted_cherry_sapling")
+    @JvmField
     val POTTED_DARK_OAK_SAPLING: RegistryReference<Block> = of("potted_dark_oak_sapling")
+    @JvmField
+    val POTTED_PALE_OAK_SAPLING: RegistryReference<Block> = of("potted_pale_oak_sapling")
     @JvmField
     val POTTED_MANGROVE_PROPAGULE: RegistryReference<Block> = of("potted_mangrove_propagule")
     @JvmField
@@ -757,7 +845,11 @@ object Blocks {
     @JvmField
     val ACACIA_BUTTON: RegistryReference<Block> = of("acacia_button")
     @JvmField
+    val CHERRY_BUTTON: RegistryReference<Block> = of("cherry_button")
+    @JvmField
     val DARK_OAK_BUTTON: RegistryReference<Block> = of("dark_oak_button")
+    @JvmField
+    val PALE_OAK_BUTTON: RegistryReference<Block> = of("pale_oak_button")
     @JvmField
     val MANGROVE_BUTTON: RegistryReference<Block> = of("mangrove_button")
     @JvmField
@@ -891,7 +983,11 @@ object Blocks {
     @JvmField
     val ACACIA_STAIRS: RegistryReference<Block> = of("acacia_stairs")
     @JvmField
+    val CHERRY_STAIRS: RegistryReference<Block> = of("cherry_stairs")
+    @JvmField
     val DARK_OAK_STAIRS: RegistryReference<Block> = of("dark_oak_stairs")
+    @JvmField
+    val PALE_OAK_STAIRS: RegistryReference<Block> = of("pale_oak_stairs")
     @JvmField
     val MANGROVE_STAIRS: RegistryReference<Block> = of("mangrove_stairs")
     @JvmField
@@ -1061,7 +1157,11 @@ object Blocks {
     @JvmField
     val ACACIA_SLAB: RegistryReference<Block> = of("acacia_slab")
     @JvmField
+    val CHERRY_SLAB: RegistryReference<Block> = of("cherry_slab")
+    @JvmField
     val DARK_OAK_SLAB: RegistryReference<Block> = of("dark_oak_slab")
+    @JvmField
+    val PALE_OAK_SLAB: RegistryReference<Block> = of("pale_oak_slab")
     @JvmField
     val MANGROVE_SLAB: RegistryReference<Block> = of("mangrove_slab")
     @JvmField
@@ -1113,7 +1213,11 @@ object Blocks {
     @JvmField
     val ACACIA_FENCE_GATE: RegistryReference<Block> = of("acacia_fence_gate")
     @JvmField
+    val CHERRY_FENCE_GATE: RegistryReference<Block> = of("cherry_fence_gate")
+    @JvmField
     val DARK_OAK_FENCE_GATE: RegistryReference<Block> = of("dark_oak_fence_gate")
+    @JvmField
+    val PALE_OAK_FENCE_GATE: RegistryReference<Block> = of("pale_oak_fence_gate")
     @JvmField
     val MANGROVE_FENCE_GATE: RegistryReference<Block> = of("mangrove_fence_gate")
     @JvmField
@@ -1127,7 +1231,11 @@ object Blocks {
     @JvmField
     val ACACIA_FENCE: RegistryReference<Block> = of("acacia_fence")
     @JvmField
+    val CHERRY_FENCE: RegistryReference<Block> = of("cherry_fence")
+    @JvmField
     val DARK_OAK_FENCE: RegistryReference<Block> = of("dark_oak_fence")
+    @JvmField
+    val PALE_OAK_FENCE: RegistryReference<Block> = of("pale_oak_fence")
     @JvmField
     val MANGROVE_FENCE: RegistryReference<Block> = of("mangrove_fence")
     @JvmField
@@ -1141,7 +1249,11 @@ object Blocks {
     @JvmField
     val ACACIA_DOOR: RegistryReference<Block> = of("acacia_door")
     @JvmField
+    val CHERRY_DOOR: RegistryReference<Block> = of("cherry_door")
+    @JvmField
     val DARK_OAK_DOOR: RegistryReference<Block> = of("dark_oak_door")
+    @JvmField
+    val PALE_OAK_DOOR: RegistryReference<Block> = of("pale_oak_door")
     @JvmField
     val MANGROVE_DOOR: RegistryReference<Block> = of("mangrove_door")
     @JvmField
@@ -1160,6 +1272,12 @@ object Blocks {
     val PURPUR_STAIRS: RegistryReference<Block> = of("purpur_stairs")
     @JvmField
     val END_STONE_BRICKS: RegistryReference<Block> = of("end_stone_bricks")
+    @JvmField
+    val TORCHFLOWER_CROP: RegistryReference<Block> = of("torchflower_crop")
+    @JvmField
+    val PITCHER_CROP: RegistryReference<Block> = of("pitcher_crop")
+    @JvmField
+    val PITCHER_PLANT: RegistryReference<Block> = of("pitcher_plant")
     @JvmField
     val BEETROOTS: RegistryReference<Block> = of("beetroots")
     @JvmField
@@ -1322,6 +1440,10 @@ object Blocks {
     val DRIED_KELP_BLOCK: RegistryReference<Block> = of("dried_kelp_block")
     @JvmField
     val TURTLE_EGG: RegistryReference<Block> = of("turtle_egg")
+    @JvmField
+    val SNIFFER_EGG: RegistryReference<Block> = of("sniffer_egg")
+    @JvmField
+    val DRIED_GHAST: RegistryReference<Block> = of("dried_ghast")
     @JvmField
     val DEAD_TUBE_CORAL_BLOCK: RegistryReference<Block> = of("dead_tube_coral_block")
     @JvmField
@@ -1625,6 +1747,10 @@ object Blocks {
     @JvmField
     val JIGSAW: RegistryReference<Block> = of("jigsaw")
     @JvmField
+    val TEST_BLOCK: RegistryReference<Block> = of("test_block")
+    @JvmField
+    val TEST_INSTANCE_BLOCK: RegistryReference<Block> = of("test_instance_block")
+    @JvmField
     val COMPOSTER: RegistryReference<Block> = of("composter")
     @JvmField
     val TARGET: RegistryReference<Block> = of("target")
@@ -1777,6 +1903,32 @@ object Blocks {
     @JvmField
     val TUFF: RegistryReference<Block> = of("tuff")
     @JvmField
+    val TUFF_SLAB: RegistryReference<Block> = of("tuff_slab")
+    @JvmField
+    val TUFF_STAIRS: RegistryReference<Block> = of("tuff_stairs")
+    @JvmField
+    val TUFF_WALL: RegistryReference<Block> = of("tuff_wall")
+    @JvmField
+    val POLISHED_TUFF: RegistryReference<Block> = of("polished_tuff")
+    @JvmField
+    val POLISHED_TUFF_SLAB: RegistryReference<Block> = of("polished_tuff_slab")
+    @JvmField
+    val POLISHED_TUFF_STAIRS: RegistryReference<Block> = of("polished_tuff_stairs")
+    @JvmField
+    val POLISHED_TUFF_WALL: RegistryReference<Block> = of("polished_tuff_wall")
+    @JvmField
+    val CHISELED_TUFF: RegistryReference<Block> = of("chiseled_tuff")
+    @JvmField
+    val TUFF_BRICKS: RegistryReference<Block> = of("tuff_bricks")
+    @JvmField
+    val TUFF_BRICK_SLAB: RegistryReference<Block> = of("tuff_brick_slab")
+    @JvmField
+    val TUFF_BRICK_STAIRS: RegistryReference<Block> = of("tuff_brick_stairs")
+    @JvmField
+    val TUFF_BRICK_WALL: RegistryReference<Block> = of("tuff_brick_wall")
+    @JvmField
+    val CHISELED_TUFF_BRICKS: RegistryReference<Block> = of("chiseled_tuff_bricks")
+    @JvmField
     val CALCITE: RegistryReference<Block> = of("calcite")
     @JvmField
     val TINTED_GLASS: RegistryReference<Block> = of("tinted_glass")
@@ -1784,6 +1936,8 @@ object Blocks {
     val POWDER_SNOW: RegistryReference<Block> = of("powder_snow")
     @JvmField
     val SCULK_SENSOR: RegistryReference<Block> = of("sculk_sensor")
+    @JvmField
+    val CALIBRATED_SCULK_SENSOR: RegistryReference<Block> = of("calibrated_sculk_sensor")
     @JvmField
     val SCULK: RegistryReference<Block> = of("sculk")
     @JvmField
@@ -1793,13 +1947,13 @@ object Blocks {
     @JvmField
     val SCULK_SHRIEKER: RegistryReference<Block> = of("sculk_shrieker")
     @JvmField
-    val OXIDIZED_COPPER: RegistryReference<Block> = of("oxidized_copper")
-    @JvmField
-    val WEATHERED_COPPER: RegistryReference<Block> = of("weathered_copper")
+    val COPPER_BLOCK: RegistryReference<Block> = of("copper_block")
     @JvmField
     val EXPOSED_COPPER: RegistryReference<Block> = of("exposed_copper")
     @JvmField
-    val COPPER_BLOCK: RegistryReference<Block> = of("copper_block")
+    val WEATHERED_COPPER: RegistryReference<Block> = of("weathered_copper")
+    @JvmField
+    val OXIDIZED_COPPER: RegistryReference<Block> = of("oxidized_copper")
     @JvmField
     val COPPER_ORE: RegistryReference<Block> = of("copper_ore")
     @JvmField
@@ -1812,6 +1966,22 @@ object Blocks {
     val EXPOSED_CUT_COPPER: RegistryReference<Block> = of("exposed_cut_copper")
     @JvmField
     val CUT_COPPER: RegistryReference<Block> = of("cut_copper")
+    @JvmField
+    val OXIDIZED_CHISELED_COPPER: RegistryReference<Block> = of("oxidized_chiseled_copper")
+    @JvmField
+    val WEATHERED_CHISELED_COPPER: RegistryReference<Block> = of("weathered_chiseled_copper")
+    @JvmField
+    val EXPOSED_CHISELED_COPPER: RegistryReference<Block> = of("exposed_chiseled_copper")
+    @JvmField
+    val CHISELED_COPPER: RegistryReference<Block> = of("chiseled_copper")
+    @JvmField
+    val WAXED_OXIDIZED_CHISELED_COPPER: RegistryReference<Block> = of("waxed_oxidized_chiseled_copper")
+    @JvmField
+    val WAXED_WEATHERED_CHISELED_COPPER: RegistryReference<Block> = of("waxed_weathered_chiseled_copper")
+    @JvmField
+    val WAXED_EXPOSED_CHISELED_COPPER: RegistryReference<Block> = of("waxed_exposed_chiseled_copper")
+    @JvmField
+    val WAXED_CHISELED_COPPER: RegistryReference<Block> = of("waxed_chiseled_copper")
     @JvmField
     val OXIDIZED_CUT_COPPER_STAIRS: RegistryReference<Block> = of("oxidized_cut_copper_stairs")
     @JvmField
@@ -1861,6 +2031,70 @@ object Blocks {
     @JvmField
     val WAXED_CUT_COPPER_SLAB: RegistryReference<Block> = of("waxed_cut_copper_slab")
     @JvmField
+    val COPPER_DOOR: RegistryReference<Block> = of("copper_door")
+    @JvmField
+    val EXPOSED_COPPER_DOOR: RegistryReference<Block> = of("exposed_copper_door")
+    @JvmField
+    val OXIDIZED_COPPER_DOOR: RegistryReference<Block> = of("oxidized_copper_door")
+    @JvmField
+    val WEATHERED_COPPER_DOOR: RegistryReference<Block> = of("weathered_copper_door")
+    @JvmField
+    val WAXED_COPPER_DOOR: RegistryReference<Block> = of("waxed_copper_door")
+    @JvmField
+    val WAXED_EXPOSED_COPPER_DOOR: RegistryReference<Block> = of("waxed_exposed_copper_door")
+    @JvmField
+    val WAXED_OXIDIZED_COPPER_DOOR: RegistryReference<Block> = of("waxed_oxidized_copper_door")
+    @JvmField
+    val WAXED_WEATHERED_COPPER_DOOR: RegistryReference<Block> = of("waxed_weathered_copper_door")
+    @JvmField
+    val COPPER_TRAPDOOR: RegistryReference<Block> = of("copper_trapdoor")
+    @JvmField
+    val EXPOSED_COPPER_TRAPDOOR: RegistryReference<Block> = of("exposed_copper_trapdoor")
+    @JvmField
+    val OXIDIZED_COPPER_TRAPDOOR: RegistryReference<Block> = of("oxidized_copper_trapdoor")
+    @JvmField
+    val WEATHERED_COPPER_TRAPDOOR: RegistryReference<Block> = of("weathered_copper_trapdoor")
+    @JvmField
+    val WAXED_COPPER_TRAPDOOR: RegistryReference<Block> = of("waxed_copper_trapdoor")
+    @JvmField
+    val WAXED_EXPOSED_COPPER_TRAPDOOR: RegistryReference<Block> = of("waxed_exposed_copper_trapdoor")
+    @JvmField
+    val WAXED_OXIDIZED_COPPER_TRAPDOOR: RegistryReference<Block> = of("waxed_oxidized_copper_trapdoor")
+    @JvmField
+    val WAXED_WEATHERED_COPPER_TRAPDOOR: RegistryReference<Block> = of("waxed_weathered_copper_trapdoor")
+    @JvmField
+    val COPPER_GRATE: RegistryReference<Block> = of("copper_grate")
+    @JvmField
+    val EXPOSED_COPPER_GRATE: RegistryReference<Block> = of("exposed_copper_grate")
+    @JvmField
+    val WEATHERED_COPPER_GRATE: RegistryReference<Block> = of("weathered_copper_grate")
+    @JvmField
+    val OXIDIZED_COPPER_GRATE: RegistryReference<Block> = of("oxidized_copper_grate")
+    @JvmField
+    val WAXED_COPPER_GRATE: RegistryReference<Block> = of("waxed_copper_grate")
+    @JvmField
+    val WAXED_EXPOSED_COPPER_GRATE: RegistryReference<Block> = of("waxed_exposed_copper_grate")
+    @JvmField
+    val WAXED_WEATHERED_COPPER_GRATE: RegistryReference<Block> = of("waxed_weathered_copper_grate")
+    @JvmField
+    val WAXED_OXIDIZED_COPPER_GRATE: RegistryReference<Block> = of("waxed_oxidized_copper_grate")
+    @JvmField
+    val COPPER_BULB: RegistryReference<Block> = of("copper_bulb")
+    @JvmField
+    val EXPOSED_COPPER_BULB: RegistryReference<Block> = of("exposed_copper_bulb")
+    @JvmField
+    val WEATHERED_COPPER_BULB: RegistryReference<Block> = of("weathered_copper_bulb")
+    @JvmField
+    val OXIDIZED_COPPER_BULB: RegistryReference<Block> = of("oxidized_copper_bulb")
+    @JvmField
+    val WAXED_COPPER_BULB: RegistryReference<Block> = of("waxed_copper_bulb")
+    @JvmField
+    val WAXED_EXPOSED_COPPER_BULB: RegistryReference<Block> = of("waxed_exposed_copper_bulb")
+    @JvmField
+    val WAXED_WEATHERED_COPPER_BULB: RegistryReference<Block> = of("waxed_weathered_copper_bulb")
+    @JvmField
+    val WAXED_OXIDIZED_COPPER_BULB: RegistryReference<Block> = of("waxed_oxidized_copper_bulb")
+    @JvmField
     val LIGHTNING_ROD: RegistryReference<Block> = of("lightning_rod")
     @JvmField
     val POINTED_DRIPSTONE: RegistryReference<Block> = of("pointed_dripstone")
@@ -1878,6 +2112,12 @@ object Blocks {
     val FLOWERING_AZALEA: RegistryReference<Block> = of("flowering_azalea")
     @JvmField
     val MOSS_CARPET: RegistryReference<Block> = of("moss_carpet")
+    @JvmField
+    val PINK_PETALS: RegistryReference<Block> = of("pink_petals")
+    @JvmField
+    val WILDFLOWERS: RegistryReference<Block> = of("wildflowers")
+    @JvmField
+    val LEAF_LITTER: RegistryReference<Block> = of("leaf_litter")
     @JvmField
     val MOSS_BLOCK: RegistryReference<Block> = of("moss_block")
     @JvmField
@@ -1956,6 +2196,32 @@ object Blocks {
     val FROGSPAWN: RegistryReference<Block> = of("frogspawn")
     @JvmField
     val REINFORCED_DEEPSLATE: RegistryReference<Block> = of("reinforced_deepslate")
+    @JvmField
+    val DECORATED_POT: RegistryReference<Block> = of("decorated_pot")
+    @JvmField
+    val CRAFTER: RegistryReference<Block> = of("crafter")
+    @JvmField
+    val TRIAL_SPAWNER: RegistryReference<Block> = of("trial_spawner")
+    @JvmField
+    val VAULT: RegistryReference<Block> = of("vault")
+    @JvmField
+    val HEAVY_CORE: RegistryReference<Block> = of("heavy_core")
+    @JvmField
+    val PALE_MOSS_BLOCK: RegistryReference<Block> = of("pale_moss_block")
+    @JvmField
+    val PALE_MOSS_CARPET: RegistryReference<Block> = of("pale_moss_carpet")
+    @JvmField
+    val PALE_HANGING_MOSS: RegistryReference<Block> = of("pale_hanging_moss")
+    @JvmField
+    val OPEN_EYEBLOSSOM: RegistryReference<Block> = of("open_eyeblossom")
+    @JvmField
+    val CLOSED_EYEBLOSSOM: RegistryReference<Block> = of("closed_eyeblossom")
+    @JvmField
+    val POTTED_OPEN_EYEBLOSSOM: RegistryReference<Block> = of("potted_open_eyeblossom")
+    @JvmField
+    val POTTED_CLOSED_EYEBLOSSOM: RegistryReference<Block> = of("potted_closed_eyeblossom")
+    @JvmField
+    val FIREFLY_BUSH: RegistryReference<Block> = of("firefly_bush")
 
     // @formatter:on
     @JvmStatic

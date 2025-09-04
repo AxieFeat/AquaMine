@@ -20,7 +20,7 @@ object DataGenerator {
     }
 
     fun generate(type: GeneratorType, generator: Generator<*>) {
-        val path = output.resolve(SharedConstants.getCurrentVersion().name + "_" + type.fileName + ".json")
+        val path = output.resolve(SharedConstants.getCurrentVersion().name() + "_" + type.fileName + ".json")
 
         if (!Files.exists(path)) {
             Files.createDirectories(path.parent)

@@ -11,10 +11,10 @@ object AquaPlatform : Platform {
     override val version: String = versions.getProperty("aquamine")
     override val minecraftVersion: String = versions.getProperty("minecraft")
     const val isStableMinecraft: Boolean = true
-    override val worldVersion: Int = 3218
-    override val protocolVersion: Int = 761
-    override val dataPackVersion: Int = 10
-    const val resourcePackVersion: Int = 12
+    override val worldVersion: Int = 4440
+    override val protocolVersion: Int = 772
+    override val dataPackVersion: Int = 81
+    const val resourcePackVersion: Int = 64
     @JvmField
     val dataVersionPrefix: String = versions.getProperty("data")
 }

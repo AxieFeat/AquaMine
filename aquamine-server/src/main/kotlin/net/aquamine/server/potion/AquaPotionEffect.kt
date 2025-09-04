@@ -60,7 +60,7 @@ data class AquaPotionEffect(
 
     class Builder() : PotionEffect.Builder {
 
-        private var type: AquaPotionType = PotionTypes.MOVEMENT_SPEED.get().downcast()
+        private var type: AquaPotionType = PotionTypes.SPEED.get().downcast()
         private var amplifier: Byte = 1
         private var duration: Int = 1
         private var flags: Byte = DEFAULT_FLAGS

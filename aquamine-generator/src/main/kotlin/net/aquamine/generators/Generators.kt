@@ -4,7 +4,9 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.STAR
 import net.minecraft.SharedConstants
+import net.minecraft.core.Holder
 import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceKey
 import net.minecraft.server.Bootstrap
 import net.minecraft.tags.*
@@ -68,31 +70,36 @@ private fun standardGenerator(generator: StandardGenerator) {
         "ITEM"
     )
 
-    generator.run<Attributes, Attribute>(
+    generator.run<Attributes, Holder<Attribute>, Attribute>(
+        modifier = { this.value() },
         BuiltInRegistries.ATTRIBUTE,
         "entity.attribute.AttributeTypes",
         "entity.attribute.AttributeType",
         "ATTRIBUTE"
     )
 
-    generator.run<MobEffects, MobEffect>(
+    generator.run<MobEffects, Holder<MobEffect>, MobEffect>(
+        modifier = { this.value() },
         BuiltInRegistries.MOB_EFFECT,
         "potion.PotionTypes",
         "potion.PotionType",
         "POTION_TYPE"
     )
-    generator.run<GameEvent, GameEvent>(
+
+    generator.run<GameEvent, Holder.Reference<GameEvent>, GameEvent>(
+        modifier = { this.value() },
         BuiltInRegistries.GAME_EVENT,
         "world.gameevent.GameEvents",
         "world.gameevent.GameEvent",
         "GAME_EVENT"
     )
 
-    generator.run<BannerPatterns, ResourceKey<BannerPattern>, BannerPattern>(
-        modifier = { BuiltInRegistries.BANNER_PATTERN.get(this)!! },
-        BuiltInRegistries.BANNER_PATTERN,
-        "block.entity.banner.BannerPatternTypes",
-        "block.entity.banner.BannerPatternType",
-        "BANNER_PATTERN"
-    )
+    // TODO Fixme
+//    generator.run<BannerPatterns, ResourceKey<BannerPattern>, BannerPattern>(
+//        modifier = { Registries.BANNER_PATTERN.registry() },
+//        Registries.BANNER_PATTERN.location().,
+//        "block.entity.banner.BannerPatternTypes",
+//        "block.entity.banner.BannerPatternType",
+//        "BANNER_PATTERN"
+//    )
 }

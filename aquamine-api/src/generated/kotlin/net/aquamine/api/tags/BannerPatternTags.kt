@@ -31,6 +31,20 @@ object BannerPatternTags {
     @JvmField
     val PATTERN_ITEM_PIGLIN: TagKey<BannerPatternType> = get("pattern_item/piglin")
 
+    @JvmField
+    val PATTERN_ITEM_FLOW: TagKey<BannerPatternType> = get("pattern_item/flow")
+
+    @JvmField
+    val PATTERN_ITEM_GUSTER: TagKey<BannerPatternType> = get("pattern_item/guster")
+
+    @JvmField
+    val PATTERN_ITEM_FIELD_MASONED: TagKey<BannerPatternType> =
+            get("pattern_item/field_masoned")
+
+    @JvmField
+    val PATTERN_ITEM_BORDURE_INDENTED: TagKey<BannerPatternType> =
+            get("pattern_item/bordure_indented")
+
 
     // @formatter:on
     @JvmStatic

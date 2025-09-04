@@ -27,11 +27,12 @@ class BlockLoader(registry: AquaRegistry<AquaBlock>) : AquaDataLoader<AquaBlock>
     override fun create(key: Key, value: JsonObject): AquaBlock {
         val materialName = value.get("material").asString
         val soundGroupName = value.get("soundGroup").asString
+        val soundGroup =  soundGroupsByName[soundGroupName] ?: BlockSoundGroups.STONE
 
         val properties = BlockProperties(
             requireNotNull(materialsByName[materialName]) { "Could not find material for name $materialName!" },
-            true,
-            requireNotNull(soundGroupsByName[soundGroupName]) { "Could not find sound group for name $soundGroupName!" },
+            true, // TODO Fixme
+            soundGroup,
             value.get("explosionResistance").asFloat,
             value.get("defaultHardness").asFloat,
             value.get("toolRequired").asBoolean,
@@ -44,7 +45,12 @@ class BlockLoader(registry: AquaRegistry<AquaBlock>) : AquaDataLoader<AquaBlock>
             value.get("dynamicShape").asBoolean
         )
 
-        val stateProperties = value.get("properties").asJsonArray.map { AquaPropertyFactory.findByName(it.asString) }
+        val stateProperties = try {
+            value.get("properties").asJsonArray.map { AquaPropertyFactory.findByName(it.asString) }
+        } catch (e: Exception) {
+            println("Cant find ${value.get("properties").asJsonArray.joinToString(", ") { it.asString }}")
+            throw e
+        }
 
         // TODO: Update this to get the handlers from somewhere
         return AquaBlock(properties, DefaultBlockHandler, DefaultBlockHandler, DefaultBlockHandler, DefaultBlockHandler, stateProperties)

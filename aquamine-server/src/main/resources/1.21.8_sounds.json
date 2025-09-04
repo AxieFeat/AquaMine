@@ -101,6 +101,9 @@
   "minecraft:block.amethyst_block.place": {
     "range": 16.0
   },
+  "minecraft:block.amethyst_block.resonate": {
+    "range": 16.0
+  },
   "minecraft:block.amethyst_block.step": {
     "range": 16.0
   },
@@ -158,6 +161,45 @@
   "minecraft:block.anvil.use": {
     "range": 16.0
   },
+  "minecraft:entity.armadillo.eat": {
+    "range": 16.0
+  },
+  "minecraft:entity.armadillo.hurt": {
+    "range": 16.0
+  },
+  "minecraft:entity.armadillo.hurt_reduced": {
+    "range": 16.0
+  },
+  "minecraft:entity.armadillo.ambient": {
+    "range": 16.0
+  },
+  "minecraft:entity.armadillo.step": {
+    "range": 16.0
+  },
+  "minecraft:entity.armadillo.death": {
+    "range": 16.0
+  },
+  "minecraft:entity.armadillo.roll": {
+    "range": 16.0
+  },
+  "minecraft:entity.armadillo.land": {
+    "range": 16.0
+  },
+  "minecraft:entity.armadillo.scute_drop": {
+    "range": 16.0
+  },
+  "minecraft:entity.armadillo.unroll_finish": {
+    "range": 16.0
+  },
+  "minecraft:entity.armadillo.peek": {
+    "range": 16.0
+  },
+  "minecraft:entity.armadillo.unroll_start": {
+    "range": 16.0
+  },
+  "minecraft:entity.armadillo.brush": {
+    "range": 16.0
+  },
   "minecraft:item.armor.equip_chain": {
     "range": 16.0
   },
@@ -183,6 +225,12 @@
     "range": 16.0
   },
   "minecraft:item.armor.equip_turtle": {
+    "range": 16.0
+  },
+  "minecraft:item.armor.equip_wolf": {
+    "range": 16.0
+  },
+  "minecraft:item.armor.unequip_wolf": {
     "range": 16.0
   },
   "minecraft:entity.armor_stand.break": {
@@ -458,6 +506,21 @@
   "minecraft:entity.boat.paddle_water": {
     "range": 16.0
   },
+  "minecraft:entity.bogged.ambient": {
+    "range": 16.0
+  },
+  "minecraft:entity.bogged.death": {
+    "range": 16.0
+  },
+  "minecraft:entity.bogged.hurt": {
+    "range": 16.0
+  },
+  "minecraft:entity.bogged.shear": {
+    "range": 16.0
+  },
+  "minecraft:entity.bogged.step": {
+    "range": 16.0
+  },
   "minecraft:block.bone_block.break": {
     "range": 16.0
   },
@@ -494,7 +557,61 @@
   "minecraft:item.bottle.fill_dragonbreath": {
     "range": 16.0
   },
+  "minecraft:entity.breeze.charge": {
+    "range": 16.0
+  },
+  "minecraft:entity.breeze.deflect": {
+    "range": 16.0
+  },
+  "minecraft:entity.breeze.inhale": {
+    "range": 16.0
+  },
+  "minecraft:entity.breeze.idle_ground": {
+    "range": 16.0
+  },
+  "minecraft:entity.breeze.idle_air": {
+    "range": 16.0
+  },
+  "minecraft:entity.breeze.shoot": {
+    "range": 16.0
+  },
+  "minecraft:entity.breeze.jump": {
+    "range": 16.0
+  },
+  "minecraft:entity.breeze.land": {
+    "range": 16.0
+  },
+  "minecraft:entity.breeze.slide": {
+    "range": 16.0
+  },
+  "minecraft:entity.breeze.death": {
+    "range": 16.0
+  },
+  "minecraft:entity.breeze.hurt": {
+    "range": 16.0
+  },
+  "minecraft:entity.breeze.whirl": {
+    "range": 16.0
+  },
+  "minecraft:entity.breeze.wind_burst": {
+    "range": 16.0
+  },
   "minecraft:block.brewing_stand.brew": {
+    "range": 16.0
+  },
+  "minecraft:item.brush.brushing.generic": {
+    "range": 16.0
+  },
+  "minecraft:item.brush.brushing.sand": {
+    "range": 16.0
+  },
+  "minecraft:item.brush.brushing.gravel": {
+    "range": 16.0
+  },
+  "minecraft:item.brush.brushing.sand.complete": {
+    "range": 16.0
+  },
+  "minecraft:item.brush.brushing.gravel.complete": {
     "range": 16.0
   },
   "minecraft:block.bubble_column.bubble_pop": {
@@ -510,6 +627,9 @@
     "range": 16.0
   },
   "minecraft:block.bubble_column.whirlpool_inside": {
+    "range": 16.0
+  },
+  "minecraft:ui.hud.bubble_pop": {
     "range": 16.0
   },
   "minecraft:item.bucket.empty": {
@@ -554,7 +674,16 @@
   "minecraft:item.bundle.insert": {
     "range": 16.0
   },
+  "minecraft:item.bundle.insert_fail": {
+    "range": 16.0
+  },
   "minecraft:item.bundle.remove_one": {
+    "range": 16.0
+  },
+  "minecraft:block.cactus_flower.break": {
+    "range": 16.0
+  },
+  "minecraft:block.cactus_flower.place": {
     "range": 16.0
   },
   "minecraft:block.cake.add_candle": {
@@ -692,6 +821,96 @@
   "minecraft:block.chain.step": {
     "range": 16.0
   },
+  "minecraft:block.cherry_wood.break": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood.place": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood.step": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_sapling.break": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_sapling.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_sapling.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_sapling.place": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_sapling.step": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_leaves.break": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_leaves.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_leaves.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_leaves.place": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_leaves.step": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood_hanging_sign.step": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood_hanging_sign.break": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood_hanging_sign.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood_hanging_sign.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood_hanging_sign.place": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood_door.close": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood_door.open": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood_trapdoor.close": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood_trapdoor.open": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood_button.click_off": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood_button.click_on": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood_pressure_plate.click_off": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood_pressure_plate.click_on": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood_fence_gate.close": {
+    "range": 16.0
+  },
+  "minecraft:block.cherry_wood_fence_gate.open": {
+    "range": 16.0
+  },
   "minecraft:block.chest.close": {
     "range": 16.0
   },
@@ -752,6 +971,21 @@
   "minecraft:item.chorus_fruit.teleport": {
     "range": 16.0
   },
+  "minecraft:block.cobweb.break": {
+    "range": 16.0
+  },
+  "minecraft:block.cobweb.step": {
+    "range": 16.0
+  },
+  "minecraft:block.cobweb.place": {
+    "range": 16.0
+  },
+  "minecraft:block.cobweb.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.cobweb.fall": {
+    "range": 16.0
+  },
   "minecraft:entity.cod.ambient": {
     "range": 16.0
   },
@@ -794,6 +1028,27 @@
   "minecraft:block.conduit.deactivate": {
     "range": 16.0
   },
+  "minecraft:block.copper_bulb.break": {
+    "range": 16.0
+  },
+  "minecraft:block.copper_bulb.step": {
+    "range": 16.0
+  },
+  "minecraft:block.copper_bulb.place": {
+    "range": 16.0
+  },
+  "minecraft:block.copper_bulb.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.copper_bulb.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.copper_bulb.turn_on": {
+    "range": 16.0
+  },
+  "minecraft:block.copper_bulb.turn_off": {
+    "range": 16.0
+  },
   "minecraft:block.copper.break": {
     "range": 16.0
   },
@@ -807,6 +1062,33 @@
     "range": 16.0
   },
   "minecraft:block.copper.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.copper_door.close": {
+    "range": 16.0
+  },
+  "minecraft:block.copper_door.open": {
+    "range": 16.0
+  },
+  "minecraft:block.copper_grate.break": {
+    "range": 16.0
+  },
+  "minecraft:block.copper_grate.step": {
+    "range": 16.0
+  },
+  "minecraft:block.copper_grate.place": {
+    "range": 16.0
+  },
+  "minecraft:block.copper_grate.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.copper_grate.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.copper_trapdoor.close": {
+    "range": 16.0
+  },
+  "minecraft:block.copper_trapdoor.open": {
     "range": 16.0
   },
   "minecraft:block.coral_block.break": {
@@ -837,6 +1119,69 @@
     "range": 16.0
   },
   "minecraft:entity.cow.step": {
+    "range": 16.0
+  },
+  "minecraft:block.crafter.craft": {
+    "range": 16.0
+  },
+  "minecraft:block.crafter.fail": {
+    "range": 16.0
+  },
+  "minecraft:entity.creaking.ambient": {
+    "range": 16.0
+  },
+  "minecraft:entity.creaking.activate": {
+    "range": 16.0
+  },
+  "minecraft:entity.creaking.deactivate": {
+    "range": 16.0
+  },
+  "minecraft:entity.creaking.attack": {
+    "range": 16.0
+  },
+  "minecraft:entity.creaking.death": {
+    "range": 16.0
+  },
+  "minecraft:entity.creaking.step": {
+    "range": 16.0
+  },
+  "minecraft:entity.creaking.freeze": {
+    "range": 16.0
+  },
+  "minecraft:entity.creaking.unfreeze": {
+    "range": 16.0
+  },
+  "minecraft:entity.creaking.spawn": {
+    "range": 16.0
+  },
+  "minecraft:entity.creaking.sway": {
+    "range": 16.0
+  },
+  "minecraft:entity.creaking.twitch": {
+    "range": 16.0
+  },
+  "minecraft:block.creaking_heart.break": {
+    "range": 16.0
+  },
+  "minecraft:block.creaking_heart.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.creaking_heart.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.creaking_heart.hurt": {
+    "range": 16.0
+  },
+  "minecraft:block.creaking_heart.place": {
+    "range": 16.0
+  },
+  "minecraft:block.creaking_heart.step": {
+    "range": 16.0
+  },
+  "minecraft:block.creaking_heart.idle": {
+    "range": 16.0
+  },
+  "minecraft:block.creaking_heart.spawn": {
     "range": 16.0
   },
   "minecraft:entity.creeper.death": {
@@ -876,6 +1221,33 @@
     "range": 16.0
   },
   "minecraft:item.crossbow.shoot": {
+    "range": 16.0
+  },
+  "minecraft:block.deadbush.idle": {
+    "range": 16.0
+  },
+  "minecraft:block.decorated_pot.break": {
+    "range": 16.0
+  },
+  "minecraft:block.decorated_pot.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.decorated_pot.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.decorated_pot.insert": {
+    "range": 16.0
+  },
+  "minecraft:block.decorated_pot.insert_fail": {
+    "range": 16.0
+  },
+  "minecraft:block.decorated_pot.step": {
+    "range": 16.0
+  },
+  "minecraft:block.decorated_pot.place": {
+    "range": 16.0
+  },
+  "minecraft:block.decorated_pot.shatter": {
     "range": 16.0
   },
   "minecraft:block.deepslate_bricks.break": {
@@ -980,6 +1352,33 @@
   "minecraft:entity.donkey.hurt": {
     "range": 16.0
   },
+  "minecraft:entity.donkey.jump": {
+    "range": 16.0
+  },
+  "minecraft:block.dried_ghast.break": {
+    "range": 16.0
+  },
+  "minecraft:block.dried_ghast.step": {
+    "range": 16.0
+  },
+  "minecraft:block.dried_ghast.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.dried_ghast.ambient": {
+    "range": 16.0
+  },
+  "minecraft:block.dried_ghast.ambient_water": {
+    "range": 16.0
+  },
+  "minecraft:block.dried_ghast.place": {
+    "range": 16.0
+  },
+  "minecraft:block.dried_ghast.place_in_water": {
+    "range": 16.0
+  },
+  "minecraft:block.dried_ghast.transition": {
+    "range": 16.0
+  },
   "minecraft:block.dripstone_block.break": {
     "range": 16.0
   },
@@ -993,6 +1392,9 @@
     "range": 16.0
   },
   "minecraft:block.dripstone_block.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.dry_grass.ambient": {
     "range": 16.0
   },
   "minecraft:block.pointed_dripstone.break": {
@@ -1202,6 +1604,21 @@
   "minecraft:entity.experience_orb.pickup": {
     "range": 16.0
   },
+  "minecraft:block.eyeblossom.open_long": {
+    "range": 16.0
+  },
+  "minecraft:block.eyeblossom.open": {
+    "range": 16.0
+  },
+  "minecraft:block.eyeblossom.close_long": {
+    "range": 16.0
+  },
+  "minecraft:block.eyeblossom.close": {
+    "range": 16.0
+  },
+  "minecraft:block.eyeblossom.idle": {
+    "range": 16.0
+  },
   "minecraft:block.fence_gate.close": {
     "range": 16.0
   },
@@ -1209,6 +1626,9 @@
     "range": 16.0
   },
   "minecraft:item.firecharge.use": {
+    "range": 16.0
+  },
+  "minecraft:block.firefly_bush.idle": {
     "range": 16.0
   },
   "minecraft:entity.firework_rocket.blast": {
@@ -1302,6 +1722,36 @@
     "range": 16.0
   },
   "minecraft:entity.fox.teleport": {
+    "range": 16.0
+  },
+  "minecraft:block.suspicious_sand.break": {
+    "range": 16.0
+  },
+  "minecraft:block.suspicious_sand.step": {
+    "range": 16.0
+  },
+  "minecraft:block.suspicious_sand.place": {
+    "range": 16.0
+  },
+  "minecraft:block.suspicious_sand.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.suspicious_sand.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.suspicious_gravel.break": {
+    "range": 16.0
+  },
+  "minecraft:block.suspicious_gravel.step": {
+    "range": 16.0
+  },
+  "minecraft:block.suspicious_gravel.place": {
+    "range": 16.0
+  },
+  "minecraft:block.suspicious_gravel.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.suspicious_gravel.fall": {
     "range": 16.0
   },
   "minecraft:block.froglight.break": {
@@ -1430,6 +1880,18 @@
   "minecraft:entity.ghast.warn": {
     "range": 16.0
   },
+  "minecraft:entity.ghastling.ambient": {
+    "range": 16.0
+  },
+  "minecraft:entity.ghastling.death": {
+    "range": 16.0
+  },
+  "minecraft:entity.ghastling.hurt": {
+    "range": 16.0
+  },
+  "minecraft:entity.ghastling.spawn": {
+    "range": 16.0
+  },
   "minecraft:block.gilded_blackstone.break": {
     "range": 16.0
   },
@@ -1517,9 +1979,6 @@
   "minecraft:entity.goat.horn_break": {
     "range": 16.0
   },
-  "minecraft:item.goat_horn.play": {
-    "range": 16.0
-  },
   "minecraft:entity.goat.screaming.ambient": {
     "range": 16.0
   },
@@ -1542,9 +2001,6 @@
     "range": 16.0
   },
   "minecraft:entity.goat.screaming.ram_impact": {
-    "range": 16.0
-  },
-  "minecraft:entity.goat.screaming.horn_break": {
     "range": 16.0
   },
   "minecraft:entity.goat.step": {
@@ -1640,6 +2096,33 @@
   "minecraft:block.hanging_sign.place": {
     "range": 16.0
   },
+  "minecraft:entity.happy_ghast.ambient": {
+    "range": 16.0
+  },
+  "minecraft:entity.happy_ghast.death": {
+    "range": 16.0
+  },
+  "minecraft:entity.happy_ghast.hurt": {
+    "range": 16.0
+  },
+  "minecraft:entity.happy_ghast.riding": {
+    "range": 16.0
+  },
+  "minecraft:block.heavy_core.break": {
+    "range": 16.0
+  },
+  "minecraft:block.heavy_core.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.heavy_core.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.heavy_core.place": {
+    "range": 16.0
+  },
+  "minecraft:block.heavy_core.step": {
+    "range": 16.0
+  },
   "minecraft:block.nether_wood_hanging_sign.step": {
     "range": 16.0
   },
@@ -1668,6 +2151,66 @@
     "range": 16.0
   },
   "minecraft:block.bamboo_wood_hanging_sign.place": {
+    "range": 16.0
+  },
+  "minecraft:block.trial_spawner.break": {
+    "range": 16.0
+  },
+  "minecraft:block.trial_spawner.step": {
+    "range": 16.0
+  },
+  "minecraft:block.trial_spawner.place": {
+    "range": 16.0
+  },
+  "minecraft:block.trial_spawner.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.trial_spawner.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.trial_spawner.spawn_mob": {
+    "range": 16.0
+  },
+  "minecraft:block.trial_spawner.about_to_spawn_item": {
+    "range": 16.0
+  },
+  "minecraft:block.trial_spawner.spawn_item": {
+    "range": 16.0
+  },
+  "minecraft:block.trial_spawner.spawn_item_begin": {
+    "range": 16.0
+  },
+  "minecraft:block.trial_spawner.detect_player": {
+    "range": 16.0
+  },
+  "minecraft:block.trial_spawner.ominous_activate": {
+    "range": 16.0
+  },
+  "minecraft:block.trial_spawner.ambient": {
+    "range": 16.0
+  },
+  "minecraft:block.trial_spawner.ambient_ominous": {
+    "range": 16.0
+  },
+  "minecraft:block.trial_spawner.open_shutter": {
+    "range": 16.0
+  },
+  "minecraft:block.trial_spawner.close_shutter": {
+    "range": 16.0
+  },
+  "minecraft:block.trial_spawner.eject_item": {
+    "range": 16.0
+  },
+  "minecraft:entity.happy_ghast.equip": {
+    "range": 16.0
+  },
+  "minecraft:entity.happy_ghast.unequip": {
+    "range": 16.0
+  },
+  "minecraft:entity.happy_ghast.harness_goggles_up": {
+    "range": 16.0
+  },
+  "minecraft:entity.happy_ghast.harness_goggles_down": {
     "range": 16.0
   },
   "minecraft:item.hoe.till": {
@@ -1752,6 +2295,9 @@
     "range": 16.0
   },
   "minecraft:entity.horse.armor": {
+    "range": 16.0
+  },
+  "minecraft:item.horse_armor.unequip": {
     "range": 16.0
   },
   "minecraft:entity.horse.breathe": {
@@ -1839,6 +2385,21 @@
     "range": 16.0
   },
   "minecraft:item.ink_sac.use": {
+    "range": 16.0
+  },
+  "minecraft:block.iron.break": {
+    "range": 16.0
+  },
+  "minecraft:block.iron.step": {
+    "range": 16.0
+  },
+  "minecraft:block.iron.place": {
+    "range": 16.0
+  },
+  "minecraft:block.iron.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.iron.fall": {
     "range": 16.0
   },
   "minecraft:block.iron_door.close": {
@@ -1937,10 +2498,28 @@
   "minecraft:block.lava.pop": {
     "range": 16.0
   },
-  "minecraft:entity.leash_knot.break": {
+  "minecraft:block.leaf_litter.break": {
     "range": 16.0
   },
-  "minecraft:entity.leash_knot.place": {
+  "minecraft:block.leaf_litter.step": {
+    "range": 16.0
+  },
+  "minecraft:block.leaf_litter.place": {
+    "range": 16.0
+  },
+  "minecraft:block.leaf_litter.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.leaf_litter.fall": {
+    "range": 16.0
+  },
+  "minecraft:item.lead.untied": {
+    "range": 16.0
+  },
+  "minecraft:item.lead.tied": {
+    "range": 16.0
+  },
+  "minecraft:item.lead.break": {
     "range": 16.0
   },
   "minecraft:block.lever.click": {
@@ -1982,6 +2561,9 @@
   "minecraft:entity.llama.swag": {
     "range": 16.0
   },
+  "minecraft:item.llama_carpet.unequip": {
+    "range": 16.0
+  },
   "minecraft:entity.magma_cube.death_small": {
     "range": 16.0
   },
@@ -2001,6 +2583,15 @@
     "range": 16.0
   },
   "minecraft:item.lodestone_compass.lock": {
+    "range": 16.0
+  },
+  "minecraft:item.mace.smash_air": {
+    "range": 16.0
+  },
+  "minecraft:item.mace.smash_ground": {
+    "range": 16.0
+  },
+  "minecraft:item.mace.smash_ground_heavy": {
     "range": 16.0
   },
   "minecraft:entity.magma_cube.death": {
@@ -2102,6 +2693,21 @@
   "minecraft:block.moss_carpet.step": {
     "range": 16.0
   },
+  "minecraft:block.pink_petals.break": {
+    "range": 16.0
+  },
+  "minecraft:block.pink_petals.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.pink_petals.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.pink_petals.place": {
+    "range": 16.0
+  },
+  "minecraft:block.pink_petals.step": {
+    "range": 16.0
+  },
   "minecraft:block.moss.break": {
     "range": 16.0
   },
@@ -2180,6 +2786,9 @@
   "minecraft:entity.mule.hurt": {
     "range": 16.0
   },
+  "minecraft:entity.mule.jump": {
+    "range": 16.0
+  },
   "minecraft:music.creative": {
     "range": 16.0
   },
@@ -2207,6 +2816,9 @@
   "minecraft:music_disc.far": {
     "range": 16.0
   },
+  "minecraft:music_disc.lava_chicken": {
+    "range": 16.0
+  },
   "minecraft:music_disc.mall": {
     "range": 16.0
   },
@@ -2229,6 +2841,21 @@
     "range": 16.0
   },
   "minecraft:music_disc.otherside": {
+    "range": 16.0
+  },
+  "minecraft:music_disc.relic": {
+    "range": 16.0
+  },
+  "minecraft:music_disc.creator": {
+    "range": 16.0
+  },
+  "minecraft:music_disc.creator_music_box": {
+    "range": 16.0
+  },
+  "minecraft:music_disc.precipice": {
+    "range": 16.0
+  },
+  "minecraft:music_disc.tears": {
     "range": 16.0
   },
   "minecraft:music.dragon": {
@@ -2267,13 +2894,16 @@
   "minecraft:music.overworld.swamp": {
     "range": 16.0
   },
-  "minecraft:music.overworld.jungle_and_forest": {
+  "minecraft:music.overworld.forest": {
     "range": 16.0
   },
   "minecraft:music.overworld.old_growth_taiga": {
     "range": 16.0
   },
   "minecraft:music.overworld.meadow": {
+    "range": 16.0
+  },
+  "minecraft:music.overworld.cherry_grove": {
     "range": 16.0
   },
   "minecraft:music.nether.nether_wastes": {
@@ -2292,6 +2922,24 @@
     "range": 16.0
   },
   "minecraft:music.nether.warped_forest": {
+    "range": 16.0
+  },
+  "minecraft:music.overworld.flower_forest": {
+    "range": 16.0
+  },
+  "minecraft:music.overworld.desert": {
+    "range": 16.0
+  },
+  "minecraft:music.overworld.badlands": {
+    "range": 16.0
+  },
+  "minecraft:music.overworld.jungle": {
+    "range": 16.0
+  },
+  "minecraft:music.overworld.sparse_jungle": {
+    "range": 16.0
+  },
+  "minecraft:music.overworld.bamboo_jungle": {
     "range": 16.0
   },
   "minecraft:music.under_water": {
@@ -2361,6 +3009,9 @@
     "range": 16.0
   },
   "minecraft:block.nether_wood_fence_gate.open": {
+    "range": 16.0
+  },
+  "minecraft:intentionally_empty": {
     "range": 16.0
   },
   "minecraft:block.packed_mud.break": {
@@ -2573,10 +3224,16 @@
   "minecraft:entity.ocelot.death": {
     "range": 16.0
   },
+  "minecraft:item.ominous_bottle.dispose": {
+    "range": 16.0
+  },
   "minecraft:entity.painting.break": {
     "range": 16.0
   },
   "minecraft:entity.painting.place": {
+    "range": 16.0
+  },
+  "minecraft:block.pale_hanging_moss.idle": {
     "range": 16.0
   },
   "minecraft:entity.panda.pre_sneeze": {
@@ -2628,6 +3285,15 @@
     "range": 16.0
   },
   "minecraft:entity.parrot.imitate.blaze": {
+    "range": 16.0
+  },
+  "minecraft:entity.parrot.imitate.bogged": {
+    "range": 16.0
+  },
+  "minecraft:entity.parrot.imitate.breeze": {
+    "range": 16.0
+  },
+  "minecraft:entity.parrot.imitate.creaking": {
     "range": 16.0
   },
   "minecraft:entity.parrot.imitate.creeper": {
@@ -2888,6 +3554,9 @@
   "minecraft:entity.player.swim": {
     "range": 16.0
   },
+  "minecraft:entity.player.teleport": {
+    "range": 16.0
+  },
   "minecraft:entity.polar_bear.ambient": {
     "range": 16.0
   },
@@ -2943,9 +3612,6 @@
     "range": 16.0
   },
   "minecraft:block.powder_snow.step": {
-    "range": 16.0
-  },
-  "minecraft:entity.puffer_fish.ambient": {
     "range": 16.0
   },
   "minecraft:entity.puffer_fish.blow_out": {
@@ -3098,6 +3764,9 @@
   "minecraft:block.sand.step": {
     "range": 16.0
   },
+  "minecraft:block.sand.idle": {
+    "range": 16.0
+  },
   "minecraft:block.scaffolding.break": {
     "range": 16.0
   },
@@ -3219,6 +3888,9 @@
     "range": 16.0
   },
   "minecraft:entity.sheep.step": {
+    "range": 16.0
+  },
+  "minecraft:item.shears.snip": {
     "range": 16.0
   },
   "minecraft:item.shield.block": {
@@ -3419,6 +4091,48 @@
   "minecraft:particle.soul_escape": {
     "range": 16.0
   },
+  "minecraft:block.spawner.break": {
+    "range": 16.0
+  },
+  "minecraft:block.spawner.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.spawner.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.spawner.place": {
+    "range": 16.0
+  },
+  "minecraft:block.spawner.step": {
+    "range": 16.0
+  },
+  "minecraft:block.resin.break": {
+    "range": 16.0
+  },
+  "minecraft:block.resin.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.resin.place": {
+    "range": 16.0
+  },
+  "minecraft:block.resin.step": {
+    "range": 16.0
+  },
+  "minecraft:block.resin_bricks.break": {
+    "range": 16.0
+  },
+  "minecraft:block.resin_bricks.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.resin_bricks.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.resin_bricks.place": {
+    "range": 16.0
+  },
+  "minecraft:block.resin_bricks.step": {
+    "range": 16.0
+  },
   "minecraft:block.spore_blossom.break": {
     "range": 16.0
   },
@@ -3479,6 +4193,51 @@
   "minecraft:block.smoker.smoke": {
     "range": 16.0
   },
+  "minecraft:entity.sniffer.step": {
+    "range": 16.0
+  },
+  "minecraft:entity.sniffer.eat": {
+    "range": 16.0
+  },
+  "minecraft:entity.sniffer.idle": {
+    "range": 16.0
+  },
+  "minecraft:entity.sniffer.hurt": {
+    "range": 16.0
+  },
+  "minecraft:entity.sniffer.death": {
+    "range": 16.0
+  },
+  "minecraft:entity.sniffer.drop_seed": {
+    "range": 16.0
+  },
+  "minecraft:entity.sniffer.scenting": {
+    "range": 16.0
+  },
+  "minecraft:entity.sniffer.sniffing": {
+    "range": 16.0
+  },
+  "minecraft:entity.sniffer.searching": {
+    "range": 16.0
+  },
+  "minecraft:entity.sniffer.digging": {
+    "range": 16.0
+  },
+  "minecraft:entity.sniffer.digging_stop": {
+    "range": 16.0
+  },
+  "minecraft:entity.sniffer.happy": {
+    "range": 16.0
+  },
+  "minecraft:block.sniffer_egg.plop": {
+    "range": 16.0
+  },
+  "minecraft:block.sniffer_egg.crack": {
+    "range": 16.0
+  },
+  "minecraft:block.sniffer_egg.hatch": {
+    "range": 16.0
+  },
   "minecraft:entity.snowball.throw": {
     "range": 16.0
   },
@@ -3528,6 +4287,24 @@
     "range": 16.0
   },
   "minecraft:entity.splash_potion.throw": {
+    "range": 16.0
+  },
+  "minecraft:block.sponge.break": {
+    "range": 16.0
+  },
+  "minecraft:block.sponge.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.sponge.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.sponge.place": {
+    "range": 16.0
+  },
+  "minecraft:block.sponge.step": {
+    "range": 16.0
+  },
+  "minecraft:block.sponge.absorb": {
     "range": 16.0
   },
   "minecraft:item.spyglass.use": {
@@ -3680,6 +4457,36 @@
   "minecraft:block.tuff.fall": {
     "range": 16.0
   },
+  "minecraft:block.tuff_bricks.break": {
+    "range": 16.0
+  },
+  "minecraft:block.tuff_bricks.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.tuff_bricks.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.tuff_bricks.place": {
+    "range": 16.0
+  },
+  "minecraft:block.tuff_bricks.step": {
+    "range": 16.0
+  },
+  "minecraft:block.polished_tuff.break": {
+    "range": 16.0
+  },
+  "minecraft:block.polished_tuff.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.polished_tuff.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.polished_tuff.place": {
+    "range": 16.0
+  },
+  "minecraft:block.polished_tuff.step": {
+    "range": 16.0
+  },
   "minecraft:entity.turtle.ambient_land": {
     "range": 16.0
   },
@@ -3741,6 +4548,48 @@
     "range": 16.0
   },
   "minecraft:ui.toast.out": {
+    "range": 16.0
+  },
+  "minecraft:block.vault.activate": {
+    "range": 16.0
+  },
+  "minecraft:block.vault.ambient": {
+    "range": 16.0
+  },
+  "minecraft:block.vault.break": {
+    "range": 16.0
+  },
+  "minecraft:block.vault.close_shutter": {
+    "range": 16.0
+  },
+  "minecraft:block.vault.deactivate": {
+    "range": 16.0
+  },
+  "minecraft:block.vault.eject_item": {
+    "range": 16.0
+  },
+  "minecraft:block.vault.reject_rewarded_player": {
+    "range": 16.0
+  },
+  "minecraft:block.vault.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.vault.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.vault.insert_item": {
+    "range": 16.0
+  },
+  "minecraft:block.vault.insert_item_fail": {
+    "range": 16.0
+  },
+  "minecraft:block.vault.open_shutter": {
+    "range": 16.0
+  },
+  "minecraft:block.vault.place": {
+    "range": 16.0
+  },
+  "minecraft:block.vault.step": {
     "range": 16.0
   },
   "minecraft:entity.vex.ambient": {
@@ -3935,6 +4784,12 @@
   "minecraft:entity.warden.tendril_clicks": {
     "range": 16.0
   },
+  "minecraft:block.hanging_sign.waxed_interact_fail": {
+    "range": 16.0
+  },
+  "minecraft:block.sign.waxed_interact_fail": {
+    "range": 16.0
+  },
   "minecraft:block.water.ambient": {
     "range": 16.0
   },
@@ -3957,6 +4812,30 @@
     "range": 16.0
   },
   "minecraft:block.wet_grass.step": {
+    "range": 16.0
+  },
+  "minecraft:block.wet_sponge.break": {
+    "range": 16.0
+  },
+  "minecraft:block.wet_sponge.dries": {
+    "range": 16.0
+  },
+  "minecraft:block.wet_sponge.fall": {
+    "range": 16.0
+  },
+  "minecraft:block.wet_sponge.hit": {
+    "range": 16.0
+  },
+  "minecraft:block.wet_sponge.place": {
+    "range": 16.0
+  },
+  "minecraft:block.wet_sponge.step": {
+    "range": 16.0
+  },
+  "minecraft:entity.wind_charge.wind_burst": {
+    "range": 16.0
+  },
+  "minecraft:entity.wind_charge.throw": {
     "range": 16.0
   },
   "minecraft:entity.witch.ambient": {
@@ -4007,6 +4886,24 @@
   "minecraft:entity.wither.spawn": {
     "range": 16.0
   },
+  "minecraft:item.wolf_armor.break": {
+    "range": 16.0
+  },
+  "minecraft:item.wolf_armor.crack": {
+    "range": 16.0
+  },
+  "minecraft:item.wolf_armor.damage": {
+    "range": 16.0
+  },
+  "minecraft:item.wolf_armor.repair": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf.shake": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf.step": {
+    "range": 16.0
+  },
   "minecraft:entity.wolf.ambient": {
     "range": 16.0
   },
@@ -4016,22 +4913,121 @@
   "minecraft:entity.wolf.growl": {
     "range": 16.0
   },
-  "minecraft:entity.wolf.howl": {
-    "range": 16.0
-  },
   "minecraft:entity.wolf.hurt": {
     "range": 16.0
   },
   "minecraft:entity.wolf.pant": {
     "range": 16.0
   },
-  "minecraft:entity.wolf.shake": {
-    "range": 16.0
-  },
-  "minecraft:entity.wolf.step": {
-    "range": 16.0
-  },
   "minecraft:entity.wolf.whine": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_puglin.ambient": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_puglin.death": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_puglin.growl": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_puglin.hurt": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_puglin.pant": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_puglin.whine": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_sad.ambient": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_sad.death": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_sad.growl": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_sad.hurt": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_sad.pant": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_sad.whine": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_angry.ambient": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_angry.death": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_angry.growl": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_angry.hurt": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_angry.pant": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_angry.whine": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_grumpy.ambient": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_grumpy.death": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_grumpy.growl": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_grumpy.hurt": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_grumpy.pant": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_grumpy.whine": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_big.ambient": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_big.death": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_big.growl": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_big.hurt": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_big.pant": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_big.whine": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_cute.ambient": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_cute.death": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_cute.growl": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_cute.hurt": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_cute.pant": {
+    "range": 16.0
+  },
+  "minecraft:entity.wolf_cute.whine": {
     "range": 16.0
   },
   "minecraft:block.wooden_door.close": {
@@ -4046,13 +5042,19 @@
   "minecraft:block.wooden_trapdoor.open": {
     "range": 16.0
   },
-  "minecraft:block.wood.break": {
-    "range": 16.0
-  },
   "minecraft:block.wooden_button.click_off": {
     "range": 16.0
   },
   "minecraft:block.wooden_button.click_on": {
+    "range": 16.0
+  },
+  "minecraft:block.wooden_pressure_plate.click_off": {
+    "range": 16.0
+  },
+  "minecraft:block.wooden_pressure_plate.click_on": {
+    "range": 16.0
+  },
+  "minecraft:block.wood.break": {
     "range": 16.0
   },
   "minecraft:block.wood.fall": {
@@ -4062,12 +5064,6 @@
     "range": 16.0
   },
   "minecraft:block.wood.place": {
-    "range": 16.0
-  },
-  "minecraft:block.wooden_pressure_plate.click_off": {
-    "range": 16.0
-  },
-  "minecraft:block.wooden_pressure_plate.click_on": {
     "range": 16.0
   },
   "minecraft:block.wood.step": {
@@ -4173,6 +5169,18 @@
     "range": 16.0
   },
   "minecraft:entity.zombie_villager.step": {
+    "range": 16.0
+  },
+  "minecraft:event.mob_effect.bad_omen": {
+    "range": 16.0
+  },
+  "minecraft:event.mob_effect.trial_omen": {
+    "range": 16.0
+  },
+  "minecraft:event.mob_effect.raid_omen": {
+    "range": 16.0
+  },
+  "minecraft:item.saddle.unequip": {
     "range": 16.0
   }
 }

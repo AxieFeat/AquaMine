@@ -7,7 +7,6 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SoundType
-import net.minecraft.world.level.material.Material
 import java.lang.reflect.Modifier
 
 object BlockGenerator : Generator<Block>() {
@@ -24,10 +23,11 @@ object BlockGenerator : Generator<Block>() {
         .filter { SoundType::class.java.isAssignableFrom(it.type) }
         .associate { it.get(null) as SoundType to it.name }
 
-    private val materials: Map<Material, String> = Material::class.java.declaredFields.asSequence()
-        .filter { Modifier.isPublic(it.modifiers) && Modifier.isStatic(it.modifiers) }
-        .filter { Material::class.java.isAssignableFrom(it.type) }
-        .associate { it.get(null) as Material to it.name }
+    // TODO Fixme
+//    private val materials: Map<Material, String> = Material::class.java.declaredFields.asSequence()
+//        .filter { Modifier.isPublic(it.modifiers) && Modifier.isStatic(it.modifiers) }
+//        .filter { Material::class.java.isAssignableFrom(it.type) }
+//        .associate { it.get(null) as Material to it.name }
 
     override fun generate(): JsonObject {
         val blocks = JsonObject()
@@ -37,14 +37,14 @@ object BlockGenerator : Generator<Block>() {
         val propertyNames = BlockPropertyGenerator.names
 
         blockRegistry.keySet().sortedBy {
-            blockRegistry.getId(blockRegistry.get(it))
+            blockRegistry.getId(blockRegistry.get(it).get().value())
         }.forEach { resource ->
-            val minecraftBlock = blockRegistry.get(resource)
+            val minecraftBlock = blockRegistry.get(resource).get().value()
             val blockState = minecraftBlock.defaultBlockState()
 
             val block = JsonObject()
 
-            block.addProperty("material", materials[blockState.material])
+            block.addProperty("material", "STONE")
             block.addProperty("soundGroup", soundTypes[blockState.soundType])
             block.addProperty("explosionResistance", minecraftBlock.explosionResistance)
             block.addProperty("friction", minecraftBlock.friction)

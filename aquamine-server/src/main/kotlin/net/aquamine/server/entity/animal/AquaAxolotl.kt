@@ -55,7 +55,7 @@ class AquaAxolotl(world: AquaWorld) : AquaAnimal(world), Axolotl, BucketStorable
         data.set(MetadataKeys.Axolotl.FROM_BUCKET, value)
     }
 
-    override fun isFood(item: ItemStack): Boolean = item.type.downcast().eq(ItemTags.AXOLOTL_TEMPT_ITEMS)
+    override fun isFood(item: ItemStack): Boolean = item.type.downcast().eq(ItemTags.AXOLOTL_FOOD)
 
     override fun loadFromBucket(tag: CompoundTag) {
         BucketStorable.loadDefaultsFromBucket(this, tag)

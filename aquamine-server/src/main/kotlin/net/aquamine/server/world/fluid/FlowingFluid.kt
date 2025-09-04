@@ -97,7 +97,7 @@ abstract class FlowingFluid : AquaFluid() {
         private const val OWN_HEIGHT_OFFSET = 1F - AquaEntity.BREATHING_DISTANCE_BELOW_EYES
         const val MAX_LEVEL: Int = 8
         @JvmField
-        val LEVEL: AquaProperty<Int> = AquaProperties.LIQUID_LEVEL
+        val LEVEL: AquaProperty<Int> = AquaProperties.LEVEL
         @JvmField
         val FALLING: AquaProperty<Boolean> = AquaProperties.FALLING
 

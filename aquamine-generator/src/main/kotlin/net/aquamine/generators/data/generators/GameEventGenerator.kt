@@ -21,7 +21,7 @@ object GameEventGenerator : Generator<GameEvent>() {
         val gameEventRegistry = BuiltInRegistries.GAME_EVENT
 
         gameEventRegistry.keySet().forEach { resource ->
-            val minecraftGameEvent = gameEventRegistry.get(resource)
+            val minecraftGameEvent = gameEventRegistry.get(resource).get().value()
 
             val gameEvent = JsonObject()
 

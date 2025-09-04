@@ -26,6 +26,12 @@ enum class PacketState {
     LOGIN,
 
     /**
+     * Client acknowledged login and is now configuring the game.
+     * Can also go back to configuration from play.
+     */
+    CONFIGURATION,
+
+    /**
      * The vast majority of packets that exist in the protocol are in the play state.
      * This state indicates that the client is playing the game.
      */

@@ -6,8 +6,29 @@
       false
     ]
   },
+  "BERRIES": {
+    "key": "berries",
+    "values": [
+      true,
+      false
+    ]
+  },
+  "BLOOM": {
+    "key": "bloom",
+    "values": [
+      true,
+      false
+    ]
+  },
   "BOTTOM": {
     "key": "bottom",
+    "values": [
+      true,
+      false
+    ]
+  },
+  "CAN_SUMMON": {
+    "key": "can_summon",
     "values": [
       true,
       false
@@ -132,6 +153,13 @@
       false
     ]
   },
+  "NATURAL": {
+    "key": "natural",
+    "values": [
+      true,
+      false
+    ]
+  },
   "OCCUPIED": {
     "key": "occupied",
     "values": [
@@ -167,6 +195,13 @@
       false
     ]
   },
+  "SHRIEKING": {
+    "key": "shrieking",
+    "values": [
+      true,
+      false
+    ]
+  },
   "SIGNAL_FIRE": {
     "key": "signal_fire",
     "values": [
@@ -176,6 +211,13 @@
   },
   "SNOWY": {
     "key": "snowy",
+    "values": [
+      true,
+      false
+    ]
+  },
+  "TIP": {
+    "key": "tip",
     "values": [
       true,
       false
@@ -197,41 +239,6 @@
   },
   "WATERLOGGED": {
     "key": "waterlogged",
-    "values": [
-      true,
-      false
-    ]
-  },
-  "VINE_END": {
-    "key": "vine_end",
-    "values": [
-      true,
-      false
-    ]
-  },
-  "BERRIES": {
-    "key": "berries",
-    "values": [
-      true,
-      false
-    ]
-  },
-  "BLOOM": {
-    "key": "bloom",
-    "values": [
-      true,
-      false
-    ]
-  },
-  "SHRIEKING": {
-    "key": "shrieking",
-    "values": [
-      true,
-      false
-    ]
-  },
-  "CAN_SUMMON": {
-    "key": "can_summon",
     "values": [
       true,
       false
@@ -327,6 +334,24 @@
       "SOUTH",
       "WEST",
       "EAST"
+    ]
+  },
+  "FLOWER_AMOUNT": {
+    "key": "flower_amount",
+    "values": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "SEGMENT_AMOUNT": {
+    "key": "segment_amount",
+    "values": [
+      1,
+      2,
+      3,
+      4
     ]
   },
   "ORIENTATION": {
@@ -834,6 +859,15 @@
       4
     ]
   },
+  "DRIED_GHAST_HYDRATION_LEVELS": {
+    "key": "hydration",
+    "values": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
   "ROTATION_16": {
     "key": "rotation",
     "values": [
@@ -1039,6 +1073,84 @@
   },
   "CHISELED_BOOKSHELF_SLOT_5_OCCUPIED": {
     "key": "slot_5_occupied",
+    "values": [
+      true,
+      false
+    ]
+  },
+  "DUSTED": {
+    "key": "dusted",
+    "values": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "CRACKED": {
+    "key": "cracked",
+    "values": [
+      true,
+      false
+    ]
+  },
+  "CRAFTING": {
+    "key": "crafting",
+    "values": [
+      true,
+      false
+    ]
+  },
+  "TRIAL_SPAWNER_STATE": {
+    "key": "trial_spawner_state",
+    "enumMojangName": "TrialSpawnerState",
+    "values": [
+      "INACTIVE",
+      "WAITING_FOR_PLAYERS",
+      "ACTIVE",
+      "WAITING_FOR_REWARD_EJECTION",
+      "EJECTING_REWARD",
+      "COOLDOWN"
+    ]
+  },
+  "VAULT_STATE": {
+    "key": "vault_state",
+    "enumMojangName": "VaultState",
+    "values": [
+      "INACTIVE",
+      "ACTIVE",
+      "UNLOCKING",
+      "EJECTING"
+    ]
+  },
+  "CREAKING_HEART_STATE": {
+    "key": "creaking_heart_state",
+    "enumMojangName": "CreakingHeartState",
+    "values": [
+      "UPROOTED",
+      "DORMANT",
+      "AWAKE"
+    ]
+  },
+  "OMINOUS": {
+    "key": "ominous",
+    "values": [
+      true,
+      false
+    ]
+  },
+  "TEST_BLOCK_MODE": {
+    "key": "mode",
+    "enumMojangName": "TestBlockMode",
+    "values": [
+      "START",
+      "LOG",
+      "FAIL",
+      "ACCEPT"
+    ]
+  },
+  "MAP": {
+    "key": "map",
     "values": [
       true,
       false

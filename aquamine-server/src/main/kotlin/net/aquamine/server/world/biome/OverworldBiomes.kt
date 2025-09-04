@@ -99,7 +99,7 @@ object OverworldBiomes {
 
     @JvmStatic
     private fun baseJungle(downfall: Float, isBamboo: Boolean, isEdge: Boolean, isLight: Boolean): AquaBiome =
-        createBiome(Precipitation.RAIN, 0.95F, downfall, music = SoundEvents.MUSIC_BIOME_JUNGLE_AND_FOREST.get())
+        createBiome(Precipitation.RAIN, 0.95F, downfall, music = SoundEvents.MUSIC_BIOME_JUNGLE.get())
 
     // ==============================
     // Mesa
@@ -211,7 +211,7 @@ object OverworldBiomes {
 
     @JvmStatic
     private fun forest(birch: Boolean, tall: Boolean, flower: Boolean): AquaBiome {
-        val music = SoundEvents.MUSIC_BIOME_JUNGLE_AND_FOREST.get()
+        val music = SoundEvents.MUSIC_BIOME_JUNGLE.get()
         return createBiome(Precipitation.RAIN, if (birch) 0.6F else 0.7F, if (birch) 0.6F else 0.8F, music = music)
     }
 
@@ -225,7 +225,7 @@ object OverworldBiomes {
             skyColor(calculateSkyColor(0.7F))
             grassColorModifier(GrassColorModifier.DARK_FOREST)
             mood(AquaAmbientMoodSettings.CAVE)
-            backgroundMusic(AquaMusic.game(SoundEvents.MUSIC_BIOME_JUNGLE_AND_FOREST.get()))
+            backgroundMusic(AquaMusic.game(SoundEvents.MUSIC_BIOME_JUNGLE.get()))
         }
     }
 

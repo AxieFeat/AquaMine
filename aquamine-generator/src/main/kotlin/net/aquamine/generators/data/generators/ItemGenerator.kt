@@ -7,6 +7,7 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 
+// TODO Fixme
 object ItemGenerator : Generator<Item>() {
 
     override val names: Map<Item, String> = Items::class.java.getDeclaredFields().filter {
@@ -23,23 +24,19 @@ object ItemGenerator : Generator<Item>() {
         val soundEventRegistry = BuiltInRegistries.SOUND_EVENT
 
         itemRegistry.keySet().sortedBy {
-            itemRegistry.getId(itemRegistry.get(it))
+            itemRegistry.getId(itemRegistry.get(it).get().value())
         }.forEach { resource ->
-            val minecraftItem = itemRegistry.get(resource)
+            val minecraftItem = itemRegistry.get(resource).get().value()
 
             val item = JsonObject()
 
-            item.addProperty("rarity", minecraftItem.getRarity(ItemStack.EMPTY).name)
-            item.addProperty("maxStackSize", minecraftItem.maxStackSize)
-            item.addProperty("maxDamage", minecraftItem.maxDamage)
-            item.addProperty("edible", minecraftItem.isEdible)
-            item.addProperty("fireResistant", minecraftItem.isFireResistant)
-            soundEventRegistry.getKey(minecraftItem.eatingSound).let {
-                item.addProperty("eatingSound", it.toString())
-            }
-            soundEventRegistry.getKey(minecraftItem.drinkingSound).let {
-                item.addProperty("drinkingSound", it.toString())
-            }
+            item.addProperty("rarity", "COMMON")
+            item.addProperty("maxStackSize", minecraftItem.defaultMaxStackSize)
+            item.addProperty("maxDamage", 0)
+            item.addProperty("edible", false)
+            item.addProperty("fireResistant", true)
+            item.addProperty("eatingSound", "minecraft:entity.generic.eat")
+            item.addProperty("drinkingSound", "minecraft:entity.generic.drink")
 
             items.add(resource.toString(), item)
         }

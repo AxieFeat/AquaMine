@@ -35,8 +35,6 @@ object GameEvents {
     @JvmField
     val CONTAINER_OPEN: RegistryReference<GameEvent> = of("container_open")
     @JvmField
-    val DISPENSE_FAIL: RegistryReference<GameEvent> = of("dispense_fail")
-    @JvmField
     val DRINK: RegistryReference<GameEvent> = of("drink")
     @JvmField
     val EAT: RegistryReference<GameEvent> = of("eat")
@@ -47,13 +45,15 @@ object GameEvents {
     @JvmField
     val ENTITY_DIE: RegistryReference<GameEvent> = of("entity_die")
     @JvmField
+    val ENTITY_DISMOUNT: RegistryReference<GameEvent> = of("entity_dismount")
+    @JvmField
     val ENTITY_INTERACT: RegistryReference<GameEvent> = of("entity_interact")
+    @JvmField
+    val ENTITY_MOUNT: RegistryReference<GameEvent> = of("entity_mount")
     @JvmField
     val ENTITY_PLACE: RegistryReference<GameEvent> = of("entity_place")
     @JvmField
-    val ENTITY_ROAR: RegistryReference<GameEvent> = of("entity_roar")
-    @JvmField
-    val ENTITY_SHAKE: RegistryReference<GameEvent> = of("entity_shake")
+    val ENTITY_ACTION: RegistryReference<GameEvent> = of("entity_action")
     @JvmField
     val EQUIP: RegistryReference<GameEvent> = of("equip")
     @JvmField
@@ -81,10 +81,6 @@ object GameEvents {
     @JvmField
     val NOTE_BLOCK_PLAY: RegistryReference<GameEvent> = of("note_block_play")
     @JvmField
-    val PISTON_CONTRACT: RegistryReference<GameEvent> = of("piston_contract")
-    @JvmField
-    val PISTON_EXTEND: RegistryReference<GameEvent> = of("piston_extend")
-    @JvmField
     val PRIME_FUSE: RegistryReference<GameEvent> = of("prime_fuse")
     @JvmField
     val PROJECTILE_LAND: RegistryReference<GameEvent> = of("projectile_land")
@@ -104,6 +100,38 @@ object GameEvents {
     val SWIM: RegistryReference<GameEvent> = of("swim")
     @JvmField
     val TELEPORT: RegistryReference<GameEvent> = of("teleport")
+    @JvmField
+    val UNEQUIP: RegistryReference<GameEvent> = of("unequip")
+    @JvmField
+    val RESONATE_1: RegistryReference<GameEvent> = of("resonate_1")
+    @JvmField
+    val RESONATE_2: RegistryReference<GameEvent> = of("resonate_2")
+    @JvmField
+    val RESONATE_3: RegistryReference<GameEvent> = of("resonate_3")
+    @JvmField
+    val RESONATE_4: RegistryReference<GameEvent> = of("resonate_4")
+    @JvmField
+    val RESONATE_5: RegistryReference<GameEvent> = of("resonate_5")
+    @JvmField
+    val RESONATE_6: RegistryReference<GameEvent> = of("resonate_6")
+    @JvmField
+    val RESONATE_7: RegistryReference<GameEvent> = of("resonate_7")
+    @JvmField
+    val RESONATE_8: RegistryReference<GameEvent> = of("resonate_8")
+    @JvmField
+    val RESONATE_9: RegistryReference<GameEvent> = of("resonate_9")
+    @JvmField
+    val RESONATE_10: RegistryReference<GameEvent> = of("resonate_10")
+    @JvmField
+    val RESONATE_11: RegistryReference<GameEvent> = of("resonate_11")
+    @JvmField
+    val RESONATE_12: RegistryReference<GameEvent> = of("resonate_12")
+    @JvmField
+    val RESONATE_13: RegistryReference<GameEvent> = of("resonate_13")
+    @JvmField
+    val RESONATE_14: RegistryReference<GameEvent> = of("resonate_14")
+    @JvmField
+    val RESONATE_15: RegistryReference<GameEvent> = of("resonate_15")
 
     // @formatter:on
     @JvmStatic

@@ -232,6 +232,42 @@ object Properties {
     val CAULDRON_LEVEL: Property<Int> = factory().forInt("CAULDRON_LEVEL")
 
     /**
+     * Whether slot 0 of a [Chiseled Bookshelf][Blocks.CHISELED_BOOKSHELF] has a book in it.
+     */
+    @JvmField
+    val CHISELED_BOOKSHELF_SLOT_0_OCCUPIED: Property<Boolean> = factory().forBoolean("CHISELED_BOOKSHELF_SLOT_0_OCCUPIED")
+
+    /**
+     * Whether slot 1 of a [Chiseled Bookshelf][Blocks.CHISELED_BOOKSHELF] has a book in it.
+     */
+    @JvmField
+    val CHISELED_BOOKSHELF_SLOT_1_OCCUPIED: Property<Boolean> = factory().forBoolean("CHISELED_BOOKSHELF_SLOT_1_OCCUPIED")
+
+    /**
+     * Whether slot 2 of a [Chiseled Bookshelf][Blocks.CHISELED_BOOKSHELF] has a book in it.
+     */
+    @JvmField
+    val CHISELED_BOOKSHELF_SLOT_2_OCCUPIED: Property<Boolean> = factory().forBoolean("CHISELED_BOOKSHELF_SLOT_2_OCCUPIED")
+
+    /**
+     * Whether slot 3 of a [Chiseled Bookshelf][Blocks.CHISELED_BOOKSHELF] has a book in it.
+     */
+    @JvmField
+    val CHISELED_BOOKSHELF_SLOT_3_OCCUPIED: Property<Boolean> = factory().forBoolean("CHISELED_BOOKSHELF_SLOT_3_OCCUPIED")
+
+    /**
+     * Whether slot 4 of a [Chiseled Bookshelf][Blocks.CHISELED_BOOKSHELF] has a book in it.
+     */
+    @JvmField
+    val CHISELED_BOOKSHELF_SLOT_4_OCCUPIED: Property<Boolean> = factory().forBoolean("CHISELED_BOOKSHELF_SLOT_4_OCCUPIED")
+
+    /**
+     * Whether slot 5 of a [Chiseled Bookshelf][Blocks.CHISELED_BOOKSHELF] has a book in it.
+     */
+    @JvmField
+    val CHISELED_BOOKSHELF_SLOT_5_OCCUPIED: Property<Boolean> = factory().forBoolean("CHISELED_BOOKSHELF_SLOT_5_OCCUPIED")
+
+    /**
      * The type of the [Chest][Blocks.CHEST], [Trapped Chest][Blocks.TRAPPED_CHEST],
      * or [Ender Chest][Blocks.ENDER_CHEST] this property is applied to.
      */
@@ -246,18 +282,30 @@ object Properties {
     val COMPARATOR_MODE: Property<ComparatorMode> = factory().forEnum("COMPARATOR_MODE")
 
     /**
-     * The fill level of the [Composter][Blocks.COMPOSTER] this property is
-     * applied to.
-     */
-    @JvmField
-    val COMPOSTER_LEVEL: Property<Int> = factory().forInt("COMPOSTER_LEVEL")
-
-    /**
      * Whether the command block this property is applied to is conditional or
      * not. This is applicable to all types of command blocks.
      */
     @JvmField
     val CONDITIONAL: Property<Boolean> = factory().forBoolean("CONDITIONAL")
+
+    /**
+     * Whether the block is in a crafting state.
+     */
+    @JvmField
+    val CRAFTING: Property<Boolean> = factory().forBoolean("CRAFTING")
+
+    /**
+     * Whether the block is cracked.
+     */
+    @JvmField
+    val CRACKED: Property<Boolean> = factory().forBoolean("CRACKED")
+
+    /**
+     * The fill level of the [Composter][Blocks.COMPOSTER] this property is
+     * applied to.
+     */
+    @JvmField
+    val COMPOSTER_LEVEL: Property<Int> = factory().forInt("COMPOSTER_LEVEL")
 
     /**
      * The delay that the [Repeater][Blocks.REPEATER] this property is applied
@@ -280,6 +328,39 @@ object Properties {
      */
     @JvmField
     val DISTANCE: Property<Int> = factory().forInt("DISTANCE")
+
+    /**
+     * Whether the [Chorus Plant][Blocks.CHORUS_PLANT] this property is applied
+     * to extends down from the center plant.
+     */
+    @JvmField
+    val DOWN: Property<Boolean> = factory().forBoolean("DOWN")
+
+    /**
+     * Whether the [Bubble Column][Blocks.BUBBLE_COLUMN] this property is
+     * applied to is upward or it is a whirlpool.
+     */
+    @JvmField
+    val DRAG: Property<Boolean> = factory().forBoolean("DRAG")
+
+    /**
+     * The amount of dust on a block. Range of 0-3.
+     */
+    @JvmField
+    val DUSTED: Property<Int> = factory().forInt("DUSTED")
+
+    /**
+     * The hydration level of a dried ghast. Range of 0-3.
+     */
+    @JvmField
+    val DRIED_GHAST_HYDRATION_LEVELS: Property<Int> = factory().forInt("DRIED_GHAST_HYDRATION_LEVELS")
+
+    /**
+     * The thickness of the [Pointed Dripstone][Blocks.POINTED_DRIPSTONE] this
+     * property is applied to.
+     */
+    @JvmField
+    val DRIPSTONE_THICKNESS: Property<DripstoneThickness> = factory().forEnum("DRIPSTONE_THICKNESS")
 
     /**
      * The hinge of a door the door this property is applied to represents.
@@ -305,27 +386,6 @@ object Properties {
      */
     @JvmField
     val DOUBLE_BLOCK_HALF: Property<DoubleBlockHalf> = factory().forEnum("DOUBLE_BLOCK_HALF")
-
-    /**
-     * Whether the [Chorus Plant][Blocks.CHORUS_PLANT] this property is applied
-     * to extends down from the center plant.
-     */
-    @JvmField
-    val DOWN: Property<Boolean> = factory().forBoolean("DOWN")
-
-    /**
-     * Whether the [Bubble Column][Blocks.BUBBLE_COLUMN] this property is
-     * applied to is upward or it is a whirlpool.
-     */
-    @JvmField
-    val DRAG: Property<Boolean> = factory().forBoolean("DRAG")
-
-    /**
-     * The thickness of the [Pointed Dripstone][Blocks.POINTED_DRIPSTONE] this
-     * property is applied to.
-     */
-    @JvmField
-    val DRIPSTONE_THICKNESS: Property<DripstoneThickness> = factory().forEnum("DRIPSTONE_THICKNESS")
 
     /**
      * Whether the [Chorus Plant][Blocks.CHORUS_PLANT] this property is applied
@@ -402,6 +462,12 @@ object Properties {
      */
     @JvmField
     val FALLING: Property<Boolean> = factory().forBoolean("FALLING")
+
+    /**
+     * The amount of flowers. Range of 1-4.
+     */
+    @JvmField
+    val FLOWER_AMOUNT: Property<Int> = factory().forInt("FLOWER_AMOUNT")
 
     /**
      * The half of the block that the block this property is applied to
@@ -579,11 +645,23 @@ object Properties {
     val LOCKED: Property<Boolean> = factory().forBoolean("LOCKED")
 
     /**
+     * Whether a block has a map on it.
+     */
+    @JvmField
+    val MAP: Property<Boolean> = factory().forBoolean("MAP")
+
+    /**
      * The moisture level the [Farmland][Blocks.FARMLAND] this property is
      * applied to represents.
      */
     @JvmField
     val MOISTURE: Property<Int> = factory().forInt("MOISTURE")
+
+    /**
+     * Whether the block is naturally generated.
+     */
+    @JvmField
+    val NATURAL: Property<Boolean> = factory().forBoolean("NATURAL")
 
     /**
      * Whether the [Chorus Plant][Blocks.CHORUS_PLANT] this property is applied
@@ -612,6 +690,12 @@ object Properties {
      */
     @JvmField
     val NOTE: Property<Int> = factory().forInt("NOTE")
+
+    /**
+     * Whether the block is in an ominous state.
+     */
+    @JvmField
+    val OMINOUS: Property<Boolean> = factory().forBoolean("OMINOUS")
 
     /**
      * Whether the bed this property is applied to is occupied.
@@ -729,6 +813,12 @@ object Properties {
     val SCULK_SENSOR_PHASE: Property<SculkSensorPhase> = factory().forEnum("SCULK_SENSOR_PHASE")
 
     /**
+     * The amount of segments in a segment. Range of 1-4.
+     */
+    @JvmField
+    val SEGMENT_AMOUNT: Property<Int> = factory().forInt("SEGMENT_AMOUNT")
+
+    /**
      * Whether the [Piston Head][Blocks.PISTON_HEAD] this property is applied
      * to is shorter by 4 pixels.
      */
@@ -817,6 +907,12 @@ object Properties {
      */
     @JvmField
     val STRAIGHT_RAIL_SHAPE: Property<RailShape> = factory().forEnum("shape")
+
+    /**
+     * Whether block has a tip or end.
+     */
+    @JvmField
+    val TIP: Property<Boolean> = factory().forBoolean("TIP")
 
     /**
      * The tilt of the [Big Dripleaf][Blocks.BIG_DRIPLEAF] this property is

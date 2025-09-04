@@ -81,6 +81,8 @@ object SoundEvents {
     @JvmField
     val AMETHYST_BLOCK_PLACE: RegistryReference<SoundEvent> = of("block.amethyst_block.place")
     @JvmField
+    val AMETHYST_BLOCK_RESONATE: RegistryReference<SoundEvent> = of("block.amethyst_block.resonate")
+    @JvmField
     val AMETHYST_BLOCK_STEP: RegistryReference<SoundEvent> = of("block.amethyst_block.step")
     @JvmField
     val AMETHYST_CLUSTER_BREAK: RegistryReference<SoundEvent> = of("block.amethyst_cluster.break")
@@ -119,6 +121,32 @@ object SoundEvents {
     @JvmField
     val ANVIL_USE: RegistryReference<SoundEvent> = of("block.anvil.use")
     @JvmField
+    val ARMADILLO_EAT: RegistryReference<SoundEvent> = of("entity.armadillo.eat")
+    @JvmField
+    val ARMADILLO_HURT: RegistryReference<SoundEvent> = of("entity.armadillo.hurt")
+    @JvmField
+    val ARMADILLO_HURT_REDUCED: RegistryReference<SoundEvent> = of("entity.armadillo.hurt_reduced")
+    @JvmField
+    val ARMADILLO_AMBIENT: RegistryReference<SoundEvent> = of("entity.armadillo.ambient")
+    @JvmField
+    val ARMADILLO_STEP: RegistryReference<SoundEvent> = of("entity.armadillo.step")
+    @JvmField
+    val ARMADILLO_DEATH: RegistryReference<SoundEvent> = of("entity.armadillo.death")
+    @JvmField
+    val ARMADILLO_ROLL: RegistryReference<SoundEvent> = of("entity.armadillo.roll")
+    @JvmField
+    val ARMADILLO_LAND: RegistryReference<SoundEvent> = of("entity.armadillo.land")
+    @JvmField
+    val ARMADILLO_SCUTE_DROP: RegistryReference<SoundEvent> = of("entity.armadillo.scute_drop")
+    @JvmField
+    val ARMADILLO_UNROLL_FINISH: RegistryReference<SoundEvent> = of("entity.armadillo.unroll_finish")
+    @JvmField
+    val ARMADILLO_PEEK: RegistryReference<SoundEvent> = of("entity.armadillo.peek")
+    @JvmField
+    val ARMADILLO_UNROLL_START: RegistryReference<SoundEvent> = of("entity.armadillo.unroll_start")
+    @JvmField
+    val ARMADILLO_BRUSH: RegistryReference<SoundEvent> = of("entity.armadillo.brush")
+    @JvmField
     val ARMOR_EQUIP_CHAIN: RegistryReference<SoundEvent> = of("item.armor.equip_chain")
     @JvmField
     val ARMOR_EQUIP_DIAMOND: RegistryReference<SoundEvent> = of("item.armor.equip_diamond")
@@ -136,6 +164,10 @@ object SoundEvents {
     val ARMOR_EQUIP_NETHERITE: RegistryReference<SoundEvent> = of("item.armor.equip_netherite")
     @JvmField
     val ARMOR_EQUIP_TURTLE: RegistryReference<SoundEvent> = of("item.armor.equip_turtle")
+    @JvmField
+    val ARMOR_EQUIP_WOLF: RegistryReference<SoundEvent> = of("item.armor.equip_wolf")
+    @JvmField
+    val ARMOR_UNEQUIP_WOLF: RegistryReference<SoundEvent> = of("item.armor.unequip_wolf")
     @JvmField
     val ARMOR_STAND_BREAK: RegistryReference<SoundEvent> = of("entity.armor_stand.break")
     @JvmField
@@ -319,6 +351,16 @@ object SoundEvents {
     @JvmField
     val BOAT_PADDLE_WATER: RegistryReference<SoundEvent> = of("entity.boat.paddle_water")
     @JvmField
+    val BOGGED_AMBIENT: RegistryReference<SoundEvent> = of("entity.bogged.ambient")
+    @JvmField
+    val BOGGED_DEATH: RegistryReference<SoundEvent> = of("entity.bogged.death")
+    @JvmField
+    val BOGGED_HURT: RegistryReference<SoundEvent> = of("entity.bogged.hurt")
+    @JvmField
+    val BOGGED_SHEAR: RegistryReference<SoundEvent> = of("entity.bogged.shear")
+    @JvmField
+    val BOGGED_STEP: RegistryReference<SoundEvent> = of("entity.bogged.step")
+    @JvmField
     val BONE_BLOCK_BREAK: RegistryReference<SoundEvent> = of("block.bone_block.break")
     @JvmField
     val BONE_BLOCK_FALL: RegistryReference<SoundEvent> = of("block.bone_block.fall")
@@ -343,7 +385,43 @@ object SoundEvents {
     @JvmField
     val BOTTLE_FILL_DRAGONBREATH: RegistryReference<SoundEvent> = of("item.bottle.fill_dragonbreath")
     @JvmField
+    val BREEZE_CHARGE: RegistryReference<SoundEvent> = of("entity.breeze.charge")
+    @JvmField
+    val BREEZE_DEFLECT: RegistryReference<SoundEvent> = of("entity.breeze.deflect")
+    @JvmField
+    val BREEZE_INHALE: RegistryReference<SoundEvent> = of("entity.breeze.inhale")
+    @JvmField
+    val BREEZE_IDLE_GROUND: RegistryReference<SoundEvent> = of("entity.breeze.idle_ground")
+    @JvmField
+    val BREEZE_IDLE_AIR: RegistryReference<SoundEvent> = of("entity.breeze.idle_air")
+    @JvmField
+    val BREEZE_SHOOT: RegistryReference<SoundEvent> = of("entity.breeze.shoot")
+    @JvmField
+    val BREEZE_JUMP: RegistryReference<SoundEvent> = of("entity.breeze.jump")
+    @JvmField
+    val BREEZE_LAND: RegistryReference<SoundEvent> = of("entity.breeze.land")
+    @JvmField
+    val BREEZE_SLIDE: RegistryReference<SoundEvent> = of("entity.breeze.slide")
+    @JvmField
+    val BREEZE_DEATH: RegistryReference<SoundEvent> = of("entity.breeze.death")
+    @JvmField
+    val BREEZE_HURT: RegistryReference<SoundEvent> = of("entity.breeze.hurt")
+    @JvmField
+    val BREEZE_WHIRL: RegistryReference<SoundEvent> = of("entity.breeze.whirl")
+    @JvmField
+    val BREEZE_WIND_CHARGE_BURST: RegistryReference<SoundEvent> = of("entity.breeze.wind_burst")
+    @JvmField
     val BREWING_STAND_BREW: RegistryReference<SoundEvent> = of("block.brewing_stand.brew")
+    @JvmField
+    val BRUSH_GENERIC: RegistryReference<SoundEvent> = of("item.brush.brushing.generic")
+    @JvmField
+    val BRUSH_SAND: RegistryReference<SoundEvent> = of("item.brush.brushing.sand")
+    @JvmField
+    val BRUSH_GRAVEL: RegistryReference<SoundEvent> = of("item.brush.brushing.gravel")
+    @JvmField
+    val BRUSH_SAND_COMPLETED: RegistryReference<SoundEvent> = of("item.brush.brushing.sand.complete")
+    @JvmField
+    val BRUSH_GRAVEL_COMPLETED: RegistryReference<SoundEvent> = of("item.brush.brushing.gravel.complete")
     @JvmField
     val BUBBLE_COLUMN_BUBBLE_POP: RegistryReference<SoundEvent> = of("block.bubble_column.bubble_pop")
     @JvmField
@@ -354,6 +432,8 @@ object SoundEvents {
     val BUBBLE_COLUMN_WHIRLPOOL_AMBIENT: RegistryReference<SoundEvent> = of("block.bubble_column.whirlpool_ambient")
     @JvmField
     val BUBBLE_COLUMN_WHIRLPOOL_INSIDE: RegistryReference<SoundEvent> = of("block.bubble_column.whirlpool_inside")
+    @JvmField
+    val BUBBLE_POP: RegistryReference<SoundEvent> = of("ui.hud.bubble_pop")
     @JvmField
     val BUCKET_EMPTY: RegistryReference<SoundEvent> = of("item.bucket.empty")
     @JvmField
@@ -383,7 +463,13 @@ object SoundEvents {
     @JvmField
     val BUNDLE_INSERT: RegistryReference<SoundEvent> = of("item.bundle.insert")
     @JvmField
+    val BUNDLE_INSERT_FAIL: RegistryReference<SoundEvent> = of("item.bundle.insert_fail")
+    @JvmField
     val BUNDLE_REMOVE_ONE: RegistryReference<SoundEvent> = of("item.bundle.remove_one")
+    @JvmField
+    val CACTUS_FLOWER_BREAK: RegistryReference<SoundEvent> = of("block.cactus_flower.break")
+    @JvmField
+    val CACTUS_FLOWER_PLACE: RegistryReference<SoundEvent> = of("block.cactus_flower.place")
     @JvmField
     val CAKE_ADD_CANDLE: RegistryReference<SoundEvent> = of("block.cake.add_candle")
     @JvmField
@@ -475,6 +561,66 @@ object SoundEvents {
     @JvmField
     val CHAIN_STEP: RegistryReference<SoundEvent> = of("block.chain.step")
     @JvmField
+    val CHERRY_WOOD_BREAK: RegistryReference<SoundEvent> = of("block.cherry_wood.break")
+    @JvmField
+    val CHERRY_WOOD_FALL: RegistryReference<SoundEvent> = of("block.cherry_wood.fall")
+    @JvmField
+    val CHERRY_WOOD_HIT: RegistryReference<SoundEvent> = of("block.cherry_wood.hit")
+    @JvmField
+    val CHERRY_WOOD_PLACE: RegistryReference<SoundEvent> = of("block.cherry_wood.place")
+    @JvmField
+    val CHERRY_WOOD_STEP: RegistryReference<SoundEvent> = of("block.cherry_wood.step")
+    @JvmField
+    val CHERRY_SAPLING_BREAK: RegistryReference<SoundEvent> = of("block.cherry_sapling.break")
+    @JvmField
+    val CHERRY_SAPLING_FALL: RegistryReference<SoundEvent> = of("block.cherry_sapling.fall")
+    @JvmField
+    val CHERRY_SAPLING_HIT: RegistryReference<SoundEvent> = of("block.cherry_sapling.hit")
+    @JvmField
+    val CHERRY_SAPLING_PLACE: RegistryReference<SoundEvent> = of("block.cherry_sapling.place")
+    @JvmField
+    val CHERRY_SAPLING_STEP: RegistryReference<SoundEvent> = of("block.cherry_sapling.step")
+    @JvmField
+    val CHERRY_LEAVES_BREAK: RegistryReference<SoundEvent> = of("block.cherry_leaves.break")
+    @JvmField
+    val CHERRY_LEAVES_FALL: RegistryReference<SoundEvent> = of("block.cherry_leaves.fall")
+    @JvmField
+    val CHERRY_LEAVES_HIT: RegistryReference<SoundEvent> = of("block.cherry_leaves.hit")
+    @JvmField
+    val CHERRY_LEAVES_PLACE: RegistryReference<SoundEvent> = of("block.cherry_leaves.place")
+    @JvmField
+    val CHERRY_LEAVES_STEP: RegistryReference<SoundEvent> = of("block.cherry_leaves.step")
+    @JvmField
+    val CHERRY_WOOD_HANGING_SIGN_STEP: RegistryReference<SoundEvent> = of("block.cherry_wood_hanging_sign.step")
+    @JvmField
+    val CHERRY_WOOD_HANGING_SIGN_BREAK: RegistryReference<SoundEvent> = of("block.cherry_wood_hanging_sign.break")
+    @JvmField
+    val CHERRY_WOOD_HANGING_SIGN_FALL: RegistryReference<SoundEvent> = of("block.cherry_wood_hanging_sign.fall")
+    @JvmField
+    val CHERRY_WOOD_HANGING_SIGN_HIT: RegistryReference<SoundEvent> = of("block.cherry_wood_hanging_sign.hit")
+    @JvmField
+    val CHERRY_WOOD_HANGING_SIGN_PLACE: RegistryReference<SoundEvent> = of("block.cherry_wood_hanging_sign.place")
+    @JvmField
+    val CHERRY_WOOD_DOOR_CLOSE: RegistryReference<SoundEvent> = of("block.cherry_wood_door.close")
+    @JvmField
+    val CHERRY_WOOD_DOOR_OPEN: RegistryReference<SoundEvent> = of("block.cherry_wood_door.open")
+    @JvmField
+    val CHERRY_WOOD_TRAPDOOR_CLOSE: RegistryReference<SoundEvent> = of("block.cherry_wood_trapdoor.close")
+    @JvmField
+    val CHERRY_WOOD_TRAPDOOR_OPEN: RegistryReference<SoundEvent> = of("block.cherry_wood_trapdoor.open")
+    @JvmField
+    val CHERRY_WOOD_BUTTON_CLICK_OFF: RegistryReference<SoundEvent> = of("block.cherry_wood_button.click_off")
+    @JvmField
+    val CHERRY_WOOD_BUTTON_CLICK_ON: RegistryReference<SoundEvent> = of("block.cherry_wood_button.click_on")
+    @JvmField
+    val CHERRY_WOOD_PRESSURE_PLATE_CLICK_OFF: RegistryReference<SoundEvent> = of("block.cherry_wood_pressure_plate.click_off")
+    @JvmField
+    val CHERRY_WOOD_PRESSURE_PLATE_CLICK_ON: RegistryReference<SoundEvent> = of("block.cherry_wood_pressure_plate.click_on")
+    @JvmField
+    val CHERRY_WOOD_FENCE_GATE_CLOSE: RegistryReference<SoundEvent> = of("block.cherry_wood_fence_gate.close")
+    @JvmField
+    val CHERRY_WOOD_FENCE_GATE_OPEN: RegistryReference<SoundEvent> = of("block.cherry_wood_fence_gate.open")
+    @JvmField
     val CHEST_CLOSE: RegistryReference<SoundEvent> = of("block.chest.close")
     @JvmField
     val CHEST_LOCKED: RegistryReference<SoundEvent> = of("block.chest.locked")
@@ -515,6 +661,16 @@ object SoundEvents {
     @JvmField
     val CHORUS_FRUIT_TELEPORT: RegistryReference<SoundEvent> = of("item.chorus_fruit.teleport")
     @JvmField
+    val COBWEB_BREAK: RegistryReference<SoundEvent> = of("block.cobweb.break")
+    @JvmField
+    val COBWEB_STEP: RegistryReference<SoundEvent> = of("block.cobweb.step")
+    @JvmField
+    val COBWEB_PLACE: RegistryReference<SoundEvent> = of("block.cobweb.place")
+    @JvmField
+    val COBWEB_HIT: RegistryReference<SoundEvent> = of("block.cobweb.hit")
+    @JvmField
+    val COBWEB_FALL: RegistryReference<SoundEvent> = of("block.cobweb.fall")
+    @JvmField
     val COD_AMBIENT: RegistryReference<SoundEvent> = of("entity.cod.ambient")
     @JvmField
     val COD_DEATH: RegistryReference<SoundEvent> = of("entity.cod.death")
@@ -543,6 +699,20 @@ object SoundEvents {
     @JvmField
     val CONDUIT_DEACTIVATE: RegistryReference<SoundEvent> = of("block.conduit.deactivate")
     @JvmField
+    val COPPER_BULB_BREAK: RegistryReference<SoundEvent> = of("block.copper_bulb.break")
+    @JvmField
+    val COPPER_BULB_STEP: RegistryReference<SoundEvent> = of("block.copper_bulb.step")
+    @JvmField
+    val COPPER_BULB_PLACE: RegistryReference<SoundEvent> = of("block.copper_bulb.place")
+    @JvmField
+    val COPPER_BULB_HIT: RegistryReference<SoundEvent> = of("block.copper_bulb.hit")
+    @JvmField
+    val COPPER_BULB_FALL: RegistryReference<SoundEvent> = of("block.copper_bulb.fall")
+    @JvmField
+    val COPPER_BULB_TURN_ON: RegistryReference<SoundEvent> = of("block.copper_bulb.turn_on")
+    @JvmField
+    val COPPER_BULB_TURN_OFF: RegistryReference<SoundEvent> = of("block.copper_bulb.turn_off")
+    @JvmField
     val COPPER_BREAK: RegistryReference<SoundEvent> = of("block.copper.break")
     @JvmField
     val COPPER_STEP: RegistryReference<SoundEvent> = of("block.copper.step")
@@ -552,6 +722,24 @@ object SoundEvents {
     val COPPER_HIT: RegistryReference<SoundEvent> = of("block.copper.hit")
     @JvmField
     val COPPER_FALL: RegistryReference<SoundEvent> = of("block.copper.fall")
+    @JvmField
+    val COPPER_DOOR_CLOSE: RegistryReference<SoundEvent> = of("block.copper_door.close")
+    @JvmField
+    val COPPER_DOOR_OPEN: RegistryReference<SoundEvent> = of("block.copper_door.open")
+    @JvmField
+    val COPPER_GRATE_BREAK: RegistryReference<SoundEvent> = of("block.copper_grate.break")
+    @JvmField
+    val COPPER_GRATE_STEP: RegistryReference<SoundEvent> = of("block.copper_grate.step")
+    @JvmField
+    val COPPER_GRATE_PLACE: RegistryReference<SoundEvent> = of("block.copper_grate.place")
+    @JvmField
+    val COPPER_GRATE_HIT: RegistryReference<SoundEvent> = of("block.copper_grate.hit")
+    @JvmField
+    val COPPER_GRATE_FALL: RegistryReference<SoundEvent> = of("block.copper_grate.fall")
+    @JvmField
+    val COPPER_TRAPDOOR_CLOSE: RegistryReference<SoundEvent> = of("block.copper_trapdoor.close")
+    @JvmField
+    val COPPER_TRAPDOOR_OPEN: RegistryReference<SoundEvent> = of("block.copper_trapdoor.open")
     @JvmField
     val CORAL_BLOCK_BREAK: RegistryReference<SoundEvent> = of("block.coral_block.break")
     @JvmField
@@ -572,6 +760,48 @@ object SoundEvents {
     val COW_MILK: RegistryReference<SoundEvent> = of("entity.cow.milk")
     @JvmField
     val COW_STEP: RegistryReference<SoundEvent> = of("entity.cow.step")
+    @JvmField
+    val CRAFTER_CRAFT: RegistryReference<SoundEvent> = of("block.crafter.craft")
+    @JvmField
+    val CRAFTER_FAIL: RegistryReference<SoundEvent> = of("block.crafter.fail")
+    @JvmField
+    val CREAKING_AMBIENT: RegistryReference<SoundEvent> = of("entity.creaking.ambient")
+    @JvmField
+    val CREAKING_ACTIVATE: RegistryReference<SoundEvent> = of("entity.creaking.activate")
+    @JvmField
+    val CREAKING_DEACTIVATE: RegistryReference<SoundEvent> = of("entity.creaking.deactivate")
+    @JvmField
+    val CREAKING_ATTACK: RegistryReference<SoundEvent> = of("entity.creaking.attack")
+    @JvmField
+    val CREAKING_DEATH: RegistryReference<SoundEvent> = of("entity.creaking.death")
+    @JvmField
+    val CREAKING_STEP: RegistryReference<SoundEvent> = of("entity.creaking.step")
+    @JvmField
+    val CREAKING_FREEZE: RegistryReference<SoundEvent> = of("entity.creaking.freeze")
+    @JvmField
+    val CREAKING_UNFREEZE: RegistryReference<SoundEvent> = of("entity.creaking.unfreeze")
+    @JvmField
+    val CREAKING_SPAWN: RegistryReference<SoundEvent> = of("entity.creaking.spawn")
+    @JvmField
+    val CREAKING_SWAY: RegistryReference<SoundEvent> = of("entity.creaking.sway")
+    @JvmField
+    val CREAKING_TWITCH: RegistryReference<SoundEvent> = of("entity.creaking.twitch")
+    @JvmField
+    val CREAKING_HEART_BREAK: RegistryReference<SoundEvent> = of("block.creaking_heart.break")
+    @JvmField
+    val CREAKING_HEART_FALL: RegistryReference<SoundEvent> = of("block.creaking_heart.fall")
+    @JvmField
+    val CREAKING_HEART_HIT: RegistryReference<SoundEvent> = of("block.creaking_heart.hit")
+    @JvmField
+    val CREAKING_HEART_HURT: RegistryReference<SoundEvent> = of("block.creaking_heart.hurt")
+    @JvmField
+    val CREAKING_HEART_PLACE: RegistryReference<SoundEvent> = of("block.creaking_heart.place")
+    @JvmField
+    val CREAKING_HEART_STEP: RegistryReference<SoundEvent> = of("block.creaking_heart.step")
+    @JvmField
+    val CREAKING_HEART_IDLE: RegistryReference<SoundEvent> = of("block.creaking_heart.idle")
+    @JvmField
+    val CREAKING_HEART_SPAWN: RegistryReference<SoundEvent> = of("block.creaking_heart.spawn")
     @JvmField
     val CREEPER_DEATH: RegistryReference<SoundEvent> = of("entity.creeper.death")
     @JvmField
@@ -598,6 +828,24 @@ object SoundEvents {
     val CROSSBOW_QUICK_CHARGE_3: RegistryReference<SoundEvent> = of("item.crossbow.quick_charge_3")
     @JvmField
     val CROSSBOW_SHOOT: RegistryReference<SoundEvent> = of("item.crossbow.shoot")
+    @JvmField
+    val DEAD_BUSH_IDLE: RegistryReference<SoundEvent> = of("block.deadbush.idle")
+    @JvmField
+    val DECORATED_POT_BREAK: RegistryReference<SoundEvent> = of("block.decorated_pot.break")
+    @JvmField
+    val DECORATED_POT_FALL: RegistryReference<SoundEvent> = of("block.decorated_pot.fall")
+    @JvmField
+    val DECORATED_POT_HIT: RegistryReference<SoundEvent> = of("block.decorated_pot.hit")
+    @JvmField
+    val DECORATED_POT_INSERT: RegistryReference<SoundEvent> = of("block.decorated_pot.insert")
+    @JvmField
+    val DECORATED_POT_INSERT_FAIL: RegistryReference<SoundEvent> = of("block.decorated_pot.insert_fail")
+    @JvmField
+    val DECORATED_POT_STEP: RegistryReference<SoundEvent> = of("block.decorated_pot.step")
+    @JvmField
+    val DECORATED_POT_PLACE: RegistryReference<SoundEvent> = of("block.decorated_pot.place")
+    @JvmField
+    val DECORATED_POT_SHATTER: RegistryReference<SoundEvent> = of("block.decorated_pot.shatter")
     @JvmField
     val DEEPSLATE_BRICKS_BREAK: RegistryReference<SoundEvent> = of("block.deepslate_bricks.break")
     @JvmField
@@ -667,6 +915,24 @@ object SoundEvents {
     @JvmField
     val DONKEY_HURT: RegistryReference<SoundEvent> = of("entity.donkey.hurt")
     @JvmField
+    val DONKEY_JUMP: RegistryReference<SoundEvent> = of("entity.donkey.jump")
+    @JvmField
+    val DRIED_GHAST_BREAK: RegistryReference<SoundEvent> = of("block.dried_ghast.break")
+    @JvmField
+    val DRIED_GHAST_STEP: RegistryReference<SoundEvent> = of("block.dried_ghast.step")
+    @JvmField
+    val DRIED_GHAST_FALL: RegistryReference<SoundEvent> = of("block.dried_ghast.fall")
+    @JvmField
+    val DRIED_GHAST_AMBIENT: RegistryReference<SoundEvent> = of("block.dried_ghast.ambient")
+    @JvmField
+    val DRIED_GHAST_AMBIENT_WATER: RegistryReference<SoundEvent> = of("block.dried_ghast.ambient_water")
+    @JvmField
+    val DRIED_GHAST_PLACE: RegistryReference<SoundEvent> = of("block.dried_ghast.place")
+    @JvmField
+    val DRIED_GHAST_PLACE_IN_WATER: RegistryReference<SoundEvent> = of("block.dried_ghast.place_in_water")
+    @JvmField
+    val DRIED_GHAST_TRANSITION: RegistryReference<SoundEvent> = of("block.dried_ghast.transition")
+    @JvmField
     val DRIPSTONE_BLOCK_BREAK: RegistryReference<SoundEvent> = of("block.dripstone_block.break")
     @JvmField
     val DRIPSTONE_BLOCK_STEP: RegistryReference<SoundEvent> = of("block.dripstone_block.step")
@@ -676,6 +942,8 @@ object SoundEvents {
     val DRIPSTONE_BLOCK_HIT: RegistryReference<SoundEvent> = of("block.dripstone_block.hit")
     @JvmField
     val DRIPSTONE_BLOCK_FALL: RegistryReference<SoundEvent> = of("block.dripstone_block.fall")
+    @JvmField
+    val DRY_GRASS: RegistryReference<SoundEvent> = of("block.dry_grass.ambient")
     @JvmField
     val POINTED_DRIPSTONE_BREAK: RegistryReference<SoundEvent> = of("block.pointed_dripstone.break")
     @JvmField
@@ -815,11 +1083,23 @@ object SoundEvents {
     @JvmField
     val EXPERIENCE_ORB_PICKUP: RegistryReference<SoundEvent> = of("entity.experience_orb.pickup")
     @JvmField
+    val EYEBLOSSOM_OPEN_LONG: RegistryReference<SoundEvent> = of("block.eyeblossom.open_long")
+    @JvmField
+    val EYEBLOSSOM_OPEN: RegistryReference<SoundEvent> = of("block.eyeblossom.open")
+    @JvmField
+    val EYEBLOSSOM_CLOSE_LONG: RegistryReference<SoundEvent> = of("block.eyeblossom.close_long")
+    @JvmField
+    val EYEBLOSSOM_CLOSE: RegistryReference<SoundEvent> = of("block.eyeblossom.close")
+    @JvmField
+    val EYEBLOSSOM_IDLE: RegistryReference<SoundEvent> = of("block.eyeblossom.idle")
+    @JvmField
     val FENCE_GATE_CLOSE: RegistryReference<SoundEvent> = of("block.fence_gate.close")
     @JvmField
     val FENCE_GATE_OPEN: RegistryReference<SoundEvent> = of("block.fence_gate.open")
     @JvmField
     val FIRECHARGE_USE: RegistryReference<SoundEvent> = of("item.firecharge.use")
+    @JvmField
+    val FIREFLY_BUSH_IDLE: RegistryReference<SoundEvent> = of("block.firefly_bush.idle")
     @JvmField
     val FIREWORK_ROCKET_BLAST: RegistryReference<SoundEvent> = of("entity.firework_rocket.blast")
     @JvmField
@@ -882,6 +1162,26 @@ object SoundEvents {
     val FOX_SPIT: RegistryReference<SoundEvent> = of("entity.fox.spit")
     @JvmField
     val FOX_TELEPORT: RegistryReference<SoundEvent> = of("entity.fox.teleport")
+    @JvmField
+    val SUSPICIOUS_SAND_BREAK: RegistryReference<SoundEvent> = of("block.suspicious_sand.break")
+    @JvmField
+    val SUSPICIOUS_SAND_STEP: RegistryReference<SoundEvent> = of("block.suspicious_sand.step")
+    @JvmField
+    val SUSPICIOUS_SAND_PLACE: RegistryReference<SoundEvent> = of("block.suspicious_sand.place")
+    @JvmField
+    val SUSPICIOUS_SAND_HIT: RegistryReference<SoundEvent> = of("block.suspicious_sand.hit")
+    @JvmField
+    val SUSPICIOUS_SAND_FALL: RegistryReference<SoundEvent> = of("block.suspicious_sand.fall")
+    @JvmField
+    val SUSPICIOUS_GRAVEL_BREAK: RegistryReference<SoundEvent> = of("block.suspicious_gravel.break")
+    @JvmField
+    val SUSPICIOUS_GRAVEL_STEP: RegistryReference<SoundEvent> = of("block.suspicious_gravel.step")
+    @JvmField
+    val SUSPICIOUS_GRAVEL_PLACE: RegistryReference<SoundEvent> = of("block.suspicious_gravel.place")
+    @JvmField
+    val SUSPICIOUS_GRAVEL_HIT: RegistryReference<SoundEvent> = of("block.suspicious_gravel.hit")
+    @JvmField
+    val SUSPICIOUS_GRAVEL_FALL: RegistryReference<SoundEvent> = of("block.suspicious_gravel.fall")
     @JvmField
     val FROGLIGHT_BREAK: RegistryReference<SoundEvent> = of("block.froglight.break")
     @JvmField
@@ -967,6 +1267,14 @@ object SoundEvents {
     @JvmField
     val GHAST_WARN: RegistryReference<SoundEvent> = of("entity.ghast.warn")
     @JvmField
+    val GHASTLING_AMBIENT: RegistryReference<SoundEvent> = of("entity.ghastling.ambient")
+    @JvmField
+    val GHASTLING_DEATH: RegistryReference<SoundEvent> = of("entity.ghastling.death")
+    @JvmField
+    val GHASTLING_HURT: RegistryReference<SoundEvent> = of("entity.ghastling.hurt")
+    @JvmField
+    val GHASTLING_SPAWN: RegistryReference<SoundEvent> = of("entity.ghastling.spawn")
+    @JvmField
     val GILDED_BLACKSTONE_BREAK: RegistryReference<SoundEvent> = of("block.gilded_blackstone.break")
     @JvmField
     val GILDED_BLACKSTONE_FALL: RegistryReference<SoundEvent> = of("block.gilded_blackstone.fall")
@@ -1025,8 +1333,6 @@ object SoundEvents {
     @JvmField
     val GOAT_HORN_BREAK: RegistryReference<SoundEvent> = of("entity.goat.horn_break")
     @JvmField
-    val GOAT_HORN_PLAY: RegistryReference<SoundEvent> = of("item.goat_horn.play")
-    @JvmField
     val GOAT_SCREAMING_AMBIENT: RegistryReference<SoundEvent> = of("entity.goat.screaming.ambient")
     @JvmField
     val GOAT_SCREAMING_DEATH: RegistryReference<SoundEvent> = of("entity.goat.screaming.death")
@@ -1042,8 +1348,6 @@ object SoundEvents {
     val GOAT_SCREAMING_PREPARE_RAM: RegistryReference<SoundEvent> = of("entity.goat.screaming.prepare_ram")
     @JvmField
     val GOAT_SCREAMING_RAM_IMPACT: RegistryReference<SoundEvent> = of("entity.goat.screaming.ram_impact")
-    @JvmField
-    val GOAT_SCREAMING_HORN_BREAK: RegistryReference<SoundEvent> = of("entity.goat.screaming.horn_break")
     @JvmField
     val GOAT_STEP: RegistryReference<SoundEvent> = of("entity.goat.step")
     @JvmField
@@ -1107,6 +1411,24 @@ object SoundEvents {
     @JvmField
     val HANGING_SIGN_PLACE: RegistryReference<SoundEvent> = of("block.hanging_sign.place")
     @JvmField
+    val HAPPY_GHAST_AMBIENT: RegistryReference<SoundEvent> = of("entity.happy_ghast.ambient")
+    @JvmField
+    val HAPPY_GHAST_DEATH: RegistryReference<SoundEvent> = of("entity.happy_ghast.death")
+    @JvmField
+    val HAPPY_GHAST_HURT: RegistryReference<SoundEvent> = of("entity.happy_ghast.hurt")
+    @JvmField
+    val HAPPY_GHAST_RIDING: RegistryReference<SoundEvent> = of("entity.happy_ghast.riding")
+    @JvmField
+    val HEAVY_CORE_BREAK: RegistryReference<SoundEvent> = of("block.heavy_core.break")
+    @JvmField
+    val HEAVY_CORE_FALL: RegistryReference<SoundEvent> = of("block.heavy_core.fall")
+    @JvmField
+    val HEAVY_CORE_HIT: RegistryReference<SoundEvent> = of("block.heavy_core.hit")
+    @JvmField
+    val HEAVY_CORE_PLACE: RegistryReference<SoundEvent> = of("block.heavy_core.place")
+    @JvmField
+    val HEAVY_CORE_STEP: RegistryReference<SoundEvent> = of("block.heavy_core.step")
+    @JvmField
     val NETHER_WOOD_HANGING_SIGN_STEP: RegistryReference<SoundEvent> = of("block.nether_wood_hanging_sign.step")
     @JvmField
     val NETHER_WOOD_HANGING_SIGN_BREAK: RegistryReference<SoundEvent> = of("block.nether_wood_hanging_sign.break")
@@ -1126,6 +1448,46 @@ object SoundEvents {
     val BAMBOO_WOOD_HANGING_SIGN_HIT: RegistryReference<SoundEvent> = of("block.bamboo_wood_hanging_sign.hit")
     @JvmField
     val BAMBOO_WOOD_HANGING_SIGN_PLACE: RegistryReference<SoundEvent> = of("block.bamboo_wood_hanging_sign.place")
+    @JvmField
+    val TRIAL_SPAWNER_BREAK: RegistryReference<SoundEvent> = of("block.trial_spawner.break")
+    @JvmField
+    val TRIAL_SPAWNER_STEP: RegistryReference<SoundEvent> = of("block.trial_spawner.step")
+    @JvmField
+    val TRIAL_SPAWNER_PLACE: RegistryReference<SoundEvent> = of("block.trial_spawner.place")
+    @JvmField
+    val TRIAL_SPAWNER_HIT: RegistryReference<SoundEvent> = of("block.trial_spawner.hit")
+    @JvmField
+    val TRIAL_SPAWNER_FALL: RegistryReference<SoundEvent> = of("block.trial_spawner.fall")
+    @JvmField
+    val TRIAL_SPAWNER_SPAWN_MOB: RegistryReference<SoundEvent> = of("block.trial_spawner.spawn_mob")
+    @JvmField
+    val TRIAL_SPAWNER_ABOUT_TO_SPAWN_ITEM: RegistryReference<SoundEvent> = of("block.trial_spawner.about_to_spawn_item")
+    @JvmField
+    val TRIAL_SPAWNER_SPAWN_ITEM: RegistryReference<SoundEvent> = of("block.trial_spawner.spawn_item")
+    @JvmField
+    val TRIAL_SPAWNER_SPAWN_ITEM_BEGIN: RegistryReference<SoundEvent> = of("block.trial_spawner.spawn_item_begin")
+    @JvmField
+    val TRIAL_SPAWNER_DETECT_PLAYER: RegistryReference<SoundEvent> = of("block.trial_spawner.detect_player")
+    @JvmField
+    val TRIAL_SPAWNER_OMINOUS_ACTIVATE: RegistryReference<SoundEvent> = of("block.trial_spawner.ominous_activate")
+    @JvmField
+    val TRIAL_SPAWNER_AMBIENT: RegistryReference<SoundEvent> = of("block.trial_spawner.ambient")
+    @JvmField
+    val TRIAL_SPAWNER_AMBIENT_OMINOUS: RegistryReference<SoundEvent> = of("block.trial_spawner.ambient_ominous")
+    @JvmField
+    val TRIAL_SPAWNER_OPEN_SHUTTER: RegistryReference<SoundEvent> = of("block.trial_spawner.open_shutter")
+    @JvmField
+    val TRIAL_SPAWNER_CLOSE_SHUTTER: RegistryReference<SoundEvent> = of("block.trial_spawner.close_shutter")
+    @JvmField
+    val TRIAL_SPAWNER_EJECT_ITEM: RegistryReference<SoundEvent> = of("block.trial_spawner.eject_item")
+    @JvmField
+    val HARNESS_EQUIP: RegistryReference<SoundEvent> = of("entity.happy_ghast.equip")
+    @JvmField
+    val HARNESS_UNEQUIP: RegistryReference<SoundEvent> = of("entity.happy_ghast.unequip")
+    @JvmField
+    val HARNESS_GOGGLES_UP: RegistryReference<SoundEvent> = of("entity.happy_ghast.harness_goggles_up")
+    @JvmField
+    val HARNESS_GOGGLES_DOWN: RegistryReference<SoundEvent> = of("entity.happy_ghast.harness_goggles_down")
     @JvmField
     val HOE_TILL: RegistryReference<SoundEvent> = of("item.hoe.till")
     @JvmField
@@ -1166,6 +1528,8 @@ object SoundEvents {
     val HORSE_ANGRY: RegistryReference<SoundEvent> = of("entity.horse.angry")
     @JvmField
     val HORSE_ARMOR: RegistryReference<SoundEvent> = of("entity.horse.armor")
+    @JvmField
+    val HORSE_ARMOR_UNEQUIP: RegistryReference<SoundEvent> = of("item.horse_armor.unequip")
     @JvmField
     val HORSE_BREATHE: RegistryReference<SoundEvent> = of("entity.horse.breathe")
     @JvmField
@@ -1224,6 +1588,16 @@ object SoundEvents {
     val ILLUSIONER_PREPARE_MIRROR: RegistryReference<SoundEvent> = of("entity.illusioner.prepare_mirror")
     @JvmField
     val INK_SAC_USE: RegistryReference<SoundEvent> = of("item.ink_sac.use")
+    @JvmField
+    val IRON_BREAK: RegistryReference<SoundEvent> = of("block.iron.break")
+    @JvmField
+    val IRON_STEP: RegistryReference<SoundEvent> = of("block.iron.step")
+    @JvmField
+    val IRON_PLACE: RegistryReference<SoundEvent> = of("block.iron.place")
+    @JvmField
+    val IRON_HIT: RegistryReference<SoundEvent> = of("block.iron.hit")
+    @JvmField
+    val IRON_FALL: RegistryReference<SoundEvent> = of("block.iron.fall")
     @JvmField
     val IRON_DOOR_CLOSE: RegistryReference<SoundEvent> = of("block.iron_door.close")
     @JvmField
@@ -1289,9 +1663,21 @@ object SoundEvents {
     @JvmField
     val LAVA_POP: RegistryReference<SoundEvent> = of("block.lava.pop")
     @JvmField
-    val LEASH_KNOT_BREAK: RegistryReference<SoundEvent> = of("entity.leash_knot.break")
+    val LEAF_LITTER_BREAK: RegistryReference<SoundEvent> = of("block.leaf_litter.break")
     @JvmField
-    val LEASH_KNOT_PLACE: RegistryReference<SoundEvent> = of("entity.leash_knot.place")
+    val LEAF_LITTER_STEP: RegistryReference<SoundEvent> = of("block.leaf_litter.step")
+    @JvmField
+    val LEAF_LITTER_PLACE: RegistryReference<SoundEvent> = of("block.leaf_litter.place")
+    @JvmField
+    val LEAF_LITTER_HIT: RegistryReference<SoundEvent> = of("block.leaf_litter.hit")
+    @JvmField
+    val LEAF_LITTER_FALL: RegistryReference<SoundEvent> = of("block.leaf_litter.fall")
+    @JvmField
+    val LEAD_UNTIED: RegistryReference<SoundEvent> = of("item.lead.untied")
+    @JvmField
+    val LEAD_TIED: RegistryReference<SoundEvent> = of("item.lead.tied")
+    @JvmField
+    val LEAD_BREAK: RegistryReference<SoundEvent> = of("item.lead.break")
     @JvmField
     val LEVER_CLICK: RegistryReference<SoundEvent> = of("block.lever.click")
     @JvmField
@@ -1319,6 +1705,8 @@ object SoundEvents {
     @JvmField
     val LLAMA_SWAG: RegistryReference<SoundEvent> = of("entity.llama.swag")
     @JvmField
+    val LLAMA_CARPET_UNEQUIP: RegistryReference<SoundEvent> = of("item.llama_carpet.unequip")
+    @JvmField
     val MAGMA_CUBE_DEATH_SMALL: RegistryReference<SoundEvent> = of("entity.magma_cube.death_small")
     @JvmField
     val LODESTONE_BREAK: RegistryReference<SoundEvent> = of("block.lodestone.break")
@@ -1332,6 +1720,12 @@ object SoundEvents {
     val LODESTONE_FALL: RegistryReference<SoundEvent> = of("block.lodestone.fall")
     @JvmField
     val LODESTONE_COMPASS_LOCK: RegistryReference<SoundEvent> = of("item.lodestone_compass.lock")
+    @JvmField
+    val MACE_SMASH_AIR: RegistryReference<SoundEvent> = of("item.mace.smash_air")
+    @JvmField
+    val MACE_SMASH_GROUND: RegistryReference<SoundEvent> = of("item.mace.smash_ground")
+    @JvmField
+    val MACE_SMASH_GROUND_HEAVY: RegistryReference<SoundEvent> = of("item.mace.smash_ground_heavy")
     @JvmField
     val MAGMA_CUBE_DEATH: RegistryReference<SoundEvent> = of("entity.magma_cube.death")
     @JvmField
@@ -1399,6 +1793,16 @@ object SoundEvents {
     @JvmField
     val MOSS_CARPET_STEP: RegistryReference<SoundEvent> = of("block.moss_carpet.step")
     @JvmField
+    val PINK_PETALS_BREAK: RegistryReference<SoundEvent> = of("block.pink_petals.break")
+    @JvmField
+    val PINK_PETALS_FALL: RegistryReference<SoundEvent> = of("block.pink_petals.fall")
+    @JvmField
+    val PINK_PETALS_HIT: RegistryReference<SoundEvent> = of("block.pink_petals.hit")
+    @JvmField
+    val PINK_PETALS_PLACE: RegistryReference<SoundEvent> = of("block.pink_petals.place")
+    @JvmField
+    val PINK_PETALS_STEP: RegistryReference<SoundEvent> = of("block.pink_petals.step")
+    @JvmField
     val MOSS_BREAK: RegistryReference<SoundEvent> = of("block.moss.break")
     @JvmField
     val MOSS_FALL: RegistryReference<SoundEvent> = of("block.moss.fall")
@@ -1451,6 +1855,8 @@ object SoundEvents {
     @JvmField
     val MULE_HURT: RegistryReference<SoundEvent> = of("entity.mule.hurt")
     @JvmField
+    val MULE_JUMP: RegistryReference<SoundEvent> = of("entity.mule.jump")
+    @JvmField
     val MUSIC_CREATIVE: RegistryReference<SoundEvent> = of("music.creative")
     @JvmField
     val MUSIC_CREDITS: RegistryReference<SoundEvent> = of("music.credits")
@@ -1469,6 +1875,8 @@ object SoundEvents {
     @JvmField
     val MUSIC_DISC_FAR: RegistryReference<SoundEvent> = of("music_disc.far")
     @JvmField
+    val MUSIC_DISC_LAVA_CHICKEN: RegistryReference<SoundEvent> = of("music_disc.lava_chicken")
+    @JvmField
     val MUSIC_DISC_MALL: RegistryReference<SoundEvent> = of("music_disc.mall")
     @JvmField
     val MUSIC_DISC_MELLOHI: RegistryReference<SoundEvent> = of("music_disc.mellohi")
@@ -1484,6 +1892,16 @@ object SoundEvents {
     val MUSIC_DISC_WARD: RegistryReference<SoundEvent> = of("music_disc.ward")
     @JvmField
     val MUSIC_DISC_OTHERSIDE: RegistryReference<SoundEvent> = of("music_disc.otherside")
+    @JvmField
+    val MUSIC_DISC_RELIC: RegistryReference<SoundEvent> = of("music_disc.relic")
+    @JvmField
+    val MUSIC_DISC_CREATOR: RegistryReference<SoundEvent> = of("music_disc.creator")
+    @JvmField
+    val MUSIC_DISC_CREATOR_MUSIC_BOX: RegistryReference<SoundEvent> = of("music_disc.creator_music_box")
+    @JvmField
+    val MUSIC_DISC_PRECIPICE: RegistryReference<SoundEvent> = of("music_disc.precipice")
+    @JvmField
+    val MUSIC_DISC_TEARS: RegistryReference<SoundEvent> = of("music_disc.tears")
     @JvmField
     val MUSIC_DRAGON: RegistryReference<SoundEvent> = of("music.dragon")
     @JvmField
@@ -1509,11 +1927,13 @@ object SoundEvents {
     @JvmField
     val MUSIC_BIOME_SWAMP: RegistryReference<SoundEvent> = of("music.overworld.swamp")
     @JvmField
-    val MUSIC_BIOME_JUNGLE_AND_FOREST: RegistryReference<SoundEvent> = of("music.overworld.jungle_and_forest")
+    val MUSIC_BIOME_FOREST: RegistryReference<SoundEvent> = of("music.overworld.forest")
     @JvmField
     val MUSIC_BIOME_OLD_GROWTH_TAIGA: RegistryReference<SoundEvent> = of("music.overworld.old_growth_taiga")
     @JvmField
     val MUSIC_BIOME_MEADOW: RegistryReference<SoundEvent> = of("music.overworld.meadow")
+    @JvmField
+    val MUSIC_BIOME_CHERRY_GROVE: RegistryReference<SoundEvent> = of("music.overworld.cherry_grove")
     @JvmField
     val MUSIC_BIOME_NETHER_WASTES: RegistryReference<SoundEvent> = of("music.nether.nether_wastes")
     @JvmField
@@ -1526,6 +1946,18 @@ object SoundEvents {
     val MUSIC_BIOME_STONY_PEAKS: RegistryReference<SoundEvent> = of("music.overworld.stony_peaks")
     @JvmField
     val MUSIC_BIOME_WARPED_FOREST: RegistryReference<SoundEvent> = of("music.nether.warped_forest")
+    @JvmField
+    val MUSIC_BIOME_FLOWER_FOREST: RegistryReference<SoundEvent> = of("music.overworld.flower_forest")
+    @JvmField
+    val MUSIC_BIOME_DESERT: RegistryReference<SoundEvent> = of("music.overworld.desert")
+    @JvmField
+    val MUSIC_BIOME_BADLANDS: RegistryReference<SoundEvent> = of("music.overworld.badlands")
+    @JvmField
+    val MUSIC_BIOME_JUNGLE: RegistryReference<SoundEvent> = of("music.overworld.jungle")
+    @JvmField
+    val MUSIC_BIOME_SPARSE_JUNGLE: RegistryReference<SoundEvent> = of("music.overworld.sparse_jungle")
+    @JvmField
+    val MUSIC_BIOME_BAMBOO_JUNGLE: RegistryReference<SoundEvent> = of("music.overworld.bamboo_jungle")
     @JvmField
     val MUSIC_UNDER_WATER: RegistryReference<SoundEvent> = of("music.under_water")
     @JvmField
@@ -1572,6 +2004,8 @@ object SoundEvents {
     val NETHER_WOOD_FENCE_GATE_CLOSE: RegistryReference<SoundEvent> = of("block.nether_wood_fence_gate.close")
     @JvmField
     val NETHER_WOOD_FENCE_GATE_OPEN: RegistryReference<SoundEvent> = of("block.nether_wood_fence_gate.open")
+    @JvmField
+    val EMPTY: RegistryReference<SoundEvent> = of("intentionally_empty")
     @JvmField
     val PACKED_MUD_BREAK: RegistryReference<SoundEvent> = of("block.packed_mud.break")
     @JvmField
@@ -1713,9 +2147,13 @@ object SoundEvents {
     @JvmField
     val OCELOT_DEATH: RegistryReference<SoundEvent> = of("entity.ocelot.death")
     @JvmField
+    val OMINOUS_BOTTLE_DISPOSE: RegistryReference<SoundEvent> = of("item.ominous_bottle.dispose")
+    @JvmField
     val PAINTING_BREAK: RegistryReference<SoundEvent> = of("entity.painting.break")
     @JvmField
     val PAINTING_PLACE: RegistryReference<SoundEvent> = of("entity.painting.place")
+    @JvmField
+    val PALE_HANGING_MOSS_IDLE: RegistryReference<SoundEvent> = of("block.pale_hanging_moss.idle")
     @JvmField
     val PANDA_PRE_SNEEZE: RegistryReference<SoundEvent> = of("entity.panda.pre_sneeze")
     @JvmField
@@ -1750,6 +2188,12 @@ object SoundEvents {
     val PARROT_HURT: RegistryReference<SoundEvent> = of("entity.parrot.hurt")
     @JvmField
     val PARROT_IMITATE_BLAZE: RegistryReference<SoundEvent> = of("entity.parrot.imitate.blaze")
+    @JvmField
+    val PARROT_IMITATE_BOGGED: RegistryReference<SoundEvent> = of("entity.parrot.imitate.bogged")
+    @JvmField
+    val PARROT_IMITATE_BREEZE: RegistryReference<SoundEvent> = of("entity.parrot.imitate.breeze")
+    @JvmField
+    val PARROT_IMITATE_CREAKING: RegistryReference<SoundEvent> = of("entity.parrot.imitate.creaking")
     @JvmField
     val PARROT_IMITATE_CREEPER: RegistryReference<SoundEvent> = of("entity.parrot.imitate.creeper")
     @JvmField
@@ -1923,6 +2367,8 @@ object SoundEvents {
     @JvmField
     val PLAYER_SWIM: RegistryReference<SoundEvent> = of("entity.player.swim")
     @JvmField
+    val PLAYER_TELEPORT: RegistryReference<SoundEvent> = of("entity.player.teleport")
+    @JvmField
     val POLAR_BEAR_AMBIENT: RegistryReference<SoundEvent> = of("entity.polar_bear.ambient")
     @JvmField
     val POLAR_BEAR_AMBIENT_BABY: RegistryReference<SoundEvent> = of("entity.polar_bear.ambient_baby")
@@ -1960,8 +2406,6 @@ object SoundEvents {
     val POWDER_SNOW_PLACE: RegistryReference<SoundEvent> = of("block.powder_snow.place")
     @JvmField
     val POWDER_SNOW_STEP: RegistryReference<SoundEvent> = of("block.powder_snow.step")
-    @JvmField
-    val PUFFER_FISH_AMBIENT: RegistryReference<SoundEvent> = of("entity.puffer_fish.ambient")
     @JvmField
     val PUFFER_FISH_BLOW_OUT: RegistryReference<SoundEvent> = of("entity.puffer_fish.blow_out")
     @JvmField
@@ -2063,6 +2507,8 @@ object SoundEvents {
     @JvmField
     val SAND_STEP: RegistryReference<SoundEvent> = of("block.sand.step")
     @JvmField
+    val SAND_IDLE: RegistryReference<SoundEvent> = of("block.sand.idle")
+    @JvmField
     val SCAFFOLDING_BREAK: RegistryReference<SoundEvent> = of("block.scaffolding.break")
     @JvmField
     val SCAFFOLDING_FALL: RegistryReference<SoundEvent> = of("block.scaffolding.fall")
@@ -2144,6 +2590,8 @@ object SoundEvents {
     val SHEEP_SHEAR: RegistryReference<SoundEvent> = of("entity.sheep.shear")
     @JvmField
     val SHEEP_STEP: RegistryReference<SoundEvent> = of("entity.sheep.step")
+    @JvmField
+    val SHEARS_SNIP: RegistryReference<SoundEvent> = of("item.shears.snip")
     @JvmField
     val SHIELD_BLOCK: RegistryReference<SoundEvent> = of("item.shield.block")
     @JvmField
@@ -2277,6 +2725,34 @@ object SoundEvents {
     @JvmField
     val SOUL_ESCAPE: RegistryReference<SoundEvent> = of("particle.soul_escape")
     @JvmField
+    val SPAWNER_BREAK: RegistryReference<SoundEvent> = of("block.spawner.break")
+    @JvmField
+    val SPAWNER_FALL: RegistryReference<SoundEvent> = of("block.spawner.fall")
+    @JvmField
+    val SPAWNER_HIT: RegistryReference<SoundEvent> = of("block.spawner.hit")
+    @JvmField
+    val SPAWNER_PLACE: RegistryReference<SoundEvent> = of("block.spawner.place")
+    @JvmField
+    val SPAWNER_STEP: RegistryReference<SoundEvent> = of("block.spawner.step")
+    @JvmField
+    val RESIN_BREAK: RegistryReference<SoundEvent> = of("block.resin.break")
+    @JvmField
+    val RESIN_FALL: RegistryReference<SoundEvent> = of("block.resin.fall")
+    @JvmField
+    val RESIN_PLACE: RegistryReference<SoundEvent> = of("block.resin.place")
+    @JvmField
+    val RESIN_STEP: RegistryReference<SoundEvent> = of("block.resin.step")
+    @JvmField
+    val RESIN_BRICKS_BREAK: RegistryReference<SoundEvent> = of("block.resin_bricks.break")
+    @JvmField
+    val RESIN_BRICKS_FALL: RegistryReference<SoundEvent> = of("block.resin_bricks.fall")
+    @JvmField
+    val RESIN_BRICKS_HIT: RegistryReference<SoundEvent> = of("block.resin_bricks.hit")
+    @JvmField
+    val RESIN_BRICKS_PLACE: RegistryReference<SoundEvent> = of("block.resin_bricks.place")
+    @JvmField
+    val RESIN_BRICKS_STEP: RegistryReference<SoundEvent> = of("block.resin_bricks.step")
+    @JvmField
     val SPORE_BLOSSOM_BREAK: RegistryReference<SoundEvent> = of("block.spore_blossom.break")
     @JvmField
     val SPORE_BLOSSOM_FALL: RegistryReference<SoundEvent> = of("block.spore_blossom.fall")
@@ -2317,6 +2793,36 @@ object SoundEvents {
     @JvmField
     val SMOKER_SMOKE: RegistryReference<SoundEvent> = of("block.smoker.smoke")
     @JvmField
+    val SNIFFER_STEP: RegistryReference<SoundEvent> = of("entity.sniffer.step")
+    @JvmField
+    val SNIFFER_EAT: RegistryReference<SoundEvent> = of("entity.sniffer.eat")
+    @JvmField
+    val SNIFFER_IDLE: RegistryReference<SoundEvent> = of("entity.sniffer.idle")
+    @JvmField
+    val SNIFFER_HURT: RegistryReference<SoundEvent> = of("entity.sniffer.hurt")
+    @JvmField
+    val SNIFFER_DEATH: RegistryReference<SoundEvent> = of("entity.sniffer.death")
+    @JvmField
+    val SNIFFER_DROP_SEED: RegistryReference<SoundEvent> = of("entity.sniffer.drop_seed")
+    @JvmField
+    val SNIFFER_SCENTING: RegistryReference<SoundEvent> = of("entity.sniffer.scenting")
+    @JvmField
+    val SNIFFER_SNIFFING: RegistryReference<SoundEvent> = of("entity.sniffer.sniffing")
+    @JvmField
+    val SNIFFER_SEARCHING: RegistryReference<SoundEvent> = of("entity.sniffer.searching")
+    @JvmField
+    val SNIFFER_DIGGING: RegistryReference<SoundEvent> = of("entity.sniffer.digging")
+    @JvmField
+    val SNIFFER_DIGGING_STOP: RegistryReference<SoundEvent> = of("entity.sniffer.digging_stop")
+    @JvmField
+    val SNIFFER_HAPPY: RegistryReference<SoundEvent> = of("entity.sniffer.happy")
+    @JvmField
+    val SNIFFER_EGG_PLOP: RegistryReference<SoundEvent> = of("block.sniffer_egg.plop")
+    @JvmField
+    val SNIFFER_EGG_CRACK: RegistryReference<SoundEvent> = of("block.sniffer_egg.crack")
+    @JvmField
+    val SNIFFER_EGG_HATCH: RegistryReference<SoundEvent> = of("block.sniffer_egg.hatch")
+    @JvmField
     val SNOWBALL_THROW: RegistryReference<SoundEvent> = of("entity.snowball.throw")
     @JvmField
     val SNOW_BREAK: RegistryReference<SoundEvent> = of("block.snow.break")
@@ -2350,6 +2856,18 @@ object SoundEvents {
     val SPLASH_POTION_BREAK: RegistryReference<SoundEvent> = of("entity.splash_potion.break")
     @JvmField
     val SPLASH_POTION_THROW: RegistryReference<SoundEvent> = of("entity.splash_potion.throw")
+    @JvmField
+    val SPONGE_BREAK: RegistryReference<SoundEvent> = of("block.sponge.break")
+    @JvmField
+    val SPONGE_FALL: RegistryReference<SoundEvent> = of("block.sponge.fall")
+    @JvmField
+    val SPONGE_HIT: RegistryReference<SoundEvent> = of("block.sponge.hit")
+    @JvmField
+    val SPONGE_PLACE: RegistryReference<SoundEvent> = of("block.sponge.place")
+    @JvmField
+    val SPONGE_STEP: RegistryReference<SoundEvent> = of("block.sponge.step")
+    @JvmField
+    val SPONGE_ABSORB: RegistryReference<SoundEvent> = of("block.sponge.absorb")
     @JvmField
     val SPYGLASS_USE: RegistryReference<SoundEvent> = of("item.spyglass.use")
     @JvmField
@@ -2451,6 +2969,26 @@ object SoundEvents {
     @JvmField
     val TUFF_FALL: RegistryReference<SoundEvent> = of("block.tuff.fall")
     @JvmField
+    val TUFF_BRICKS_BREAK: RegistryReference<SoundEvent> = of("block.tuff_bricks.break")
+    @JvmField
+    val TUFF_BRICKS_FALL: RegistryReference<SoundEvent> = of("block.tuff_bricks.fall")
+    @JvmField
+    val TUFF_BRICKS_HIT: RegistryReference<SoundEvent> = of("block.tuff_bricks.hit")
+    @JvmField
+    val TUFF_BRICKS_PLACE: RegistryReference<SoundEvent> = of("block.tuff_bricks.place")
+    @JvmField
+    val TUFF_BRICKS_STEP: RegistryReference<SoundEvent> = of("block.tuff_bricks.step")
+    @JvmField
+    val POLISHED_TUFF_BREAK: RegistryReference<SoundEvent> = of("block.polished_tuff.break")
+    @JvmField
+    val POLISHED_TUFF_FALL: RegistryReference<SoundEvent> = of("block.polished_tuff.fall")
+    @JvmField
+    val POLISHED_TUFF_HIT: RegistryReference<SoundEvent> = of("block.polished_tuff.hit")
+    @JvmField
+    val POLISHED_TUFF_PLACE: RegistryReference<SoundEvent> = of("block.polished_tuff.place")
+    @JvmField
+    val POLISHED_TUFF_STEP: RegistryReference<SoundEvent> = of("block.polished_tuff.step")
+    @JvmField
     val TURTLE_AMBIENT_LAND: RegistryReference<SoundEvent> = of("entity.turtle.ambient_land")
     @JvmField
     val TURTLE_DEATH: RegistryReference<SoundEvent> = of("entity.turtle.death")
@@ -2492,6 +3030,34 @@ object SoundEvents {
     val UI_TOAST_IN: RegistryReference<SoundEvent> = of("ui.toast.in")
     @JvmField
     val UI_TOAST_OUT: RegistryReference<SoundEvent> = of("ui.toast.out")
+    @JvmField
+    val VAULT_ACTIVATE: RegistryReference<SoundEvent> = of("block.vault.activate")
+    @JvmField
+    val VAULT_AMBIENT: RegistryReference<SoundEvent> = of("block.vault.ambient")
+    @JvmField
+    val VAULT_BREAK: RegistryReference<SoundEvent> = of("block.vault.break")
+    @JvmField
+    val VAULT_CLOSE_SHUTTER: RegistryReference<SoundEvent> = of("block.vault.close_shutter")
+    @JvmField
+    val VAULT_DEACTIVATE: RegistryReference<SoundEvent> = of("block.vault.deactivate")
+    @JvmField
+    val VAULT_EJECT_ITEM: RegistryReference<SoundEvent> = of("block.vault.eject_item")
+    @JvmField
+    val VAULT_REJECT_REWARDED_PLAYER: RegistryReference<SoundEvent> = of("block.vault.reject_rewarded_player")
+    @JvmField
+    val VAULT_FALL: RegistryReference<SoundEvent> = of("block.vault.fall")
+    @JvmField
+    val VAULT_HIT: RegistryReference<SoundEvent> = of("block.vault.hit")
+    @JvmField
+    val VAULT_INSERT_ITEM: RegistryReference<SoundEvent> = of("block.vault.insert_item")
+    @JvmField
+    val VAULT_INSERT_ITEM_FAIL: RegistryReference<SoundEvent> = of("block.vault.insert_item_fail")
+    @JvmField
+    val VAULT_OPEN_SHUTTER: RegistryReference<SoundEvent> = of("block.vault.open_shutter")
+    @JvmField
+    val VAULT_PLACE: RegistryReference<SoundEvent> = of("block.vault.place")
+    @JvmField
+    val VAULT_STEP: RegistryReference<SoundEvent> = of("block.vault.step")
     @JvmField
     val VEX_AMBIENT: RegistryReference<SoundEvent> = of("entity.vex.ambient")
     @JvmField
@@ -2621,6 +3187,10 @@ object SoundEvents {
     @JvmField
     val WARDEN_TENDRIL_CLICKS: RegistryReference<SoundEvent> = of("entity.warden.tendril_clicks")
     @JvmField
+    val WAXED_HANGING_SIGN_INTERACT_FAIL: RegistryReference<SoundEvent> = of("block.hanging_sign.waxed_interact_fail")
+    @JvmField
+    val WAXED_SIGN_INTERACT_FAIL: RegistryReference<SoundEvent> = of("block.sign.waxed_interact_fail")
+    @JvmField
     val WATER_AMBIENT: RegistryReference<SoundEvent> = of("block.water.ambient")
     @JvmField
     val WEATHER_RAIN: RegistryReference<SoundEvent> = of("weather.rain")
@@ -2636,6 +3206,22 @@ object SoundEvents {
     val WET_GRASS_PLACE: RegistryReference<SoundEvent> = of("block.wet_grass.place")
     @JvmField
     val WET_GRASS_STEP: RegistryReference<SoundEvent> = of("block.wet_grass.step")
+    @JvmField
+    val WET_SPONGE_BREAK: RegistryReference<SoundEvent> = of("block.wet_sponge.break")
+    @JvmField
+    val WET_SPONGE_DRIES: RegistryReference<SoundEvent> = of("block.wet_sponge.dries")
+    @JvmField
+    val WET_SPONGE_FALL: RegistryReference<SoundEvent> = of("block.wet_sponge.fall")
+    @JvmField
+    val WET_SPONGE_HIT: RegistryReference<SoundEvent> = of("block.wet_sponge.hit")
+    @JvmField
+    val WET_SPONGE_PLACE: RegistryReference<SoundEvent> = of("block.wet_sponge.place")
+    @JvmField
+    val WET_SPONGE_STEP: RegistryReference<SoundEvent> = of("block.wet_sponge.step")
+    @JvmField
+    val WIND_CHARGE_BURST: RegistryReference<SoundEvent> = of("entity.wind_charge.wind_burst")
+    @JvmField
+    val WIND_CHARGE_THROW: RegistryReference<SoundEvent> = of("entity.wind_charge.throw")
     @JvmField
     val WITCH_AMBIENT: RegistryReference<SoundEvent> = of("entity.witch.ambient")
     @JvmField
@@ -2669,23 +3255,17 @@ object SoundEvents {
     @JvmField
     val WITHER_SPAWN: RegistryReference<SoundEvent> = of("entity.wither.spawn")
     @JvmField
-    val WOLF_AMBIENT: RegistryReference<SoundEvent> = of("entity.wolf.ambient")
+    val WOLF_ARMOR_BREAK: RegistryReference<SoundEvent> = of("item.wolf_armor.break")
     @JvmField
-    val WOLF_DEATH: RegistryReference<SoundEvent> = of("entity.wolf.death")
+    val WOLF_ARMOR_CRACK: RegistryReference<SoundEvent> = of("item.wolf_armor.crack")
     @JvmField
-    val WOLF_GROWL: RegistryReference<SoundEvent> = of("entity.wolf.growl")
+    val WOLF_ARMOR_DAMAGE: RegistryReference<SoundEvent> = of("item.wolf_armor.damage")
     @JvmField
-    val WOLF_HOWL: RegistryReference<SoundEvent> = of("entity.wolf.howl")
-    @JvmField
-    val WOLF_HURT: RegistryReference<SoundEvent> = of("entity.wolf.hurt")
-    @JvmField
-    val WOLF_PANT: RegistryReference<SoundEvent> = of("entity.wolf.pant")
+    val WOLF_ARMOR_REPAIR: RegistryReference<SoundEvent> = of("item.wolf_armor.repair")
     @JvmField
     val WOLF_SHAKE: RegistryReference<SoundEvent> = of("entity.wolf.shake")
     @JvmField
     val WOLF_STEP: RegistryReference<SoundEvent> = of("entity.wolf.step")
-    @JvmField
-    val WOLF_WHINE: RegistryReference<SoundEvent> = of("entity.wolf.whine")
     @JvmField
     val WOODEN_DOOR_CLOSE: RegistryReference<SoundEvent> = of("block.wooden_door.close")
     @JvmField
@@ -2695,21 +3275,21 @@ object SoundEvents {
     @JvmField
     val WOODEN_TRAPDOOR_OPEN: RegistryReference<SoundEvent> = of("block.wooden_trapdoor.open")
     @JvmField
-    val WOOD_BREAK: RegistryReference<SoundEvent> = of("block.wood.break")
-    @JvmField
     val WOODEN_BUTTON_CLICK_OFF: RegistryReference<SoundEvent> = of("block.wooden_button.click_off")
     @JvmField
     val WOODEN_BUTTON_CLICK_ON: RegistryReference<SoundEvent> = of("block.wooden_button.click_on")
+    @JvmField
+    val WOODEN_PRESSURE_PLATE_CLICK_OFF: RegistryReference<SoundEvent> = of("block.wooden_pressure_plate.click_off")
+    @JvmField
+    val WOODEN_PRESSURE_PLATE_CLICK_ON: RegistryReference<SoundEvent> = of("block.wooden_pressure_plate.click_on")
+    @JvmField
+    val WOOD_BREAK: RegistryReference<SoundEvent> = of("block.wood.break")
     @JvmField
     val WOOD_FALL: RegistryReference<SoundEvent> = of("block.wood.fall")
     @JvmField
     val WOOD_HIT: RegistryReference<SoundEvent> = of("block.wood.hit")
     @JvmField
     val WOOD_PLACE: RegistryReference<SoundEvent> = of("block.wood.place")
-    @JvmField
-    val WOODEN_PRESSURE_PLATE_CLICK_OFF: RegistryReference<SoundEvent> = of("block.wooden_pressure_plate.click_off")
-    @JvmField
-    val WOODEN_PRESSURE_PLATE_CLICK_ON: RegistryReference<SoundEvent> = of("block.wooden_pressure_plate.click_on")
     @JvmField
     val WOOD_STEP: RegistryReference<SoundEvent> = of("block.wood.step")
     @JvmField
@@ -2780,6 +3360,14 @@ object SoundEvents {
     val ZOMBIE_VILLAGER_HURT: RegistryReference<SoundEvent> = of("entity.zombie_villager.hurt")
     @JvmField
     val ZOMBIE_VILLAGER_STEP: RegistryReference<SoundEvent> = of("entity.zombie_villager.step")
+    @JvmField
+    val APPLY_EFFECT_BAD_OMEN: RegistryReference<SoundEvent> = of("event.mob_effect.bad_omen")
+    @JvmField
+    val APPLY_EFFECT_TRIAL_OMEN: RegistryReference<SoundEvent> = of("event.mob_effect.trial_omen")
+    @JvmField
+    val APPLY_EFFECT_RAID_OMEN: RegistryReference<SoundEvent> = of("event.mob_effect.raid_omen")
+    @JvmField
+    val SADDLE_UNEQUIP: RegistryReference<SoundEvent> = of("item.saddle.unequip")
     @JvmField
     val GOAT_HORN_0: RegistryReference<SoundEvent> = of("item.goat_horn.sound.0")
     @JvmField

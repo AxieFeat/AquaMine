@@ -54,13 +54,17 @@ object BlockEntityTypes {
     val MOB_SPAWNER: RegistryReference<BlockEntityType<Spawner>> = of("mob_spawner")
 
     @JvmField
+    val CREAKING_HEART: RegistryReference<BlockEntityType<CreakingHeart>> =
+            of("creaking_heart")
+
+    @JvmField
     val PISTON: RegistryReference<BlockEntityType<PistonMoving>> = of("piston")
 
     @JvmField
     val BREWING_STAND: RegistryReference<BlockEntityType<BrewingStand>> = of("brewing_stand")
 
     @JvmField
-    val ENCHANTING_TABLE: RegistryReference<BlockEntityType<EnchantmentTable>> =
+    val ENCHANTING_TABLE: RegistryReference<BlockEntityType<EnchantingTable>> =
             of("enchanting_table")
 
     @JvmField
@@ -132,6 +136,10 @@ object BlockEntityTypes {
     val SCULK_SENSOR: RegistryReference<BlockEntityType<SculkSensor>> = of("sculk_sensor")
 
     @JvmField
+    val CALIBRATED_SCULK_SENSOR: RegistryReference<BlockEntityType<CalibratedSculkSensor>> =
+            of("calibrated_sculk_sensor")
+
+    @JvmField
     val SCULK_CATALYST: RegistryReference<BlockEntityType<SculkCatalyst>> =
             of("sculk_catalyst")
 
@@ -142,6 +150,29 @@ object BlockEntityTypes {
     @JvmField
     val CHISELED_BOOKSHELF: RegistryReference<BlockEntityType<ChiseledBookShelf>> =
             of("chiseled_bookshelf")
+
+    @JvmField
+    val BRUSHABLE_BLOCK: RegistryReference<BlockEntityType<Brushable>> =
+            of("brushable_block")
+
+    @JvmField
+    val DECORATED_POT: RegistryReference<BlockEntityType<DecoratedPot>> = of("decorated_pot")
+
+    @JvmField
+    val CRAFTER: RegistryReference<BlockEntityType<Crafter>> = of("crafter")
+
+    @JvmField
+    val TRIAL_SPAWNER: RegistryReference<BlockEntityType<TrialSpawner>> = of("trial_spawner")
+
+    @JvmField
+    val VAULT: RegistryReference<BlockEntityType<Vault>> = of("vault")
+
+    @JvmField
+    val TEST_BLOCK: RegistryReference<BlockEntityType<Test>> = of("test_block")
+
+    @JvmField
+    val TEST_INSTANCE_BLOCK: RegistryReference<BlockEntityType<TestInstance>> =
+            of("test_instance_block")
 
 
     // @formatter:on

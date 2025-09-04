@@ -7,6 +7,7 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.sounds.SoundEvent
 import net.minecraft.sounds.SoundEvents
 
+// TODO Fixme
 object SoundGenerator : Generator<SoundEvent>() {
 
     override val names: Map<SoundEvent, String> = buildMap {
@@ -28,19 +29,13 @@ object SoundGenerator : Generator<SoundEvent>() {
         val soundRegistry = BuiltInRegistries.SOUND_EVENT
 
         soundRegistry.keySet().sortedBy {
-            soundRegistry.getId(soundRegistry.get(it))
+            soundRegistry.getId(soundRegistry.get(it).get().value())
         }.forEach { resource ->
-            val minecraftSound = soundRegistry.get(resource)
+            val minecraftSound = soundRegistry.get(resource).get().value()
 
             val sound = JsonObject()
 
-            sound.addProperty(
-                "range",
-                getHiddenField<Float, SoundEvent>(
-                    "range",
-                    minecraftSound
-                )
-            )
+            sound.addProperty("range", 16f)
 
             sounds.add(resource.toString(), sound)
         }

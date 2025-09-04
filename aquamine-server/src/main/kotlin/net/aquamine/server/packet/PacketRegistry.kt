@@ -174,6 +174,11 @@ object PacketRegistry {
         registerOutbound<PacketOutLoginSuccess>(0x02)
         registerOutbound<PacketOutSetCompression>(0x03)
         registerOutbound<PacketOutPluginRequest>(0x04)
+        // 0x05 Cookie Request (login)
+
+        // Configuration
+
+
 
         // Play
         registerInbound(PacketState.PLAY, 0x00) { PacketInConfirmTeleportation(it) }
@@ -227,80 +232,139 @@ object PacketRegistry {
         registerInbound(PacketState.PLAY, 0x31) { PacketInUseItemOn(it) }
         registerInbound(PacketState.PLAY, 0x32) { PacketInUseItem(it) }
 
-        registerOutbound<PacketOutSpawnEntity>(0x00)
-        registerOutbound<PacketOutSpawnExperienceOrb>(0x01)
-        registerOutbound<PacketOutSpawnPlayer>(0x02)
-        registerOutbound<PacketOutAnimation>(0x03)
-        registerOutbound<PacketOutAwardStatistics>(0x04)
-        registerOutbound<PacketOutAcknowledgeBlockChange>(0x05)
-        registerOutbound<PacketOutSetBlockDestroyStage>(0x06)
-        registerOutbound<PacketOutBlockUpdate>(0x09)
-        registerOutbound<PacketOutBossBar>(0x0A)
-        registerOutbound<PacketOutChangeDifficulty>(0x0B)
-        registerOutbound<PacketOutClearTitles>(0x0C)
-        registerOutbound<PacketOutCommandSuggestionsResponse>(0x0D)
-        registerOutbound<PacketOutCommands>(0x0E)
-        registerOutbound<PacketOutSetContainerContent>(0x10)
-        registerOutbound<PacketOutSetContainerSlot>(0x12)
-        registerOutbound<PacketOutSetCooldown>(0x13)
-        registerOutbound<PacketOutChatSuggestions>(0x14)
-        registerOutbound<PacketOutPluginMessage>(0x15)
-        registerOutbound<PacketOutDeleteChat>(0x16)
-        registerOutbound<PacketOutDisconnect>(0x17)
-        registerOutbound<PacketOutDisguisedChat>(0x18)
-        registerOutbound<PacketOutEntityEvent>(0x19)
-        registerOutbound<PacketOutUnloadChunk>(0x1B)
-        registerOutbound<PacketOutGameEvent>(0x1C)
-        registerOutbound<PacketOutInitializeWorldBorder>(0x1E)
-        registerOutbound<PacketOutKeepAlive>(0x1F)
-        registerOutbound<PacketOutChunkDataAndLight>(0x20)
-        registerOutbound<PacketOutWorldEvent>(0x21)
-        registerOutbound<PacketOutParticle>(0x22)
-        registerOutbound<PacketOutUpdateLight>(0x23)
-        registerOutbound<PacketOutLogin>(0x24)
-        registerOutbound<PacketOutUpdateEntityPosition>(0x27)
-        registerOutbound<PacketOutUpdateEntityPositionAndRotation>(0x28)
-        registerOutbound<PacketOutUpdateEntityRotation>(0x29)
-        registerOutbound<PacketOutOpenBook>(0x2B)
-        registerOutbound<PacketOutAbilities>(0x30)
-        registerOutbound<PacketOutPlayerChat>(0x31)
-        registerOutbound<PacketOutPlayerInfoRemove>(0x35)
-        registerOutbound<PacketOutPlayerInfoUpdate>(0x36)
-        registerOutbound<PacketOutSynchronizePlayerPosition>(0x38)
-        registerOutbound<PacketOutUpdateRecipeBook>(0x39)
-        registerOutbound<PacketOutRemoveEntities>(0x3A)
-        registerOutbound<PacketOutEntityRemovePotionEffect>(0x3B)
-        registerOutbound<PacketOutResourcePack>(0x3C)
-        registerOutbound<PacketOutSetHeadRotation>(0x3E)
-        registerOutbound<PacketOutSetActionBarText>(0x42)
-        registerOutbound<PacketOutSetCamera>(0x48)
-        registerOutbound<PacketOutSetHeldItem>(0x49)
-        registerOutbound<PacketOutSetCenterChunk>(0x4A)
-        registerOutbound<PacketOutSetDefaultSpawnPosition>(0x4C)
-        registerOutbound<PacketOutDisplayObjective>(0x4D)
-        registerOutbound<PacketOutSetEntityMetadata>(0x4E)
-        registerOutbound<PacketOutSetEntityVelocity>(0x50)
-        registerOutbound<PacketOutSetHealth>(0x53)
-        registerOutbound<PacketOutUpdateObjectives>(0x54)
-        registerOutbound<PacketOutSetPassengers>(0x55)
-        registerOutbound<PacketOutUpdateTeams>(0x56)
-        registerOutbound<PacketOutUpdateScore>(0x57)
-        registerOutbound<PacketOutSetSubtitleText>(0x59)
-        registerOutbound<PacketOutUpdateTime>(0x5A)
-        registerOutbound<PacketOutSetTitleText>(0x5B)
-        registerOutbound<PacketOutSetTitleAnimationTimes>(0x5C)
-        registerOutbound<PacketOutEntitySoundEffect>(0x5D)
-        registerOutbound<PacketOutSoundEffect>(0x5E)
-        registerOutbound<PacketOutStopSound>(0x5F)
-        registerOutbound<PacketOutSystemChat>(0x60)
-        registerOutbound<PacketOutSetTabListHeaderAndFooter>(0x61)
-        registerOutbound<PacketOutTagQueryResponse>(0x62)
-        registerOutbound<PacketOutTeleportEntity>(0x64)
-        registerOutbound<PacketOutUpdateAttributes>(0x66)
-        registerOutbound<PacketOutUpdateEnabledFeatures>(0x67)
-        registerOutbound<PacketOutEntityPotionEffect>(0x68)
-        registerOutbound<PacketOutUpdateRecipes>(0x69)
-        registerOutbound<PacketOutUpdateTags>(0x6A)
+        // 0x00 Bundle delimiter
+        registerOutbound<PacketOutSpawnEntity>(0x01)
+        registerOutbound<PacketOutAnimation>(0x02)
+        registerOutbound<PacketOutAwardStatistics>(0x03)
+        registerOutbound<PacketOutAcknowledgeBlockChange>(0x04)
+        registerOutbound<PacketOutSetBlockDestroyStage>(0x05)
+        // 0x06 Block entity data
+        // 0x07 Block action
+        registerOutbound<PacketOutBlockUpdate>(0x08)
+        registerOutbound<PacketOutBossBar>(0x09)
+        registerOutbound<PacketOutChangeDifficulty>(0x0A)
+        // 0x0B Chunk batch finished
+        // 0x0C Chunk batch start
+        // 0x0D Chunk biomes
+        registerOutbound<PacketOutClearTitles>(0x0E)
+        registerOutbound<PacketOutCommandSuggestionsResponse>(0x0F)
+        registerOutbound<PacketOutCommands>(0x10)
+        // 0x11 Close container
+        registerOutbound<PacketOutSetContainerContent>(0x12)
+        // 0x13 Set container property
+        registerOutbound<PacketOutSetContainerSlot>(0x14)
+        // 0x15 Cookie request (play)
+        registerOutbound<PacketOutSetCooldown>(0x16)
+        registerOutbound<PacketOutChatSuggestions>(0x17)
+        registerOutbound<PacketOutPluginMessage>(0x18)
+        // 0x19 Damage event
+        // 0x1A Debug Sample
+        registerOutbound<PacketOutDeleteChat>(0x1B)
+        registerOutbound<PacketOutDisconnect>(0x1C)
+        registerOutbound<PacketOutDisguisedChat>(0x1D)
+        registerOutbound<PacketOutEntityEvent>(0x1E)
+        registerOutbound<PacketOutTeleportEntity>(0x1F)
+        // 0x20 Explosion
+        registerOutbound<PacketOutUnloadChunk>(0x21)
+        registerOutbound<PacketOutGameEvent>(0x22)
+        // 0x23 Open horse screen
+        // 0x24 Hurt animation
+        registerOutbound<PacketOutInitializeWorldBorder>(0x25)
+        registerOutbound<PacketOutKeepAlive>(0x26)
+        registerOutbound<PacketOutChunkDataAndLight>(0x27)
+        registerOutbound<PacketOutWorldEvent>(0x28)
+        registerOutbound<PacketOutParticle>(0x29)
+        registerOutbound<PacketOutUpdateLight>(0x2A)
+        registerOutbound<PacketOutLogin>(0x2B)
+        // 0x2C Map data
+        // 0x2D Merchant Offers
+        registerOutbound<PacketOutUpdateEntityPosition>(0x2E)
+        registerOutbound<PacketOutUpdateEntityPositionAndRotation>(0x2F)
+        // 0x30 Move Minecart Along Track
+        registerOutbound<PacketOutUpdateEntityRotation>(0x31)
+        // 0x32 Move vehicle
+        registerOutbound<PacketOutOpenBook>(0x33)
+        // 0x34 Open screen
+        // 0x35 Open sign editor
+        // 0x36 Ping
+        // 0x37 Ping response
+        // 0x38 Place ghost Recipe
+        registerOutbound<PacketOutAbilities>(0x38)
+        registerOutbound<PacketOutPlayerChat>(0x3A)
+        // 0x3B End combat
+        // 0x3C Enter combat
+        // 0x3D Combat death
+        registerOutbound<PacketOutPlayerInfoRemove>(0x3E)
+        registerOutbound<PacketOutPlayerInfoUpdate>(0x3F)
+        // 0x40 Look at
+        registerOutbound<PacketOutSynchronizePlayerPosition>(0x41)
+        // 0x43 Recipe book add
+        // 0x44 Recipe book remove
+        // 0x45 Recipe book settings
+        registerOutbound<PacketOutRemoveEntities>(0x46)
+        registerOutbound<PacketOutEntityRemovePotionEffect>(0x47)
+        // 0x48 Reset score
+        // 0x49 Remove resource pack
+        registerOutbound<PacketOutResourcePack>(0x4A)
+        // 0x4B Respawn
+        registerOutbound<PacketOutSetHeadRotation>(0x4C)
+        // 0x4D Update section blocks
+        // 0x4E Select advancement tab
+        // 0x4F Server data
+        registerOutbound<PacketOutSetActionBarText>(0x50)
+        // 0x51 Set border center
+        // 0x52 Set border lerp size
+        // 0x53 Set border size
+        // 0x54 Set border warning delay
+        // 0x55 Set border warning distance
+        registerOutbound<PacketOutSetCamera>(0x56)
+        registerOutbound<PacketOutSetCenterChunk>(0x57)
+        // 0x58 Set render distance
+        // 0x59 Set cursor item
+        registerOutbound<PacketOutSetDefaultSpawnPosition>(0x5A)
+        registerOutbound<PacketOutDisplayObjective>(0x5B)
+        registerOutbound<PacketOutSetEntityMetadata>(0x5C)
+        // 0x5D Link entities
+        registerOutbound<PacketOutSetEntityVelocity>(0x5E)
+        // 0x5F Set equipment
+        // 0x60 Set experience
+        registerOutbound<PacketOutSetHealth>(0x61)
+        registerOutbound<PacketOutSetHeldItem>(0x61)
+        registerOutbound<PacketOutUpdateObjectives>(0x63)
+        registerOutbound<PacketOutSetPassengers>(0x64)
+        // 0x65 Set player inventory slot
+        registerOutbound<PacketOutUpdateTeams>(0x66)
+        registerOutbound<PacketOutUpdateScore>(0x67)
+        // 0x68 Set simulation distance
+        registerOutbound<PacketOutSetSubtitleText>(0x69)
+        registerOutbound<PacketOutUpdateTime>(0x6A)
+        registerOutbound<PacketOutSetTitleText>(0x6B)
+        registerOutbound<PacketOutSetTitleAnimationTimes>(0x6C)
+        registerOutbound<PacketOutEntitySoundEffect>(0x6D)
+        registerOutbound<PacketOutSoundEffect>(0x6E)
+        // 0x6F Start configuration
+        registerOutbound<PacketOutStopSound>(0x70)
+        // 0x71 Store cookie
+        registerOutbound<PacketOutSystemChat>(0x72)
+        registerOutbound<PacketOutSetTabListHeaderAndFooter>(0x73)
+        registerOutbound<PacketOutTagQueryResponse>(0x74)
+        // 0x75 Pickup item
+        // 0x76 Synchronize vehicle position
+        // 0x77 Test instance block status
+        // 0x78 Set ticking state
+        // 0x79 Step tick
+        // 0x7A Transfer
+        // 0x7B Update advancements
+        registerOutbound<PacketOutUpdateAttributes>(0x7C)
+        registerOutbound<PacketOutEntityPotionEffect>(0x7D)
+        registerOutbound<PacketOutUpdateRecipes>(0x7E)
+        registerOutbound<PacketOutUpdateTags>(0x7F)
+        // 0x80 Projectile power
+        // 0x81 Custom report details
+        // 0x82 Server links
+        // 0x83 Waypoint
+        // 0x84 Clear dialog
+        // 0x85 Show dialog
     }
 
     @JvmStatic

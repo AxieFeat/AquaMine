@@ -14,7 +14,7 @@ import net.aquamine.api.block.entity.Command
 import net.aquamine.api.block.entity.Comparator
 import net.aquamine.api.block.entity.Conduit
 import net.aquamine.api.block.entity.DaylightDetector
-import net.aquamine.api.block.entity.EnchantmentTable
+import net.aquamine.api.block.entity.EnchantingTable
 import net.aquamine.api.block.entity.EnderChest
 import net.aquamine.api.block.entity.Jigsaw
 import net.aquamine.api.block.entity.Jukebox
@@ -144,7 +144,7 @@ object RegistryLoaders {
         add<Spawner>("mob_spawner", AquaBlocks.SPAWNER)
         add<PistonMoving>("piston", AquaBlocks.MOVING_PISTON)
         add<BrewingStand>("brewing_stand", AquaBlocks.BREWING_STAND)
-        add<EnchantmentTable>("enchanting_table", AquaBlocks.ENCHANTING_TABLE)
+        add<EnchantingTable>("enchanting_table", AquaBlocks.ENCHANTING_TABLE)
         add<TheEndPortal>("end_portal", AquaBlocks.END_PORTAL)
         add<Beacon>("beacon", AquaBlocks.BEACON)
         add<Skull>("skull", AquaBlocks.SKELETON_SKULL, AquaBlocks.SKELETON_WALL_SKULL, AquaBlocks.CREEPER_HEAD,
