@@ -33,13 +33,14 @@ class ChunkProgressListener(radius: Int) {
 
         if (System.currentTimeMillis() > nextTickTime) {
             nextTickTime += MILLISECONDS_PER_TICK
-            if(progress != previousProgress) {
-                val progressText = Component.text(Maths.clamp(progress, 0, 100))
+            val clampedProgress = Maths.clamp(progress, 0, 100)
+            if(clampedProgress != previousProgress) {
+                val progressText = Component.text(clampedProgress)
 
                 val message = MinecraftTranslationManager.render(Component.translatable("menu.preparingSpawn", progressText))
                 LOGGER.info(PlainTextComponentSerializer.plainText().serialize(message))
             }
-            previousProgress = progress
+            previousProgress = clampedProgress
         }
     }
 
